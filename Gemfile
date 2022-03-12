@@ -6,6 +6,8 @@ ruby "2.7.5"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.2", ">= 7.0.2.2"
 
+gem 'rails-i18n'
+
 gem 'faker'
 
 gem 'bootstrap-sass'
