@@ -38,7 +38,7 @@ class SchoolclassesController < ApplicationController
 
   def edit6
   end
-
+  
   def destroy
     @schoolclass.destroy
     flash[:success] = "#{@schoolclass.class_name}のデータを削除しました。"

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_action :set_user, only: %i(show edit update destroy)
+  before_action :set_user, only: %i(show edit update edit_teacher destroy)
   before_action :logged_in_user, only: %i(index teacher_index show edit update destroy)
   before_action :correct_user, only: %i(edit update)
   before_action :admin_user, only: %i(teacher_index destroy)
@@ -12,6 +12,9 @@ class UsersController < ApplicationController
   
   def teacher_index
     @teachers = User.where(teacher: true)
+  end
+  
+  def student_index
   end
   
   def show
@@ -34,6 +37,15 @@ class UsersController < ApplicationController
     end
   end
   
+  def update
+    if @user.update(user_params)
+      flash[:success] = "ユーザー情報を更新しました。"
+      redirect_to @user
+    else
+      render :edit      
+    end
+  end
+  
   def new_teacher
     @user = User.new
   end
@@ -49,16 +61,7 @@ class UsersController < ApplicationController
     end
   end
   
-  def edit
-  end
-
-  def update
-    if @user.update(user_params)
-      flash[:success] = "ユーザー情報を更新しました。"
-      redirect_to @user
-    else
-      render :edit      
-    end
+  def edit_teacher
   end
   
   def destroy

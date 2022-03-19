@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_18_123549) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_19_212309) do
   create_table "class_numbers", force: :cascade do |t|
     t.string "class_name"
     t.datetime "created_at", null: false
@@ -38,7 +38,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_18_123549) do
     t.string "remember_digest"
     t.boolean "admin", default: false
     t.boolean "teacher", default: false
-    t.string "teacher_name"
     t.string "class_number"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
