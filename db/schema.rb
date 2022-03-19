@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_11_221856) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_18_123549) do
+  create_table "class_numbers", force: :cascade do |t|
+    t.string "class_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "schoolclasses", force: :cascade do |t|
+    t.date "contact_date"
+    t.string "note"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "school_year"
+    t.string "class_name"
+    t.string "teacher_note"
+    t.index ["user_id"], name: "index_schoolclasses_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -19,7 +37,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_11_221856) do
     t.string "password_digest"
     t.string "remember_digest"
     t.boolean "admin", default: false
+    t.boolean "teacher", default: false
+    t.string "teacher_name"
+    t.string "class_number"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "schoolclasses", "users"
 end

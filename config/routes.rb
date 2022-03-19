@@ -7,8 +7,20 @@ Rails.application.routes.draw do
   get    '/login', to: 'sessions#new'
   post   '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  
-  resources :users
+ 
+  resources :users do
+    member do
+      get 'new_teacher'
+      post 'teacher_create'
+      get 'teacher_index'
+      get 'schoolclasses/class_index' 
+      get 'schoolclasses/edit_1'       
+    end
+  end
+  resources :schoolclasses do
+  end
+  resources :class_numbers do 
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

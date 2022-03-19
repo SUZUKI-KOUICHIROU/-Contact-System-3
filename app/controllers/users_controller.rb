@@ -1,16 +1,22 @@
 class UsersController < ApplicationController
   
   before_action :set_user, only: %i(show edit update destroy)
-  before_action :logged_in_user, only: %i(index show edit update destroy)
+  before_action :logged_in_user, only: %i(index teacher_index show edit update destroy)
   before_action :correct_user, only: %i(edit update)
-  before_action :admin_user, only: %i(destroy)
+  before_action :admin_user, only: %i(teacher_index destroy)
   #before_action :set_one_month, only: %i(show) 
   
   def index
     @users = User.paginate(page: params[:page])
   end
   
+  def teacher_index
+    @teachers = User.where(teacher: true)
+  end
+  
   def show
+    @first_day = Date.current.beginning_of_month
+    @last_day = @first_day.end_of_month
   end
     
   def new
@@ -25,6 +31,21 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       render :new
+    end
+  end
+  
+  def new_teacher
+    @user = User.new
+  end
+
+  def teacher_create
+    @user = User.new(teacher_params)
+    if @user.save
+      log_in @user # 保存成功後、ログインします。
+      flash[:success] = '新規作成に成功しました。'
+      redirect_to @user
+    else
+      render :new_teacher
     end
   end
   
@@ -49,6 +70,10 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :class_number, :password, :password_confirmation)
     end
-  end
+  
+    def teacher_params
+      params.require(:user).permit(:name, :email, :class_number, :password, :password_confirmation)
+    end
+end

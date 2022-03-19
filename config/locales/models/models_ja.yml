@@ -7,7 +7,17 @@ ja:
           id: ID
           name: 名前
           email: メールアドレス
+          class_number: クラス
           password: パスワード
           password_confirmation: パスワード再入力
           created_at: 作成日
           updated_at: 更新日
+        schoolclass:
+          contact_date: 日付
+          school_year: 学年
+          class_name: クラス
+          note: 連絡帳
+          teacher_note: 学校⇄担任連絡帳
+        class_number:
+          class_name: クラス
+              

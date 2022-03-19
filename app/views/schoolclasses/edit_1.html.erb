@@ -1,0 +1,29 @@
+<% provide(:title, 'edit-1') %>
+<div>
+  <table class="table table-bordered table-condensed table-hover" id="table-attendances">
+    <h1>クラス選択</h1>
+    <thead> 
+      <tr>  
+        <th>クラス</th>
+        <th>担任</th>
+        <th>生徒数</th>
+        <th>編集</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @schoolclassese_1.zip(@teachers) do |schoolclass, teacher| %>
+      <tr>    
+        <td><%= schoolclass.class_name %></td>
+        <td>
+          <% if schoolclass.class_name == teacher.class_number %>
+            <%= teacher.name %>
+          <% end %>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

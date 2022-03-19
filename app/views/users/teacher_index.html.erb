@@ -1,0 +1,22 @@
+<% provide(:title, 'All Teachers') %>
+<h1>担任一覧</h1>
+
+<div class="col-md-10 col-md-offset-1">
+  <table class="table table-condensed table-hover" id="table-users">
+    <thead>
+      <tr>
+        <th><%= User.human_attribute_name :name %></th>
+        <th><%= User.human_attribute_name :class_number %></th>
+        <th><%= Schoolclass.human_attribute_name :teacher_note %></th>
+      </tr>
+    </thead>
+
+    <% @teachers.each do |teacher| %>
+      <tr>
+        <td><%= teacher.name %></td>
+        <td><%= teacher.class_number %></td>
+        <td>連絡帳</td>
+      </tr>
+    <% end %>
+  </table>
+</div>
