@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_action :set_user, only: %i(show edit update edit_teacher destroy)
+  before_action :set_user, only: %i(show edit update edit_teacher destroy show_teacher_contact)
   before_action :logged_in_user, only: %i(index teacher_index show edit update destroy)
   before_action :correct_user, only: %i(edit update)
   before_action :admin_user, only: %i(teacher_index destroy)

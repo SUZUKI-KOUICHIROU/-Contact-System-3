@@ -6,11 +6,12 @@
       <tr>  
         <th>クラス</th>
         <th>担任</th>
+        <th>担任への連絡</th>
         <th>生徒数</th>
         <th>編集</th>
       </tr>
     </thead>
-    
+  
     <tbody>
       <% @schoolclassese_1.zip(@teachers) do |schoolclass, teacher| %>
       <tr>    
@@ -20,6 +21,7 @@
             <%= link_to "#{teacher.name}", edit_teacher_user_path(teacher) %>
           <% end %>
         </td>
+        <td><%= link_to "担任への連絡", schoolclasses_teacher_contact_index_user_path(teacher) %>
         <td><%= link_to "17名", student_index_user_path %></td>
         <td></td>
       </tr>

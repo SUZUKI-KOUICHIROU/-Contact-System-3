@@ -1,0 +1,16 @@
+<% provide(:title, 'Edit-Teacher-Contact') %>
+<div class="contents_form">
+  <div class="container_box">
+    <h1>担任への連絡</h1>
+    
+    <%= form_with(model: @user, url: schoolclasses_update_teacher_contact_user_path, local: true, method: :patch) do |f|  %>  
+      <% @contact.each do |day| %>  
+        <%= f.fields_for "schoolclasses[]", day do |contact| %> 
+          <td><%= l(day.contact_date, format: :default) %></td>
+          <td><%= contact.text_area :teacher_note, placeholder: "コメントを入力してください", rows: "10", class: "container" %></td>
+          <td><%= f.submit "投稿", class: 'container' %></td>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

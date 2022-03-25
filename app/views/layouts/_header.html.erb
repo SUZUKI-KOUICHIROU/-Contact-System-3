@@ -11,7 +11,11 @@
           <li><%= link_to "担任登録", new_teacher_user_path(current_user, @user) %></li>
           <li><%= link_to "ユーザー一覧", users_path %></li> 
         <% end %>
-      
+        
+        <% if logged_in? && current_user.teacher? %>
+          <li><%= link_to "学校からの連絡", schoolclasses_show_teacher_contact_user_path(current_user) %></li>
+        <% end %>
+
         <% if logged_in? %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">

@@ -1,5 +1,6 @@
 class SchoolclassesController < ApplicationController
-  before_action :set_schoolclass, only: %i(index)
+  before_action :set_user, only: %i(teacher_contact_index edit_teacher_contact update_teacher_contact show_teacher_contact teacher_contact)
+  before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact)
 
   def class_index 
   end 
@@ -36,9 +37,37 @@ class SchoolclassesController < ApplicationController
   def edit5
   end
 
-  def edit6
+  def edit6dex
+  end
+
+  def teacher_contact_index  
+  end
+
+  def edit_teacher_contact  
+    @contact = @user.schoolclasses.where(contact_date: params[:date])
+  end
+
+  def update_teacher_contact
+    teacher_contact_params.each do |id,item|  
+      contact = Schoolclass.find(id)
+      if contact.update(item)
+        flash[:success] = '投稿しました。'
+        redirect_to schoolclasses_class_index_user_url(current_user)
+      else
+        ender :edit_1
+        flash[:danger] = "失敗しました。" 
+      end
+    end
   end
   
+  def show_teacher_contact
+    @contacts = Schoolclass.where(schoolclasses: {user_id: @user.id})
+  end
+  
+  def teacher_contact
+    @contacts = Schoolclass.where(schoolclasses: {user_id: @user.id})
+  end
+
   def destroy
     @schoolclass.destroy
     flash[:success] = "#{@schoolclass.class_name}のデータを削除しました。"
@@ -51,6 +80,10 @@ class SchoolclassesController < ApplicationController
     def schoolclass_params
       params.require(:schoolclass).permit(:class_name)
     end
-  end
+  
+    def teacher_contact_params
+      params.require(:user).permit(schoolclasses: [:teacher_note])[:schoolclasses]
+    end 
+end
 
 

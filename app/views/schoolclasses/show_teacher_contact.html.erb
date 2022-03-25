@@ -1,0 +1,33 @@
+<% provide(:title, "#{@user.name}-Contact") %>
+
+<h1>学校からの連絡</h1>
+
+<div>
+  <table class="table table-bordered table-condensed table-hover" id="table-attendances">
+    <thead>
+      <tr>    
+        <th>日付</th>
+        <th>曜日</th>
+        <th>連絡</th>
+      </tr>
+    </thead>
+    
+    <% @schoolclasses.each do |day| %>
+    
+    <% css_class = case $days_of_the_week[day.contact_date.wday]
+        when '土'
+          'text-primary'
+        when '日'
+          'text-danger'
+        end %>
+    
+    <tbody>
+      <tr>  
+        <td><%= l(day.contact_date, format: :default) %></td>   
+        <td class="<%= css_class %>"><%= $days_of_the_week[day.contact_date.wday] %></td>
+        <td><%= link_to "連絡", schoolclasses_teacher_contact_user_path(@user, date: day.contact_date) %></td>
+      </tr>    
+    </tbody>
+    <% end %>
+  </table>  
+</div>

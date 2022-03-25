@@ -13,9 +13,9 @@
 
     <% @teachers.each do |teacher| %>
       <tr>
-        <td><%= teacher.name %></td>
+        <td><%= link_to "#{teacher.name}", edit_teacher_user_path(teacher) %></td>
         <td><%= teacher.class_number %></td>
-        <td>連絡帳</td>
+        <td><%= link_to "担任への連絡", schoolclasses_teacher_contact_index_user_path(teacher) %></td>
       </tr>
     <% end %>
   </table>

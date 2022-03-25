@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get    '/login', to: 'sessions#new'
   post   '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
- 
+  
   resources :users do
     member do
       get 'new_teacher'
@@ -17,6 +17,13 @@ Rails.application.routes.draw do
       get 'student_index'
       get 'schoolclasses/class_index' 
       get 'schoolclasses/edit_1'       
+      
+      get 'schoolclasses/teacher_contact_index'
+      get 'schoolclasses/edit_teacher_contact'
+      patch 'schoolclasses/update_teacher_contact'
+      
+      get 'schoolclasses/show_teacher_contact'
+      get 'schoolclasses/teacher_contact'
     end
   end
   resources :schoolclasses do

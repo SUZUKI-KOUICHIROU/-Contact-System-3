@@ -17,6 +17,11 @@ class ApplicationController < ActionController::Base
     redirect_to root_url unless current_user.admin?
   end
 
+  #担任かどうか判定します。
+  def teacher_user
+    redirect_to root_url unless current_user.teacher?
+  end
+  
   # ログイン済みのユーザーか確認します。
   def logged_in_user
     unless logged_in?
@@ -38,14 +43,14 @@ class ApplicationController < ActionController::Base
     @last_day = @first_day.end_of_month
     one_month = [*@first_day..@last_day] # 対象の月の日数を代入します。
     # ユーザーに紐付く一ヶ月分のレコードを検索し取得します。
-    @attendances = @user.attendances.where(worked_on: @first_day..@last_day).order(:worked_on)
+    @schoolclasses = @user.schoolclasses.where(contact_date: @first_day..@last_day).order(:contact_date)
     
-    unless one_month.count == @attendances.count # それぞれの件数（日数）が一致するか評価します。
+    unless one_month.count == @schoolclasses.count # それぞれの件数（日数）が一致するか評価します。
       ActiveRecord::Base.transaction do # トランザクションを開始します。
       #繰り返し処理により、1ヶ月分の勤怠データを生成します。
-        one_month.each { |day| @user.attendances.create!(worked_on: day) }
+        one_month.each { |day| @user.schoolclasses.create!(contact_date: day) }
       end
-      @attendances = @user.attendances.where(worked_on: @first_day..@last_day).order(:worked_on)
+      @schoolclasses = @user.schoolclasses.where(contact_date: @first_day..@last_day).order(:contact_date)
     end
 
   rescue ActiveRecord::RecordInvalid # トランザクションによるエラーの分岐です。
