@@ -6,7 +6,10 @@
     <%= form_with(model: @user, url: schoolclasses_update_teacher_contact_user_path, local: true, method: :patch) do |f|  %>  
       <% @contact.each do |day| %>  
         <%= f.fields_for "schoolclasses[]", day do |contact| %> 
-          <td><%= l(day.contact_date, format: :default) %></td>
+          <td>
+              <%= l(day.contact_date, format: :default) %>
+              <%= contact.text_field :title %>
+          </td>
           <td><%= contact.text_area :teacher_note, placeholder: "コメントを入力してください", rows: "10", class: "container" %></td>
           <td><%= f.submit "投稿", class: 'container' %></td>
         <% end %>

@@ -9,14 +9,16 @@ class SchoolclassesController < ApplicationController
   before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact)
 
 
-
+  #学年選択
   def class_index 
   end 
   
+  #クラス作成
   def new
     @schoolclass = Schoolclass.new
   end
-
+  
+  #クラス作成
   def create
     @schoolclass = current_user.schoolclasses.create(schoolclass_params)
     if @schoolclass.save
@@ -26,7 +28,8 @@ class SchoolclassesController < ApplicationController
       render :new
     end
   end
-
+  
+  #クラス一覧
   def edit_1
     @schoolclassese_1 = ClassNumber.where(params[:class_name]).order(:class_name) 
     @teachers = User.where(teacher: true)   
@@ -47,14 +50,17 @@ class SchoolclassesController < ApplicationController
 
   def edit6
   end
-
+  
+  #担任一覧
   def teacher_contact_index  
   end
-
+  
+  #担任への連絡作成
   def edit_teacher_contact  
     @contact = @user.schoolclasses.where(contact_date: params[:date])
   end
-
+  
+  #担任への連絡投稿
   def update_teacher_contact
     teacher_contact_params.each do |id,item|  
       contact = Schoolclass.find(id)
@@ -68,17 +74,22 @@ class SchoolclassesController < ApplicationController
     end
   end
   
+  #学校からの連絡一覧
   def show_teacher_contact
     @contacts = Schoolclass.where(schoolclasses: {user_id: @user.id})
   end
   
+  ##学校からの連絡表示
   def teacher_contact
+    @contact_title = Schoolclass.where(contact_date: params[:date])
+    @contacts = Schoolclass.where(contact_date: params[:date])
   end
 
   def destroy
-    @schoolclass.destroy
-    flash[:success] = "#{@schoolclass.class_name}のデータを削除しました。"
-    redirect_to schoolclasses_url
+    @contact = @user.Schoolclass.find(params[:id]) 
+    @contact.destroy
+    flash[:success] = "#{@user.name}のデータを削除しました。"
+    redirect_to schoolclasses_teacher_contact_index_user_url
   end
 
 
@@ -89,7 +100,7 @@ class SchoolclassesController < ApplicationController
     end
   
     def teacher_contact_params
-      params.require(:user).permit(schoolclasses: [:teacher_note])[:schoolclasses]
+      params.require(:user).permit(schoolclasses: [:title, :teacher_note])[:schoolclasses]
     end 
 end
 

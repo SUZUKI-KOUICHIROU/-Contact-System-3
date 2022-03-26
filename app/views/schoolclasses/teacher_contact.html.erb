@@ -1,5 +1,15 @@
 <h1>学校からの連絡</h1>
 
-<% @schoolclasses.each do |day| %>  
-  <td><%= day.teacher_note %></td>
+<%  @contact_title.each do |contact| %>
+  <%= contact.title %>
 <% end %>
+
+<div class="main posts-show">
+  <div class="container">
+    <div class="posts-show-item">
+      <% @contacts.each do |day| %> 
+        <td><%= day.teacher_note %></td>
+      <% end %>
+    </div>
+  </div>
+</div>
