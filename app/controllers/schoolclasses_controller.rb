@@ -1,6 +1,14 @@
 class SchoolclassesController < ApplicationController
-  before_action :set_user, only: %i(teacher_contact_index edit_teacher_contact update_teacher_contact show_teacher_contact teacher_contact)
+  
+  #include SchoolclassesHelper
+  
+  before_action :set_user, only: %i(teacher_contact_index edit_teacher_contact update_teacher_contact show_teacher_contact teacher_contact destroy)
+  #before_action :logged_in_user, only: []
+  #before_action :correct_user, only: []
+  before_action :admin_user, only: %i(class_index edit_1 teacher_contact_index edit_teacher_contact destroy)
   before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact)
+
+
 
   def class_index 
   end 
@@ -37,7 +45,7 @@ class SchoolclassesController < ApplicationController
   def edit5
   end
 
-  def edit6dex
+  def edit6
   end
 
   def teacher_contact_index  
@@ -65,7 +73,6 @@ class SchoolclassesController < ApplicationController
   end
   
   def teacher_contact
-    @contacts = Schoolclass.where(schoolclasses: {user_id: @user.id})
   end
 
   def destroy

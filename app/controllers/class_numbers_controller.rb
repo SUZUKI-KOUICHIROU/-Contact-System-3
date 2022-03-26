@@ -1,5 +1,7 @@
 class ClassNumbersController < ApplicationController
-
+  
+  before_action :admin_user, only: %i(new)
+  
   def new
     @class_number = ClassNumber.new
   end

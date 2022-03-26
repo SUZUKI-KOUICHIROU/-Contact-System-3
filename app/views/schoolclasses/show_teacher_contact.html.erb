@@ -12,7 +12,7 @@
       </tr>
     </thead>
     
-    <% @schoolclasses.each do |day| %>
+    <% @contacts.each do |day| %>
     
     <% css_class = case $days_of_the_week[day.contact_date.wday]
         when '土'
@@ -25,7 +25,11 @@
       <tr>  
         <td><%= l(day.contact_date, format: :default) %></td>   
         <td class="<%= css_class %>"><%= $days_of_the_week[day.contact_date.wday] %></td>
-        <td><%= link_to "連絡", schoolclasses_teacher_contact_user_path(@user, date: day.contact_date) %></td>
+        <td>
+          <% if day.teacher_note.present? %>
+            <%= link_to day.teacher_note, schoolclasses_teacher_contact_user_path(@user, date: day.contact_date) %>
+          <% end %>
+        </td>
       </tr>    
     </tbody>
     <% end %>
