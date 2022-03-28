@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       
       get 'schoolclasses/show_teacher_contact'
       get 'schoolclasses/teacher_contact'
+      patch 'schoolclasses/update_school_contact'
     end
   end
   resources :schoolclasses do

@@ -51,13 +51,14 @@ class SchoolclassesController < ApplicationController
   def edit6
   end
   
-  #担任一覧
+  #担任への連絡選択
   def teacher_contact_index  
   end
   
   #担任への連絡作成
   def edit_teacher_contact  
     @contact = @user.schoolclasses.where(contact_date: params[:date])
+    @teacher_contact = @user.schoolclasses.where(contact_date: params[:date])
   end
   
   #担任への連絡投稿
@@ -68,7 +69,7 @@ class SchoolclassesController < ApplicationController
         flash[:success] = '投稿しました。'
         redirect_to schoolclasses_class_index_user_url(current_user)
       else
-        ender :edit_1
+        render :edit_1
         flash[:danger] = "失敗しました。" 
       end
     end
@@ -79,19 +80,36 @@ class SchoolclassesController < ApplicationController
     @contacts = Schoolclass.where(schoolclasses: {user_id: @user.id})
   end
   
-  ##学校からの連絡表示
+  #学校からの連絡表示
   def teacher_contact
     @contact_title = Schoolclass.where(contact_date: params[:date])
-    @contacts = Schoolclass.where(contact_date: params[:date])
+    @contacts = @user.schoolclasses.where(contact_date: params[:date])
   end
 
+  #学校への連絡投稿
+  def update_school_contact
+    school_contact_params.each do |id,item|  
+      contact = Schoolclass.find(id)
+      if contact.update(item)
+        flash[:success] = '投稿しました。'
+        redirect_to schoolclasses_show_teacher_contact_user_url(current_user)
+      else
+        render :show_teacher_contact
+        flash[:danger] = "失敗しました。" 
+      end
+    end
+  end
+  
   def destroy
     @contact = @user.Schoolclass.find(params[:id]) 
     @contact.destroy
     flash[:success] = "#{@user.name}のデータを削除しました。"
     redirect_to schoolclasses_teacher_contact_index_user_url
   end
-
+  
+  #生徒一覧
+  def student_index
+  end
 
   private
 
@@ -101,7 +119,11 @@ class SchoolclassesController < ApplicationController
   
     def teacher_contact_params
       params.require(:user).permit(schoolclasses: [:title, :teacher_note])[:schoolclasses]
-    end 
-end
+    end
+    
+    def school_contact_params
+      params.require(:user).permit(schoolclasses: [:school_contact])[:schoolclasses]
+    end
+  end
 
 

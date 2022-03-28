@@ -1,7 +1,8 @@
-<h1>学校からの連絡</h1>
+<% provide(:title, 'Teacher-Contact') %>
 
+<h1>学校からの連絡</h1>
 <%  @contact_title.each do |contact| %>
-  <%= contact.title %>
+  <h4><%= contact.title %></h4>
 <% end %>
 
 <div class="main posts-show">
@@ -13,3 +14,20 @@
     </div>
   </div>
 </div>
+
+<h4>学校への連絡</h4>
+<div class="contents_form">
+  <div class="container_box">
+    <%= form_with(model: @user, url: schoolclasses_update_school_contact_user_path, local: true, method: :patch) do |f| %>
+      <% @contacts.each do |day| %> 
+        <%= f.fields_for "schoolclasses[]", day do |contact| %>  
+          <td><%= contact.text_area :school_contact, placeholder: "コメントを入力してください", rows: "10", class: "container" %></td>
+          <td><%= f.submit "投稿", class: 'container' %></td>
+        <% end %>
+      <% end %>
+    <% end %>  
+  </div>
+</div>
+
+    
+  

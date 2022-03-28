@@ -1,42 +1,41 @@
 <% provide(:title, @user.name) %>
-<div>
-  <table class="table table-bordered table-condensed user-table">
-    <h1>学年選択<h2>
-    <td><%= @user.name %></td>
-    <td>2年</td>
-    <td>3年</td>
-    <td>4年</td>
-    <td>5年</td>
-    <td>6年</td>
-  </table>
-</div>
 
 <div>
+<h1>ログイン後画面<h1>
+</div>
+
+<div class="top-select">
   <table class="table table-bordered table-condensed table-hover" id="table-attendances">
-    <thead>
-      <tr>
-        <th>日付</th>
-        <th>曜日</th>
-        <th>勤怠登録</th>
-        <th>出勤時間</th>
-        <th>退勤時間</th>
-        <th>在社時間</th>
-        <th>備考</th>
-      </tr>
-    </thead>
 
-    <tbody>
-      <% (@first_day..@last_day).each do |day| %>
-        <tr>
-          <td><%= day %></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-      <% end %>
-    </tbody>
+  <% if logged_in? && current_user.admin? %>
+    <div><%= link_to "学年選択", schoolclasses_class_index_user_path(current_user, @schoolclass) %></div>
+    <div><%= link_to "担任一覧",  teacher_index_user_path(current_user, @user) %></div>
+  <% end %>
+  
+  <% if logged_in? && current_user.teacher? %>
+    <div><%= link_to "学校からの連絡", schoolclasses_show_teacher_contact_user_path(current_user) %></div>
+  <% end %>
+
+  <% if logged_in? && current_user.admin? %>
+    <div><%= link_to "クラス作成", new_class_number_path %></div>
+    <div><%= link_to "担任登録", new_teacher_user_path(current_user, @user) %></div>
+    <div><%= link_to "ユーザー情報編集", edit_user_path(current_user) %></div>
+    <div><%= link_to "担任情報編集", '#' %></div>
+    <div><%= link_to "生徒情報編集", '#' %></div>
+  <% end %>
+    
+  <% if logged_in? %>
+    <div><%= link_to "ログアウト", logout_path, method: :delete %></div>
+    <div><%= link_to "ログイン", login_path %></div>
+  <% end %>  
+
+
+
   </table>
 </div>
+
+
+
+
+
+
