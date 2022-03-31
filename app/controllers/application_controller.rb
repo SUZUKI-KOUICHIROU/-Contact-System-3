@@ -37,6 +37,11 @@ class ApplicationController < ActionController::Base
     redirect_to(root_url) unless current_user?(@user)
   end 
 
+  # クラスリスト
+  def class_choice
+    @class_list = ClassNumber.all
+  end
+  
   # ページ出力前に1ヶ月分のデータの存在を確認・セットします。
   def set_one_month 
     @first_day = params[:date].nil? ? Date.current.beginning_of_month : params[:date].to_date

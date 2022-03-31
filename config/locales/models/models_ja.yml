@@ -6,8 +6,10 @@ ja:
         user:
           id: ID
           name: 名前
+          guardian_name: 保護者
           email: メールアドレス
           class_number: クラス
+          student_number: 出席番号
           password: パスワード
           password_confirmation: パスワード再入力
           created_at: 作成日

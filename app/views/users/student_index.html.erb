@@ -5,16 +5,21 @@
   <table class="table table-condensed table-hover" id="table-users">
     <thead>
       <tr>
+        <th><%= User.human_attribute_name :student_number %></th>
         <th><%= User.human_attribute_name :name %></th>
+        <th><%= User.human_attribute_name :guardian_name %></th>
         <th><%= Schoolclass.human_attribute_name :note %></th>
       </tr>
     </thead>
-
-    
-      <tr>
-        <td>生徒名</td>
-        <td>連絡帳</td>
-      </tr>
-      
+    <tbody>
+      <% @students.each do |student| %>
+        <tr>
+          <td><%= student.student_number %></td>
+          <td><%= link_to "#{student.name}", student_detail_user_path(student) %></td>
+          <td>保護者<td>
+          <td>連絡帳</td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 </div>

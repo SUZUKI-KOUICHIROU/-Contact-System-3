@@ -36,20 +36,31 @@
               編集メニュー <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to "ユーザー情報編集", edit_user_path(current_user) %></li>
-              <li><%= link_to "担任情報編集", '#' %></li>
+              <li><%= link_to "管理者情報編集", edit_user_path(current_user) %></li>
+              <li><%= link_to "担任情報編集", edit_teacher_user_path(current_user, @user) %></li>
               <li><%= link_to "生徒情報編集", '#' %></li>
             </ul>
           </li>
         <% end %>
-
+        
+        <% if logged_in? && current_user.teacher? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              作成メニュー <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "生徒登録", '#' %></li>
+            </ul>
+          </li>
+        <% end %>
+        
         <% if logged_in? && current_user.teacher? %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               編集メニュー <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to "ユーザー情報編集", edit_user_path(current_user) %></li>
+              <li><%= link_to "担任情報編集", edit_user_path(current_user) %></li>
               <li><%= link_to "生徒情報編集", '#' %></li>
             </ul>
           </li>

@@ -40,3 +40,22 @@
   width: 200px;
   height: 100px;
 }
+
+.student-line {
+	white-space: pre;
+}
+
+/* 生徒詳細 */
+
+#table-attendances {
+  th {
+    vertical-align: bottom;
+    text-align: center;
+  }
+  td {
+    vertical-align: middle;
+    text-align: center;
+  }
+}
+
+

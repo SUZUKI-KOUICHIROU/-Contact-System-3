@@ -14,7 +14,12 @@ Rails.application.routes.draw do
       post 'teacher_create'
       get 'edit_teacher'
       get 'teacher_index'
+      
+      get 'new_student'
+      post 'create_student'
       get 'student_index'
+      get 'student_detail'
+
       get 'schoolclasses/class_index' 
       get 'schoolclasses/edit_1'       
       

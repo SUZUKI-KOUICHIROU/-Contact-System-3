@@ -1,20 +1,13 @@
 class UsersController < ApplicationController
   
-  before_action :set_user, only: %i(show edit update edit_teacher destroy show_teacher_contact)
+  before_action :set_user, only: %i(show edit update edit_teacher destroy show_teacher_contact student_detail)
   before_action :logged_in_user, only: %i(index teacher_index show edit update destroy)
   before_action :correct_user, only: %i(edit update)
   before_action :admin_user, only: %i(teacher_index new_teacher edit_teacher destroy)
-  
-  
+  before_action :class_choice, only: %i(new)
+
   def index
     @users = User.paginate(page: params[:page])
-  end
-  
-  def teacher_index
-    @teachers = User.where(teacher: true)
-  end
-  
-  def student_index
   end
   
   def show
@@ -46,6 +39,8 @@ class UsersController < ApplicationController
     end
   end
   
+  #担任登録
+  
   def new_teacher
     @user = User.new
   end
@@ -62,6 +57,32 @@ class UsersController < ApplicationController
   end
   
   def edit_teacher
+  end
+  
+  #担任一覧
+  
+  def teacher_index
+    @teachers = User.where(teacher: true)
+  end
+  
+  # 生徒登録
+  
+  def new_student
+    @user = User.new
+  end
+
+  def create_student
+  end
+  
+  # 生徒一覧
+  
+  def student_index
+    @students = User.where(admin: false, teacher: false)
+  end
+  
+  # 生徒詳細
+
+  def student_detail
   end
   
   def destroy

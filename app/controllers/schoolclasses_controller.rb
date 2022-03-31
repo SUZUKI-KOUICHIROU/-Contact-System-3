@@ -80,7 +80,7 @@ class SchoolclassesController < ApplicationController
     @contacts = Schoolclass.where(schoolclasses: {user_id: @user.id})
   end
   
-  #学校からの連絡表示
+  #学校からの連絡表示・投稿
   def teacher_contact
     @contact_title = Schoolclass.where(contact_date: params[:date])
     @contacts = @user.schoolclasses.where(contact_date: params[:date])
@@ -107,10 +107,6 @@ class SchoolclassesController < ApplicationController
     redirect_to schoolclasses_teacher_contact_index_user_url
   end
   
-  #生徒一覧
-  def student_index
-  end
-
   private
 
     def schoolclass_params
