@@ -10,7 +10,7 @@ class ClassNumbersController < ApplicationController
     @class_number = ClassNumber.create(class_number_params)
     if @class_number.save
       flash[:success] = 'クラスを作成しました。'
-      redirect_to root_url
+      redirect_to current_user
     else
       render :new
     end

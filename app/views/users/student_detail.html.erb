@@ -1,23 +1,31 @@
-<% provide(:title, 'Student-detail') %>
-<h1>生徒詳細</h1>
-<%= @user.name %>
-
-
-
-<table class="table table-bordered table-condensed table-hover" id="table-attendances">
-              <thead>
-                <tr>
-                  <th>生徒名</th>
-                  <th>保護者名</th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-
-        
+<% provide(:title, 'Student-Detail') %>
+<div>
+  <table class="table table-bordered table-condensed table-hover" id="table-attendances">
+    <h1>生徒詳細</h1>
+    <thead> 
+      <tr>  
+        <th>クラス</th>
+        <th>担任</th>
+        <th>担任への連絡</th>
+        <th>生徒数</th>
+        <th>編集</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <!--% @schoolclassese_1.zip(@teachers) do |schoolclass, teacher| %-->
+      <tr>    
+        <td><%=  %></td>
+        <td>
+          <!--% if schoolclass.class_name == teacher.class_number %-->
+            <%=  %>
+          <!-- end %-->
+        </td>
+        <td><%=  %>
+        <td><%=  %></td>
+        <td></td>
+      </tr>
+      <!--% end %-->
+    </tbody>
+  </table>
+</div>

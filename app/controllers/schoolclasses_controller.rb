@@ -2,7 +2,7 @@ class SchoolclassesController < ApplicationController
   
   #include SchoolclassesHelper
   
-  before_action :set_user, only: %i(teacher_contact_index edit_teacher_contact update_teacher_contact show_teacher_contact teacher_contact destroy)
+  before_action :set_user, only: %i(teacher_contact_index edit_teacher_contact update_teacher_contact show_teacher_contact teacher_contact edit_1 destroy)
   #before_action :logged_in_user, only: []
   #before_action :correct_user, only: []
   before_action :admin_user, only: %i(class_index edit_1 teacher_contact_index edit_teacher_contact destroy)
@@ -32,7 +32,13 @@ class SchoolclassesController < ApplicationController
   #クラス一覧
   def edit_1
     @schoolclassese_1 = ClassNumber.where(params[:class_name]).order(:class_name) 
-    @teachers = User.where(teacher: true)   
+    @teachers = User.where(teacher: true)
+    #@students = User.where(admin: false, teacher: false)
+    #@student_count = User.joins(:class_numbers).where(class_numbers: {class_name: @user.class_number}).count  
+    #@number = ClassNumber.all
+    #@student_count = @students.count(@number == @students.class_number)
+  
+  
   end
 
   def edit2

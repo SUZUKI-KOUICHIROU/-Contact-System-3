@@ -39,16 +39,4 @@ User.create!(name: "担任3",
   class_number: "1-3",
   password: "password",
   password_confirmation: "password",
-  teacher: true)  
-
-5.times do |n|
-  name  = Faker::Name.name
-  email = "sample-#{n+1}@email.com"
-  password = "password"
-  student_number = n + 1
-  User.create!(name: name,
-    email: email,
-    student_number: student_number,
-    password: password,
-    password_confirmation: password)
-end
+  teacher: true)
