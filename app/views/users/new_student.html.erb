@@ -13,12 +13,18 @@
       <%= f.label :name, class: "label-#{yield(:class_text)}" %>
       <%= f.text_field :name, class: "form-control" %>
 
+      <%= f.label :guardian_name, class: "label-#{yield(:class_text)}" %>
+      <%= f.text_field :guardian_name, class: "form-control" %>
+
       <%= f.label :email, class: "label-#{yield(:class_text)}" %>
       <%= f.email_field :email, class: "form-control" %>
 
       <%= f.label :class_number, class: "label-#{yield(:class_text)}" %>
       <%= f.text_field :class_number, class: "form-control" %>
 
+      <%= f.label :student_number, class: "label-#{yield(:class_text)}" %>
+      <%= f.text_field :student_number, class: "form-control" %>
+      
       <%= f.label :password, class: "label-#{yield(:class_text)}" %>
       <%= f.password_field :password, class: "form-control" %>
 

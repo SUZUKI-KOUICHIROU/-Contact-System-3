@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
 
   # クラスリスト
   def class_choice
-    @class_list = ClassNumber.all
+    @class_list = Classname.all
   end
   
   # ページ出力前に1ヶ月分のデータの存在を確認・セットします。

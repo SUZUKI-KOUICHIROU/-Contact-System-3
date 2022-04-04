@@ -1,26 +1,28 @@
 <% provide(:title, 'Student-Index-2') %>
-<h1>生徒一覧</h1>
 
-<div class="col-md-10 col-md-offset-1">
-  <table class="table table-condensed table-hover" id="table-users">
-    <thead>
-      <tr>
-          <th><%= User.human_attribute_name :class_number %></th>
-          <th><%= User.human_attribute_name :student_number %></th>
-          <th><%= User.human_attribute_name :name %></th>
-          <th><%= User.human_attribute_name :guardian_name %></th>
-          <th><%= Schoolclass.human_attribute_name :note %></th>
+<div>
+  <table class="table table-bordered table-condensed table-hover" id="table-attendances">
+    <h1>生徒一覧</h1>
+    
+    <h3><%= @user.class_number %></h3>
+    <h3><%= @user.name %></h3>
+    <h3><%= @student_count %></h3>
+    <thead> 
+      <tr>  
+        <th>出席番号</th>
+        <th>名前</th>
+        <th>保護者</th>
       </tr>
     </thead>
     <tbody>
       <% @students.each do |student| %>
-        <tr>
-          <td><%= student.class_number %>
-          <td><%= student.student_number %></td>
-          <td><%= link_to "#{student.name}", student_detail_user_path(student) %></td>
-          <td><%= student.guardian_name %><td>
-          <td><%= %></td>
-        </tr>
+        <% if student.class_number == @user.class_number %>   
+          <tr>
+            <td><%= student.student_number %></td>
+            <td><%= link_to "#{student.name}", student_detail_user_path(student) %></td>
+            <td><%= student.guardian_name %></td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>

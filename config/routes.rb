@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   end
   resources :schoolclasses do
   end
-  resources :class_numbers do 
+  resources :classnumbers do 
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

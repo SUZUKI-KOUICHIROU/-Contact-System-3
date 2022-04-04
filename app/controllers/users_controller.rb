@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_action :set_user, only: %i(show edit update edit_teacher destroy show_teacher_contact student_detail student_index)
+  before_action :set_user, only: %i(show edit update edit_teacher destroy show_teacher_contact student_detail student_index student_index_2)
   before_action :logged_in_user, only: %i(index teacher_index show edit update destroy)
   before_action :correct_user, only: %i(edit update)
   before_action :admin_user, only: %i(teacher_index new_teacher edit_teacher destroy)
@@ -72,9 +72,17 @@ class UsersController < ApplicationController
   end
 
   def create_student
+    @user = User.new(student_params)
+    if @user.save
+      log_in @user # 保存成功後、ログインします。
+      flash[:success] = '新規作成に成功しました。'
+      redirect_to @user
+    else
+      render :new
+    end
   end
   
-  # 生徒一覧
+  # 生徒一覧（担任）
   
   def student_index
     @students = User.where(admin: false, teacher: false)
@@ -84,6 +92,7 @@ class UsersController < ApplicationController
   
   def student_index_2
     @students = User.where(admin: false, teacher: false).order(:class_number) 
+    @student_count = User.where(teacher: false, class_number: @user.class_number).count 
   end
   
   # 生徒詳細
@@ -99,11 +108,11 @@ class UsersController < ApplicationController
 
   private
 
-    def user_params
-      params.require(:user).permit(:name, :guardian_name, :email, :class_number, :password, :password_confirmation)
+    def student_params
+      params.require(:user).permit(:name, :guardian_name, :email, :class_number, :student_number, :password, :password_confirmation)
     end
   
     def teacher_params
       params.require(:user).permit(:name, :email, :class_number, :password, :password_confirmation)
     end
-end
+  end

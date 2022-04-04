@@ -13,32 +13,10 @@ class SchoolclassesController < ApplicationController
   def class_index 
   end 
   
-  #クラス作成
-  def new
-    @schoolclass = Schoolclass.new
-  end
-  
-  #クラス作成
-  def create
-    @schoolclass = current_user.schoolclasses.create(schoolclass_params)
-    if @schoolclass.save
-      flash[:success] = 'クラスを作成しました。'
-      redirect_to schoolclasses_class_index_user_url(current_user)
-    else
-      render :new
-    end
-  end
-  
   #クラス一覧
   def edit_1
-    @schoolclassese_1 = ClassNumber.where(params[:class_name]).order(:class_name) 
+    @schoolclassese_1 = Classnumber.where(params[:class_name]).order(:class_name) 
     @teachers = User.where(teacher: true)
-    #@students = User.where(admin: false, teacher: false)
-    #@student_count = User.joins(:class_numbers).where(class_numbers: {class_name: @user.class_number}).count  
-    #@number = ClassNumber.all
-    #@student_count = @students.count(@number == @students.class_number)
-  
-  
   end
 
   def edit2
