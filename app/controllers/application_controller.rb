@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
   def set_schoolclass
     @schoolclass = Schoolclass.find(params[:id])
   end
-
-  # システム管理権限所有かどうか判定します。
+  
+  # 管理者かどうか判定します。
   def admin_user
     redirect_to root_url unless current_user.admin?
   end
@@ -20,6 +20,11 @@ class ApplicationController < ActionController::Base
   #担任かどうか判定します。
   def teacher_user
     redirect_to root_url unless current_user.teacher?
+  end
+
+  #管理者または担任かどうか判定します。
+  def admin_teacher_user
+    redirect_to root_url unless current_user.admin? || current_user.teacher?
   end
   
   # ログイン済みのユーザーか確認します。
@@ -39,7 +44,7 @@ class ApplicationController < ActionController::Base
 
   # クラスリスト
   def class_choice
-    @class_list = Classname.all
+    @class_list = Classnumber.all
   end
   
   # ページ出力前に1ヶ月分のデータの存在を確認・セットします。

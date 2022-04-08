@@ -2,10 +2,12 @@ class SchoolclassesController < ApplicationController
   
   #include SchoolclassesHelper
   
-  before_action :set_user, only: %i(teacher_contact_index edit_teacher_contact update_teacher_contact show_teacher_contact teacher_contact edit_1 destroy)
+  before_action :set_user, only: %i(teacher_contact_index edit_teacher_contact update_teacher_contact show_teacher_contact teacher_contact destroy 
+                                    edit_3)
+  
   #before_action :logged_in_user, only: []
   #before_action :correct_user, only: []
-  before_action :admin_user, only: %i(class_index edit_1 teacher_contact_index edit_teacher_contact destroy)
+  before_action :admin_user, only: %i(class_index edit_1 edit_2 teacher_contact_index edit_teacher_contact destroy)
   before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact)
 
 
@@ -15,24 +17,33 @@ class SchoolclassesController < ApplicationController
   
   #クラス一覧
   def edit_1
-    @schoolclassese_1 = Classnumber.where(params[:class_name]).order(:class_name) 
-    @teachers = User.where(teacher: true)
+    @schoolclassese_1 = Classnumber.where('class_name like ?','1-%').order(:class_name) 
+    @teachers = User.where(teacher: true).where('class_number like ?','1-%')
   end
 
-  def edit2
-    @schoolclasses_2 = Schoolclass.where('class_name like ?','2-%')
+  def edit_2
+    @schoolclassese_2 = Classnumber.where('class_name like ?','2-%').order(:class_name)
+    @teachers = User.where(teacher: true).where('class_number like ?','2-%')
   end
 
-  def edit3 
+  def edit_3 
+    @schoolclassese_3 = Classnumber.where('class_name like ?','3-%').order(:class_name)
+    @teachers = User.where(teacher: true).where('class_number like ?','3-%')
   end
 
-  def edit4
+  def edit_4
+    @schoolclassese_4 = Classnumber.where('class_name like ?','4-%').order(:class_name)
+    @teachers = User.where(teacher: true).where('class_number like ?','4-%')
   end
 
-  def edit5
+  def edit_5
+    @schoolclassese_5 = Classnumber.where('class_name like ?','5-%').order(:class_name)
+    @teachers = User.where(teacher: true).where('class_number like ?','5-%')
   end
 
-  def edit6
+  def edit_6
+    @schoolclassese_6 = Classnumber.where('class_name like ?','6-%').order(:class_name)
+    @teachers = User.where(teacher: true).where('class_number like ?','6-%')
   end
   
   #担任への連絡選択
@@ -93,10 +104,6 @@ class SchoolclassesController < ApplicationController
   
   private
 
-    def schoolclass_params
-      params.require(:schoolclass).permit(:class_name)
-    end
-  
     def teacher_contact_params
       params.require(:user).permit(schoolclasses: [:title, :teacher_note])[:schoolclasses]
     end

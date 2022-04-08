@@ -1,0 +1,27 @@
+<% provide(:title, 'Edit-1') %>
+<div>
+  <table class="table table-bordered table-condensed table-hover" id="table-attendances">
+    <h1>６年クラス一覧</h1>
+    <thead> 
+      <tr>  
+        <th>クラス</th>
+        <th>担任</th>
+        <th>担任への連絡</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @schoolclassese_6.zip(@teachers) do |schoolclass, teacher| %>
+      <tr>    
+        <td><%= link_to "#{schoolclass.class_name}", student_index_2_user_path(teacher) %></td>
+        <td>
+          <% if schoolclass.class_name == teacher.class_number %>
+            <%= link_to "#{teacher.name}", edit_teacher_user_path(teacher) %>
+          <% end %>
+        </td>
+        <td><%= link_to "担任への連絡", schoolclasses_teacher_contact_index_user_path(teacher) %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

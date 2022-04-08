@@ -1,7 +1,7 @@
 <% provide(:title, 'Edit-1') %>
 <div>
   <table class="table table-bordered table-condensed table-hover" id="table-attendances">
-    <h1>１年クラス一覧</h1>
+    <h1>３年クラス一覧</h1>
     <thead> 
       <tr>  
         <th>クラス</th>
@@ -11,7 +11,7 @@
     </thead>
   
     <tbody>
-      <% @schoolclassese_1.zip(@teachers) do |schoolclass, teacher| %>
+      <% @schoolclassese_3.zip(@teachers) do |schoolclass, teacher| %>
       <tr>    
         <td>
           <% if teacher.nil? %>
@@ -31,7 +31,7 @@
           <% unless teacher.nil? %>
             <%= link_to "担任への連絡", schoolclasses_teacher_contact_index_user_path(teacher) %>
           <% end %>
-        </td>
+        </td>  
       </tr>
       <% end %>
     </tbody>

@@ -16,7 +16,7 @@
       <% @students.each do |student| %>
         <% if student.class_number == @user.class_number %> 
           <tr>
-            <td>生徒数</td>
+            <td><%= @student_count %></td>
             <td><%= student.student_number %></td>
             <td><%= link_to "#{student.name}", student_detail_user_path(student) %></td>
             <td><%= student.guardian_name %></td>

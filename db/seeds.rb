@@ -40,3 +40,24 @@ User.create!(name: "担任3",
   password: "password",
   password_confirmation: "password",
   teacher: true)
+
+User.create!(name: "担任4",
+  email: "teacher-4@email.com",
+  class_number: "2-1",
+  password: "password",
+  password_confirmation: "password",
+  teacher: true)
+  
+User.create!(name: "担任5",
+  email: "teacher-5@email.com",
+  class_number: "2-2",
+  password: "password",
+  password_confirmation: "password",
+  teacher: true)
+    
+User.create!(name: "担任6",
+  email: "teacher-6@email.com",
+  class_number: "2-3",
+  password: "password",
+  password_confirmation: "password",
+  teacher: true)

@@ -1,16 +1,21 @@
 <% provide(:title, 'Schoolyear-Index') %>
-<h1>学年選択</h1>
-<div class="col-md-10 col-md-offset-1">
-  <table class="table table-condensed table-hover" id="table-users">
-    <thead>
-    
-      <td><%= link_to "1年", schoolclasses_edit_1_user_path %></td>
-      <td><%= link_to "2年" %></td>
-      <td><%= link_to "3年" %></td>
-      <td><%= link_to "4年" %></td>
-      <td><%= link_to "5年" %></td>
-      <td><%= link_to "6年" %></td>
 
-    </thead>
+<div class="schoolyear">
+  <h1>学年選択</h1>
+</div>
+
+<div class="col-md-10 col-md-offset-1">
+  <table class="table table-bordered table-condensed table-hover" id="table-schoolyear">
+    <body  style="background-color: #FFFFBB">   
+      <tr>
+        <th><%= link_to "1年", schoolclasses_edit_1_user_path %></th>
+        <th><%= link_to "2年", schoolclasses_edit_2_user_path %></th>
+        <th><%= link_to "3年", schoolclasses_edit_3_user_path %></th>
+        <th><%= link_to "4年", schoolclasses_edit_4_user_path %></th>
+        <th><%= link_to "5年", schoolclasses_edit_5_user_path %></th>
+        <th><%= link_to "6年", schoolclasses_edit_6_user_path %></th>
+    </body>  
+      <tr>
   </table>
 </div>
+

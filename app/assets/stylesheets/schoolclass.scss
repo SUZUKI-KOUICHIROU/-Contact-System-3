@@ -4,7 +4,7 @@
 
 .container {
   margin: auto;
- display: block;
+  display: block;
 }
 
 .posts-show-item {
@@ -12,4 +12,32 @@
   background-color: white;
   box-shadow: 0 2px 6px #c1ced7;
   overflow: hidden;
+}
+
+/* 学年選択 */
+
+.schoolyear {
+  margin: auto;
+  font-family: ヒラギノ丸ゴ ProN;
+  font-size: 15px;
+  color: #111111;
+  border-style: outset;
+  border: 10px outset #00FF3B;
+  border-width:10px;
+  width: 240px;
+	height: 100px;
+  background: #EAD9FF;
+}
+
+#table-schoolyear {
+  margin: 40px;
+
+  th {
+    font-size: 30px;
+    font-family: ヒラギノ丸ゴ ProN;
+    text-align: center;
+    border: 10px outset #31A9EE;
+    background: #CEF9DC;
+    a:hover{ color: #FF0000; background: #00FFFF;}  
+  }
 }

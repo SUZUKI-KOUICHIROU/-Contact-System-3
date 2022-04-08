@@ -3,8 +3,10 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i(show edit update edit_teacher destroy show_teacher_contact student_detail student_index student_index_2)
   before_action :logged_in_user, only: %i(index teacher_index show edit update destroy)
   before_action :correct_user, only: %i(edit update)
-  before_action :admin_user, only: %i(teacher_index new_teacher edit_teacher destroy)
-  before_action :class_choice, only: %i(new)
+  before_action :admin_teacher_user, only: %i(edit_teacher)
+  before_action :admin_user, only: %i(teacher_index new_teacher destroy)
+  #before_action :teacher_user, only: %i()
+  before_action :class_choice, only: %i(new edit)
 
   def index
     @users = User.paginate(page: params[:page])
@@ -14,28 +16,18 @@ class UsersController < ApplicationController
     @first_day = Date.current.beginning_of_month
     @last_day = @first_day.end_of_month
   end
-    
+  
   def new
     @user = User.new
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(student_params)
     if @user.save
-      log_in @user # 保存成功後、ログインします。
       flash[:success] = '新規作成に成功しました。'
       redirect_to @user
     else
       render :new
-    end
-  end
-  
-  def update
-    if @user.update(user_params)
-      flash[:success] = "ユーザー情報を更新しました。"
-      redirect_to @user
-    else
-      render :edit      
     end
   end
   
@@ -48,10 +40,10 @@ class UsersController < ApplicationController
   def teacher_create
     @user = User.new(teacher_params)
     if @user.save
-      log_in @user # 保存成功後、ログインします。
-      flash[:success] = '新規作成に成功しました。'
+      flash[:success] = '担任を登録しました。'
       redirect_to @user
     else
+      flash[:danger] = "失敗しました。" 
       render :new_teacher
     end
   end
@@ -74,11 +66,20 @@ class UsersController < ApplicationController
   def create_student
     @user = User.new(student_params)
     if @user.save
-      log_in @user # 保存成功後、ログインします。
+      #log_in @user # 保存成功後、ログインします。 
       flash[:success] = '新規作成に成功しました。'
-      redirect_to @user
+      redirect_to current_user
     else
-      render :new
+      render :new_student
+    end
+  end
+  
+  def student_update
+    if @user.update(student_params)
+      flash[:success] = "生徒情報を更新しました。"
+      redirect_to current_user
+    else
+      render :edit      
     end
   end
   
@@ -86,6 +87,7 @@ class UsersController < ApplicationController
   
   def student_index
     @students = User.where(admin: false, teacher: false)
+    @student_count = User.where(teacher: false, class_number: @user.class_number).count 
   end
   
   # 生徒一覧（管理者）
@@ -115,4 +117,4 @@ class UsersController < ApplicationController
     def teacher_params
       params.require(:user).permit(:name, :email, :class_number, :password, :password_confirmation)
     end
-  end
+end

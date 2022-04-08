@@ -10,7 +10,7 @@
         <% end %>
         
         <% if logged_in? && current_user.admin? %>
-          <li><%= link_to "学年選択", schoolclasses_class_index_user_path(current_user, @schoolclass) %></li>
+          <li><%= link_to "生徒一覧", student_index_2_user_path(current_user, @user) %></li>
           <li><%= link_to "担任一覧",  teacher_index_user_path(current_user, @user)%></li>
         <% end %>
         
@@ -60,7 +60,7 @@
               編集メニュー <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to "担任情報編集", edit_user_path(current_user) %></li>
+              <li><%= link_to "担任情報編集", edit_teacher_user_path(current_user, @user) %></li>
               <li><%= link_to "生徒情報編集", '#' %></li>
             </ul>
           </li>

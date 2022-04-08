@@ -11,18 +11,23 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get 'new_teacher'
-      post 'teacher_create'
       get 'edit_teacher'
       get 'teacher_index'
       
       get 'new_student'
       post 'create_student'
+      patch 'student_update'
       get 'student_index'
       get 'student_index_2'
       get 'student_detail'
 
       get 'schoolclasses/class_index' 
-      get 'schoolclasses/edit_1'       
+      get 'schoolclasses/edit_1'
+      get 'schoolclasses/edit_2'
+      get 'schoolclasses/edit_3'
+      get 'schoolclasses/edit_4'
+      get 'schoolclasses/edit_5'
+      get 'schoolclasses/edit_6'       
       
       get 'schoolclasses/teacher_contact_index'
       get 'schoolclasses/edit_teacher_contact'

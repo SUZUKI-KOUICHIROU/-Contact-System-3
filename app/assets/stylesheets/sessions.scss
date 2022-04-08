@@ -1,11 +1,19 @@
 /* ログインフォーム */
 
+.top-title {
+  font-family: ヒラギノ丸ゴ ProN;
+  font-size: 60px;
+}
+
 .label-login {
   margin-top: 5px;
 }
 
 .btn-login {
   margin-top: 10px;
+  color: black;
+  font-size: 20px;
+  border-radius: 100vh;
 }
 
 .checkbox-login {

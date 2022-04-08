@@ -4,24 +4,25 @@
   <h1>【<%= @user.name %>】ログイン後画面<h1>
 </div>
 
-<div class="top-select">
-  <table class="table table-bordered table-condensed table-hover" id="table-attendances">
-
-  <% if logged_in? && current_user.admin? %>
-    <div><%= link_to "学年選択", schoolclasses_class_index_user_path(current_user, @schoolclass) %></div>
-    <div><%= link_to "担任一覧",  teacher_index_user_path(current_user, @user) %></div>
-    <div><%= link_to "クラス作成", new_classnumber_path %></div>
-    <div><%= link_to "生徒一覧", student_index_2_user_path %></div>
-    <div><%= link_to "担任登録", new_teacher_user_path(current_user, @user) %></div>
-    <div><%= link_to "管理者情報編集", edit_user_path(current_user) %></div>
-    <div><%= link_to "担任情報編集", edit_teacher_user_path(current_user, @user) %></div>
-    <div><%= link_to "生徒情報編集", '#' %></div>
+<!--div class="top-select"-->
+  <!--table class="table table-bordered table-condensed table-hover" id="table-attendances"-->
+<body style="background-color: #BEFF15">
+  
+  <% if logged_in? && current_user.admin? %>  
+    <div class="title-line"><%= link_to "学年選択", schoolclasses_class_index_user_path(current_user, @schoolclass) %></div>
+    <div class="title-line"><%= link_to "担任一覧",  teacher_index_user_path(current_user, @user) %></div>
+    <div class="title-line"><%= link_to "クラス作成", new_classnumber_path %></div>
+    <div class="title-line"><%= link_to "生徒一覧", student_index_2_user_path %></div>
+    <div class="title-line"><%= link_to "担任登録", new_teacher_user_path(current_user, @user) %></div>
+    <div class="title-line"><%= link_to "管理者情報編集", edit_user_path(current_user) %></div>
+    <div class="title-line"><%= link_to "担任情報編集", edit_teacher_user_path(current_user, @user) %></div>
+    <div class="title-line"><%= link_to "生徒情報編集", '#' %></div>
   <% end %>
   
   <% if logged_in? && current_user.teacher? %>
-    <div><%= link_to "生徒登録", new_student_user_path(current_user, @user) %></div>
-    <div><%= link_to "生徒一覧", student_index_user_path %></div>
-    <div><%= link_to "学校からの連絡", schoolclasses_show_teacher_contact_user_path(current_user) %></div>
+    <div class="title-line2"><%= link_to "生徒登録", new_student_user_path %></div>
+    <div class="title-line2"><%= link_to "生徒一覧", student_index_user_path %></div>
+    <div class="title-line2"><%= link_to "学校からの連絡", schoolclasses_show_teacher_contact_user_path(current_user) %></div>
   <% end %>
     
   <% if logged_in? %>
@@ -30,17 +31,6 @@
       <div class="student-line"><%= "2年1組" %>　　<%= link_to "生徒名2", '#' %></div>
     <% end %>
   <% end %> 
-  
-  <% if logged_in? %>
-    <div><%= link_to "ログアウト", logout_path, method: :delete %></div>
-    <div><%= link_to "ログイン", login_path %></div>
-  <% end %>  
-
-  </table>
-</div>
-
-
-
-
-
-
+</body>
+  <!--/table-->
+<!--/div-->
