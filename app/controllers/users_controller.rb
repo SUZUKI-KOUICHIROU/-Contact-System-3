@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_action :set_user, only: %i(show edit update edit_teacher destroy show_teacher_contact student_detail student_index student_index_2)
+  before_action :set_user, only: %i(show edit update edit_teacher destroy show_teacher_contact student_detail student_index student_index_2 student_index_3)
   before_action :logged_in_user, only: %i(index teacher_index show edit update destroy)
   before_action :correct_user, only: %i(edit update)
   before_action :admin_teacher_user, only: %i(edit_teacher)
@@ -101,6 +101,7 @@ class UsersController < ApplicationController
   
   def student_index_3
     @students = User.where(admin: false, teacher: false).order(:class_number) 
+    #@students = User.paginate(page: params[:page]) 
   end
 
   # 生徒詳細

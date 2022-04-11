@@ -2,24 +2,24 @@
 
 <h1>生徒一覧</h1>
 
-<div class="col-md-10 col-md-offset-1">
+<div>
   <!--%= will_paginate %-->
-  <table class="table table-condensed table-hover" id="table-users">
-    <thead>
+  <table class="table table-bordered table-condensed table-hover" id="table-class-index">      
+    <thead> 
       <tr>
-        <th><%= User.human_attribute_name :name %></th>
-        <th class="center"><%= User.human_attribute_name :class_number %></th>
-        
-        <th></th>
+        <th>クラス</th>
+        <th>名前</th>
+        <th>保護者</th>
       </tr>
     </thead>
-
-    <% @students.each do |student| %>
-      <tr>
-        <td><%= link_to student.name, student_detail_user_path(student) %></td>
-        <td class="center"><%= student.class_number %></td>
-      </tr>
-    <% end %>
-  <!--%= will_paginate %-->
+    <tbody>
+      <% @students.each do |student| %>
+        <tr>
+          <td><%= student.class_number %></td>
+          <td><%= link_to "#{student.name}", student_detail_user_path(student) %></td>
+          <td><%= student.guardian_name %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
-</div>  
+</div>
