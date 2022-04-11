@@ -1,5 +1,9 @@
 /* ログインフォーム */
 
+.login-disabled {
+  text-align: center;
+}
+
 .top-title {
   font-family: ヒラギノ丸ゴ ProN;
   font-size: 60px;
@@ -12,6 +16,7 @@
 .btn-login {
   margin-top: 10px;
   color: black;
+  font-weight:bold;
   font-size: 20px;
   border-radius: 100vh;
 }

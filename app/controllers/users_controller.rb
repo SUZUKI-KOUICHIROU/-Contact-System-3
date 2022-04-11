@@ -97,6 +97,12 @@ class UsersController < ApplicationController
     @student_count = User.where(teacher: false, class_number: @user.class_number).count 
   end
   
+  #生徒一覧（一括表示）
+  
+  def student_index_3
+    @students = User.where(admin: false, teacher: false).order(:class_number) 
+  end
+
   # 生徒詳細
 
   def student_detail

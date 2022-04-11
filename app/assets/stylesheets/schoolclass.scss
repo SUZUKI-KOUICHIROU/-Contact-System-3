@@ -26,7 +26,7 @@
   border-width:10px;
   width: 240px;
 	height: 100px;
-  background: #EAD9FF;
+  background: #DDFFFF;
 }
 
 #table-schoolyear {
@@ -41,3 +41,21 @@
     a:hover{ color: #FF0000; background: #00FFFF;}  
   }
 }
+
+/* 学年選択 */
+
+.class-index { 
+  margin: auto;
+  font-family: ヒラギノ丸ゴ ProN;
+  font-size: 15px;
+  color: #111111;
+  border-style: outset;
+  border: 10px outset #0066FF;
+  border-width:10px;
+  width: 400px;
+	height: 100px;
+  background: #DDFFFF;
+}
+
+
+

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       patch 'student_update'
       get 'student_index'
       get 'student_index_2'
+      get 'student_index_3'
       get 'student_detail'
 
       get 'schoolclasses/class_index' 
