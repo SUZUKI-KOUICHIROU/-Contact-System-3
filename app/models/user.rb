@@ -11,6 +11,9 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 30 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
+  #validates :birthday, presence: true
+  #validates :address, presence: true, length: { maximum: 30 }
+  #validates :telephone_number, presence: true, length: { maximum: 15 }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   

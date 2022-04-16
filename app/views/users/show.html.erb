@@ -15,8 +15,6 @@
     <div class="title-line"><%= link_to "生徒一覧", student_index_3_user_path %></div>
     <div class="title-line"><%= link_to "担任登録", new_teacher_user_path(current_user, @user) %></div>
     <div class="title-line"><%= link_to "管理者情報編集", edit_user_path(current_user) %></div>
-    <div class="title-line"><%= link_to "担任情報編集", edit_teacher_user_path(current_user, @user) %></div>
-    <div class="title-line"><%= link_to "生徒情報編集", '#' %></div>
   <% end %>
   
   <% if logged_in? && current_user.teacher? %>

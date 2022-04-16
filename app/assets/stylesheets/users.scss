@@ -144,13 +144,103 @@
 
 /* 生徒詳細 */
 
-#table-attendances {
+#student-detail {
+  margin: 20px;
+  width: 300px;
+  height: 50px;
+  writing-mode: vertical-lr;
+  margin-left: auto;
+  margin-right: auto;
+  
   th {
-    vertical-align: bottom;
     text-align: center;
+    padding:33px 20;
+    font-size: 25px;
+    color: #8B0000;
+    writing-mode: horizontal-tb;
+    border:groove 6px #00FFFF;
   }
   td {
-    vertical-align: middle;
+    width: 500px;
     text-align: center;
+    padding:30px 10;
+    font-size: 35px;
+    writing-mode: horizontal-tb;
+    border:groove 6px #00FFFF;
   }
 }
+
+/* 生徒登録 */
+
+.student-register  {
+  font-size: 20px;
+  color: #8B0000;
+}
+
+input[type="text"] {
+  width: 555px;
+  height: 45px;
+}
+
+input[type="email"] {
+  width: 555px;
+  height: 45px;
+}
+
+input[type="password"] {
+  width: 555px;
+  height: 45px;
+}
+
+.class-select {
+  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 600px;
+}
+
+.item-1 {
+  margin-left: -17px;
+}
+
+.item-2 {
+  margin-right: 10px;
+  padding: 3px 5px;
+  text-align: center;
+}
+
+.item-3 {  
+  margin: 2px;
+  margin-right: 13px;
+  font-size: 30px;
+  color: black;
+}
+
+.item-4 {
+  float: left;
+  margin-right: 10px;
+  padding: 3px 5px;
+  text-align: center;
+}
+
+.birthday-select {
+  font-size: 30px;
+  color: black;
+}
+
+/* 担任一覧 */
+
+.teacher-title { 
+  margin: auto;
+  font-family: ヒラギノ丸ゴ ProN;
+  font-size: 15px;
+  color: #111111;
+  border-style: outset;
+  border: 10px outset #00F9A9;
+  border-width:10px;
+  width: 400px;
+	height: 100px;
+  background: #DDFFFF;
+}
+
+

@@ -8,7 +8,8 @@
     <%= f.email_field :email, class: "form-control" %>
 
     <%= f.label :class_number, class: "label-#{yield(:class_text)}" %>
-    <%= f.text_field :class_number, class: "form-control" %>
+    <%= f.select :class_number, @class_list.pluck(:class_name), { include_blank: "クラスを選択" },
+                                { class: "form-control", required: true } %>
 
     <%= f.label :password, class: "label-#{yield(:class_text)}" %>
     <%= f.password_field :password, class: "form-control" %>

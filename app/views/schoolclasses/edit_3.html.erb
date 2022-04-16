@@ -1,7 +1,7 @@
-<% provide(:title, 'Edit-1') %>
+<% provide(:title, 'Edit-3') %>
 <div>
-  <table class="table table-bordered table-condensed table-hover" id="table-attendances">
-    <h1>３年クラス一覧</h1>
+  <table class="table table-bordered table-condensed table-hover" id="table-class-index">
+  <div class="class-index"><h1>３年クラス一覧</h1></div> 
     <thead> 
       <tr>  
         <th>クラス</th>
@@ -12,28 +12,26 @@
   
     <tbody>
       <% @schoolclassese_3.zip(@teachers) do |schoolclass, teacher| %>
-      <tr>    
-        <td>
-          <% if teacher.nil? %>
-            <%= schoolclass.class_name %>
-          <% elsif schoolclass.class_name == teacher.class_number %>
-            <%= link_to "#{schoolclass.class_name}", student_index_2_user_path(teacher) %>
-          <% end %>
-        </td>
-        <td>
-          <% unless teacher.nil? %>
-            <% if schoolclass.class_name == teacher.class_number %>
+        <tr>    
+          <td>
+            <% if teacher.nil? %>
+              <%= schoolclass.class_name %>
+            <% else%>
+              <%= link_to "#{schoolclass.class_name}", student_index_2_user_path(teacher) %>
+            <% end %>
+          </td>
+          <td>
+            <% unless teacher.nil? %>
               <%= link_to "#{teacher.name}", edit_teacher_user_path(teacher) %>
             <% end %>
-          <% end %>
-        </td>
-        <td>
-          <% unless teacher.nil? %>
-            <%= link_to "担任への連絡", schoolclasses_teacher_contact_index_user_path(teacher) %>
-          <% end %>
-        </td>  
-      </tr>
-      <% end %>
+          </td>
+          <td>
+            <% unless teacher.nil? %>
+              <%= link_to "担任への連絡", schoolclasses_teacher_contact_index_user_path(teacher) %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>  
     </tbody>
   </table>
 </div>

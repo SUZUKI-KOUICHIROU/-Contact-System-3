@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
-  
-  before_action :set_user, only: %i(show edit update edit_teacher destroy show_teacher_contact student_detail student_index student_index_2 student_index_3)
+
+  before_action :set_user, only: %i(show edit update edit_teacher destroy show_teacher_contact student_detail student_index student_index_2 student_index_3
+                                    edit_student_1 update_student_1 new_student)
   before_action :logged_in_user, only: %i(index teacher_index show edit update destroy)
   before_action :correct_user, only: %i(edit update)
   before_action :admin_teacher_user, only: %i(edit_teacher)
   before_action :admin_user, only: %i(teacher_index new_teacher destroy)
   #before_action :teacher_user, only: %i()
-  before_action :class_choice, only: %i(new edit)
+  before_action :class_choice, only: %i(new edit new_teacher edit_teacher)
+  before_action :class_select, only: %i(new_student)
 
   def index
     @users = User.paginate(page: params[:page])
@@ -66,10 +68,10 @@ class UsersController < ApplicationController
   def create_student
     @user = User.new(student_params)
     if @user.save
-      #log_in @user # 保存成功後、ログインします。 
-      flash[:success] = '新規作成に成功しました。'
-      redirect_to current_user
+      flash[:success] = '生徒登録が完了しました。'
+      redirect_to student_index_user_url(current_user)
     else
+      flash[:danger] = "生徒登録が失敗しました。"
       render :new_student
     end
   end
@@ -112,13 +114,14 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     flash[:success] = "#{@user.name}のデータを削除しました。"
-    redirect_to users_url
+    redirect_to student_index_3_user_url(current_user)
   end
 
   private
 
     def student_params
-      params.require(:user).permit(:name, :guardian_name, :email, :class_number, :student_number, :password, :password_confirmation)
+      params.require(:user).permit(:name, :guardian_name, :email, :class_number, :student_number, :birthday, 
+                                   :address, :telephone_number, :password, :password_confirmation)
     end
   
     def teacher_params

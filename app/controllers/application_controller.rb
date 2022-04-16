@@ -44,9 +44,15 @@ class ApplicationController < ActionController::Base
 
   # クラスリスト
   def class_choice
-    @class_list = Classnumber.all
+    @class_list = Classnumber.all.order(:class_name)
   end
   
+  # クラス選択（生徒登録）
+  def class_select
+    @user = User.find(params[:id])
+    @class_select = User.where(class_number: @user.class_number)
+  end
+
   # ページ出力前に1ヶ月分のデータの存在を確認・セットします。
   def set_one_month 
     @first_day = params[:date].nil? ? Date.current.beginning_of_month : params[:date].to_date

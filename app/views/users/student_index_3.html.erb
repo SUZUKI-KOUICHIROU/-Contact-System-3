@@ -1,6 +1,6 @@
 <% provide(:title, 'All-Students') %>
 
-<h1>生徒一覧</h1>
+<div class="student-title"><h1><%= "#{@user.class_number}生徒一覧" %></h1></div>
 
 <div>
   <!--%= will_paginate %-->
@@ -18,6 +18,13 @@
           <td><%= student.class_number %></td>
           <td><%= link_to "#{student.name}", student_detail_user_path(student) %></td>
           <td><%= student.guardian_name %></td>
+          <td>
+            <% if current_user.admin? && !current_user?(student) %>
+            <%= link_to "削除", student, method: :delete,
+                data: { confirm: "削除してよろしいですか？" },
+                class: "btn btn-danger" %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
