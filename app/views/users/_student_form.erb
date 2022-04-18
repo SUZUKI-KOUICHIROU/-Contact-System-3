@@ -8,8 +8,7 @@
     <div class="class-select">  
       <div class="item-1"></div>
       <div class="item-2"><%= f.label :class_number, class: "label-#{yield(:class_text)}" %></div>
-      <div class="item-3"><%= f.select :class_number, @class_select.pluck(:class_number), , { selected: "1" } %></div>
-    
+      <div class="item-3"><%= f.select :class_number, @class_select.pluck(:class_number), { selected: "1" } %></div>
       <div class="item-4"><%= f.label :birthday, class: "label-#{yield(:class_text)}" %></div> 
       <div class="birthday-select"><%= raw sprintf(
             f.date_select(
@@ -21,7 +20,6 @@
               date_separator: '%s'),
             '年 ', '月 ') + '日' %></div>
     </div>
-    
     <div> 
       <%= f.label :guardian_name, class: "label-#{yield(:class_text)}" %>
       <%= f.text_field :guardian_name, class: "form-control" %>

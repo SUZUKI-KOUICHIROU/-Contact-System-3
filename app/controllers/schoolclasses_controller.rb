@@ -58,7 +58,7 @@ class SchoolclassesController < ApplicationController
   def update_teacher_contact
     teacher_contact_params.each do |id,item|  
       contact = Schoolclass.find(id)
-      if contact.update(item)
+      if contact.update
         flash[:success] = '投稿しました。'
         redirect_to schoolclasses_class_index_user_url(current_user)
       else

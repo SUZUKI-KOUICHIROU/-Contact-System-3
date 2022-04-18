@@ -1,27 +1,39 @@
 <% provide(:title, 'Edit-Teacher-Contact') %>
 
-<h1>担任への連絡</h1>
+<div class="admin-contact"><h1>担任への連絡</h1></div>
     
 <%= form_with(model: @user, url: schoolclasses_update_teacher_contact_user_path, local: true, method: :patch) do |f|  %>  
   <% @contact.each do |day| %>  
     <%= f.fields_for "schoolclasses[]", day do |contact| %> 
+
+    <% css_class = case $days_of_the_week[day.contact_date.wday]
+          when '土'
+          'text-primary'
+          when '日'
+          'text-danger'
+        end %>
+    
+    <div class="contact-date">     
+      <td><%= day.contact_date.strftime("%Y年%m月%d日") %></td>
+      <td class="<%= css_class %>"><%= "(""#{$days_of_the_week[day.contact_date.wday]})" %></td> 
+    </div>
+    <div class="contact-title"><td><%= contact.text_field :title %></td></div>
+    <div class="text-contact">
       <td>
-          <%= l(day.contact_date, format: :default) %>
-          <%= contact.text_field :title %>
-      </td>
-      <td><%= contact.text_area :teacher_note, placeholder: "コメントを入力してください", rows: "10", class: "container" %></td>
-      <td><%= f.submit "投稿", class: 'container' %></td>
+        <%= contact.text_area :teacher_note, placeholder: "コメントを入力してください", class: "container" %>
+      </td>    
+      <td class="contact-btn"><%= f.submit "投稿", class: "contact-btn btn-success btn-lg btn-login" %></td>
+    </div>  
     <% end %>
   <% end %>
 <% end %>
-
-<h4>担任からの連絡</h4>
-<div class="main posts-show">
-  <div class="container">
-    <div class="posts-show-item">
-      <% @teacher_contact.each do |day| %> 
-        <td><%= day.school_contact %></td>
-      <% end %>
-    </div>
-  </div>
-</div>
+  
+<div class="teacher-contact"><h4>担任からの返信</h4></div>
+  <div class="posts-show">
+    
+        <% @teacher_contact.each do |day| %> 
+          <td><%= day.school_contact %></td>
+        <% end %>
+       
+  </div>   
+  

@@ -42,7 +42,7 @@
   }
 }
 
-/* 学年選択 */
+/* クラス選択 */
 
 .class-index { 
   margin: auto;
@@ -56,6 +56,100 @@
 	height: 100px;
   background: #DDFFFF;
 }
+
+/* 連絡帳（学校側） */
+
+.admin-contact { 
+  margin: auto;
+  font-family: ヒラギノ丸ゴ ProN;
+  font-size: 15px;
+  color: #111111;
+  border-style: outset;
+  border: 10px outset #0066FF;
+  border-width:10px;
+  width: 400px;
+	height: 100px;
+  background: #DDFFFF;
+}
+
+.contact-date {
+  margin-left: 20px;
+  margin-top: 30px; 
+  font-size: 30px;
+  font-weight: bold; 
+  color: #111111; 
+}
+
+.contact-title {
+  margin-left: 20px;
+  input[type="text"] {
+    height: 60px;
+    padding: 0.5em 1em;
+    font-size: 20px;
+    font-weight: bold;
+    background: #e4fcff;/*背景色*/
+    border-top: solid 6px #1dc1d6;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+  }
+  td {
+    margin: 0; 
+    padding: 0;
+  }
+}
+
+.text-contact {
+  margin-top: 25px;
+  textarea {
+    font-size: 20px;
+    font-weight: bold;
+    width:900px;
+    height:150px;
+    border: solid 3px #FF0461;/*線*/
+    border-radius: 10px;/*角の丸み*/
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.contact-btn {
+  margin-left: 20px;
+  width: 150px;
+}
+
+.teacher-contact {
+  width: 240px;
+  padding: 0.5em 1em;
+  margin-top: 30px;
+  margin-left: 20px;
+  color: #5989cf;
+  background: #DDFFFF;
+  border-bottom: solid 6px #aac5de;
+  border-radius: 9px;
+
+  h4 {
+    font-size: 30px;
+    color: #0066FF;
+    margin: 0; 
+    padding: 0;
+  }
+}
+
+.posts-show {
+  font-size: 20px;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  color: #2c2c2f;
+  background: #cde4ff;/*背景色*/
+  height:150px;
+  margin-top: 20px;
+  margin-left: 20px;  
+
+  td {
+    margin: 0; 
+    padding: 0;
+  }
+}
+
 
 
 

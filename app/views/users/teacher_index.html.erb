@@ -2,20 +2,20 @@
 
 <div class="teacher-title"><h1>担任一覧</h1></div>
 
-<div class="col-md-10 col-md-offset-1">
-  <table class="table table-condensed table-hover" id="table-users">
-    <thead>
-      <tr>
-        <th>名前</th>
+<div>
+  <table class="table table-bordered table-condensed table-hover" id="table-class-index">
+    <thead> 
+      <tr>  
         <th>クラス</th>
-        <th>学校⇄担任連絡帳</th>
+        <th>名前</th>
+        <th>連絡帳</th>
       </tr>
     </thead>
 
     <% @teachers.each do |teacher| %>
       <tr>
+        <td><%= link_to "#{teacher.class_number}", student_index_2_user_path(teacher) %></td> 
         <td><%= link_to "#{teacher.name}", edit_teacher_user_path(teacher) %></td>
-        <td><%= teacher.class_number %></td>
         <td><%= link_to "担任への連絡", schoolclasses_teacher_contact_index_user_path(teacher) %></td>
       </tr>
     <% end %>
