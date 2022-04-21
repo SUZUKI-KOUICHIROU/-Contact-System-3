@@ -1,6 +1,6 @@
 <% provide(:title, 'Edit-Teacher-Contact') %>
 
-<div class="admin-contact"><h1>担任への連絡</h1></div>
+<div class="admin-contact"><h1><%= "#{@user.name}への連絡" %></h1></div>
     
 <%= form_with(model: @user, url: schoolclasses_update_teacher_contact_user_path, local: true, method: :patch) do |f|  %>  
   <% @contact.each do |day| %>  
@@ -18,7 +18,7 @@
       <td class="<%= css_class %>"><%= "(""#{$days_of_the_week[day.contact_date.wday]})" %></td> 
     </div>
     <div class="contact-title"><td><%= contact.text_field :title %></td></div>
-    <div class="text-contact">
+    <div class="text-contact">  
       <td>
         <%= contact.text_area :teacher_note, placeholder: "コメントを入力してください", class: "container" %>
       </td>    
@@ -28,12 +28,10 @@
   <% end %>
 <% end %>
   
-<div class="teacher-contact"><h4>担任からの返信</h4></div>
-  <div class="posts-show">
-    
-        <% @teacher_contact.each do |day| %> 
-          <td><%= day.school_contact %></td>
-        <% end %>
-       
+<div class="teacher-contact"><h4><%= "#{@user.name}からの返信" %></h4></div>
+  <div class="posts-show">   
+    <% @teacher_contact.each do |day| %> 
+      <td><%= day.school_contact %></td>
+    <% end %>
   </div>   
   

@@ -57,6 +57,61 @@
   background: #DDFFFF;
 }
 
+/* 担任への連絡（日別）*/
+
+.contact-index { 
+  margin: auto;
+  font-family: ヒラギノ丸ゴ ProN;
+  font-size: 15px;
+  color: #111111;
+  border-style: outset;
+  border: 10px outset #0066FF;
+  border-width:10px;
+  width: 400px;
+	height: 100px;
+  background: #DDFFFF;
+}
+
+#table-contact-index {
+  margin: 20px;
+  border:groove 6px #8ec6ff;
+  th {
+    font-weight: bolder;
+    font-size: 20px;
+    text-align: center;
+    border: medium solid #FF9933;
+    border-bottom-color: #FF9933;  
+  }
+  
+  .date-1 {
+    width: 15%;
+  }
+
+  .date-2 {
+    width: 35%;
+  }
+
+  .date-3 {
+    width: 50%;
+  }
+  
+  td {
+    vertical-align: middle;
+    font-size: 30px;
+    font-weight: bolder;
+    text-align: center;
+    border: medium solid #FF9933;
+    background: #CCFFFF;
+  }
+  
+  a.btn--green.btn--border-groove {
+    font-size: 20px;
+    font-weight: bolder;
+    background: #FFFFCC;
+    border: 6px groove #00FF00;
+  }  
+}
+
 /* 連絡帳（学校側） */
 
 .admin-contact { 
@@ -98,11 +153,11 @@
 }
 
 .text-contact {
-  margin-top: 25px;
+  margin-top: 18px;
   textarea {
     font-size: 20px;
     font-weight: bold;
-    width:900px;
+    width:1104px;
     height:150px;
     border: solid 3px #FF0461;/*線*/
     border-radius: 10px;/*角の丸み*/
@@ -117,7 +172,7 @@
 }
 
 .teacher-contact {
-  width: 240px;
+  width: 350px;
   padding: 0.5em 1em;
   margin-top: 30px;
   margin-left: 20px;
@@ -140,15 +195,16 @@
   margin: 2em 0;
   color: #2c2c2f;
   background: #cde4ff;/*背景色*/
-  height:150px;
+  height:300px;
   margin-top: 20px;
-  margin-left: 20px;  
+  margin-left: 20px;
 
   td {
-    margin: 0; 
-    padding: 0;
+    margin: 0px;
+    padding: 0; 
   }
 }
+
 
 
 

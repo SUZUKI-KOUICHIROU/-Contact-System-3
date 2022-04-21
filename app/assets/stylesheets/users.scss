@@ -177,16 +177,22 @@
 }
 
 input[type="text"] {
+  border-width:3px;
+  font-size: 25px;
   width: 555px;
   height: 45px;
 }
 
 input[type="email"] {
+  border-width:3px;
+  font-size: 25px;
   width: 555px;
   height: 45px;
 }
 
 input[type="password"] {
+  border-width:3px;
+  font-size: 25px;
   width: 555px;
   height: 45px;
 }
@@ -242,4 +248,30 @@ input[type="password"] {
   background: #DDFFFF;
 }
 
+/* 担任情報編集 */
+
+.teacher-edit-1 {
+  margin: auto;
+  font-family: ヒラギノ丸ゴ ProN;
+  font-size: 15px;
+  color: #111111;
+  border-style: outset;
+  border: 10px outset #0066FF;
+  border-width:10px;
+  width: 400px;
+	height: 100px;
+  background: #DDFFFF;
+}
+
+.teacher-edit-2  {
+  font-size: 20px;
+}
+
+.teacher-class {
+  font-size: 30px;
+}
+
+.teacher-btn {
+  width: 560px;
+}
 

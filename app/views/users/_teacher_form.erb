@@ -1,6 +1,8 @@
-<%= form_with(model: @user, local: true) do |f| %>
+  <%= form_with(model: @user, local: true) do |f| %>
   <%= render 'shared/error_messages', object: @user %>
 
+<div class="teacher-edit-2">    
+    
     <%= f.label :name, class: "label-#{yield(:class_text)}" %>
     <%= f.text_field :name, class: "form-control" %>
 
@@ -8,14 +10,16 @@
     <%= f.email_field :email, class: "form-control" %>
 
     <%= f.label :class_number, class: "label-#{yield(:class_text)}" %>
-    <%= f.select :class_number, @class_list.pluck(:class_name), { include_blank: "クラスを選択" },
-                                { class: "form-control", required: true } %>
-
+    <div class= "teacher-class">
+      <%= f.select :class_number, @class_list.pluck(:class_name), { include_blank: "クラスを選択" } %>
+    </div>
+  
     <%= f.label :password, class: "label-#{yield(:class_text)}" %>
     <%= f.password_field :password, class: "form-control" %>
 
     <%= f.label :password_confirmation, class: "label-#{yield(:class_text)}" %>
     <%= f.password_field :password_confirmation, class: "form-control" %>
 
-    <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
-<% end %>
+    <%= f.submit yield(:button_text), class: "teacher-btn btn-success btn-lg btn-login btn-#{yield(:class_text)}" %>
+  <% end %>
+</div>

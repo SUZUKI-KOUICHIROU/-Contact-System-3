@@ -8,7 +8,6 @@ class SchoolclassesController < ApplicationController
   before_action :admin_user, only: %i(class_index edit_1 edit_2 teacher_contact_index edit_teacher_contact destroy)
   before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact)
 
-
   #学年選択
   def class_index 
   end 
@@ -58,13 +57,12 @@ class SchoolclassesController < ApplicationController
   def update_teacher_contact
     teacher_contact_params.each do |id,item|  
       contact = Schoolclass.find(id)
-      if contact.update
+      if contact.update(item)
         flash[:success] = '投稿しました。'
-        redirect_to schoolclasses_class_index_user_url(current_user)
       else
-        render :edit_1
         flash[:danger] = "失敗しました。" 
       end
+      redirect_to teacher_index_user_url
     end
   end
   
