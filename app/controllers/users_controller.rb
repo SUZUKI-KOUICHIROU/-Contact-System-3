@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   before_action :admin_teacher_user, only: %i(edit_teacher)
   before_action :admin_user, only: %i(teacher_index new_teacher destroy)
   #before_action :teacher_user, only: %i()
-  before_action :class_choice, only: %i(new edit new_teacher edit_teacher)
+  before_action :class_choice, only: %i(new_teacher create_teacher edit_teacher)
   before_action :class_select, only: %i(new_student)
 
   def index
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       flash[:success] = '新規作成に成功しました。'
       redirect_to @user
     else
-      render :new
+      #render :new
     end
   end
   
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def teacher_create
+  def create_teacher
     @user = User.new(teacher_params)
     if @user.save
       flash[:success] = '担任を登録しました。'
@@ -121,10 +121,10 @@ class UsersController < ApplicationController
 
     def student_params
       params.require(:user).permit(:name, :guardian_name, :email, :class_number, :student_number, :birthday, 
-                                   :address, :telephone_number, :password, :password_confirmation)
+                                  :address, :telephone_number, :password, :password_confirmation)
     end
   
     def teacher_params
-      params.require(:user).permit(:name, :email, :class_number, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :class_number, :password, :password_confirmation).merge(teacher: "true")
     end
 end

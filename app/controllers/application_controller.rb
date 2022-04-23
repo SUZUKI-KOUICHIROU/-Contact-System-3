@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
 
   # クラスリスト
   def class_choice
-    @class_list = Classnumber.all.order(:class_name)
+    @class_list = Schoolclass.where(params[:class_name]).order(:class_name)
   end
   
   # クラス選択（生徒登録）

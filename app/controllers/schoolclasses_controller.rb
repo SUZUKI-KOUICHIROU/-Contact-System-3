@@ -8,23 +8,38 @@ class SchoolclassesController < ApplicationController
   before_action :admin_user, only: %i(class_index edit_1 edit_2 teacher_contact_index edit_teacher_contact destroy)
   before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact)
 
+  #クラス作成
+  def new
+    @schoolclass = Schoolclass.new
+  end
+
+  def create
+    @schoolclass = current_user.schoolclasses.build(schoolclass_params)
+    if @schoolclass.save
+      flash[:success] = 'クラスを作成しました。'
+    else
+      flash[:danger] = '失敗しました。'
+    end
+    redirect_to current_user
+  end
+
   #学年選択
   def class_index 
   end 
   
   #クラス一覧
   def edit_1
-    @schoolclassese_1 = Classnumber.where('class_name like ?','1-%').order(:class_name)
+    @schoolclassese_1 = Schoolclass.where('class_name like ?','1-%').order(:class_name)
     @teachers = User.where(teacher: true).where('class_number like ?','1-%')
   end
-
+    
   def edit_2
-    @schoolclassese_2 = Classnumber.where('class_name like ?','2-%').order(:class_name)
+    @schoolclassese_2 = Schoolclass.where('class_name like ?','2-%').order(:class_name)
     @teachers = User.where(teacher: true).where('class_number like ?','2-%')
   end
 
   def edit_3 
-    @schoolclassese_3 = Classnumber.where('class_name like ?','3-%').order(:class_name)
+    @schoolclassese_3 = Schoolclass.where('class_name like ?','3-%').order(:class_name)
     @teachers = User.where(teacher: true).where('class_number like ?','3-%')
   end
 
@@ -100,6 +115,10 @@ class SchoolclassesController < ApplicationController
   
   private
 
+    def schoolclass_params
+      params.require(:schoolclass).permit(:class_name)
+    end
+    
     def teacher_contact_params
       params.require(:user).permit(schoolclasses: [:title, :teacher_note])[:schoolclasses]
     end

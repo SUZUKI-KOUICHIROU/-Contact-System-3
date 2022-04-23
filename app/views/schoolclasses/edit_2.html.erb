@@ -11,28 +11,29 @@
     </thead>
   
     <tbody>
-      <% @schoolclassese_2.zip(@teachers) do |schoolclass, teacher| %>
-        <tr>    
-        <td>
-          <% if teacher.nil? %>
-            <%= schoolclass.class_name %>
-          <% elsif schoolclass.class_name == teacher.class_number %>
-            <%= link_to "#{schoolclass.class_name}", student_index_2_user_path(teacher) %>
-          <% end %>
-        </td>
-        <td>
-          <% unless teacher.nil? %>
+      <% @schoolclassese_2.each do |schoolclass| %>  
+      <% @teachers.each do |teacher| %>
+      
+        <tr>     
+          <td>  
             <% if schoolclass.class_name == teacher.class_number %>
+              <%= link_to "#{schoolclass.class_name}", student_index_2_user_path(teacher) %>
+            <% elsif teacher.nil? %>
+              <%= schoolclass.class_name %><
+            <% end %>
+          </td>        
+          <td>
+            <% if schoolclass.class_name == teacher.class_number %>  
               <%= link_to "#{teacher.name}", edit_teacher_user_path(teacher) %>
             <% end %>
-          <% end %>
-        </td>
-        <td>
-          <% if schoolclass.class_name == teacher.class_number %>
-            <%= link_to "担任への連絡", schoolclasses_teacher_contact_index_user_path(teacher) %>
-          <% end %>
-        </td>
-      </tr>
+          </td>
+          <td>
+            <% if schoolclass.class_name == teacher.class_number %>
+              <%= link_to "担任への連絡", schoolclasses_teacher_contact_index_user_path(teacher) %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
       <% end %>
     </tbody>
   </table>

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get 'new_teacher'
+      post 'create_teacher'
       get 'edit_teacher'
       get 'teacher_index'
       
