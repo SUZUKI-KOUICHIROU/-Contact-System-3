@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       get 'student_index_2'
       get 'student_index_3'
       get 'student_detail'
-
+      
       get 'schoolclasses/class_index' 
       get 'schoolclasses/edit_1'
       get 'schoolclasses/edit_2'
@@ -35,6 +35,12 @@ Rails.application.routes.draw do
       get 'schoolclasses/edit_teacher_contact'
       patch 'schoolclasses/update_teacher_contact'
       
+      get 'schoolclasses/edit_teacher_contact_2'
+      patch 'schoolclasses/update_teacher_contact_2'
+  
+      get 'schoolclasses/edit_teacher_contact_3'
+      patch 'schoolclasses/update_teacher_contact_3'
+      
       get 'schoolclasses/show_teacher_contact'
       get 'schoolclasses/teacher_contact'
       patch 'schoolclasses/update_school_contact'
@@ -42,7 +48,7 @@ Rails.application.routes.draw do
   end
   resources :schoolclasses do
   end
-  resources :classnumbers do 
+  resources :classnumbers do
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

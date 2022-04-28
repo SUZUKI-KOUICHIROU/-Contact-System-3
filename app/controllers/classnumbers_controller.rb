@@ -1,16 +1,16 @@
 class ClassnumbersController < ApplicationController
-  
-  before_action :admin_user, only: %i(new)
-  
+
+  #クラス作成
   def new
-    @classname = Classnumber.new
+    @classnumber = Classnumber.new
   end
 
   def create
-    @classname = Classnumber.create(classname_params)
-    if @classname.save
+    @classnumber = Classnumber.new(class_params)
+    #@classnumber = current_user.classnumbers.build(class_params)
+    if @classnumber.save
       flash[:success] = 'クラスを作成しました。'
-      redirect_to current_user
+    redirect_to current_user
     else
       render :new
     end
@@ -18,7 +18,7 @@ class ClassnumbersController < ApplicationController
 
   private
 
-    def classname_params
-      params.require(:classnumber).permit(:class_name)
-    end
+  def class_params
+    params.require(:classnumber).permit(:class_name)
+  end
 end

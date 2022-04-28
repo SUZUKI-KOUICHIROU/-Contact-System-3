@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
     @schoolclass = Schoolclass.find(params[:id])
   end
   
+  def set_classnumber
+    @classnumber = Classnumber.find(params[:id])
+  end
+
   # 管理者かどうか判定します。
   def admin_user
     redirect_to root_url unless current_user.admin?
@@ -44,7 +48,7 @@ class ApplicationController < ActionController::Base
 
   # クラスリスト
   def class_choice
-    @class_list = Schoolclass.where(params[:class_name]).order(:class_name)
+    @class_list = Classnumber.all.order(:class_name)
   end
   
   # クラス選択（生徒登録）

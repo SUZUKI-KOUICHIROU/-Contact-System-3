@@ -205,6 +205,131 @@
   }
 }
 
+/* クラス一覧 */
+
+.class-a {
+  width: 150px;
+  text-align: center;
+}
+
+.class-b { 
+  text-align: center; 
+}
+
+#table-class-set {	
+  padding: 0;                
+  margin: 0;                 
+  list-style: none;           
+  text-align: center;  
+  background: #FFFFCC;
+  border:groove 6px #00F9A9;
+  margin: 30px; 
+  font-weight: bolder;
+  font-size: 25px;
+} 
+
+.inline-block_test {
+  margin-left: -20px;
+  display: inline-block;      
+  padding: 20px;             
+  height: 100px;              
+}
+
+#table-class-index {
+  margin: 30px;
+  border:groove 6px #8ec6ff;
+  
+  th {
+    font-weight: bolder;
+    font-size: 20px;
+    text-align: center;
+    border: medium solid #FF9933;
+    border-bottom-color: #FF9933;  
+  }
+  td {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    border: medium solid #FF9933;
+    background: #FFFFCC;
+  }
+  .student-name {
+    a:hover{ color: #FF0000; background: #E0FFFF;}
+  }
+}
+
+/* 学校からの連絡一覧 */
+
+.contact-index-2 {
+  margin: auto;
+  font-family: ヒラギノ丸ゴ ProN;
+  font-size: 15px;
+  color: #111111;
+  border-style: outset;
+  border: 10px outset #0066FF;
+  border-width:10px;
+  width: 400px;
+	height: 100px;
+  background: #DDFFFF;
+}
+
+#table-school-contact {
+  margin: 20px;
+  border:groove 6px #8ec6ff;
+  th {
+    font-weight: bolder;
+    font-size: 20px;
+    text-align: center;
+    border: medium solid #FF9933;
+    border-bottom-color: #FF9933;  
+  }
+  
+  .date-1 {
+    width: 14%;
+  }
+
+  .date-2 {
+    width: 56%;
+  }
+
+  .date-3 {
+    width: 30%;
+  }
+  
+  td {
+    vertical-align: middle;
+    font-size: 30px;
+    font-weight: bolder;
+    text-align: center;
+    border: medium solid #FF9933;
+    background: #CCFFFF;
+  } 
+
+  a.btn--green.btn--border-groove {
+    font-size: 20px;
+    font-weight: bolder;
+    background: #FFFFCC;
+    border: 6px groove #00FF00;
+  }
+}
+
+/* 学校からの連絡 */
+
+.contact-title-2 {
+  margin-left: 20px;
+  width: 560px;
+  height: 60px;
+  padding: 0.5em 1em;
+  font-size: 20px;
+  font-weight: bold;
+  background: #e4fcff;/*背景色*/
+  border-top: solid 6px #1dc1d6;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+}
+
+
+
+
 
 
 

@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: %i(show edit update edit_teacher destroy show_teacher_contact student_detail student_index student_index_2 student_index_3
-                                    edit_student_1 update_student_1 new_student)
+                                    edit_student_1 update_student_1 new_student create_student)
   before_action :logged_in_user, only: %i(index teacher_index show edit update destroy)
   before_action :correct_user, only: %i(edit update)
   before_action :admin_teacher_user, only: %i(edit_teacher)
   before_action :admin_user, only: %i(teacher_index new_teacher destroy)
   #before_action :teacher_user, only: %i()
   before_action :class_choice, only: %i(new_teacher create_teacher edit_teacher)
-  before_action :class_select, only: %i(new_student)
+  #before_action :class_select, only: %i(new_student)
 
   def index
     @users = User.paginate(page: params[:page])
@@ -120,8 +120,8 @@ class UsersController < ApplicationController
   private
 
     def student_params
-      params.require(:user).permit(:name, :guardian_name, :email, :class_number, :student_number, :birthday, 
-                                  :address, :telephone_number, :password, :password_confirmation)
+      params.require(:user).permit(:name, :guardian_name, :email, :student_number, :birthday, 
+                                  :address, :telephone_number, :password, :password_confirmation).merge(class_number: @user.class_number)
     end
   
     def teacher_params

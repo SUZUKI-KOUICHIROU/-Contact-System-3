@@ -1,14 +1,14 @@
 <% provide(:title, "#{@user.name}-Contact") %>
 
-<h1>学校からの連絡</h1>
+<div class="contact-index-2"><h1>学校からの連絡</h1></div>
 
 <div>
-  <table class="table table-bordered table-condensed table-hover" id="table-attendances">
+  <table class="table table-bordered table-condensed table-hover" id="table-school-contact">
     <thead>
       <tr>    
-        <th>日付</th>
-        <th>曜日</th>
-        <th>連絡</th>
+        <th class="date-1">日付</th>
+        <th class="date-2">学校からの連絡</th>
+        <th class="date-3">学校への連絡</th>
       </tr>
     </thead>
     
@@ -23,15 +23,18 @@
     
     <tbody>
       <tr>  
-        <td><%= l(day.contact_date, format: :default) %></td>   
-        <td class="<%= css_class %>"><%= $days_of_the_week[day.contact_date.wday] %></td>
+        <td class="<%= css_class %>">
+          <%= l(day.contact_date, format: :short) %>
+          <%= "(""#{$days_of_the_week[day.contact_date.wday]})" %>
+        </td>
         <td>
           <% if day.teacher_note.present? %>
             <%= link_to day.title, schoolclasses_teacher_contact_user_path(@user, date: day.contact_date) %>
           <% end %>
         </td>
-      </tr>    
+        <td class="b"><%= link_to "連絡する", schoolclasses_edit_teacher_contact_3_user_path(@user, date: day.contact_date), class: "btn btn--green btn--border-groove" %></td>
+      </tr>   
+      <% end %>
     </tbody>
-    <% end %>
   </table>  
 </div>

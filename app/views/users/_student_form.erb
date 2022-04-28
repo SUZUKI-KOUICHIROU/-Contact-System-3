@@ -2,13 +2,11 @@
     <%= render 'shared/error_messages', object: @user %>
 
 <div class ="student-register">
-      <%= f.label :name, class: "label-#{yield(:class_text)}" %>
-      <%= f.text_field :name, class: "form-control" %>
+  <%= f.label :name, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :name, class: "form-control" %>
   
     <div class="class-select">  
       <div class="item-1"></div>
-      <div class="item-2"><%= f.label :class_number, class: "label-#{yield(:class_text)}" %></div>
-      <div class="item-3"><%= f.select :class_number, @class_select.pluck(:class_number), { selected: "1" } %></div>
       <div class="item-4"><%= f.label :birthday, class: "label-#{yield(:class_text)}" %></div> 
       <div class="birthday-select"><%= raw sprintf(
             f.date_select(

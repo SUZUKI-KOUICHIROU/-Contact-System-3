@@ -1,4 +1,4 @@
-  <%= form_with(model: @user, url: create_teacher_user_path, local: true) do |f| %>
+  <%= form_with(model: @user, url: create_teacher_user_path, method: :post, local: true) do |f| %>
   <%= render 'shared/error_messages', object: @user %>
 
 <div class="teacher-edit-2">    

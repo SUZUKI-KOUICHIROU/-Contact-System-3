@@ -19,45 +19,48 @@ User.create!(name: "管理者2",
   password: "password",
   password_confirmation: "password",
   admin: true)
-
+  
 User.create!(name: "担任1",
   email: "teacher-1@email.com",
   class_number: "1-1",
   password: "password",
   password_confirmation: "password",
   teacher: true)
-
+  
 User.create!(name: "担任2",
   email: "teacher-2@email.com",
   class_number: "1-2",
   password: "password",
   password_confirmation: "password",
   teacher: true)
-
+  
 User.create!(name: "担任3",
   email: "teacher-3@email.com",
   class_number: "1-3",
   password: "password",
   password_confirmation: "password",
   teacher: true)
-
+  
 User.create!(name: "担任4",
   email: "teacher-4@email.com",
   class_number: "2-1",
   password: "password",
   password_confirmation: "password",
   teacher: true)
-  
+    
 User.create!(name: "担任5",
   email: "teacher-5@email.com",
   class_number: "2-2",
   password: "password",
   password_confirmation: "password",
   teacher: true)
-    
+      
 User.create!(name: "担任6",
   email: "teacher-6@email.com",
   class_number: "2-3",
   password: "password",
   password_confirmation: "password",
   teacher: true)
+  
+
+  

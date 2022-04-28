@@ -1,7 +1,18 @@
 <% provide(:title, 'Edit-2') %>
-<div>
-  <table class="table table-bordered table-condensed table-hover" id="table-class-index">
-  <div class="class-index"><h1>２年クラス一覧</h1></div> 
+  
+<div class="class-index"><h1>２年クラス一覧</h1></div>  
+
+<div class="inline-block_test">
+  <table class="table table-bordered table-condensed" id="table-class-set">
+    <th class="class-a">作成クラス</th>
+      <% @schoolclassese_2.zip(@teachers) do |schoolclass, teacher| %>  
+        <th class="class-b"><%= schoolclass.class_name %></th>
+      <% end %>
+  </table>
+</div>
+
+<div>  
+  <table class="table table-bordered table-condensed table-hover" id="table-class-index">  
     <thead> 
       <tr>  
         <th>クラス</th>
@@ -12,29 +23,17 @@
   
     <tbody>
       <% @schoolclassese_2.each do |schoolclass| %>  
-      <% @teachers.each do |teacher| %>
-      
-        <tr>     
-          <td>  
-            <% if schoolclass.class_name == teacher.class_number %>
-              <%= link_to "#{schoolclass.class_name}", student_index_2_user_path(teacher) %>
-            <% elsif teacher.nil? %>
-              <%= schoolclass.class_name %><
-            <% end %>
-          </td>        
-          <td>
-            <% if schoolclass.class_name == teacher.class_number %>  
-              <%= link_to "#{teacher.name}", edit_teacher_user_path(teacher) %>
-            <% end %>
-          </td>
-          <td>
-            <% if schoolclass.class_name == teacher.class_number %>
-              <%= link_to "担任への連絡", schoolclasses_teacher_contact_index_user_path(teacher) %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
+        <% @teachers.each do |teacher| %> 
+          <% if schoolclass.class_name == teacher.class_number %>
+            <tr>     
+              <td><%= link_to "#{teacher.class_number}", student_index_2_user_path(teacher) %></td>
+              <td><%= link_to "#{teacher.name}", edit_teacher_user_path(teacher) %></td>
+              <td><%= link_to "担任への連絡", schoolclasses_teacher_contact_index_user_path(teacher) %></td>
+            </tr>
+          <% end %>
+        <% end %>
       <% end %>
     </tbody>
   </table>
 </div>
+
