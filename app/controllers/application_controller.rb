@@ -57,6 +57,11 @@ class ApplicationController < ActionController::Base
     @class_select = User.where(class_number: @user.class_number)
   end
 
+  # クラス作成
+  def class_select
+    @class_list = ["1", "2", "3", "4", "5", "6"]
+  end
+  
   # ページ出力前に1ヶ月分のデータの存在を確認・セットします。
   def set_one_month 
     @first_day = params[:date].nil? ? Date.current.beginning_of_month : params[:date].to_date

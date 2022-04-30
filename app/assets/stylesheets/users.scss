@@ -41,10 +41,6 @@
   height: 100px;
 }
 
-.student-line {
-	white-space: pre;
-}
-
 .title-line {
   font-size: 30px;
   font-family: ヒラギノ丸ゴ ProN;
@@ -68,6 +64,111 @@
   height: 50px;
   border-radius: 1em;
   a:hover{ color: #FF0000; background: #EDFFBE;} 
+}
+
+.student-line {
+  /*white-space: pre;*/
+  font-size: 30px;
+  font-family: ヒラギノ丸ゴ ProN;
+  text-align: center;
+  border: 4px solid #FF0000;
+  background: #AAFFFF;
+  margin: 10px;
+  width: 500px;
+  height: 50px;
+  border-radius: 1em; 
+  a:hover{ color: #FF0000; background: #EDFFBE;} 
+}
+
+/* ログイン後画面（保護者）*/
+
+.title-line-3 {
+  width: 650px;
+  font-size: 30px;
+  background: #FFDBC9;
+  position: relative;
+  margin: 2em 0;
+  padding: 0.5em 1em;
+  border: solid 3px #62c1ce;
+  a:hover{ color: #FF0000; background: #EDFFBE;} 
+}
+
+.title-line-3 .box-title {
+  position: absolute;
+  display: inline-block;
+  top: -45px; 
+  left: -3px; 
+  padding: 0 40px;
+  height: 45px;
+  line-height: 45px;
+  font-size: 35px;
+  background: #A4C6FF;
+  color: black;
+  font-weight: bold;
+  border-radius: 5px 5px 0 0;
+}
+
+.title-line-3 p {
+  margin: 0; 
+  padding: 0;
+}
+
+.title-line-4 {
+  width: 300px;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  color: #FFF;
+  background: #99FFCC;
+  border-bottom: solid 6px #3f87ce;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 9px;
+  font-size: 30px;
+  text-align: center;
+  a:hover{ color: #FF0000; background: #EDFFBE;} 
+}
+
+a.btn--green.btn--border-groove {
+  font-size: 25px;
+  font-weight: bolder;
+  background: #FFFFCC;
+  border: 6px groove #00FF00;
+  width: 130px;
+} 
+
+.title-board {
+  width: 300px;
+  padding: 0.5em 1em;
+  margin-top: 30px;
+  margin-left: 0px;
+  color: #5989cf;
+  background: #DDFFFF;
+  border-bottom: solid 6px #aac5de;
+  border-radius: 9px;
+
+  h4 {
+    font-size: 30px;
+    color: #0066FF;
+    margin: 0; 
+    padding: 0;
+  }
+}
+
+.bulletin-board {
+  font-size: 20px;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  color: black;
+  background: #CBFFD3;
+  border-top: solid 6px #1dc1d6;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+  margin-top: 10px;
+  width: 1000px;
+  height:200px;
+}
+
+.bulletin-board p {
+  margin: 0; 
+  padding: 0;
 }
 
 /* 生徒一覧 */
@@ -150,6 +251,19 @@
 
 /* 生徒登録 */
 
+.student-title-2 { 
+  margin-left: 380px;
+  font-family: ヒラギノ丸ゴ ProN;
+  font-size: 15px;
+  color: #111111;
+  border-style: outset;
+  border: 10px outset #00F9A9;
+  border-width:10px;
+  width: 400px;
+	height: 100px;
+  background: #DDFFFF;
+}
+
 .student-register  {
   font-size: 20px;
   margin: 20px;
@@ -212,10 +326,18 @@ input[type="password"] {
   color: black;
 }
 
+.btn-student {
+  margin-top: 20px;
+  width: 555px;
+  height: 45px;
+  font-size: 20px;
+  color: black;
+}
+
 /* 担任登録 */
 
 .teacher-register {
-  margin: auto;
+  margin-left: 385px;
   font-family: ヒラギノ丸ゴ ProN;
   font-size: 15px;
   color: #111111;
@@ -245,7 +367,7 @@ input[type="password"] {
 /* 担任情報編集 */
 
 .teacher-edit-1 {
-  margin: auto;
+  margin-left: 380px;
   font-family: ヒラギノ丸ゴ ProN;
   font-size: 15px;
   color: #111111;
@@ -258,6 +380,7 @@ input[type="password"] {
 }
 
 .teacher-edit-2  {
+  margin: 30px;
   font-size: 20px;
 }
 

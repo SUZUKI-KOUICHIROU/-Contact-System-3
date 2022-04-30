@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: %i(show edit update edit_teacher destroy show_teacher_contact student_detail student_index student_index_2 student_index_3
-                                    edit_student_1 update_student_1 new_student create_student)
+                                    edit_student_1 update_student_1 new_student create_student edit_student update_student)
   before_action :logged_in_user, only: %i(index teacher_index show edit update destroy)
   before_action :correct_user, only: %i(edit update)
   before_action :admin_teacher_user, only: %i(edit_teacher)
@@ -15,8 +15,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    @first_day = Date.current.beginning_of_month
-    @last_day = @first_day.end_of_month
+    @students = User.where(guardian_name: @user.guardian_name)
   end
   
   def new
@@ -76,7 +75,10 @@ class UsersController < ApplicationController
     end
   end
   
-  def student_update
+  def edit_student
+  end
+  
+  def update_student
     if @user.update(student_params)
       flash[:success] = "生徒情報を更新しました。"
       redirect_to current_user

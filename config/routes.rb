@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       
       get 'new_student'
       post 'create_student'
+      get 'edit_student'
       patch 'student_update'
       get 'student_index'
       get 'student_index_2'

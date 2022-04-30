@@ -1,11 +1,15 @@
 <% provide(:title, @user.name) %>
 
 <div>
-  <h1>【<%= @user.name %>】ログイン後画面<h1>
+  <% if logged_in? %>
+    <% unless current_user.admin? || current_user.teacher? %>
+      <h1>【<%= @user.guardian_name %>】ログイン後画面<h1>
+    <% else %>
+      <h1>【<%= @user.name %>】ログイン後画面<h1>
+    <% end %>
+  <% end %>
 </div>
 
-<!--div class="top-select"-->
-  <!--table class="table table-bordered table-condensed table-hover" id="table-attendances"-->
 <body style="background-color: #BEFF15">
   
   <% if logged_in? && current_user.admin? %>  
@@ -24,11 +28,22 @@
   <% end %>
     
   <% if logged_in? %>
-    <% unless current_user.admin? || current_user.teacher? %>   
-      <div class="student-line"><%= "1年1組" %>　　<%= link_to "生徒名1", '#' %></div>
-      <div class="student-line"><%= "2年1組" %>　　<%= link_to "生徒名2", '#' %></div>
-    <% end %>
-  <% end %> 
+    <% unless current_user.admin? || current_user.teacher? %>
+      
+    <div class="title-board"><h4><%= "学校からのお知らせ" %></h4></div>
+      <div class="bulletin-board"><p>学校からのお知らせ</p></div>  
+      
+      <div class="title-line-4"><%= link_to "生徒登録", new_student_user_path %></div>   
+      <% @students.each do |student| %>  
+        
+        <div class="title-line-3">
+          <span class="box-title"><%= student.class_number %></span>
+          <p class="student-contents"><%= link_to student.name, student_detail_user_path(student) %>
+                                      　　　・<%= link_to "担任への連絡", '#' %></p>
+          <p class="a"><%= link_to "編集", edit_student_user_path(student), class: "btn btn--green btn--border-groove" %>
+          　　　・<%= link_to "担任からの連絡", '#' %></p>
+        </div>
+      <% end %>
+    <% end %> 
+  <% end %>
 </body>
-  <!--/table-->
-<!--/div-->

@@ -1,5 +1,7 @@
 class ClassnumbersController < ApplicationController
 
+  before_action :class_select, only: %i(new)   
+  
   #クラス作成
   def new
     @classnumber = Classnumber.new
