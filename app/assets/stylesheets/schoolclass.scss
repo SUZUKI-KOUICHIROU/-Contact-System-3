@@ -59,6 +59,20 @@
 
 /* 担任への連絡（日別）*/
 
+.btn-month {
+  margin: 20px;
+  margin-left: 20px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.btn--orange.btn--border-solid {
+  border: 3px solid #FF1A6F;
+  font-size: 25px;
+  font-weight: bold; 
+  background-color: #FFFFCC;
+}
+
 .contact-index { 
   margin: auto;
   font-family: ヒラギノ丸ゴ ProN;
@@ -75,6 +89,7 @@
 #table-contact-index {
   margin: 20px;
   border:groove 6px #8ec6ff;
+  a:hover{ color: #FF0000; background: #E0FFFF;}
   th {
     font-weight: bolder;
     font-size: 20px;
@@ -88,11 +103,11 @@
   }
 
   .date-2 {
-    width: 35%;
+    width: 45%;
   }
 
   .date-3 {
-    width: 50%;
+    width: 40%;
   }
   
   td {
@@ -104,12 +119,16 @@
     background: #CCFFFF;
   }
   
-  a.btn--green.btn--border-groove {
+  .guardian-contact {
+    font-size: 20px;
+  }
+
+  /*a.btn--green.btn--border-groove {
     font-size: 20px;
     font-weight: bolder;
     background: #FFFFCC;
     border: 6px groove #00FF00;
-  }  
+  } */ 
 }
 
 /* 連絡帳（学校側） */
@@ -238,7 +257,7 @@
 #table-class-index {
   margin: 30px;
   border:groove 6px #8ec6ff;
-  
+  a:hover{ color: #FF0000; background: #E0FFFF;}
   th {
     font-weight: bolder;
     font-size: 20px;
@@ -285,7 +304,7 @@
   }
   
   .date-1 {
-    width: 14%;
+    width: 15%;
   }
 
   .date-2 {
@@ -325,6 +344,21 @@
   background: #e4fcff;/*背景色*/
   border-top: solid 6px #1dc1d6;
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+}
+
+/* 担任からの連絡 */
+
+.contact-index-3 {
+  margin: auto;
+  font-family: ヒラギノ丸ゴ ProN;
+  font-size: 15px;
+  color: #111111;
+  border-style: outset;
+  border: 10px outset #0066FF;
+  border-width:10px;
+  width: 600px;
+	height: 100px;
+  background: #DDFFFF;
 }
 
 

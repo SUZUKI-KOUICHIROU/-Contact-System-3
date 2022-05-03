@@ -1,6 +1,11 @@
 <% provide(:title, "#{@user.name}-Contact") %>
 
-<div class="contact-index-2"><h1>学校からの連絡</h1></div>
+<div class="contact-index-2"><h1>学校連絡帳</h1></div>
+
+<div class="btn-month"><%= link_to "前月", schoolclasses_show_teacher_contact_user_path(date: @first_day.prev_month), class: "btn btn--orange btn--border-solid" %>
+  <%= l(@first_day, format: :middle) %>
+  <%= link_to "次月", schoolclasses_show_teacher_contact_user_path(date: @first_day.next_month), class: "btn btn--orange btn--border-solid" %>
+</div>
 
 <div>
   <table class="table table-bordered table-condensed table-hover" id="table-school-contact">
@@ -12,7 +17,7 @@
       </tr>
     </thead>
     
-    <% @contacts.each do |day| %>
+    <% @schoolclasses.each do |day| %>
     
     <% css_class = case $days_of_the_week[day.contact_date.wday]
         when '土'

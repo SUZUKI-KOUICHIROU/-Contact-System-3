@@ -82,8 +82,9 @@
 
 /* ログイン後画面（保護者）*/
 
-.title-line-3 {
-  width: 650px;
+.title-line-3 { 
+  right:90px;
+  width: 690px;
   font-size: 30px;
   background: #FFDBC9;
   position: relative;
@@ -114,9 +115,9 @@
 }
 
 .title-line-4 {
+  margin-left: -90px;
   width: 300px;
   padding: 0.5em 1em;
-  margin: 2em 0;
   color: #FFF;
   background: #99FFCC;
   border-bottom: solid 6px #3f87ce;
@@ -136,7 +137,7 @@ a.btn--green.btn--border-groove {
 } 
 
 .title-board {
-  width: 300px;
+  width: 178px;
   padding: 0.5em 1em;
   margin-top: 30px;
   margin-left: 0px;
@@ -144,6 +145,9 @@ a.btn--green.btn--border-groove {
   background: #DDFFFF;
   border-bottom: solid 6px #aac5de;
   border-radius: 9px;
+  position:absolute;
+	bottom: 638px;
+	right:493px;
 
   h4 {
     font-size: 30px;
@@ -158,12 +162,15 @@ a.btn--green.btn--border-groove {
   padding: 0.5em 1em;
   margin: 2em 0;
   color: black;
-  background: #CBFFD3;
+  background: #FFFFCC;
   border-top: solid 6px #1dc1d6;
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
   margin-top: 10px;
-  width: 1000px;
+  width: 650px;
   height:200px;
+  position:absolute;
+	bottom: 390px;
+	right:20px;
 }
 
 .bulletin-board p {

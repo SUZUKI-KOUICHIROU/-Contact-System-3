@@ -1,10 +1,10 @@
-<% provide(:title, 'Teacher-Contact') %>
+<% provide(:title, 'guardian-contact') %>
 
 <div class="contact-index"><h1><%= "#{@user.name}連絡帳" %></h1></div>
 
-<div class="btn-month"><%= link_to "前月", schoolclasses_teacher_contact_index_user_path(date: @first_day.prev_month), class: "btn btn--orange btn--border-solid" %>
+<div class="btn-month"><%= link_to "前月", schoolclasses_index_guardian_contact_user_path(date: @first_day.prev_month), class: "btn btn--orange btn--border-solid" %>
   <%= l(@first_day, format: :middle) %>
-  <%= link_to "次月", schoolclasses_teacher_contact_index_user_path(date: @first_day.next_month), class: "btn btn--orange btn--border-solid" %>
+  <%= link_to "次月", schoolclasses_index_guardian_contact_user_path(date: @first_day.next_month), class: "btn btn--orange btn--border-solid" %>
 </div>
 
 <div>
@@ -32,11 +32,11 @@
             <%= "(""#{$days_of_the_week[day.contact_date.wday]})" %>
           </td>
           <td>
-            <% if day.teacher_note_2.present? %>
-              <%= link_to day.title_2, schoolclasses_edit_teacher_contact_2_user_path(@user, date: day.contact_date) %>
-            <% end %>
+          <% if day.guardian_note_1.present? %>
+            <%= link_to day.title_3, schoolclasses_edit_teacherform_contact_user_path(@user, date: day.contact_date) %>
+          <% end %>
           </td>
-          <td class="a"><%= link_to "連絡する", schoolclasses_edit_teacher_contact_user_path(@user, date: day.contact_date), class: "btn btn--green btn--border-groove" %></td>
+          <td class="a"><%= link_to "連絡", schoolclasses_edit_guardianwhat_contact_user_path(@user, date: day.contact_date), class: "btn btn--green btn--border-groove" %></td> 
         </tr> 
       <% end %>
     </tbody>

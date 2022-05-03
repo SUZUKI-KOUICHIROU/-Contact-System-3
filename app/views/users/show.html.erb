@@ -1,17 +1,7 @@
 <% provide(:title, @user.name) %>
 
-<div>
-  <% if logged_in? %>
-    <% unless current_user.admin? || current_user.teacher? %>
-      <h1>【<%= @user.guardian_name %>】ログイン後画面<h1>
-    <% else %>
-      <h1>【<%= @user.name %>】ログイン後画面<h1>
-    <% end %>
-  <% end %>
-</div>
-
 <body style="background-color: #BEFF15">
-  
+
   <% if logged_in? && current_user.admin? %>  
     <div class="title-line"><%= link_to "学年選択", schoolclasses_class_index_user_path(current_user, @schoolclass) %></div>
     <div class="title-line"><%= link_to "担任一覧",  teacher_index_user_path(current_user, @user) %></div>
@@ -24,26 +14,22 @@
   <% if logged_in? && current_user.teacher? %>
     <div class="title-line2"><%= link_to "生徒登録", new_student_user_path %></div>
     <div class="title-line2"><%= link_to "生徒一覧", student_index_user_path %></div>
-    <div class="title-line2"><%= link_to "学校からの連絡", schoolclasses_show_teacher_contact_user_path(current_user) %></div>
+    <div class="title-line2"><%= link_to "学校との連絡", schoolclasses_show_teacher_contact_user_path(current_user, @user) %></div>
   <% end %>
     
   <% if logged_in? %>
-    <% unless current_user.admin? || current_user.teacher? %>
-      
-    <div class="title-board"><h4><%= "学校からのお知らせ" %></h4></div>
-      <div class="bulletin-board"><p>学校からのお知らせ</p></div>  
-      
-      <div class="title-line-4"><%= link_to "生徒登録", new_student_user_path %></div>   
-      <% @students.each do |student| %>  
-        
-        <div class="title-line-3">
-          <span class="box-title"><%= student.class_number %></span>
-          <p class="student-contents"><%= link_to student.name, student_detail_user_path(student) %>
-                                      　　　・<%= link_to "担任への連絡", '#' %></p>
-          <p class="a"><%= link_to "編集", edit_student_user_path(student), class: "btn btn--green btn--border-groove" %>
-          　　　・<%= link_to "担任からの連絡", '#' %></p>
-        </div>
-      <% end %>
+    <% unless current_user.admin? || current_user.teacher? %>     
+        <% @students.each do |student| %>  
+          <div class="title-line-3">
+            <span class="box-title"><%= student.class_number %></span>
+            <p class="student-contents"><%= link_to student.name, student_detail_user_path(student) %>
+                                        　　　・<%= link_to "連絡帳", schoolclasses_index_guardian_contact_user_path(current_user, @user) %></p>
+            <p class="a"><%= link_to "編集", edit_student_user_path(student), class: "btn btn--green btn--border-groove" %></p>
+          </div>      
+        <% end %>
+          <div class="title-line-4"><%= link_to "生徒登録", new_student_user_path %></div>
+          <div class="title-board"><h4><%= "学級だより" %></h4></div>
+        <div class="bulletin-board"><p></p></div> 
     <% end %> 
   <% end %>
 </body>

@@ -24,7 +24,7 @@
             <td><%= student.student_number %></td>
             <td class="student-name"><%= link_to "#{student.name}", student_detail_user_path(student) %></td>
             <td><%= student.guardian_name %></td>
-            <td>連絡帳</td>
+            <td><%= link_to "連絡帳", schoolclasses_index_teacher_contact_user_path(student) %></td>
           </tr>
         <% end %>
       <% end %>

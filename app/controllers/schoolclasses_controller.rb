@@ -3,11 +3,13 @@ class SchoolclassesController < ApplicationController
   #include SchoolclassesHelper
   
   before_action :set_user, only: %i(teacher_contact_index edit_teacher_contact update_teacher_contact edit_teacher_contact_2 update_teacher_contact_2 
-                edit_teacher_contact_3 update_teacher_contact_3 show_teacher_contact teacher_contact destroy)
+                edit_teacher_contact_3 update_teacher_contact_3 show_teacher_contact teacher_contact  index_guardian_contact edit_teacherform_contact 
+                update_teacherform_contact edit_teacherwhat_contact update_teacherwhat_contact index_teacher_contact edit_guardianwhat_contact update_guardianwhat_contact 
+                destroy)
   #before_action :logged_in_user, only: []
   #before_action :correct_user, only: []
   before_action :admin_user, only: %i(class_index edit_1 edit_2 teacher_contact_index edit_teacher_contact destroy)
-  before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact)
+  before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact index_teacher_contact index_guardian_contact) 
 
   #学年選択
   def class_index 
@@ -86,18 +88,18 @@ class SchoolclassesController < ApplicationController
     end
   end
 
-  #学校からの連絡一覧
+  #学校からの連絡一覧（担任）
   def show_teacher_contact
     @contacts = Schoolclass.where(schoolclasses: {user_id: @user.id})
   end
   
-  #学校からの連絡・返信
+  #学校からの連絡・返信（担任）
   def teacher_contact
     @contact_title = @user.schoolclasses.where(contact_date: params[:date])
     @contacts = @user.schoolclasses.where(contact_date: params[:date])
   end
 
-  #学校への返信投稿
+  #学校への返信投稿（担任）
   def update_school_contact_2
     school_contact_params.each do |id,item|  
       contact = Schoolclass.find(id)
@@ -111,7 +113,7 @@ class SchoolclassesController < ApplicationController
     end
   end
 
-  #学校への連絡投稿
+  #学校への連絡投稿・返信（担任）
   def edit_teacher_contact_3
     @contact = @user.schoolclasses.where(contact_date: params[:date])
     @teacher_contact = @user.schoolclasses.where(contact_date: params[:date])
@@ -129,6 +131,69 @@ class SchoolclassesController < ApplicationController
     end
   end
 
+  #保護者への連絡投稿・返信（担任）
+  def index_teacher_contact
+    @contacts = Schoolclass.where(schoolclasses: {user_id: @user.id})
+  end
+  
+  def edit_teacherwhat_contact
+    @contact = @user.schoolclasses.where(contact_date: params[:date])
+    @teacher_contact = @user.schoolclasses.where(contact_date: params[:date])
+  end
+
+  def update_teacherwhat_contact
+    guardian_contact_params.each do |id,item|
+      contact = Schoolclass.find(id)
+      if contact.update(item)
+        flash[:success] = '投稿しました。'
+      else
+        flash[:danger] = "失敗しました。" 
+      end
+      redirect_to schoolclasses_index_teacher_contact_user_url(current_user) 
+    end
+  end
+  
+  #担任からの連絡一覧（保護者）
+  def index_guardian_contact
+    @contacts = Schoolclass.where(schoolclasses: {user_id: @user.id})
+  end
+  
+  #担任からの連絡・返信（保護者）
+  def edit_teacherform_contact
+    @contact_teacher = User.where(teacher: true, class_number: @user.class_number)
+    @contact_title = @user.schoolclasses.where(contact_date: params[:date])
+    @contacts = @user.schoolclasses.where(contact_date: params[:date])  
+  end
+
+  def update_teacherform_contact
+    guardian_contact_2_params.each do |id,item|
+      contact = Schoolclass.find(id)
+      if contact.update(item)
+        flash[:success] = '投稿しました。'
+      else
+        flash[:danger] = "失敗しました。" 
+      end
+      redirect_to schoolclasses_index_guardian_contact_user_url(@user)
+    end
+  end
+  
+  def edit_guardianwhat_contact
+    @contact = @user.schoolclasses.where(contact_date: params[:date])
+    @teacher_contact = @user.schoolclasses.where(contact_date: params[:date])
+  end
+
+  def update_guardianwhat_contact
+    guardian_contact_2_params.each do |id,item|
+      contact = Schoolclass.find(id)
+      if contact.update(item)
+        flash[:success] = '投稿しました。'
+      else
+        flash[:danger] = "失敗しました。" 
+      end
+      redirect_to schoolclasses_index_guardian_contact_user_url(@user)
+    end
+  end
+  
   def destroy
     @contact = @user.Schoolclass.find(params[:id]) 
     @contact.destroy
@@ -153,6 +218,17 @@ class SchoolclassesController < ApplicationController
     def teacher_contact_3_params
       params.require(:user).permit(schoolclasses: [:school_contact_2])[:schoolclasses]
     end  
-  end
+    
+    def guardian_contact_params
+      params.require(:user).permit(schoolclasses: [:title_3, :guardian_note_1])[:schoolclasses]
+    end 
 
+    def guardian_contact_2_params
+      params.require(:user).permit(schoolclasses: [:guardian_note_2])[:schoolclasses]
+    end
+
+    def guardian_contact_3_params
+      params.require(:user).permit(schoolclasses: [:title_4, :guardian_note_3])[:schoolclasses]
+    end 
+end
 
