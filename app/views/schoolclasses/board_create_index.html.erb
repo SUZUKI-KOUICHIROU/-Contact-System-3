@@ -1,0 +1,39 @@
+<% provide(:title, 'board-index') %>
+
+<div class="board-edit"><h1>学級だより作成</h1></div>
+
+<div class="btn-month"><%= link_to "前月", schoolclasses_board_create_index_user_path(date: @first_day.prev_month), class: "btn btn--orange btn--border-solid" %>
+  <%= l(@first_day, format: :middle) %>
+  <%= link_to "次月", schoolclasses_board_create_index_user_path(date: @first_day.next_month), class: "btn btn--orange btn--border-solid" %>
+</div>
+
+<div>
+  <table class="table table-bordered table-condensed table-hover" id="table-contact-index">
+    <thead>
+      <tr>
+        <th class="date-1">日付</th>
+        <th class="date-2">学級だより作成</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @schoolclasses.each do |day| %>
+  
+        <% css_class = case $days_of_the_week[day.contact_date.wday]
+            when '土'
+            'text-primary'
+            when '日'
+            'text-danger'
+        end %>
+
+        <tr> 
+          <td class="<%= css_class %>">
+            <%= l(day.contact_date, format: :short) %>
+            <%= "(""#{$days_of_the_week[day.contact_date.wday]})" %>
+          </td>
+          <td><%= link_to "学級だより作成", schoolclasses_edit_class_board_user_path(@user, date: day.contact_date) %></td>
+        </tr>
+      <% end %>  
+    </tbody>
+  </table>
+</div>

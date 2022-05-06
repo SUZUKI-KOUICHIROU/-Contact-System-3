@@ -5,11 +5,11 @@ class SchoolclassesController < ApplicationController
   before_action :set_user, only: %i(teacher_contact_index edit_teacher_contact update_teacher_contact edit_teacher_contact_2 update_teacher_contact_2 
                 edit_teacher_contact_3 update_teacher_contact_3 show_teacher_contact teacher_contact  index_guardian_contact edit_teacherform_contact 
                 update_teacherform_contact edit_teacherwhat_contact update_teacherwhat_contact index_teacher_contact edit_guardianwhat_contact update_guardianwhat_contact 
-                destroy)
+                edit_class_board update_class_board board_index show_board edit_guardianform_contact update_guardianform_contact board_create_index destroy)
   #before_action :logged_in_user, only: []
   #before_action :correct_user, only: []
   before_action :admin_user, only: %i(class_index edit_1 edit_2 teacher_contact_index edit_teacher_contact destroy)
-  before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact index_teacher_contact index_guardian_contact) 
+  before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact index_teacher_contact index_guardian_contact board_index board_create_index) 
 
   #学年選択
   def class_index 
@@ -100,7 +100,7 @@ class SchoolclassesController < ApplicationController
   end
 
   #学校への返信投稿（担任）
-  def update_school_contact_2
+  def update_school_contact
     school_contact_params.each do |id,item|  
       contact = Schoolclass.find(id)
       if contact.update(item)
@@ -152,7 +152,7 @@ class SchoolclassesController < ApplicationController
       redirect_to schoolclasses_index_teacher_contact_user_url(current_user) 
     end
   end
-  
+
   #担任からの連絡一覧（保護者）
   def index_guardian_contact
     @contacts = Schoolclass.where(schoolclasses: {user_id: @user.id})
@@ -183,7 +183,7 @@ class SchoolclassesController < ApplicationController
   end
 
   def update_guardianwhat_contact
-    guardian_contact_2_params.each do |id,item|
+    guardian_contact_3_params.each do |id,item|
       contact = Schoolclass.find(id)
       if contact.update(item)
         flash[:success] = '投稿しました。'
@@ -192,6 +192,54 @@ class SchoolclassesController < ApplicationController
       end
       redirect_to schoolclasses_index_guardian_contact_user_url(@user)
     end
+  end
+
+  def edit_guardianform_contact
+    @contact_title = @user.schoolclasses.where(contact_date: params[:date])
+    @contacts = @user.schoolclasses.where(contact_date: params[:date])
+  end
+
+  def update_guardianform_contact
+    guardian_contact_4_params.each do |id,item|
+      contact = Schoolclass.find(id)
+      if contact.update(item)
+        flash[:success] = '投稿しました。'
+      else
+        flash[:danger] = "失敗しました。" 
+      end
+      redirect_to schoolclasses_index_teacher_contact_user_url(@user) 
+    end
+  end
+  
+  #学級だより作成日付一覧
+  def board_create_index
+  end
+  
+  #学級だより作成
+  def edit_class_board
+    #@board_date = @user.schoolclasses.where(contact_date: params[:date])
+  end
+
+  def update_class_board
+    class_board_params.each do |id,item|
+      contact = Schoolclass.find(id)
+      if contact.update(item.merge(board_class: @user.class_number))
+        flash[:success] = '投稿しました。'
+      else
+        flash[:danger] = "失敗しました。" 
+      end
+      redirect_to user_url
+    end
+  end
+  
+  #学級だより一覧
+  def board_index
+    @new_board = Schoolclass.where(board_class: @user.class_number)
+  end
+
+  #学級だより閲覧
+  def show_board
+    @news_board = Schoolclass.where(board_class: @user.class_number)
   end
   
   def destroy
@@ -229,6 +277,14 @@ class SchoolclassesController < ApplicationController
 
     def guardian_contact_3_params
       params.require(:user).permit(schoolclasses: [:title_4, :guardian_note_3])[:schoolclasses]
-    end 
-end
+    end
+    
+    def guardian_contact_4_params
+      params.require(:user).permit(schoolclasses: [:guardian_note_4])[:schoolclasses]
+    end
+
+    def class_board_params
+      params.require(:user).permit(schoolclasses: [:board_title, :contact_board])[:schoolclasses]
+    end
+  end
 

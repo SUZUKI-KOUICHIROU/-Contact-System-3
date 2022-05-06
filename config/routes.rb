@@ -56,6 +56,15 @@ Rails.application.routes.draw do
 
       get 'schoolclasses/edit_guardianwhat_contact'
       patch 'schoolclasses/update_guardianwhat_contact'
+
+      get 'schoolclasses/edit_guardianform_contact'
+      patch 'schoolclasses/update_guardianform_contact'
+      
+      get 'schoolclasses/board_create_index'
+      get 'schoolclasses/edit_class_board'
+      patch 'schoolclasses/update_class_board'
+      get 'schoolclasses/board_index'
+      get 'schoolclasses/show_board'
     end
   end
   resources :schoolclasses do

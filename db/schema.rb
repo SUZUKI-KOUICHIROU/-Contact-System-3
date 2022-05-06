@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_01_230950) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_05_035016) do
   create_table "classnumbers", force: :cascade do |t|
     t.string "class_name"
     t.datetime "created_at", null: false
@@ -29,9 +29,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_01_230950) do
     t.string "teacher_note"
     t.string "title"
     t.string "school_contact"
-    t.string "next_teacher_note"
-    t.string "before_teacher_note"
-    t.integer "first_contact", default: 0
     t.string "title_2"
     t.string "teacher_note_2"
     t.string "school_contact_2"
@@ -41,6 +38,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_01_230950) do
     t.string "guardian_note_4"
     t.string "title_3"
     t.string "title_4"
+    t.string "contact_board"
+    t.string "board_title"
+    t.string "board_class"
     t.index ["user_id"], name: "index_schoolclasses_on_user_id"
   end
 

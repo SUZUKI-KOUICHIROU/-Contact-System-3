@@ -2,7 +2,7 @@
 
 <div class="contact-index-2"><h1>学校からの連絡</h1></div>
 
-<%  @contact_title.each do |contact, idx| %>
+<%  @contact_title.each do |contact| %>
 
     <% css_class = case $days_of_the_week[contact.contact_date.wday]
           when '土'
@@ -12,12 +12,11 @@
           end %>  
 
 <div class="contact-date">
-  <td><%= contact.contact_date.strftime("%Y年%m月%d日") %></td>
-  <td class="<%= css_class %>"><%= "(""#{$days_of_the_week[contact.contact_date.wday]})" %></td>
+  <div class="<%= css_class %>"><%= contact.contact_date.strftime("%Y年%m月%d日") %><%= "(""#{$days_of_the_week[contact.contact_date.wday]})" %></div>
 </div>
 <div class="contact-title-2"><td><%= contact.title %></td></div>
-  <div class="posts-show">
-    <td><%= contact.teacher_note %>
+  <div class="posts-show">  
+    <td><%= contact.teacher_note %></td>
   </div> 
 <% end %>
 

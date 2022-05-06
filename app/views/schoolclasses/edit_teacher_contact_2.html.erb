@@ -12,8 +12,7 @@
           end %>  
 
 <div class="contact-date">
-  <td><%= contact.contact_date.strftime("%Y年%m月%d日") %></td>
-  <td class="<%= css_class %>"><%= "(""#{$days_of_the_week[contact.contact_date.wday]})" %></td>
+  <div class="<%= css_class %>"><%= contact.contact_date.strftime("%Y年%m月%d日") %><%= "(""#{$days_of_the_week[contact.contact_date.wday]})" %></div>
 </div>
 <div class="contact-title-2"><td><%= contact.title_2 %></td></div>
   <div class="posts-show">

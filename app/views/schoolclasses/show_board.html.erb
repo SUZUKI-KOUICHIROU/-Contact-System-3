@@ -1,0 +1,14 @@
+<% provide(:title, 'show-sboard') %>
+
+<div class="admin-contact"><h1>学級だより</h1></div>
+
+<% @news_board.each do |news| %>
+
+<% if news.contact_date == news.updated_at %>
+
+<td><%= news.contact_board %>
+
+<% end %>
+<% end %>
+
+

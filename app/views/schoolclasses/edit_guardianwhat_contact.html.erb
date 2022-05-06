@@ -14,8 +14,7 @@
         end %>
     
     <div class="contact-date">     
-      <td><%= day.contact_date.strftime("%Y年%m月%d日") %></td>
-      <td class="<%= css_class %>"><%= "(""#{$days_of_the_week[day.contact_date.wday]})" %></td> 
+      <div class="<%= css_class %>"><%= day.contact_date.strftime("%Y年%m月%d日") %><%= "(""#{$days_of_the_week[day.contact_date.wday]})" %></div>
     </div>
     <div class="contact-title"><td><%= contact.text_field :title_4, placeholder: "タイトルを入力してください" %></td></div>
     <div class="text-contact">     

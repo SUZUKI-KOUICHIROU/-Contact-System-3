@@ -2,7 +2,7 @@
 
 <div class="admin-contact"><h1><%= "#{@user.name}への連絡" %></h1></div>
     
-<%= form_with(model: @user, url: schoolclasses_update_teacher_contact_user_path, local: true, method: :patch) do |f|  %>  
+<%= form_with(model: @user, url: schoolclasses_update_teacher_contact_user_path, local: true, method: :patch) do |f| %>  
   <% @contact.each do |day| %>  
     <%= f.fields_for "schoolclasses[]", day do |contact| %> 
 
@@ -14,10 +14,13 @@
         end %>
     
     <div class="contact-date">     
-      <td><%= day.contact_date.strftime("%Y年%m月%d日") %></td>
-      <td class="<%= css_class %>"><%= "(""#{$days_of_the_week[day.contact_date.wday]})" %></td> 
+      <div class="<%= css_class %>"><%= day.contact_date.strftime("%Y年%m月%d日") %><%= "(""#{$days_of_the_week[day.contact_date.wday]})" %></div>
     </div>
-    <div class="contact-title"><td><%= contact.text_field :title, placeholder: "タイトルを入力してください" %></td></div>
+    
+    <div class="contact-title">
+      <td><%= contact.text_field :title, placeholder: "タイトルを入力してください" %></td>
+    </div>
+    
     <div class="text-contact">     
       <td>
         <%= contact.text_area :teacher_note, placeholder: "コメントを入力してください", class: "container" %>

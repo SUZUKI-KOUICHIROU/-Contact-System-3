@@ -154,6 +154,10 @@
   color: #111111; 
 }
 
+.contact-wday {
+  float: left;
+}
+
 .contact-title {
   margin-left: 20px;
   input[type="text"] {
@@ -359,6 +363,80 @@
   width: 600px;
 	height: 100px;
   background: #DDFFFF;
+}
+
+/* 学級だより */
+
+.board-edit {
+  margin: auto;
+  margin-bottom: 15px;
+  font-family: ヒラギノ丸ゴ ProN;
+  font-size: 15px;
+  color: #111111;
+  border-style: outset;
+  border: 10px outset #0066FF;
+  border-width:10px;
+  width: 400px;
+	height: 100px;
+  background: #DDFFFF;
+}
+
+.board-title {
+  font-size: 30px;
+  font-weight: bold;
+
+  input[type="text"] {
+    margin: 10px;
+    height: 60px;
+    padding: 0.5em 1em;
+    font-size: 20px;
+    font-weight: bold;
+    background: #e4fcff;/*背景色*/
+    border-top: solid 6px #1dc1d6;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+  }
+}
+
+.class-board {
+  textarea {
+    font-size: 20px;
+    font-weight: bold;
+    width:1200px;
+    height:300px;
+    border: solid 3px #FF0461;/*線*/
+    border-radius: 10px;/*角の丸み*/
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.board {
+  float: right;
+}
+
+.board-btn {
+  margin-left: 2px;
+  width: 150px;
+}
+
+/* 学級だより（保護者側・一覧） */
+
+#table-board-index {
+  margin: 20px;
+  border:groove 6px #8effc7;
+  th {
+    font-weight: bolder;
+    font-size: 20px;
+    text-align: center;
+    border: medium solid #FF9933;
+    border-bottom-color: #FF9933;  
+  }
+  .board-1 {
+    width: 20%;
+  }
+  .board-2 {
+    width: 80%;
+  }
 }
 
 
