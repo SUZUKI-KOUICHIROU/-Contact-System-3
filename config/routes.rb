@@ -63,7 +63,7 @@ Rails.application.routes.draw do
       get 'schoolclasses/board_create_index'
       get 'schoolclasses/edit_class_board'
       patch 'schoolclasses/update_class_board'
-      get 'schoolclasses/board_index'
+      get 'schoolclasses/guardian_board_index'
       get 'schoolclasses/show_board'
     end
   end

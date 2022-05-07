@@ -27,7 +27,7 @@
           <span class="box-title"><%= student.class_number %></span>
             <p class="student-contents"><%= link_to student.name, student_detail_user_path(student) %>
                                       ・<%= link_to "連絡帳", schoolclasses_index_guardian_contact_user_path(student) %></p>
-            <p class="a"><%= link_to "編集", edit_student_user_path(student), class: "btn btn--green btn--border-groove" %>・<%= link_to "学級だより", schoolclasses_board_index_user_path(student) %></p>
+            <p class="a"><%= link_to "編集", edit_student_user_path(student), class: "btn btn--green btn--border-groove" %>・<%= link_to "学級だより", schoolclasses_guardian_board_index_user_path(student) %></p>
         </div>      
       <% end %>
       <div class="title-line-4"><%= link_to "生徒登録", new_student_user_path %></div>

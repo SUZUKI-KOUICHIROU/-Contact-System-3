@@ -5,11 +5,11 @@ class SchoolclassesController < ApplicationController
   before_action :set_user, only: %i(teacher_contact_index edit_teacher_contact update_teacher_contact edit_teacher_contact_2 update_teacher_contact_2 
                 edit_teacher_contact_3 update_teacher_contact_3 show_teacher_contact teacher_contact  index_guardian_contact edit_teacherform_contact 
                 update_teacherform_contact edit_teacherwhat_contact update_teacherwhat_contact index_teacher_contact edit_guardianwhat_contact update_guardianwhat_contact 
-                edit_class_board update_class_board board_index show_board edit_guardianform_contact update_guardianform_contact board_create_index destroy)
+                edit_class_board update_class_board board_index show_board edit_guardianform_contact update_guardianform_contact board_create_index guardian_board_index destroy)
   #before_action :logged_in_user, only: []
   #before_action :correct_user, only: []
   before_action :admin_user, only: %i(class_index edit_1 edit_2 teacher_contact_index edit_teacher_contact destroy)
-  before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact index_teacher_contact index_guardian_contact board_index board_create_index) 
+  before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact index_teacher_contact index_guardian_contact board_create_index guardian_board_index) 
 
   #学年選択
   def class_index 
@@ -217,7 +217,7 @@ class SchoolclassesController < ApplicationController
   
   #学級だより作成
   def edit_class_board
-    #@board_date = @user.schoolclasses.where(contact_date: params[:date])
+    @board_date = @user.schoolclasses.where(contact_date: params[:date])
   end
 
   def update_class_board
@@ -232,14 +232,14 @@ class SchoolclassesController < ApplicationController
     end
   end
   
-  #学級だより一覧
-  def board_index
-    @new_board = Schoolclass.where(board_class: @user.class_number)
+  #学級だより一覧（保護者）
+  def guardian_board_index
+    @guardian_board = Schoolclass.where(board_class: @user.class_number)
   end
 
-  #学級だより閲覧
+  #学級だより閲覧（保護者）
   def show_board
-    @news_board = Schoolclass.where(board_class: @user.class_number)
+    @news_board = Schoolclass.where(board_class: @user.class_number, contact_date: params[:date])
   end
   
   def destroy

@@ -365,7 +365,7 @@
   background: #DDFFFF;
 }
 
-/* 学級だより */
+/* 学級だより作成 */
 
 .board-edit {
   margin: auto;
@@ -384,8 +384,12 @@
 .board-title {
   font-size: 30px;
   font-weight: bold;
+} 
 
-  input[type="text"] {
+.board-title2 {
+  margin-left: -10px;
+  
+input[type="text"] {
     margin: 10px;
     height: 60px;
     padding: 0.5em 1em;
@@ -435,8 +439,24 @@
     width: 20%;
   }
   .board-2 {
-    width: 80%;
+    width: 50%;
   }
+  .board-3 {
+    width: 30%;
+  }
+}
+
+.board-class { 
+  margin: auto;
+  font-family: ヒラギノ丸ゴ ProN;
+  font-size: 15px;
+  color: #111111;
+  border-style: outset;
+  border: 10px outset #0066FF;
+  border-width:10px;
+  width: 440px;
+	height: 100px;
+  background: #DDFFFF;
 }
 
 

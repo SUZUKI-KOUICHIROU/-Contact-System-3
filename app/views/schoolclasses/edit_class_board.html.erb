@@ -2,4 +2,28 @@
 
 <div class="board-edit"><h1>学級だより作成</h1></div>
 
- 
+<%= form_with(model: @user, url: schoolclasses_update_class_board_user_path, local: true, method: :patch) do |f| %>
+  <% @board_date.each do |day| %>
+    <%= f.fields_for "schoolclasses[]", day do |board| %> 
+
+    <% css_class = case $days_of_the_week[day.contact_date.wday]
+          when '土'
+          'text-primary'
+          when '日'
+          'text-danger'
+        end %>
+
+  <div class="board-title">               
+    <div class="<%= css_class %>"><%= day.contact_date.strftime("%Y年%m月%d日") %><%= "(""#{$days_of_the_week[day.contact_date.wday]})" %></div>
+    <div class="board-title2"><%= board.text_field :board_title, placeholder: "タイトルを入力してください" %></div>
+  </div>
+  
+  <div class="class-board">     
+    <td>
+      <%= board.text_area :contact_board, placeholder: "お知らせを入力してください", class: "container" %>
+    </td>
+    <td><%= f.submit "投稿", class: "board-btn btn-success btn-lg btn-login" %></td>
+  </div>
+  <% end %>
+  <% end %>
+<% end %>  

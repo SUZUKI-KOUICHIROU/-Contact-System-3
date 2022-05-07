@@ -1,14 +1,24 @@
 <% provide(:title, 'show-sboard') %>
 
-<div class="admin-contact"><h1>学級だより</h1></div>
+<div class="admin-contact"><h1><%= "#{@user.class_number}学級だより" %></h1></div>
 
-<% @news_board.each do |news| %>
+  
+  <% @news_board.each do |news| %>
 
-<% if news.contact_date == news.updated_at %>
+    <% css_class = case $days_of_the_week[news.contact_date.wday]
+          when '土'
+          'text-primary'
+          when '日'
+          'text-danger'
+          end %>  
 
-<td><%= news.contact_board %>
-
-<% end %>
-<% end %>
+  <div class="contact-date">
+    <div class="<%= css_class %>"><%= news.contact_date.strftime("%Y年%m月%d日") %><%= "(""#{$days_of_the_week[news.contact_date.wday]})" %></div>
+  </div>
+  <div class="contact-title-2"><td><%= news.board_title %></td></div>
+  <div class="posts-show">
+    <td><%= news.contact_board %>
+  </div> 
+  <% end %>
 
 
