@@ -18,11 +18,13 @@ Rails.application.routes.draw do
       get 'new_student'
       post 'create_student'
       get 'edit_student'
-      patch 'student_update'
+      patch 'update_student'
       get 'student_index'
       get 'student_index_2'
       get 'student_index_3'
       get 'student_detail'
+
+      get 'edit_student_2'
       
       get 'schoolclasses/class_index' 
       get 'schoolclasses/edit_1'
@@ -65,6 +67,8 @@ Rails.application.routes.draw do
       patch 'schoolclasses/update_class_board'
       get 'schoolclasses/guardian_board_index'
       get 'schoolclasses/show_board'
+
+      get 'show_student'
     end
   end
   resources :schoolclasses do

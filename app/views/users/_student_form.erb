@@ -18,10 +18,19 @@
               date_separator: '%s'),
             '年 ', '月 ') + '日' %></div>
     </div>
-    <div> 
+      <%= f.label :class_number, class: "label-#{yield(:class_text)}" %>
+    <div class= "teacher-class">
+      <%= f.select :class_number, @class_list.pluck(:class_name), { include_blank: "クラスを選択" } %>
+    </div> 
+    
+      <div class="student-number">  
+        <%= f.label :student_number, class: "label-#{yield(:class_text)}" %>
+        <%= f.text_field :student_number, class: "form-control" %>
+      </div>
+    
       <%= f.label :guardian_name, class: "label-#{yield(:class_text)}" %>
-      <%= f.text_field :guardian_name, class: "form-control" %>
-    </div>
+      <%= f.text_field :guardian_name, value: @guardian, class: "form-control" %>
+    
       <%= f.label :address, class: "label-#{yield(:class_text)}" %>
       <%= f.text_field :address, class: "form-control" %>
 

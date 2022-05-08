@@ -115,7 +115,7 @@
 }
 
 .title-line-4 {
-  margin-left: -90px;
+  margin-left: 30px;
   width: 300px;
   padding: 0.5em 1em;
   color: #FFF;
@@ -123,7 +123,8 @@
   border-bottom: solid 6px #3f87ce;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
   border-radius: 9px;
-  font-size: 30px;
+  font-size: 35px;
+  font-weight: bolder;
   text-align: center;
   a:hover{ color: #FF0000; background: #EDFFBE;} 
 }
@@ -341,6 +342,15 @@ input[type="password"] {
   color: black;
 }
 
+.student-number {
+  input[type="text"] {
+    border-width:3px;
+    font-size: 25px;
+    width: 90px;
+    height: 45px;
+  }
+}
+
 /* 担任登録 */
 
 .teacher-register {
@@ -398,4 +408,96 @@ input[type="password"] {
 .teacher-btn {
   width: 560px;
 }
+
+#table-show-student {
+  margin: 30px;
+  border:groove 6px #8ec6ff;
+  a:hover{ color: #FF0000; background: #E0FFFF;}
+  th {
+    font-weight: bolder;
+    font-size: 30px;
+    text-align: center;
+    border: medium solid #FF9933;
+    border-bottom-color: #FF9933;
+    background: #CCFFFF;  
+  }
+  td {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    border: medium solid #FF9933;
+    background: #FFFFCC;
+  }
+  .student-name {
+    a:hover{ color: #FF0000; background: #E0FFFF;}
+  }
+}
+
+/* 連絡帳 */
+
+.contact-board-title {
+  margin-left: 380px;
+  font-family: ヒラギノ丸ゴ ProN;
+  font-size: 15px;
+  color: #111111;
+  border-style: outset;
+  border: 10px outset #0066FF;
+  border-width:10px;
+  width: 400px;
+	height: 100px;
+  background: #DDFFFF;
+}
+
+#table-board-student {
+  margin: 30px;
+  border:groove 6px #8ec6ff;
+  a:hover{ color: #FF0000; background: #E0FFFF;}
+  th {
+    font-weight: bolder;
+    font-size: 30px;
+    text-align: center;
+    border: medium solid #FF9933;
+    border-bottom-color: #FF9933;
+    background: #CCFFFF;  
+  }
+  td {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    border: medium solid #FF9933;
+    background: #FFFFCC;
+  }
+  .student-name {
+    a:hover{ color: #FF0000; background: #E0FFFF;}
+  }
+}
+
+.btn--student {
+  font-size: 20px;
+  font-weight: bolder;
+  background: #FFFFCC;
+  border: 6px groove #00FF00;
+  padding-top: 0.08em;
+  padding-bottom: 0.08em;
+}
+
+#teacher-show {
+  margin: 20px;
+  width: 500px;
+  writing-mode: vertical-lr;
+  margin-left: auto;
+  margin-right: auto;
+  
+  th {
+    text-align: center;
+    padding:15px 20;
+    font-size: 30px;
+    color: #8B0000;
+    writing-mode: horizontal-tb;
+    border:groove 6px #00FFFF;
+    background: #FFFFCC;
+  }
+}
+
+
 

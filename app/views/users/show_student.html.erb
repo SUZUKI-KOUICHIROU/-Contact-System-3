@@ -1,0 +1,26 @@
+<% provide(:title, 'show-student') %>
+
+<div class="contact-board-title"><h1><%= "#{@user.name}"%></h1></div>  
+
+<div>
+  <table class="table table-bordered table-condensed table-hover" id="table-board-student">
+    <thead> 
+      <tr>  
+        <th>クラス</th>
+        <th>名前</th>
+        <th>生徒情報編集</th>
+        <th>連絡帳</th>
+        <th>学級だより</th>
+      </tr>
+    </thead>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.class_number %></td>
+        <td><%= link_to student.name, student_detail_user_path(student) %></td>
+        <td><%= link_to "編集", edit_student_user_path(student) %></td>
+        <td><%= link_to "連絡帳", schoolclasses_index_guardian_contact_user_path(student) %></td>
+        <td><%= link_to "学級だより", schoolclasses_guardian_board_index_user_path(student) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
