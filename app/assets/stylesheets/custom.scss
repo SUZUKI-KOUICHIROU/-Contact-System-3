@@ -52,19 +52,32 @@ p {
 
 /* header */
 
+.navbar-fixed-top {
+  background-color: #FFCC99;
+}
+
 #logo {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: #fff;
+  color: white;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
 }
 
+li {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.header-menu {
+  color: #111111;
+}
+
 #logo:hover {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 

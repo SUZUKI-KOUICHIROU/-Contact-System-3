@@ -1,14 +1,23 @@
 <% provide(:title, @user.name) %>
 
 <body style="background-color: #BEFF15">
-
-  <% if logged_in? && current_user.admin? %>  
-    <div class="title-line"><%= link_to "学年選択", schoolclasses_class_index_user_path(current_user, @schoolclass) %></div>
-    <div class="title-line"><%= link_to "担任一覧",  teacher_index_user_path(current_user, @user) %></div>
-    <div class="title-line"><%= link_to "クラス作成", new_classnumber_path(current_user) %></div>
-    <div class="title-line"><%= link_to "生徒一覧", student_index_3_user_path %></div>
-    <div class="title-line"><%= link_to "担任登録", new_teacher_user_path(current_user, @user) %></div>
-    <div class="title-line"><%= link_to "管理者情報編集", '#' %></div>
+  
+  <% if logged_in? && current_user.admin? %>
+    <div class="board-class"><h1>管理者メニュー</h1></div>
+    <div> 
+      <table class="table table-bordered table-condensed" id="teacher-show">
+        <thead> 
+          <tr> 
+            <th><%= link_to "担任一覧",  teacher_index_user_path(current_user) %></th>
+            <th><%= link_to "クラス一覧", schoolclasses_class_index_user_path(current_user, @schoolclass) %></th>
+            <th><%= link_to "生徒一覧", student_index_3_user_path %></th>
+            <th><%= link_to "担任登録", new_teacher_user_path(current_user) %></th>
+            <th><%= link_to "クラス作成", new_classnumber_path(current_user) %></th>
+            <th><%= link_to "管理者情報編集", edit_admin_user_path(@user) %></th> 
+          </tr>
+        </thead>
+      </table>
+    </div>
   <% end %>
   
   <% if logged_in? && current_user.teacher? %>
@@ -27,27 +36,30 @@
     </div>
   <% end %>
     
-      <% if logged_in? %>
-        <% unless current_user.admin? || current_user.teacher? %>     
-          <div>
-            <table class="table table-bordered table-condensed table-hover" id="table-show-student">
-            <thead> 
-              <tr>  
-                <th>クラス</th>
-                <th>名前</th>
-                <th>連絡帳</th>
-              </tr>
-            </thead>
-            <% @students.each do |student| %>
-              <tr>
-                <td><%= student.class_number %></td>
-                <td><%= student.name %></td>  
-                <td><%= link_to "連絡帳", show_student_user_path(student) %>
-              </tr>  
-            <% end %>
-            </table>
-            <div class="title-line-4"><%= link_to "生徒登録", new_student_user_path %></div>
-          </div>
-        <% end %> 
-      <% end %>
+  <% if logged_in? %>
+    <% unless current_user.admin? || current_user.teacher? %>     
+      <div>
+        <table class="table table-bordered table-condensed table-hover" id="table-show-student">
+          <thead> 
+            <tr>  
+              <th>クラス</th>
+              <th>名前</th>
+              <th>連絡帳</th>
+            </tr>
+          </thead>
+          <% @students.each do |student| %>
+            <tr>
+              <td><%= student.class_number %></td>
+              <td class="student-name1">
+                <a class="student-name3"><%= student.name %></a>
+                <a><%= link_to "編集", edit_student_user_path(student), class: "btn btn--green btn--student" %></a>
+              </td>  
+              <td><%= link_to "連絡帳", show_student_user_path(student) %>
+            </tr>  
+          <% end %>
+        </table>
+          <div class="title-line-4"><%= link_to "生徒登録", new_student_user_path %></div>
+      </div>
+    <% end %> 
+  <% end %>
 </body>

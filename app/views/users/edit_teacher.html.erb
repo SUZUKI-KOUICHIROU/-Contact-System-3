@@ -1,4 +1,4 @@
-<% provide(:title, "Edit-Teacher") %>
+<% provide(:title, "edit-teacher") %>
 <% provide(:class_text, 'user--edit') %>
 <% provide(:button_text, '更新') %>
 
@@ -6,6 +6,30 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= render 'teacher_form' %>
+      <%= form_with(model: @user, url: update_teacher_user_path, method: :patch, local: true) do |f| %>
+        <%= render 'shared/error_messages', object: @user %>
+
+    <div class="teacher-edit-2">    
+    
+        <%= f.label :name, class: "label-#{yield(:class_text)}" %>
+        <%= f.text_field :name, class: "form-control" %>
+
+        <%= f.label :email, class: "label-#{yield(:class_text)}" %>
+        <%= f.email_field :email, class: "form-control" %>
+
+        <%= f.label :class_number, class: "label-#{yield(:class_text)}" %>
+      <div class= "teacher-class">
+        <%= f.select :class_number, @class_list.pluck(:class_name) %>
+      </div>
+  
+        <%= f.label :password, class: "label-#{yield(:class_text)}" %>
+        <%= f.password_field :password, class: "form-control" %>
+
+        <%= f.label :password_confirmation, class: "label-#{yield(:class_text)}" %>
+        <%= f.password_field :password_confirmation, class: "form-control" %>
+
+        <%= f.submit yield(:button_text), class: "teacher-btn btn-success btn-lg btn-login btn-#{yield(:class_text)}" %>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -10,9 +10,13 @@ Rails.application.routes.draw do
   
   resources :users do
     member do
+      get 'edit_admin'
+      patch 'update_admin'
+      
       get 'new_teacher'
       post 'create_teacher'
       get 'edit_teacher'
+      patch 'update_teacher'
       get 'teacher_index'
       
       get 'new_student'

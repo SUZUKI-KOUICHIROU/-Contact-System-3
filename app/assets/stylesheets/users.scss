@@ -425,13 +425,23 @@ input[type="password"] {
     font-size: 30px;
     font-weight: bold;
     text-align: center;
+    vertical-align: middle;
     border: medium solid #FF9933;
     background: #FFFFCC;
   }
-  .student-name {
+  .student-name1 {
     a:hover{ color: #FF0000; background: #E0FFFF;}
+    a {
+      margin-left: 20px;
+      font-size: 28px;
+    }
   }
 }
+
+.student-name3 {
+  vertical-align: middle;
+}
+
 
 /* 連絡帳 */
 

@@ -39,7 +39,7 @@
             <%= link_to "無題", schoolclasses_teacher_contact_user_path(@user, date: day.contact_date) %>
           <% end %>
         </td>
-        <td class="b"><%= link_to "連絡する", schoolclasses_edit_teacher_contact_3_user_path(@user, date: day.contact_date), class: "btn btn--green btn--border-groove" %></td>
+        <td class="b"><%= link_to "連絡", schoolclasses_edit_teacher_contact_3_user_path(@user, date: day.contact_date), class: "btn btn--green btn--border-groove" %></td>
       </tr>   
       <% end %>
     </tbody>

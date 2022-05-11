@@ -4,18 +4,22 @@
 
 <div>
   <table class="table table-bordered table-condensed table-hover" id="table-class-index">
+
     <thead> 
       <tr>  
         <th>クラス</th>
         <th>名前</th>
         <th>連絡帳</th>
       </tr>
-    </thead>
+    </thead>  
 
     <% @teachers.each do |teacher| %>
       <tr>
         <td><%= link_to "#{teacher.class_number}", student_index_2_user_path(teacher) %></td> 
-        <td><%= link_to "#{teacher.name}", edit_teacher_user_path(teacher) %></td>
+        <td class="student-name">
+          <%= teacher.name %>
+          <%= link_to "編集", edit_teacher_user_path(teacher), class: "btn btn--green btn--student" %>
+        </td>
         <td><%= link_to "連絡帳", schoolclasses_teacher_contact_index_user_path(teacher) %></td>
       </tr>
     <% end %>

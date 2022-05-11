@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: %i(show edit update edit_teacher destroy show_teacher_contact student_detail student_index student_index_2 student_index_3
-                                    edit_student_1 update_student_1 new_student create_student edit_student update_student show_student edit_student_2)
+                                    edit_student_1 update_student_1 new_student create_student edit_student update_student show_student edit_student_2 
+                                    edit_admin update_admin edit_teacher update_teacher)
   before_action :logged_in_user, only: %i(index teacher_index show edit update destroy)
   before_action :correct_user, only: %i(edit update)
   before_action :admin_teacher_user, only: %i(edit_teacher)
@@ -36,6 +37,19 @@ class UsersController < ApplicationController
     end
   end
   
+  #管理者情報編集
+  def edit_admin
+  end
+  
+  def update_admin
+    if @user.update(admin_params)
+      flash[:success] = "管理者情報を更新しました。"
+      redirect_to current_user
+    else
+      render :edit_admin      
+    end
+  end
+
   #担任登録
   
   def new_teacher
@@ -53,9 +67,20 @@ class UsersController < ApplicationController
     end
   end
   
+  #担任編集
+  
   def edit_teacher
   end
-  
+
+  def update_teacher
+    if @user.update(teacher_params)
+      flash[:success] = "担任情報を更新しました。"
+      redirect_to current_user
+    else
+      render :edit_teacher      
+    end
+  end
+
   #担任一覧
   
   def teacher_index
@@ -137,5 +162,9 @@ class UsersController < ApplicationController
   
     def teacher_params
       params.require(:user).permit(:name, :email, :class_number, :password, :password_confirmation).merge(teacher: "true")
+    end
+
+    def admin_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 end
