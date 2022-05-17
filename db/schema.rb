@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_05_035016) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_17_025211) do
   create_table "classnumbers", force: :cascade do |t|
     t.string "class_name"
     t.datetime "created_at", null: false
@@ -41,7 +41,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_05_035016) do
     t.string "contact_board"
     t.string "board_title"
     t.string "board_class"
+    t.string "student_name"
+    t.date "birthday"
+    t.string "class_belongs"
+    t.integer "student_number"
+    t.string "guardian_name"
     t.index ["user_id"], name: "index_schoolclasses_on_user_id"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "student_name"
+    t.date "birthday"
+    t.string "class_belongs"
+    t.integer "student_number"
+    t.string "guardian_name"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_students_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,8 +72,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_05_035016) do
     t.boolean "teacher", default: false
     t.string "teacher_name"
     t.string "class_number"
-    t.integer "student_number"
-    t.string "guardian_name"
     t.date "birthday"
     t.integer "age"
     t.string "address"
@@ -65,4 +80,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_05_035016) do
   end
 
   add_foreign_key "schoolclasses", "users"
+  add_foreign_key "students", "users"
 end

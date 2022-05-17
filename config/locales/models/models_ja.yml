@@ -26,4 +26,9 @@ ja:
           teacher_note: 学校⇄担任連絡帳
         classnumber:
           class_name: クラス
+        student:
+          student_name: 生徒名
+          birthday: 生年月日
+          class_belongs: クラス
+          student_number: 出席番号
               

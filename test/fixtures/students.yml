@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student_name: MyString
+  birthday: 2022-05-17
+  class_belongs: MyString
+  student_number: 1
+  guardian_name: MyString
+  user: one
+
+two:
+  student_name: MyString
+  birthday: 2022-05-17
+  class_belongs: MyString
+  student_number: 1
+  guardian_name: MyString
+  user: two

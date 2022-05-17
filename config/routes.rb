@@ -19,10 +19,9 @@ Rails.application.routes.draw do
       patch 'update_teacher'
       get 'teacher_index'
       
-      get 'new_student'
-      post 'create_student'
-      get 'edit_student'
-      patch 'update_student'
+      get 'students/new'
+      post 'students/create'
+      
       get 'student_index'
       get 'student_index_2'
       get 'student_index_3'
@@ -74,8 +73,11 @@ Rails.application.routes.draw do
 
       get 'show_student'
     end
+  
   end
   resources :schoolclasses do
+  end
+  resources :students do
   end
   resources :classnumbers do
   end

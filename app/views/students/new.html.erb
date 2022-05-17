@@ -1,0 +1,44 @@
+<% provide(:title, 'new-student') %>
+<% provide(:class_text, 'signup') %>
+<% provide(:button_text, '新規登録') %>
+
+<div class="student-title-2"><h1>生徒登録</h1></div>
+  
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <%= form_with(model: @student, url: students_create_user_path, local: true, method: :post) do |f| %>
+      <!--%= f.fields_for :students do |student| %-->   
+
+    <div class ="student-register">
+      <%= f.label "生徒名", class: "label-#{yield(:class_text)}" %>
+      <%= f.text_field :student_name, required: true, class: "form-control" %>
+  
+      <div class="class-select">  
+        <div class="item-1"></div>
+          <div class="item-4"><%= f.label "生年月日", class: "label-#{yield(:class_text)}" %></div> 
+            <div class="birthday-select"><%= raw sprintf(
+              f.date_select(
+                :birthday,
+                use_month_numbers: true,
+                start_year: 2000,
+                end_year: (Time.now.year - 0),
+                default: Date.new(Time.now.year, Time.now.mon, Time.now.mday),
+                date_separator: '%s'),
+                '年 ', '月 ') + '日' %></div>
+            </div>
+        <%= f.label "クラス", class: "label-#{yield(:class_text)}" %>
+      <div class= "teacher-class">
+        <%= f.select :class_belongs, @class_list.pluck(:class_name), { include_blank: "クラスを選択" }, { required: true } %>
+      </div> 
+    
+      <div class="student-number">  
+        <%= f.label "出席番号", class: "label-#{yield(:class_text)}" %>
+        <%= f.text_field :student_number, required: true, class: "form-control" %>
+      </div>
+        <%= f.submit yield(:button_text), class: "btn btn-success btn-student" %>
+        <!--% end %--> 
+      <% end %>
+    </div>
+  </div>
+</div> 

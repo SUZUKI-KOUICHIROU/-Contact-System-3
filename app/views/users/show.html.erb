@@ -39,6 +39,7 @@
   <% if logged_in? %>
     <% unless current_user.admin? || current_user.teacher? %>     
       <div>
+        <h1>保護者名：<%= @user.name %><h1>
         <table class="table table-bordered table-condensed table-hover" id="table-show-student">
           <thead> 
             <tr>  
@@ -47,18 +48,18 @@
               <th>連絡帳</th>
             </tr>
           </thead>
-          <% @students.each do |student| %>
-            <tr>
-              <td><%= student.class_number %></td>
-              <td class="student-name1">
-                <a class="student-name3"><%= student.name %></a>
-                <a><%= link_to "編集", edit_student_user_path(student), class: "btn btn--green btn--student" %></a>
-              </td>  
-              <td><%= link_to "連絡帳", show_student_user_path(student) %>
-            </tr>  
-          <% end %>
+            <% @students.each do |student| %>
+              <tr>
+                <td><%= student.class_belongs %></td>
+                <td class="student-name1">
+                  <a class="student-name3"><%= student.student_name %></a>
+                  <a><%= link_to "編集", '#', class: "btn btn--green btn--student" %></a>
+                </td>  
+                <td><%= link_to "連絡帳", '#' %>
+              </tr>  
+            <% end %>        
         </table>
-          <div class="title-line-4"><%= link_to "生徒登録", new_student_user_path %></div>
+          <div class="title-line-4"><%= link_to "生徒登録", students_new_user_path %></div>
       </div>
     <% end %> 
   <% end %>
