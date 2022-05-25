@@ -1,0 +1,25 @@
+<% provide(:title, 'student-detail') %>
+
+<div class="student-title"><h1>生徒詳細</h1></div>
+
+<div>
+  <table class="table table-bordered table-condensed" id="student-detail">   
+    <thead> 
+      <tr>  
+        <th>クラス</th>
+        <th>生徒名</th>
+        <th>生年月日</th>
+        <th>年齢</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <tr>
+        <td><%= @student.class_belongs%></td>
+        <td><%= @student.student_name %></td>
+        <td><%= @student.birthday.strftime("%Y年%m月%d日") if @student.birthday.present? %></td>
+        <td><%= "#{student_birthday(Date.today, @student.birthday)}歳" %></td>     
+      </tr>
+    </tbody>
+  </table>
+</div>

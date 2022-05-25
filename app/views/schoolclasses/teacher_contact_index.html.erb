@@ -1,6 +1,6 @@
 <% provide(:title, 'Teacher-Contact') %>
 
-<div class="contact-index"><h1><%= "#{@user.name}連絡帳" %></h1></div>
+<div class="contact-index2"><h1><%= "#{@user.name}連絡帳" %></h1></div>
 
 <div class="btn-month"><%= link_to "前月", schoolclasses_teacher_contact_index_user_path(date: @first_day.prev_month), class: "btn btn--orange btn--border-solid" %>
   <%= l(@first_day, format: :middle) %>

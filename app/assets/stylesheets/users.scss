@@ -438,6 +438,47 @@ input[type="password"] {
   }
 }
 
+#table-show-guardian {
+  margin: 30px;
+  border:groove 6px #8ec6ff;
+  a:hover{ color: #FF0000; background: #E0FFFF;}
+  th {
+    font-weight: bolder;
+    font-size: 30px;
+    text-align: center;
+    border: medium solid #FF9933;
+    border-bottom-color: #FF9933;
+    background: #CCFFFF;  
+  }
+  td {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    border: medium solid #FF9933;
+    background: #FFEEFF;
+  }
+  .student-name1 {
+    a:hover{ color: #FF0000; background: #E0FFFF;}
+    a {
+      margin-left: 20px;
+      font-size: 28px;
+    }
+  }
+}
+
+.guardian-1 {
+  width: 20%;
+}
+
+.guardian-2 {
+  width: 45%;
+}
+
+.guardian-3 {
+  width: 35%;
+}
+
 .student-name3 {
   vertical-align: middle;
 }
@@ -508,6 +549,3 @@ input[type="password"] {
     background: #FFFFCC;
   }
 }
-
-
-

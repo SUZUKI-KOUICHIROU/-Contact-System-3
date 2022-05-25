@@ -16,17 +16,18 @@
     <thead> 
       <tr>  
         <th>クラス</th>
+        <th>生徒数</th>
         <th>担任</th>
         <th>担任への連絡</th>
       </tr>
     </thead>
-  
     <tbody>
       <% @schoolclassese_1.each do |schoolclass| %>  
-        <% @teachers.each do |teacher| %> 
+        <% @teachers.each do |teacher| %>  
           <% if schoolclass.class_name == teacher.class_number %>
             <tr>     
               <td><%= link_to "#{teacher.class_number}", student_index_2_user_path(teacher) %></td>
+              <td></td>
               <td><%= link_to "#{teacher.name}", edit_teacher_user_path(teacher) %></td>
               <td><%= link_to "担任への連絡", schoolclasses_teacher_contact_index_user_path(teacher) %></td>
             </tr>

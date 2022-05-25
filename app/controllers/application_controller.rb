@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   def set_student
     @student = Student.find(params[:id])
   end
-
+  
   # 管理者かどうか判定します。
   def admin_user
     redirect_to root_url unless current_user.admin?

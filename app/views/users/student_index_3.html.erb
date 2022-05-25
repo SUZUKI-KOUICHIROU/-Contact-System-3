@@ -1,4 +1,4 @@
-<% provide(:title, 'All-Students') %>
+<% provide(:title, 'all-students') %>
 
 <div class="student-title"><h1><%= "#{@user.class_number}生徒一覧" %></h1></div>
 
@@ -14,18 +14,22 @@
     </thead>
     <tbody>
       <% @students.each do |student| %>
-        <tr>
-          <td><%= student.class_number %></td>
-          <td><%= link_to "#{student.name}", student_detail_user_path(student) %></td>
-          <td><%= student.guardian_name %></td>
-          <td>
-            <% if current_user.admin? && !current_user?(student) %>
-            <%= link_to "削除", student, method: :delete,
-                data: { confirm: "削除してよろしいですか？" },
-                class: "btn btn-danger" %>
-            <% end %>
-          </td>
-        </tr>
+        <% @guardians.each do |guardian| %>  
+          <% if student.user_id == guardian.id %>
+            <tr>
+              <td><%= student.class_belongs %></td>
+              <td><%= link_to "#{student.student_name}", students_student_detail_user_path(student) %></td>
+              <td><%= link_to "#{guardian.name}", guardian_detail_user_path(guardian) %>
+              <td>
+                <% if current_user.admin? && !current_user?(student) %>
+                  <%= link_to "削除", student, method: :delete,
+                      data: { confirm: "削除してよろしいですか？" },
+                      class: "btn btn-danger" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
       <% end %>
     </tbody>
   </table>

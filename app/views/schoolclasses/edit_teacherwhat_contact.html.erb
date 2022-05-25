@@ -1,6 +1,6 @@
 <% provide(:title, 'Teacher-What-Contact') %>
 
-<div class="admin-contact"><h1><%= "#{@user.name}への連絡" %></h1></div>
+<div class="admin-contact"><h1><%= "#{@student.student_name}への連絡" %></h1></div>
 
 <%= form_with(model: @user, url: schoolclasses_update_teacherwhat_contact_user_path, local: true, method: :patch) do |f|  %>  
   <% @contact.each do |day| %>  

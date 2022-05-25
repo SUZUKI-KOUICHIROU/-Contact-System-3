@@ -74,6 +74,19 @@
 }
 
 .contact-index { 
+  margin-left: 35px;
+  font-family: ヒラギノ丸ゴ ProN;
+  font-size: 15px;
+  color: #111111;
+  border-style: outset;
+  border: 10px outset #0066FF;
+  border-width:10px;
+	height: 100px;
+  background: #DDFFFF;
+}
+
+/* 担任連絡帳（管理者） */
+.contact-index2 {
   margin: auto;
   font-family: ヒラギノ丸ゴ ProN;
   font-size: 15px;
@@ -81,9 +94,9 @@
   border-style: outset;
   border: 10px outset #0066FF;
   border-width:10px;
-  width: 400px;
+  width: 500px;
 	height: 100px;
-  background: #DDFFFF;
+  background: #DDFFFF; 
 }
 
 #table-contact-index {

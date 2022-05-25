@@ -19,14 +19,20 @@ Rails.application.routes.draw do
       patch 'update_teacher'
       get 'teacher_index'
       
+      get 'guardian_detail'
+      get 'edit_guardian'
+      patch 'update_guardian'
+      
       get 'students/new'
       post 'students/create'
+      get 'students/edit_student'
+      patch 'students/update_student'
+      get 'students/student_detail'
       
       get 'student_index'
       get 'student_index_2'
       get 'student_index_3'
-      get 'student_detail'
-
+  
       get 'edit_student_2'
       
       get 'schoolclasses/class_index' 
