@@ -38,7 +38,20 @@
               <%= link_to "無題", schoolclasses_edit_teacher_contact_2_user_path(@user, date: day.contact_date) %>
             <% end %>
           </td>
-          <td class="a"><%= link_to "連絡する", schoolclasses_edit_teacher_contact_user_path(@user, date: day.contact_date), class: "btn btn--green btn--border-groove" %></td>
+          <td class="a">  
+            <% if day.title.present? %>
+              <%= link_to day.title, schoolclasses_edit_teacher_contact_user_path(@user, date: day.contact_date) %>
+            <% elsif day.title.blank? && day.teacher_note.present? %>
+              <%= link_to "無題", schoolclasses_edit_teacher_contact_2_user_path(@user, date: day.contact_date) %>
+            <% else %>
+              <%= link_to "連絡", schoolclasses_edit_teacher_contact_user_path(@user, date: day.contact_date), class: "btn btn--green btn--border-groove" %>
+            <% end %>
+            <br>           
+            <% if day.contact_count1 > day.before_contact1 %>
+              <font color="red">返信あり</font>
+              <%= l(day.contact_update2, format: :short) if day.contact_update2.present? %>
+            <% end %>
+          </td>
         </tr> 
       <% end %>
     </tbody>

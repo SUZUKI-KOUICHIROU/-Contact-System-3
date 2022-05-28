@@ -13,14 +13,13 @@
             <th><%= link_to "生徒一覧", student_index_3_user_path %></th>
             <th><%= link_to "担任登録", new_teacher_user_path(current_user) %></th>
             <th><%= link_to "クラス作成", new_classnumber_path(current_user) %></th>
-            <th><%= link_to "管理者情報編集", edit_admin_user_path(@user) %></th> 
-            <th><th>
+            <th><%= link_to "管理者情報編集", edit_admin_user_path(@user) %></th>
           </tr>
         </thead>
       </table>
     </div>
-  <% end %>
-  
+  <% end %>   
+          
   <% if logged_in? && current_user.teacher? %>
     <div class="board-class"><h1><%= "#{@user.class_number}：#{@user.name}" %></h1></div>
     <div> 

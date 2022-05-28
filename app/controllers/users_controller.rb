@@ -7,9 +7,8 @@ class UsersController < ApplicationController
   before_action :correct_user, only: %i(edit update)
   before_action :admin_teacher_user, only: %i(edit_teacher)
   before_action :admin_user, only: %i(teacher_index new_teacher destroy)
-  #before_action :teacher_user, only: %i()
   before_action :class_choice, only: %i(new_teacher create_teacher edit_teacher new_student edit_student edit_student_2)
-  #before_action :class_select, only: %i(new_student)
+  before_action :set_one_month, only: %i(show)
 
   def index
     @users = User.paginate(page: params[:page])
@@ -17,7 +16,7 @@ class UsersController < ApplicationController
   
   def show
     @students = @user.students.where(params[:id]).order(:class_belongs)
-    @guardian = @user.students.where(user_id: @user.id)  
+    @guardian = @user.students.where(user_id: @user.id)
   end
   
   def show_student

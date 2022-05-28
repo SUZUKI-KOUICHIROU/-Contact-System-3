@@ -79,7 +79,6 @@ Rails.application.routes.draw do
 
       get 'show_student'
     end
-  
   end
   resources :schoolclasses do
   end
@@ -87,6 +86,8 @@ Rails.application.routes.draw do
   end
   resources :classnumbers do
   end
+  resources :notifications, only: :index
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

@@ -60,9 +60,15 @@ class SchoolclassesController < ApplicationController
   def update_teacher_contact
     teacher_contact_params.each do |id,item|  
       contact = Schoolclass.find(id)
-      if contact.update(item)
+      if contact.post_count == 0
+        contact.update(item)
+        contact.increment!(:post_count, 1)
         flash[:success] = '投稿しました。'
-      else
+      elsif contact.post_count > contact.before_post_count
+        contact.update(item.merge(before_post_count: contact.post_count, contact_update: contact.updated_at))
+        contact.increment!(:post_count, 1)
+        flash[:success] = '投稿しました。'
+      else    
         flash[:danger] = "失敗しました。" 
       end
       redirect_to schoolclasses_teacher_contact_index_user_url
@@ -79,7 +85,8 @@ class SchoolclassesController < ApplicationController
   def update_teacher_contact_2
     teacher_contact_3_params.each do |id,item|
       contact = Schoolclass.find(id)
-      if contact.update(item)
+      if contact.update(item.merge(before_contact2: contact.contact_count2))
+        contact.increment!(:contact_count2, 1)  
         flash[:success] = '投稿しました。'
       else
         flash[:danger] = "失敗しました。" 
@@ -103,13 +110,19 @@ class SchoolclassesController < ApplicationController
   def update_school_contact
     school_contact_params.each do |id,item|  
       contact = Schoolclass.find(id)
-      if contact.update(item)
+      if contact.contact_count1 == 0
+        contact.update(item)
+        contact.increment!(:contact_count1, 1)
         flash[:success] = '投稿しました。'
-        redirect_to schoolclasses_show_teacher_contact_user_url(current_user)
+      elsif contact.contact_count1 > contact.before_contact1
+        contact.update(item.merge(before_contact1: contact.contact_count1, contact_update2: contact.updated_at))
+        contact.increment!(:contact_count1, 1)
+        flash[:success] = '投稿しました。'
       else
         render :show_teacher_contact
         flash[:danger] = "失敗しました。" 
       end
+      redirect_to schoolclasses_show_teacher_contact_user_url(current_user)
     end
   end
 

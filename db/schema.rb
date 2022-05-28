@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_23_035836) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_28_084549) do
   create_table "classnumbers", force: :cascade do |t|
     t.string "class_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visiter_id"
+    t.integer "visited_id"
+    t.integer "item_id"
+    t.integer "comment_id"
+    t.string "action"
+    t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -41,6 +52,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_23_035836) do
     t.string "contact_board"
     t.string "board_title"
     t.string "board_class"
+    t.integer "contact_count1", default: 0
+    t.integer "before_contact1", default: 0
+    t.integer "contact_count2", default: 0
+    t.integer "before_contact2", default: 0
+    t.integer "post_count", default: 0
+    t.integer "before_post_count", default: 0
+    t.datetime "contact_update"
+    t.datetime "contact_update2"
     t.index ["user_id"], name: "index_schoolclasses_on_user_id"
   end
 
@@ -67,8 +86,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_23_035836) do
     t.boolean "teacher", default: false
     t.string "teacher_name"
     t.string "class_number"
-    t.date "birthday"
-    t.integer "age"
     t.string "address"
     t.string "telephone_number"
     t.index ["email"], name: "index_users_on_email", unique: true
