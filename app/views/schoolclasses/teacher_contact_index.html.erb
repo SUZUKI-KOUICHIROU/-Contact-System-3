@@ -37,6 +37,11 @@
             <% elsif day.title_2.blank? && day.teacher_note_2.present? %>
               <%= link_to "無題", schoolclasses_edit_teacher_contact_2_user_path(@user, date: day.contact_date) %>
             <% end %>
+            <br>
+            <% if day.post_count2 > 1 %>
+              <font color="red">返信あり</font>
+              <%= l(day.contact_update3, format: :short) if day.contact_update3.present? %>
+            <% end %>
           </td>
           <td class="a">  
             <% if day.title.present? %>

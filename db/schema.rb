@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_28_084549) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_30_231052) do
   create_table "classnumbers", force: :cascade do |t|
     t.string "class_name"
     t.datetime "created_at", null: false
@@ -60,6 +60,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_28_084549) do
     t.integer "before_post_count", default: 0
     t.datetime "contact_update"
     t.datetime "contact_update2"
+    t.integer "post_count2", default: 0
+    t.integer "before_post_count2", default: 0
+    t.datetime "contact_update3"
+    t.integer "post_count3", default: 0
+    t.integer "before_post_contact3", default: 0
+    t.datetime "contact_update4"
+    t.integer "guardian_post_count1", default: 0
+    t.integer "before_guardian_postcount1", default: 0
+    t.datetime "contact_update5"
+    t.integer "guardian_post_count2", default: 0
+    t.integer "before_guardian_postcount2", default: 0
+    t.datetime "contact_update6"
+    t.integer "guardian_post_count3", default: 0
+    t.integer "before_guardian_postcount3", default: 0
+    t.datetime "contact_update7"
+    t.integer "guardian_post_count4", default: 0
+    t.integer "before_guardian_postcount4", default: 0
+    t.datetime "contact_update8"
     t.index ["user_id"], name: "index_schoolclasses_on_user_id"
   end
 
@@ -86,6 +104,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_28_084549) do
     t.boolean "teacher", default: false
     t.string "teacher_name"
     t.string "class_number"
+    t.date "birthday"
+    t.integer "age"
     t.string "address"
     t.string "telephone_number"
     t.index ["email"], name: "index_users_on_email", unique: true

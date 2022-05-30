@@ -53,9 +53,9 @@
               <%= link_to "連絡", schoolclasses_edit_teacher_contact_3_user_path(@user, date: day.contact_date), class: "btn btn--green btn--border-groove" %>
             <% end %>
             <br>
-            <% if day.contact_count2 > day.before_contact2 %>
+            <% if day.post_count3 > day.before_post_contact3 %>
               <font color="red">返信あり</font>
-              <%= l(day.updated_at, format: :short) %>
+              <%= l(day.contact_update4, format: :short) if day.contact_update4.present? %>
             <% end %>       
         </td>   
       </tr>   

@@ -85,8 +85,8 @@ class SchoolclassesController < ApplicationController
   def update_teacher_contact_2
     teacher_contact_3_params.each do |id,item|
       contact = Schoolclass.find(id)
-      if contact.update(item.merge(before_contact2: contact.contact_count2))
-        contact.increment!(:contact_count2, 1)  
+      if contact.update(item.merge(before_post_contact3: contact.post_count3, contact_update4: contact.updated_at))
+        contact.increment!(:post_count3, 1)  
         flash[:success] = '投稿しました。'
       else
         flash[:danger] = "失敗しました。" 
@@ -106,16 +106,11 @@ class SchoolclassesController < ApplicationController
     @contacts = @user.schoolclasses.where(contact_date: params[:date])
   end
 
-  #学校への返信投稿（担任）
+  #学校への返信（担任）
   def update_school_contact
     school_contact_params.each do |id,item|  
       contact = Schoolclass.find(id)
-      if contact.contact_count1 == 0
-        contact.update(item)
-        contact.increment!(:contact_count1, 1)
-        flash[:success] = '投稿しました。'
-      elsif contact.contact_count1 > contact.before_contact1
-        contact.update(item.merge(before_contact1: contact.contact_count1, contact_update2: contact.updated_at))
+      if contact.update(item.merge(before_contact1: contact.contact_count1, contact_update2: contact.updated_at))
         contact.increment!(:contact_count1, 1)
         flash[:success] = '投稿しました。'
       else
@@ -126,30 +121,38 @@ class SchoolclassesController < ApplicationController
     end
   end
 
-  #学校への連絡投稿・返信（担任）
+  #学校への連絡作成
   def edit_teacher_contact_3
     @contact = @user.schoolclasses.where(contact_date: params[:date])
     @teacher_contact = @user.schoolclasses.where(contact_date: params[:date])
   end
-
+  
+  #学校への連絡投稿
   def update_teacher_contact_3
     teacher_contact_2_params.each do |id,item|
       contact = Schoolclass.find(id)
-      if contact.update(item)
+      if contact.post_count2 == 0
+        contact.update(item)
+        contact.increment!(:post_count2, 1)
         flash[:success] = '投稿しました。'
-      else
+      elsif contact.post_count2 > contact.before_post_count2
+        contact.update(item.merge(before_post_count2: contact.post_count2, contact_update3: contact.updated_at))
+        contact.increment!(:post_count2, 1)
+        flash[:success] = '投稿しました。'
+      else  
         flash[:danger] = "失敗しました。" 
       end
       redirect_to schoolclasses_show_teacher_contact_user_path(current_user) 
     end
   end
 
-  #保護者への連絡投稿・返信（担任）
+  #保護者への連絡一覧（担任）
   def index_teacher_contact
     @student = Student.find(params[:id])
     @contacts = Schoolclass.where(schoolclasses: {user_id: @user.id})
   end
   
+  #保護者への連絡投稿（担任）
   def edit_teacherwhat_contact
     @student = Student.find(params[:id])
     @contact = @user.schoolclasses.where(contact_date: params[:date])
@@ -159,12 +162,18 @@ class SchoolclassesController < ApplicationController
   def update_teacherwhat_contact
     guardian_contact_params.each do |id,item|
       contact = Schoolclass.find(id)
-      if contact.update(item)
+      if contact.guardian_post_count1 == 0
+        contact.update(item)
+        contact.increment!(:guardian_post_count1, 1)
+        flash[:success] = '投稿しました。'
+      elsif contact.guardian_post_count1 > contact.before_guardian_postcount1
+        contact.update(item.merge(before_guardian_postcount1: contact.guardian_post_count1, contact_update5: contact.updated_at))
+        contact.increment!(:guardian_post_count1, 1)
         flash[:success] = '投稿しました。'
       else
         flash[:danger] = "失敗しました。" 
       end
-      redirect_to schoolclasses_index_teacher_contact_user_url(current_user) 
+      redirect_to schoolclasses_index_teacher_contact_user_url(@user) 
     end
   end
 
@@ -185,7 +194,8 @@ class SchoolclassesController < ApplicationController
   def update_teacherform_contact
     guardian_contact_2_params.each do |id,item|
       contact = Schoolclass.find(id)
-      if contact.update(item)
+      if contact.update(item.merge(before_guardian_postcount2: contact.guardian_post_count2, contact_update6: contact.updated_at))
+        contact.increment!(:guardian_post_count2, 1) 
         flash[:success] = '投稿しました。'
       else
         flash[:danger] = "失敗しました。" 
@@ -194,6 +204,7 @@ class SchoolclassesController < ApplicationController
     end
   end
   
+  #担任への連絡（保護者）
   def edit_guardianwhat_contact
     @contact = @user.schoolclasses.where(contact_date: params[:date])
     @teacher_contact = @user.schoolclasses.where(contact_date: params[:date])
@@ -202,8 +213,14 @@ class SchoolclassesController < ApplicationController
   def update_guardianwhat_contact
     guardian_contact_3_params.each do |id,item|
       contact = Schoolclass.find(id)
-      if contact.update(item)
+      if contact.guardian_post_count3 == 0
+        contact.update(item)
+        contact.increment!(:guardian_post_count3, 1)
         flash[:success] = '投稿しました。'
+      elsif contact.guardian_post_count3 > contact.before_guardian_postcount3
+        contact.update(item.merge(before_guardian_postcount3: contact.guardian_post_count3, contact_update7: contact.updated_at))
+        contact.increment!(:guardian_post_count3, 1) 
+        flash[:success] = '投稿しました。'  
       else
         flash[:danger] = "失敗しました。" 
       end
@@ -211,6 +228,7 @@ class SchoolclassesController < ApplicationController
     end
   end
 
+  #保護者への返信（担任）
   def edit_guardianform_contact
     @contact_title = @user.schoolclasses.where(contact_date: params[:date])
     @contacts = @user.schoolclasses.where(contact_date: params[:date])
@@ -219,7 +237,8 @@ class SchoolclassesController < ApplicationController
   def update_guardianform_contact
     guardian_contact_4_params.each do |id,item|
       contact = Schoolclass.find(id)
-      if contact.update(item)
+      if contact.update(item.merge(before_guardian_postcount4: contact.guardian_post_count4, contact_update8: contact.updated_at))
+        contact.increment!(:guardian_post_count4, 1)
         flash[:success] = '投稿しました。'
       else
         flash[:danger] = "失敗しました。" 

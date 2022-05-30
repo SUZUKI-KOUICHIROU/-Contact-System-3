@@ -24,7 +24,12 @@
             <%= l(day.contact_date, format: :short) %>
             <%= "(""#{$days_of_the_week[day.contact_date.wday]})" %>
           </td>
-          <td><%= link_to "学級だより作成", schoolclasses_edit_class_board_user_path(@user, date: day.contact_date) %></td>
+          <td>
+            <% if day.board_title.present? && day.contact_board.present? %>
+              <%= link_to day.board_title, schoolclasses_edit_class_board_user_path(@user, date: day.contact_date) %> 
+            <% else %>  
+              <%= link_to "学級だより作成", schoolclasses_edit_class_board_user_path(@user, date: day.contact_date) %></td>
+            <% end %>
         </tr>
       <% end %>  
     </tbody>

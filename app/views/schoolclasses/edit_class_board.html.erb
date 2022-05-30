@@ -15,12 +15,12 @@
 
   <div class="board-title">               
     <div class="<%= css_class %>"><%= day.contact_date.strftime("%Y年%m月%d日") %><%= "(""#{$days_of_the_week[day.contact_date.wday]})" %></div>
-    <div class="board-title2"><%= board.text_field :board_title, placeholder: "タイトルを入力してください" %></div>
+    <div class="board-title2"><%= board.text_field :board_title, required: true, placeholder: "タイトルを入力してください" %></div>
   </div>
   
   <div class="class-board">     
     <td>
-      <%= board.text_area :contact_board, placeholder: "お知らせを入力してください", class: "container" %>
+      <%= board.text_area :contact_board, required: true, placeholder: "お知らせを入力してください", class: "container" %>
     </td>
     <td><%= f.submit "投稿", class: "board-btn btn-success btn-lg btn-login" %></td>
   </div>
