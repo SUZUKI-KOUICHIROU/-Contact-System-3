@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   def show
     @students = @user.students.where(params[:id]).order(:class_belongs)
     @guardian = @user.students.where(user_id: @user.id)
+    @boards = Schoolclass.where.not(board_class: nil)
   end
   
   def show_student

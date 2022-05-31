@@ -1,11 +1,6 @@
 <% provide(:title, 'sboard-index') %>
 
-<div class="board-class"><h1><%= "#{@user.class_number}学級だより一覧" %></h1></div>
-
-<div class="btn-month"><%= link_to "前月", schoolclasses_guardian_board_index_user_path(date: @first_day.prev_month), class: "btn btn--orange btn--border-solid" %>
-  <%= l(@first_day, format: :middle) %>
-  <%= link_to "次月", schoolclasses_guardian_board_index_user_path(date: @first_day.next_month), class: "btn btn--orange btn--border-solid" %>
-</div>
+<div class="board-class"><h1><%= "#{@student.class_belongs}学級だより一覧" %></h1></div>
 
 <div>
   <table class="table table-bordered table-condensed" id="table-board-index">  
@@ -24,8 +19,7 @@
           <th class="<%= css_class %>"><%= l(news.contact_date, format: :short) %>
           <%= "(""#{$days_of_the_week[news.contact_date.wday]})" %></th>
         </th>
-        <th class="board-2"><%= link_to "#{news.board_title}", schoolclasses_show_board_user_path(@user, date: news.contact_date) %></th>
-        <th class="board-3"></th>
+        <th class="board-2"><%= link_to "#{news.board_title}", schoolclasses_show_board_user_path(@student, date: news.contact_date) %></th>
       <tr> 
       <% end %>
     </thead> 

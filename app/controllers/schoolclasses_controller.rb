@@ -270,12 +270,14 @@ class SchoolclassesController < ApplicationController
   
   #学級だより一覧（保護者）
   def guardian_board_index
-    @guardian_board = Schoolclass.where(board_class: @user.class_number)
+    @student = Student.find(params[:id])
+    @guardian_board = Schoolclass.where(board_class: @student.class_belongs).sort.reverse!
   end
 
   #学級だより閲覧（保護者）
   def show_board
-    @news_board = Schoolclass.where(board_class: @user.class_number, contact_date: params[:date])
+    @student = Student.find(params[:id])
+    @news_board = Schoolclass.where(board_class: @student.class_belongs, contact_date: params[:date])
   end
   
   def destroy
