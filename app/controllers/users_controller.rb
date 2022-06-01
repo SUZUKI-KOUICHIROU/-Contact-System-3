@@ -17,7 +17,15 @@ class UsersController < ApplicationController
   def show
     @students = @user.students.where(params[:id]).order(:class_belongs)
     @guardian = @user.students.where(user_id: @user.id)
+    
+    @bord_student = @user.students.where(params[:id])
     @boards = Schoolclass.where.not(board_class: nil)
+    
+    @teachers = User.where(teacher: true)
+    
+    @contacts = Schoolclass.where.not(guardian_note_1: nil)
+    
+    @mixed = (@boards + @contacts).sort_by {|record| record.updated_at}.reverse!
   end
   
   def show_student
@@ -112,7 +120,7 @@ class UsersController < ApplicationController
   # 生徒一覧（担任）
   
   def student_index
-    @students = Student.where(class_belongs: @user.class_number)
+    @students = Student.where(class_belongs: @user.class_number).order(:student_number)
     @guardians = User.where(admin: false, teacher: false) 
     @student_count = Student.where(class_belongs: @user.class_number).count 
   end

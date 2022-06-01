@@ -456,7 +456,7 @@ input[type="password"] {
     text-align: center;
     vertical-align: middle;
     border: medium solid #FF9933;
-    background: #FFEEFF;
+    background: white;
   }
   .student-name1 {
     a:hover{ color: #FF0000; background: #E0FFFF;}
@@ -481,6 +481,35 @@ input[type="password"] {
 
 .student-name3 {
   vertical-align: middle;
+}
+
+#table-show-notification {
+    margin: 30px;
+    border:groove 6px #8ec6ff;
+    a:hover{ color: #FF0000; background: #E0FFFF;}
+    th {
+      font-weight: bolder;
+      font-size: 30px;
+      text-align: center;
+      border: medium solid #FF9933;
+      border-bottom-color: #FF9933;
+      background: #FFCCFF;  
+    }
+    td {
+      font-size: 30px;
+      font-weight: bold;
+      text-align: center;
+      vertical-align: middle;
+      border: medium solid #FF9933;
+      background: #FFFFCC;
+    }
+    .student-name1 {
+      a:hover{ color: #FF0000; background: #E0FFFF;}
+      a {
+        margin-left: 20px;
+        font-size: 28px;
+    }
+  }
 }
 
 /* 連絡帳 */

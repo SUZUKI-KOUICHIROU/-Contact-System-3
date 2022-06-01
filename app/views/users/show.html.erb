@@ -76,18 +76,67 @@
               </tr>  
             <% end %>        
         </table>
-        <div>           
-          <% @students.each do |student| %>
+        
+        <table class="table table-bordered table-condensed table-hover" id="table-show-notification">
+          <thead>
+            <tr>  
+              <th>通知</th>
+              <th>日時</th>
+            </tr>
+          </thead>          
+              
+              
+              
+              <% @contacts.each do |contact| %>
+              <% @students.each do |student| %>
+              
+              <% if contact.user_id == student.id %>
+                <tr>
+                  <td>
+                    <% if contact.guardian_post_count1 > 0 %>
+                      <% if contact.title_3.present? %>
+                        <%= link_to "投稿あり：#{contact.title_3}" ,schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
+                      <% elsif contact.title_3.blank? && contact.guardian_note_1.present? %>
+                        <%= link_to "投稿あり：無題", schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
+                      <% end %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <% if contact.guardian_post_count1 == 1 %>
+                      <%= l(contact.updated_at, format: :short) if contact.updated_at.present? %>
+                    <% elsif contact.guardian_post_count1 > contact.before_guardian_postcount1 %>
+                      <%= l(contact.contact_update5, format: :short) if contact.contact_update5.present? %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+              <% end %>
+              <% end %>
+        </table>
+      
+        <table class="table table-bordered table-condensed table-hover" id="table-show-notification">
+          <thead>
+            <tr>  
+              <th>通知</th>
+              <th>日時</th>
+            </tr>
+          </thead>          
+          <% @bord_student.each do |student| %>
             <% @boards.each do |board| %> 
               <% if student.class_belongs == board.board_class %>
-                <td>
-                  <%= "#{board.board_class}学級だよりが投稿されました。(#{l(board.updated_at, format: :short)})" if board.updated_at.present? %>
-                  <!--%= l(board.updated_at, format: :short) if board.updated_at.present? %-->
-                </td>
+                <tr>
+                  <td>
+                    <%= link_to "#{board.board_class}学級だよりが投稿されました。", schoolclasses_show_board_user_path(student, date: board.contact_date) %>
+                  </td>
+                  <td>
+                    <%= l(board.updated_at, format: :short) if board.updated_at.present? %>
+                  </td>
+                </tr>
               <% end %>
             <% end %>
           <% end %>
-        </div>
+        </table>
+      
       </div>
     <% end %> 
   <% end %>
