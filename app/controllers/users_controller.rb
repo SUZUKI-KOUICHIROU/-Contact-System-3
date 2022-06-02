@@ -17,15 +17,24 @@ class UsersController < ApplicationController
   def show
     @students = @user.students.where(params[:id]).order(:class_belongs)
     @guardian = @user.students.where(user_id: @user.id)
+    #管理者
+    @admin_contacts = Schoolclass.where.not(teacher_note_2: nil)
+    @admin_contacts2 = Schoolclass.where.not(school_contact: nil)
     
+    
+    
+
+    
+    
+    
+    #保護者
     @bord_student = @user.students.where(params[:id])
     @boards = Schoolclass.where.not(board_class: nil)
     
-    @teachers = User.where(teacher: true)
-    
     @contacts = Schoolclass.where.not(guardian_note_1: nil)
-    
-    @mixed = (@boards + @contacts).sort_by {|record| record.updated_at}.reverse!
+  
+    @contact_reply = Schoolclass.where.not(guardian_note_4: nil)
+    @teachers = User.where(teacher: true)
   end
   
   def show_student

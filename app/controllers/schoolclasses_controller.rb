@@ -61,10 +61,10 @@ class SchoolclassesController < ApplicationController
     teacher_contact_params.each do |id,item|  
       contact = Schoolclass.find(id)
       if contact.post_count == 0
-        contact.update(item)
+        contact.update(item.merge(contact_update: contact.updated_at))
         contact.increment!(:post_count, 1)
         flash[:success] = '投稿しました。'
-      elsif contact.post_count > contact.before_post_count
+      elsif contact.post_count > 0
         contact.update(item.merge(before_post_count: contact.post_count, contact_update: contact.updated_at))
         contact.increment!(:post_count, 1)
         flash[:success] = '投稿しました。'
@@ -132,10 +132,10 @@ class SchoolclassesController < ApplicationController
     teacher_contact_2_params.each do |id,item|
       contact = Schoolclass.find(id)
       if contact.post_count2 == 0
-        contact.update(item)
+        contact.update(item.merge(contact_update3: contact.updated_at))
         contact.increment!(:post_count2, 1)
         flash[:success] = '投稿しました。'
-      elsif contact.post_count2 > contact.before_post_count2
+      elsif contact.post_count2 > 0
         contact.update(item.merge(before_post_count2: contact.post_count2, contact_update3: contact.updated_at))
         contact.increment!(:post_count2, 1)
         flash[:success] = '投稿しました。'
@@ -163,10 +163,10 @@ class SchoolclassesController < ApplicationController
     guardian_contact_params.each do |id,item|
       contact = Schoolclass.find(id)
       if contact.guardian_post_count1 == 0
-        contact.update(item)
+        contact.update(item.merge(contact_update5: contact.updated_at))
         contact.increment!(:guardian_post_count1, 1)
         flash[:success] = '投稿しました。'
-      elsif contact.guardian_post_count1 > contact.before_guardian_postcount1
+      elsif contact.guardian_post_count1 > 0
         contact.update(item.merge(before_guardian_postcount1: contact.guardian_post_count1, contact_update5: contact.updated_at))
         contact.increment!(:guardian_post_count1, 1)
         flash[:success] = '投稿しました。'
@@ -214,10 +214,10 @@ class SchoolclassesController < ApplicationController
     guardian_contact_3_params.each do |id,item|
       contact = Schoolclass.find(id)
       if contact.guardian_post_count3 == 0
-        contact.update(item)
+        contact.update(item.merge(contact_update7: contact.updated_at))
         contact.increment!(:guardian_post_count3, 1)
         flash[:success] = '投稿しました。'
-      elsif contact.guardian_post_count3 > contact.before_guardian_postcount3
+      elsif contact.guardian_post_count3 > 0
         contact.update(item.merge(before_guardian_postcount3: contact.guardian_post_count3, contact_update7: contact.updated_at))
         contact.increment!(:guardian_post_count3, 1) 
         flash[:success] = '投稿しました。'  

@@ -467,17 +467,9 @@ input[type="password"] {
   }
 }
 
-.guardian-1 {
-  width: 20%;
-}
-
-.guardian-2 {
-  width: 45%;
-}
-
-.guardian-3 {
+/*.guardian-3 {
   width: 35%;
-}
+}*/
 
 .student-name3 {
   vertical-align: middle;
@@ -486,7 +478,7 @@ input[type="password"] {
 #table-show-notification {
     margin: 30px;
     border:groove 6px #8ec6ff;
-    a:hover{ color: #FF0000; background: #E0FFFF;}
+    a:hover{ color: #FF0000; background: #E0FFFF; }
     th {
       font-weight: bolder;
       font-size: 30px;
@@ -503,13 +495,27 @@ input[type="password"] {
       border: medium solid #FF9933;
       background: #FFFFCC;
     }
+
+    td a {
+      color: #0066FF;
+    }
+
     .student-name1 {
+      
       a:hover{ color: #FF0000; background: #E0FFFF;}
       a {
         margin-left: 20px;
         font-size: 28px;
     }
   }
+}
+
+.guardian-1 {
+  width: 75%;
+}
+
+.guardian-2 {
+  width: 25%;
 }
 
 /* 連絡帳 */
