@@ -20,7 +20,7 @@
       <table class="table table-bordered table-condensed table-hover" id="table-show-notification">
         <thead> 
           <tr>
-            <th class="guardian-1">担任からの連絡・返信</th>
+            <th class="guardian-1">担任からの連絡</th>
             <th class="guardian-2">投稿日時</th>
           </tr>
         </thead>
@@ -30,21 +30,21 @@
               <tr>
                 <td>
                   <% if contact.post_count2 == 1 && contact.title_2.present? %>
-                    <%= link_to "#{teacher.name}から投稿あり：#{contact.title_2}", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
+                    <%= link_to "#{teacher.name}から新規連絡：#{contact.title_2}", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
                   <% elsif contact.post_count2 > contact.before_post_count2 && contact.title_2.present? %>
-                    <%= link_to "#{teacher.name}から返信あり：#{contact.title_2}", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
+                    <%= link_to "#{teacher.name}から返信：#{contact.title_2}", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
                   <% elsif contact.post_count2 == 1 && contact.title_2.blank? && contact.teacher_note_2.present? %>
-                    <%= link_to "#{teacher.name}から投稿あり：無題", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
+                    <%= link_to "#{teacher.name}から新規連絡：無題", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
                   <% elsif contact.post_count2 > contact.before_post_count2 && contact.title_2.blank? && contact.teacher_note_2.present? %>
-                    <%= link_to "#{teacher.name}から返信あり：無題", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
+                    <%= link_to "#{teacher.name}から返信：無題", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
                   <% end %>
                 </td>
                 <td>
-                  <!--% if contact.post_count2 == 1 %-->
-                    <!--%= l(contact.updated_at, format: :short) if contact.updated_at.present? %-->
-                  <!--% elsif contact.post_count2 > 0 %-->
+                  <% if contact.post_count2 == 1 %>
+                    <%= l(contact.updated_at, format: :short) if contact.updated_at.present? %>
+                  <% elsif contact.post_count2 > 1 %>
                     <%= l(contact.contact_update3, format: :short) if contact.contact_update3.present? %>
-                  <!--% end %-->
+                  <% end %>   
                 </td>
               </tr>
             <% end %>
@@ -54,7 +54,7 @@
       <table class="table table-bordered table-condensed table-hover" id="table-show-notification">
         <thead> 
           <tr>
-            <th class="guardian-1">担任への連絡後返信</th>
+            <th class="guardian-1">担任への連絡</th>
             <th class="guardian-2">投稿日時</th>
           </tr>
         </thead>
@@ -63,14 +63,14 @@
             <% if contact.user_id == teacher.id %>
               <tr>
                 <td>
-                  <% if contact.contact_count1 > 0 %>  
-                    <%= link_to "#{teacher.name}より返信あり", schoolclasses_edit_teacher_contact_user_path(teacher, date: contact.contact_date)%>
+                  <% if contact.contact_count1 > 0 && contact.title.present? %>  
+                    <%= link_to "#{teacher.name}から返信：#{contact.title}", schoolclasses_edit_teacher_contact_user_path(teacher, date: contact.contact_date)%>
+                  <% elsif contact.contact_count1 > 0 && contact.title.blank? && contact.teacher_note.present? %> 
+                    <%= link_to "#{teacher.name}から返信：無題", schoolclasses_edit_teacher_contact_user_path(teacher, date: contact.contact_date)%>
                   <% end %>
                 </td>
                 <td>
-                  <% if contact.contact_count1 > 0 %>
-                    <%= l(contact.contact_update2, format: :short) if contact.contact_update2.present? %>
-                  <% end %> 
+                  <%= l(contact.contact_update2, format: :short) if contact.contact_update2.present? %>
                 </td>
               </tr>
             <% end %>
@@ -92,6 +92,130 @@
             <th><%= link_to "担任情報編集", edit_teacher_user_path(current_user) %></th>
           </tr>
         </thead>  
+      </table>
+      <table class="table table-bordered table-condensed table-hover" id="table-show-notification">
+        <thead> 
+          <tr>
+            <th class="guardian-1">保護者からの連絡</th>
+            <th class="guardian-2">投稿日時</th>
+          </tr>
+        </thead>
+        <% @guardian_contacts.each do |contact| %>  
+          <% @students2.each do |student| %>
+            <% if contact.user_id == student.id %>  
+              <tr>
+                <td>
+                  <% if contact.guardian_post_count3 == 1 && contact.title_4.present? %>
+                    <%= link_to "#{student.student_name}から新規連絡：#{contact.title_4}", schoolclasses_edit_guardianform_contact_user_path(student, date: contact.contact_date) %>
+                  <% elsif contact.guardian_post_count3 > contact.before_guardian_postcount3 && contact.title_4.present? %>
+                    <%= link_to "#{student.student_name}から返信：#{contact.title_4}", schoolclasses_edit_guardianform_contact_user_path(student, date: contact.contact_date)%>
+                  <% elsif contact.guardian_post_count3 == 1 && contact.title_4.blank? && contact.guardian_note_3.present? %>
+                    <%= link_to "#{student.student_name}から新規連絡：無題", schoolclasses_edit_guardianform_contact_user_path(student, date: contact.contact_date) %>
+                  <% elsif contact.guardian_post_count3 > contact.before_guardian_postcount3 && contact.title_4.blank? && contact.guardian_note_3.present? %>
+                    <%= link_to "#{student.student_name}から返信：無題", schoolclasses_edit_guardianform_contact_user_path(student, date: contact.contact_date) %>
+                  <% end %>
+                </td>                
+                <td>
+                  <% if contact.guardian_post_count3 == 1 %>
+                    <%= l(contact.updated_at, format: :short) if contact.updated_at.present? %>
+                  <% elsif contact.guardian_post_count3 > 1 %>
+                    <%= l(contact.contact_update7, format: :short) if contact.contact_update7.present? %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        <% end %>   
+      </table>
+      <table class="table table-bordered table-condensed table-hover" id="table-show-notification">
+        <thead>
+          <tr>  
+            <th class="guardian-1">保護者への連絡</th>
+            <th class="guardian-2">投稿日時</th>
+          </tr>
+        </thead>             
+        <% @contact_reply2.each do |contact| %>
+          <% @students2.each do |student| %>
+            <% if @user.class_number == contact.contact_class2 && student.class_belongs == contact.contact_class2%>
+              <tr>
+                <td> 
+                  <% if contact.guardian_post_count2 > 0 && contact.title_3.present? %>
+                    <%= link_to "#{student.student_name}から返信：#{contact.title_3}", schoolclasses_edit_teacherwhat_contact_user_path(student, date: contact.contact_date) %>
+                  <% elsif contact.guardian_post_count2 > 0 && contact.title_3.blank? && contact.guardian_note_1.present? %> 
+                    <%= link_to "#{student.student_name}から返信：無題", schoolclasses_edit_teacherwhat_contact_user_path(student, date: contact.contact_date) %>
+                  <% end %>                                     
+                </td>
+                <td>          
+                  <% if contact.guardian_post_count2 == 1 %>
+                    <%= l(contact.updated_at, format: :short) if contact.updated_at.present? %>
+                  <% elsif contact.guardian_post_count2 > 1 %>
+                    <%= l(contact.contact_update6, format: :short) if contact.contact_update6.present? %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>                            
+          <% end %>
+        <% end %>
+      </table>
+      <table class="table table-bordered table-condensed table-hover" id="table-show-notification">
+        <thead> 
+          <tr>
+            <th class="guardian-1">学校からの連絡</th>
+            <th class="guardian-2">投稿日時</th>
+          </tr>
+        </thead>
+        <% @school_contact.each do |contact| %>
+          <% @teachers.each do |teacher| %>
+            <% if contact.user_id == @user.id && contact.user_id == teacher.id %>  
+              <tr>
+                <td>
+                  <% if contact.post_count == 1 && contact.title.present? %>
+                    <%= link_to "新規連絡：#{contact.title}", schoolclasses_teacher_contact_user_path(teacher, date: contact.contact_date) %>
+                  <% elsif contact.post_count > contact.before_post_count && contact.title.present? %>
+                    <%= link_to "返信：#{contact.title}", schoolclasses_teacher_contact_user_path(teacher, date: contact.contact_date) %>
+                  <% elsif contact.post_count == 1 && contact.title.blank? && contact.teacher_note.present? %>
+                    <%= link_to "新規連絡：無題", schoolclasses_teacher_contact_user_path(teacher, date: contact.contact_date) %>
+                  <% elsif contact.post_count > contact.before_post_count && contact.title.blank? && contact.teacher_note.present? %>
+                    <%= link_to "返信：無題", schoolclasses_teacher_contact_user_path(teacher, date: contact.contact_date) %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= l(contact.contact_update, format: :short) if contact.contact_update.present? %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        <% end %>  
+      </table>
+      <table class="table table-bordered table-condensed table-hover" id="table-show-notification">
+        <thead>
+          <tr>  
+            <th class="guardian-1">学校への連絡</th>
+            <th class="guardian-2">投稿日時</th>
+          </tr>
+        </thead>             
+        <% @school_reply2.each do |contact| %>
+          <% @teachers.each do |teacher| %>
+            <% if contact.user_id == @user.id && contact.user_id == teacher.id %>  
+              <tr>
+                <td> 
+                  <% if contact.post_count3 > 0 && contact.title_2.present? %>
+                    <%= link_to "返信：#{contact.title_2}", schoolclasses_edit_teacher_contact_3_user_path(teacher, date: contact.contact_date) %>
+                  <% elsif contact.post_count3 > 0 && contact.title_2.blank? && contact.teacher_note_2.present? %> 
+                    <%= link_to "返信：無題", schoolclasses_edit_teacher_contact_3_user_path(teacher, date: contact.contact_date) %>               
+                  <% end %>
+                </td>
+                <td>
+                  <% if contact.post_count3 == 1 %>
+                    <%= l(contact.updated_at, format: :short) if contact.updated_at.present? %>                       
+                  <% elsif contact.post_count3 > 1 %>
+                    <%= l(contact.contact_update4, format: :short) if contact.contact_update4.present? %>                       
+                  <% end %>                                 
+                </td>
+              </tr>
+            <% end %>                            
+          <% end %>
+        <% end %>
       </table>
     </div>
   <% end %>
@@ -140,7 +264,7 @@
         <table class="table table-bordered table-condensed table-hover" id="table-show-notification">
           <thead>
             <tr>  
-              <th class="guardian-1">担任からの連絡・返信</th>
+              <th class="guardian-1">担任からの連絡</th>
               <th class="guardian-2">投稿日時</th>
             </tr>
           </thead>             
@@ -150,19 +274,19 @@
                 <tr>
                   <td>
                     <% if contact.guardian_post_count1 == 1 && contact.title_3.present? %>
-                      <%= link_to "投稿あり：#{contact.title_3}" ,schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
+                      <%= link_to "新規投稿：#{contact.title_3}" ,schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
                     <% elsif contact.guardian_post_count1 > contact.before_guardian_postcount1 && contact.title_3.present? %>
-                      <%= link_to "返信あり：#{contact.title_3}" ,schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
+                      <%= link_to "返信：#{contact.title_3}" ,schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
                     <% elsif contact.guardian_post_count1 == 1 && contact.title_3.blank? && contact.guardian_note_1.present? %>
-                      <%= link_to "投稿あり：無題", schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
+                      <%= link_to "新規投稿：無題", schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
                     <% elsif contact.guardian_post_count1 > contact.before_guardian_postcount1 && contact.title_3.blank? && contact.guardian_note_1.present? %>
-                      <%= link_to "返信あり：無題", schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
+                      <%= link_to "返信：無題", schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
                     <% end %>
                   </td>
                   <td>
                     <% if contact.guardian_post_count1 == 1 %>
                       <%= l(contact.updated_at, format: :short) if contact.updated_at.present? %>
-                    <% elsif contact.guardian_post_count1 > contact.before_guardian_postcount1 %>
+                    <% elsif contact.guardian_post_count1 > 1 %>
                       <%= l(contact.contact_update5, format: :short) if contact.contact_update5.present? %>
                     <% end %>
                   </td>
@@ -175,7 +299,7 @@
         <table class="table table-bordered table-condensed table-hover" id="table-show-notification">
           <thead>
             <tr>  
-              <th class="guardian-1">担任への連絡後返信</th>
+              <th class="guardian-1">担任への連絡</th>
               <th class="guardian-2">投稿日時</th>
             </tr>
           </thead>             
@@ -186,14 +310,18 @@
                   <% if teacher.class_number == student.class_belongs %>
                     <tr>
                       <td>
-                        <% if contact.guardian_post_count4 > 0 %>  
-                          <%= link_to "#{teacher.name}より返信あり", schoolclasses_edit_guardianwhat_contact_user_path(student, date: contact.contact_date) %>
-                        <% end %>
+                        <% if contact.guardian_post_count4 > 0 && contact.title_4.present? %>  
+                          <%= link_to "返信：#{contact.title_4}", schoolclasses_edit_guardianwhat_contact_user_path(student, date: contact.contact_date) %>
+                        <% elsif contact.guardian_post_count4 > 0 && contact.title_4.blank? && contact.guardian_note_3 %>
+                          <%= link_to "返信：無題", schoolclasses_edit_guardianwhat_contact_user_path(student, date: contact.contact_date) %>                                                 
+                        <% end %>                                                                                     
                       </td>
                       <td>
-                        <% if contact.guardian_post_count4 > 0 %>
+                        <% if contact.guardian_post_count4 == 1 %>
+                          <%= l(contact.updated_at, format: :short) if contact.updated_at? %>     
+                        <% elsif contact.guardian_post_count4 > 1 %>  
                           <%= l(contact.contact_update8, format: :short) if contact.contact_update8.present? %>
-                        <% end %>
+                        <% end %>                                            
                       </td>
                     </tr>
                   <% end %>

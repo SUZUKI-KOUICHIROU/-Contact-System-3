@@ -13,12 +13,6 @@ User.create!(name: "管理者1",
   password: "password",
   password_confirmation: "password",
   admin: true)
-
-User.create!(name: "管理者2",
-  email: "admin-2@email.com",
-  password: "password",
-  password_confirmation: "password",
-  admin: true)
   
 User.create!(name: "担任1",
   email: "teacher-1@email.com",

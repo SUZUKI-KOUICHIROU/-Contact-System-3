@@ -18,15 +18,15 @@ class UsersController < ApplicationController
     @students = @user.students.where(params[:id]).order(:class_belongs)
     @guardian = @user.students.where(user_id: @user.id)
     #管理者
-    @admin_contacts = Schoolclass.where.not(teacher_note_2: nil)
-    @admin_contacts2 = Schoolclass.where.not(school_contact: nil)
+    @admin_contacts = Schoolclass.where.not(teacher_note_2: nil).order(contact_update3: :desc)
+    @admin_contacts2 = Schoolclass.where.not(school_contact: nil).order(contact_update2: :desc)    
+    #担任
+    @guardian_contacts = Schoolclass.where(contact_class: @user.class_number).where.not(guardian_note_3: nil).order(contact_update7: :desc)
+    @students2 = Student.where(params[:id])
+    @contact_reply2 = Schoolclass.where.not(guardian_note_2: nil).order(contact_update6: :desc)
     
-    
-    
-
-    
-    
-    
+    @school_contact = Schoolclass.where.not(teacher_note: nil).order(contact_update: :desc)
+    @school_reply2 = Schoolclass.where.not(school_contact_2: nil).order(contact_update4: :desc)
     #保護者
     @bord_student = @user.students.where(params[:id])
     @boards = Schoolclass.where.not(board_class: nil)

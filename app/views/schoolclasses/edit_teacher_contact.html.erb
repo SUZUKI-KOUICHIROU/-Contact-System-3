@@ -23,7 +23,7 @@
     
     <div class="text-contact">     
       <td>
-        <%= contact.text_area :teacher_note, placeholder: "コメントを入力してください", class: "container" %>
+        <%= contact.text_area :teacher_note, placeholder: "コメントを入力してください", required: true, class: "container" %>
       </td> 
       <td class="contact-btn"><%= f.submit "投稿", class: "contact-btn btn-success btn-lg btn-login" %></td>
     </div>  
