@@ -1,4 +1,5 @@
 class Student < ApplicationRecord
   belongs_to :user
-  #has_many :schoolclasses, dependent: :destroy
+  
+  validates :birthday, presence: true  
 end

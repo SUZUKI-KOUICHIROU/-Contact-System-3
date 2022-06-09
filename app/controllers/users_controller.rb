@@ -23,17 +23,16 @@ class UsersController < ApplicationController
     #担任
     @guardian_contacts = Schoolclass.where(contact_class: @user.class_number).where.not(guardian_note_3: nil).order(contact_update7: :desc)
     @students2 = Student.where(params[:id])
-    @contact_reply2 = Schoolclass.where.not(guardian_note_2: nil).order(contact_update6: :desc)
-    
+    @contact_reply2 = Schoolclass.where.not(guardian_note_2: nil).order(contact_update6: :desc) 
     @school_contact = Schoolclass.where.not(teacher_note: nil).order(contact_update: :desc)
     @school_reply2 = Schoolclass.where.not(school_contact_2: nil).order(contact_update4: :desc)
     #保護者
+    #@bord_student = @user.students.where(class_belongs: @boards.board_class)
+
     @bord_student = @user.students.where(params[:id])
-    @boards = Schoolclass.where.not(board_class: nil)
-    
-    @contacts = Schoolclass.where.not(guardian_note_1: nil)
-  
-    @contact_reply = Schoolclass.where.not(guardian_note_4: nil)
+    @boards = Schoolclass.where.not(board_class: nil).order(board_update: :desc)  
+    @contacts = Schoolclass.where.not(guardian_note_1: nil).order(contact_update5: :desc) 
+    @contact_reply = Schoolclass.where.not(guardian_note_4: nil).order(contact_update8: :desc)
     @teachers = User.where(teacher: true)
   end
   

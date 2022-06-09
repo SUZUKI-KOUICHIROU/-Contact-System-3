@@ -39,13 +39,7 @@
                     <%= link_to "#{teacher.name}から返信：無題", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
                   <% end %>
                 </td>
-                <td>
-                  <% if contact.post_count2 == 1 %>
-                    <%= l(contact.updated_at, format: :short) if contact.updated_at.present? %>
-                  <% elsif contact.post_count2 > 1 %>
-                    <%= l(contact.contact_update3, format: :short) if contact.contact_update3.present? %>
-                  <% end %>   
-                </td>
+                <td><%= l(contact.contact_update3, format: :short) if contact.contact_update3.present? %></td>
               </tr>
             <% end %>
           <% end %>
@@ -87,8 +81,8 @@
         <thead> 
           <tr>  
             <th><%= link_to "生徒一覧", student_index_user_path %></th>
-            <th><%= link_to "学級だより", schoolclasses_board_create_index_user_path(current_user) %></th>
             <th><%= link_to "学校との連絡", schoolclasses_show_teacher_contact_user_path(current_user, @user) %></th>
+            <th><%= link_to "学級だより", schoolclasses_board_create_index_user_path(current_user) %></th>
             <th><%= link_to "担任情報編集", edit_teacher_user_path(current_user) %></th>
           </tr>
         </thead>  
@@ -115,13 +109,7 @@
                     <%= link_to "#{student.student_name}から返信：無題", schoolclasses_edit_guardianform_contact_user_path(student, date: contact.contact_date) %>
                   <% end %>
                 </td>                
-                <td>
-                  <% if contact.guardian_post_count3 == 1 %>
-                    <%= l(contact.updated_at, format: :short) if contact.updated_at.present? %>
-                  <% elsif contact.guardian_post_count3 > 1 %>
-                    <%= l(contact.contact_update7, format: :short) if contact.contact_update7.present? %>
-                  <% end %>
-                </td>
+                <td><%= l(contact.contact_update7, format: :short) if contact.contact_update7.present? %></td>
               </tr>
             <% end %>
           <% end %>
@@ -136,7 +124,7 @@
         </thead>             
         <% @contact_reply2.each do |contact| %>
           <% @students2.each do |student| %>
-            <% if @user.class_number == contact.contact_class2 && student.class_belongs == contact.contact_class2%>
+            <% if contact.user_id == student.id && @user.class_number == contact.contact_class2 %>
               <tr>
                 <td> 
                   <% if contact.guardian_post_count2 > 0 && contact.title_3.present? %>
@@ -145,13 +133,7 @@
                     <%= link_to "#{student.student_name}から返信：無題", schoolclasses_edit_teacherwhat_contact_user_path(student, date: contact.contact_date) %>
                   <% end %>                                     
                 </td>
-                <td>          
-                  <% if contact.guardian_post_count2 == 1 %>
-                    <%= l(contact.updated_at, format: :short) if contact.updated_at.present? %>
-                  <% elsif contact.guardian_post_count2 > 1 %>
-                    <%= l(contact.contact_update6, format: :short) if contact.contact_update6.present? %>
-                  <% end %>
-                </td>
+                <td><%= l(contact.contact_update6, format: :short) if contact.contact_update6.present? %></td>
               </tr>
             <% end %>                            
           <% end %>
@@ -205,13 +187,7 @@
                     <%= link_to "返信：無題", schoolclasses_edit_teacher_contact_3_user_path(teacher, date: contact.contact_date) %>               
                   <% end %>
                 </td>
-                <td>
-                  <% if contact.post_count3 == 1 %>
-                    <%= l(contact.updated_at, format: :short) if contact.updated_at.present? %>                       
-                  <% elsif contact.post_count3 > 1 %>
-                    <%= l(contact.contact_update4, format: :short) if contact.contact_update4.present? %>                       
-                  <% end %>                                 
-                </td>
+                <td><%= l(contact.contact_update4, format: :short) if contact.contact_update4.present? %></td>
               </tr>
             <% end %>                            
           <% end %>
@@ -283,13 +259,7 @@
                       <%= link_to "返信：無題", schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
                     <% end %>
                   </td>
-                  <td>
-                    <% if contact.guardian_post_count1 == 1 %>
-                      <%= l(contact.updated_at, format: :short) if contact.updated_at.present? %>
-                    <% elsif contact.guardian_post_count1 > 1 %>
-                      <%= l(contact.contact_update5, format: :short) if contact.contact_update5.present? %>
-                    <% end %>
-                  </td>
+                  <td><%= l(contact.contact_update5, format: :short) if contact.contact_update5.present? %></td>
                 </tr>
               <% end %>
             <% end %>
@@ -316,13 +286,7 @@
                           <%= link_to "返信：無題", schoolclasses_edit_guardianwhat_contact_user_path(student, date: contact.contact_date) %>                                                 
                         <% end %>                                                                                     
                       </td>
-                      <td>
-                        <% if contact.guardian_post_count4 == 1 %>
-                          <%= l(contact.updated_at, format: :short) if contact.updated_at? %>     
-                        <% elsif contact.guardian_post_count4 > 1 %>  
-                          <%= l(contact.contact_update8, format: :short) if contact.contact_update8.present? %>
-                        <% end %>                                            
-                      </td>
+                      <td><%= l(contact.contact_update8, format: :short) if contact.contact_update8.present? %></td>
                     </tr>
                   <% end %>
                 <% end %>
@@ -338,15 +302,15 @@
               <th class="guardian-2">投稿日時</th>
             </tr>
           </thead>          
-          <% @bord_student.each do |student| %>
-            <% @boards.each do |board| %> 
+          <% @boards.each do |board| %> 
+            <% @bord_student.each do |student| %>     
               <% if student.class_belongs == board.board_class %>
                 <tr>
                   <td>
                     <a><%= link_to "#{board.board_class}学級だよりが投稿されました。", schoolclasses_show_board_user_path(student, date: board.contact_date) %></a>
                   </td>
                   <td>
-                    <%= l(board.updated_at, format: :short) if board.updated_at.present? %>
+                    <%= l(board.board_update, format: :short) if board.board_update.present? %>
                   </td>
                 </tr>
               <% end %>

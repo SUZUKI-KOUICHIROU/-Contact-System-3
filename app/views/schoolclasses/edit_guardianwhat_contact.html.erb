@@ -19,7 +19,7 @@
     <div class="contact-title"><td><%= contact.text_field :title_4, placeholder: "タイトルを入力してください" %></td></div>
     <div class="text-contact">     
       <td>
-        <%= contact.text_area :guardian_note_3, placeholder: "コメントを入力してください", class: "container" %>
+        <%= contact.text_area :guardian_note_3, placeholder: "コメントを入力してください", required: true, class: "container" %>
       </td> 
       <td class="contact-btn"><%= f.submit "投稿", class: "contact-btn btn-success btn-lg btn-login" %></td>
     </div>  

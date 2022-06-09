@@ -1,5 +1,5 @@
     <%= form_with(model: @student, url: students_create_user_path, local: true, method: :post) do |f| %>
-      <!--%= f.fields_for :students do |student| %-->   
+    <%= render 'shared/error_messages', object: @student %>  
 
     <div class ="student-register">
       <%= f.label "生徒名", class: "label-#{yield(:class_text)}" %>
@@ -28,6 +28,5 @@
         <%= f.text_field :student_number, required: true, class: "form-control" %>
       </div>
         <%= f.submit yield(:button_text), class: "btn btn-success btn-student" %>
-        <!--% end %--> 
       <% end %>
     </div>
