@@ -22,7 +22,7 @@
               <td><%= link_to "#{guardian.name}", guardian_detail_user_path(guardian) %>
               <td>
                 <% if current_user.admin? && !current_user?(student) %>
-                  <%= link_to "削除", student, method: :delete,
+                  <%= link_to "削除", student_destroy_user_url(student), method: :delete,
                       data: { confirm: "削除してよろしいですか？" },
                       class: "btn btn-danger" %>
                 <% end %>

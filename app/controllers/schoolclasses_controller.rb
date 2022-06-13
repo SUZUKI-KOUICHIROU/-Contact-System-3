@@ -5,7 +5,8 @@ class SchoolclassesController < ApplicationController
   before_action :set_user, only: %i(teacher_contact_index edit_teacher_contact update_teacher_contact edit_teacher_contact_2 update_teacher_contact_2 
                 edit_teacher_contact_3 update_teacher_contact_3 show_teacher_contact teacher_contact  index_guardian_contact edit_teacherform_contact 
                 update_teacherform_contact edit_teacherwhat_contact update_teacherwhat_contact index_teacher_contact edit_guardianwhat_contact update_guardianwhat_contact 
-                edit_class_board update_class_board board_index show_board edit_guardianform_contact update_guardianform_contact board_create_index guardian_board_index update_student destroy edit_1)
+                edit_class_board update_class_board board_index show_board edit_guardianform_contact update_guardianform_contact board_create_index guardian_board_index update_student destroy edit_1
+                guardian_board_index2 show_board2)
   #before_action :logged_in_user, only: []
   #before_action :correct_user, only: []
   before_action :admin_user, only: %i(class_index edit_1 edit_2 teacher_contact_index edit_teacher_contact destroy)
@@ -18,7 +19,10 @@ class SchoolclassesController < ApplicationController
   #クラス一覧
   def edit_1
     @schoolclassese_1 = Classnumber.where('class_name like ?','1-%').order(:class_name) 
-    @teachers = User.where(teacher: true).where('class_number like ?','1-%')
+    @teachers = User.where(teacher: true).where('class_number like ?','1-%')  
+    
+    @class_count = Classnumber.where(params[:class_name])
+    @student_count = Student.where(params[:class_belongs])
   end
     
   def edit_2
@@ -296,13 +300,22 @@ class SchoolclassesController < ApplicationController
   #学級だより一覧（保護者）
   def guardian_board_index
     @student = Student.find(params[:id])
-    @guardian_board = Schoolclass.where(board_class: @student.class_belongs).sort.reverse!
+    @guardian_board = Schoolclass.where(board_class: @student.class_belongs).sort.reverse! 
   end
 
   #学級だより閲覧（保護者）
   def show_board
     @student = Student.find(params[:id])
     @news_board = Schoolclass.where(board_class: @student.class_belongs, contact_date: params[:date])
+  end
+
+  #学級だより一覧（管理者）
+  def guardian_board_index2
+    @guardian_board = Schoolclass.where.not(contact_board: nil).sort.reverse! 
+  end
+
+  def show_board2
+    @news_board = Schoolclass.where(board_class: @user.class_number, contact_date: params[:date])
   end
   
   def destroy

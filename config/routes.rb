@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   
   resources :users do
     member do
+      delete 'student_destroy'
+      delete 'student_destroy2'
+      
       get 'edit_admin'
       patch 'update_admin'
       
@@ -77,7 +80,10 @@ Rails.application.routes.draw do
       get 'schoolclasses/guardian_board_index'
       get 'schoolclasses/show_board'
 
+      get 'schoolclasses/guardian_board_index2'
+
       get 'show_student'
+      get 'schoolclasses/show_board2'
     end
   end
   resources :schoolclasses do

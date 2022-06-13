@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i(show edit update edit_teacher destroy show_teacher_contact student_detail student_index student_index_2 student_index_3
                                     edit_student_1 update_student_1 new_student create_student edit_student update_student show_student edit_student_2 
                                     edit_admin update_admin edit_teacher update_teacher edit_guardian update_guardian guardian_detail)
-  before_action :logged_in_user, only: %i(index teacher_index show edit update destroy)
+  before_action :logged_in_user, only: %i(index teacher_index show edit update destroy teacher_destroy)
   before_action :correct_user, only: %i(edit update)
   before_action :admin_teacher_user, only: %i(edit_teacher)
   before_action :admin_user, only: %i(teacher_index new_teacher destroy)
@@ -125,6 +125,12 @@ class UsersController < ApplicationController
     @teachers = User.where(teacher: true)
   end
   
+  def destroy
+    @user.destroy
+    flash[:success] = "#{@user.name}のデータを削除しました。"
+    redirect_to teacher_index_user_path(current_user)
+  end
+  
   # 生徒一覧（担任）
   
   def student_index
@@ -132,7 +138,14 @@ class UsersController < ApplicationController
     @guardians = User.where(admin: false, teacher: false) 
     @student_count = Student.where(class_belongs: @user.class_number).count 
   end
-  
+
+  def student_destroy2
+    @student = Student.find(params[:id])
+    @student.destroy
+    flash[:success] = "#{@student.student_name}のデータを削除しました。"
+    redirect_to student_index_user_url(current_user)
+  end
+
   # 生徒情報編集（担任）
   def edit_student_2
   end
@@ -153,9 +166,10 @@ class UsersController < ApplicationController
     #@students = User.paginate(page: params[:page]) 
   end
   
-  def destroy
-    @user.destroy
-    flash[:success] = "#{@user.name}のデータを削除しました。"
+  def student_destroy
+    @student = Student.find(params[:id])
+    @student.destroy
+    flash[:success] = "#{@student.student_name}のデータを削除しました。"
     redirect_to student_index_3_user_url(current_user)
   end
 

@@ -1,0 +1,28 @@
+<% provide(:title, 'Board-Index2') %>
+
+<div class="board-class"><h1><%= "#{@user.class_number}学級だより一覧" %></h1></div>
+
+<div>
+  <table class="table table-bordered table-condensed" id="table-board-index">  
+    <thead>
+      <% @guardian_board.each do |news| %>
+        <% if @user.class_number == news.board_class %> 
+        <tr>           
+          <% css_class = case $days_of_the_week[news.contact_date.wday]
+            when '土'
+            'text-primary'
+            when '日'
+            'text-danger'
+            end %> 
+        
+          <div class="board-1">
+            <th class="<%= css_class %>"><%= l(news.contact_date, format: :short) %>
+              <%= "(""#{$days_of_the_week[news.contact_date.wday]})" %></th>
+            </th>
+            <th class="board-2"><%= link_to "#{news.board_title}", schoolclasses_show_board2_user_path(@user, date: news.contact_date) %></th>
+        <tr> 
+        <% end %> 
+      <% end %>
+    </thead> 
+  </table>
+</div>
