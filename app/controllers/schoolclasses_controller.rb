@@ -7,11 +7,52 @@ class SchoolclassesController < ApplicationController
                 update_teacherform_contact edit_teacherwhat_contact update_teacherwhat_contact index_teacher_contact edit_guardianwhat_contact update_guardianwhat_contact 
                 edit_class_board update_class_board board_index show_board edit_guardianform_contact update_guardianform_contact board_create_index guardian_board_index update_student destroy edit_1
                 guardian_board_index2 show_board2)
-  #before_action :logged_in_user, only: []
-  #before_action :correct_user, only: []
-  before_action :admin_user, only: %i(class_index edit_1 edit_2 teacher_contact_index edit_teacher_contact destroy)
+  #before_action :logged_in_user, only: %i() 
+  before_action :correct_guardian_user, only: %i(index_guardian_contact guardian_board_index show_board)
+  before_action :correct_user, only: %i(show_teacher_contact board_create_index edit_class_board)
+  before_action :admin_user, only: %i(class_index edit_1 edit_2 teacher_contact_index edit_teacher_contact edit_teacher_contact_2 class_index edit_1 edit_2 edit_3 edit_4 edit_5 edit_6 destroy)
+  before_action :correct_teacher_user, only: %i(index_teacher_contact)
   before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact index_teacher_contact index_guardian_contact board_create_index guardian_board_index) 
+  
 
+require 'net/http'
+require 'uri'
+
+class LineNotify
+  TOKEN = 'V5CqPzriQBTGgmVjgeQhUgLJlkxWSFjEnfjzGDXU7ZE'.freeze
+  URL = 'https://notify-api.line.me/api/notify'.freeze
+
+  attr_reader :message
+
+  def self.send(message)
+    new(message).send
+  end
+
+  def initialize(message)
+    @message = message
+  end
+
+  def send
+    Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |https|
+      https.request(request)
+    end
+  end
+
+  private
+
+  def request
+    request = Net::HTTP::Post.new(uri)
+    request['Authorization'] = "Bearer #{TOKEN}"
+    request.set_form_data(message: message)
+    request
+  end
+
+  def uri
+    URI.parse(URL)
+  end
+end
+
+  
   #学年選択
   def class_index 
   end 
@@ -20,9 +61,6 @@ class SchoolclassesController < ApplicationController
   def edit_1
     @schoolclassese_1 = Classnumber.where('class_name like ?','1-%').order(:class_name) 
     @teachers = User.where(teacher: true).where('class_number like ?','1-%')  
-    
-    @class_count = Classnumber.where(params[:class_name])
-    @student_count = Student.where(params[:class_belongs])
   end
     
   def edit_2
@@ -78,7 +116,7 @@ class SchoolclassesController < ApplicationController
       redirect_to schoolclasses_teacher_contact_index_user_url
     end
   end
-  
+ 
   #担任からの連絡
   def edit_teacher_contact_2  
     @contact_title = @user.schoolclasses.where(contact_date: params[:date])
@@ -290,6 +328,7 @@ class SchoolclassesController < ApplicationController
       contact = Schoolclass.find(id)
       if contact.update(item.merge(board_class: @user.class_number, board_update: Time.current.change(sec: 0)))
         flash[:success] = '投稿しました。'
+        LineNotify.send('投稿通知テスト')
       else
         flash[:danger] = "失敗しました。" 
       end

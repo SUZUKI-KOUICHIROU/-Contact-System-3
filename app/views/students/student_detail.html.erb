@@ -10,6 +10,9 @@
         <th>生徒名</th>
         <th>生年月日</th>
         <th>年齢</th>
+        <th>保護者名</th>
+        <th>住所</th>
+        <th>電話番号</th>
       </tr>
     </thead>
   
@@ -18,7 +21,13 @@
         <td><%= @student.class_belongs%></td>
         <td><%= @student.student_name %></td>
         <td><%= @student.birthday.strftime("%Y年%m月%d日") if @student.birthday.present? %></td>
-        <td><%= "#{student_birthday(Date.today, @student.birthday)}歳" %></td>     
+        <td><%= "#{student_birthday(Date.today, @student.birthday)}歳" %></td>             
+        
+        <% @guardians.each do |guardian| %>
+          <td><%= guardian.name %></td>
+          <td><%= guardian.address %></td>
+          <td><%= guardian.telephone_number %></td>
+        <% end %>
       </tr>
     </tbody>
   </table>

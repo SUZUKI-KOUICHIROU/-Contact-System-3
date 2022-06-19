@@ -23,7 +23,7 @@
             <tr>
               <td><%= student.student_number %></td>
               <td><%= link_to "#{student.student_name}", students_student_detail_user_path(student) %></td>
-              <td><%= link_to "#{guardian.name}", guardian_detail_user_path(guardian) %></td>
+              <td><%= guardian.name %></td>
             </tr> 
           <% end %>
         <% end %>

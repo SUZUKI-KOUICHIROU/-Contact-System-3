@@ -20,21 +20,6 @@ class ApplicationController < ActionController::Base
     @student = Student.find(params[:id])
   end
   
-  # 管理者かどうか判定します。
-  def admin_user
-    redirect_to root_url unless current_user.admin?
-  end
-
-  #担任かどうか判定します。
-  def teacher_user
-    redirect_to root_url unless current_user.teacher?
-  end
-
-  #管理者または担任かどうか判定します。
-  def admin_teacher_user
-    redirect_to root_url unless current_user.admin? || current_user.teacher?
-  end
-  
   # ログイン済みのユーザーか確認します。
   def logged_in_user
     unless logged_in?
@@ -45,10 +30,98 @@ class ApplicationController < ActionController::Base
   end  
     
   # アクセスしたユーザーが現在ログインしているユーザーか確認します。
+  #def correct_user
+    #@user = User.find(params[:id])
+    #redirect_to(root_url) unless current_user?(@user)
+  #end 
+
   def correct_user
-    @user = User.find(params[:id])
-    redirect_to(root_url) unless current_user?(@user)
-  end 
+    @user = User.find(params[:user_id]) if @user.blank?
+    unless current_user?(@user)
+      flash[:danger] = "閲覧・編集権限がありません。"
+      redirect_to(root_url)
+    end
+  end
+
+  def correct_guardian_user
+    @student = Student.find(params[:id])
+    unless logged_in? && current_user.id == @student.user_id
+      flash[:danger] = "閲覧・編集権限がありません。"
+      redirect_to(root_url)
+    end
+  end
+
+  def correct_administrator_user
+    @student = Student.find(params[:id])
+    unless logged_in? && current_user.id == @student.user_id || current_user.admin? || current_user.teacher? && current_user.class_number == @student.class_belongs
+      flash[:danger] = "閲覧・編集権限がありません。"
+      redirect_to(root_url)
+    end
+  end
+
+  def correct_teacherguardian_user
+    @student = Student.find(params[:id])
+    unless logged_in? && current_user.id == @student.user_id || current_user.teacher? && current_user.class_number == @student.class_belongs
+      flash[:danger] = "閲覧・編集権限がありません。"
+      redirect_to(root_url)
+    end
+  end
+
+  def correct_adminteacherguardian_user
+    @user = User.find(params[:user_id]) if @user.blank?
+    unless logged_in? && current_user?(@user) || current_user.teacher? || current_user.admin?
+      flash[:danger] = "閲覧・編集権限がありません。"
+      redirect_to(root_url)
+    end 
+  end
+  
+  # 管理者かどうか判定します。
+  def admin_user
+    unless current_user.admin?
+      flash[:danger] = "管理者以外は閲覧・編集権限がありません。" 
+    redirect_to root_url
+    end
+  end
+
+  #担任かどうか判定します。
+  #def teacher_user
+    #unless current_user.teacher?
+      #flash[:danger] = "閲覧・編集権限がありません。"
+      #redirect_to(root_url)
+    #end
+  #end 
+  
+  #担任権限
+  def teacher_user
+    @user = User.find(params[:user_id]) if @user.blank?
+    unless current_user?(@user) || current_user.teacher?
+      flash[:danger] = "閲覧・編集権限がありません。"
+      redirect_to(root_url)
+    end
+  end
+
+  def correct_teacher_user
+    @student = Student.find(params[:id])
+    unless logged_in? && current_user.teacher? && current_user.class_number == @student.class_belongs
+      flash[:danger] = "閲覧・編集権限がありません。"
+      redirect_to(root_url)
+    end
+  end
+
+  #管理者または担任かどうか判定します。
+  def admin_teacher_user
+    unless current_user.admin? || current_user.teacher?
+      flash[:danger] = "閲覧・編集権限がありません。"
+      redirect_to root_url
+    end
+  end
+
+  def admin_teacheredit_user
+    unless current_user.admin? || current_user.teacher? && current_user.id == @user.id
+      flash[:danger] = "閲覧・編集権限がありません。"
+      redirect_to root_url
+    end
+  end
 
   # クラスリスト
   def class_choice

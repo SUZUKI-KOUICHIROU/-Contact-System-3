@@ -19,7 +19,7 @@
             <tr>
               <td><%= student.class_belongs %></td>
               <td><%= link_to "#{student.student_name}", students_student_detail_user_path(student) %></td>
-              <td><%= link_to "#{guardian.name}", guardian_detail_user_path(guardian) %>
+              <td><%= guardian.name %>
               <td>
                 <% if current_user.admin? && !current_user?(student) %>
                   <%= link_to "削除", student_destroy_user_url(student), method: :delete,

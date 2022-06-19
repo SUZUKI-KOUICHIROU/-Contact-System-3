@@ -3,6 +3,9 @@ class StudentsController < ApplicationController
   before_action :set_user, only: %i(new create student_detail)
   before_action :set_student, only: %i(student_detail edit_student update_student destroy)
   before_action :class_choice, only: %i(new create edit_student)
+  before_action :correct_user, only: %i(new)
+  before_action :correct_administrator_user, only: %i(student_detail)
+  before_action :correct_teacherguardian_user, only: %i(edit_student)
 
   def new
     @student = Student.new
@@ -32,6 +35,7 @@ class StudentsController < ApplicationController
   end
   
   def student_detail
+    @guardians = User.where(id: @student.user_id)
   end
 
   def destroy
@@ -43,7 +47,7 @@ class StudentsController < ApplicationController
   private
 
     def student_params
-      params.require(:student).permit(:student_name, :class_belongs, :student_number, :birthday).merge(guardian_name: current_user.name)
+      params.require(:student).permit(:student_name, :class_belongs, :student_number, :birthday, :classnumber_id).merge(guardian_name: current_user.name)
     end
 
     def student_update_params

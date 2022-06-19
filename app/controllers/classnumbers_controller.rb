@@ -1,5 +1,6 @@
 class ClassnumbersController < ApplicationController
 
+  before_action :admin_user, only: %i(new create)
   before_action :class_select, only: %i(new)   
   
   #クラス作成

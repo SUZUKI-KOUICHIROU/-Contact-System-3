@@ -27,7 +27,7 @@
                 <a><%= link_to "#{student.student_name}", students_student_detail_user_path(student) %></a>
                 <%= link_to "編集", students_edit_student_user_path(student), class: "btn btn--green btn--student" %>
               </td>
-              <td><%= link_to "#{guardian.name}", guardian_detail_user_path(guardian) %></td>
+              <td><%= guardian.name%></td>
               <td><%= link_to "連絡帳", schoolclasses_index_teacher_contact_user_path(student) %></td>
               <td>
                 <% if current_user.teacher? && !current_user?(student) %>
