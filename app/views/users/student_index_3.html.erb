@@ -10,6 +10,8 @@
         <th>クラス</th>
         <th>名前</th>
         <th>保護者</th>
+        <th>生徒削除</th>
+        <th>保護者削除</th>
       </tr>
     </thead>
     <tbody>
@@ -21,11 +23,14 @@
               <td><%= link_to "#{student.student_name}", students_student_detail_user_path(student) %></td>
               <td><%= guardian.name %>
               <td>
-                <% if current_user.admin? && !current_user?(student) %>
                   <%= link_to "削除", student_destroy_user_url(student), method: :delete,
                       data: { confirm: "削除してよろしいですか？" },
                       class: "btn btn-danger" %>
-                <% end %>
+              </td>  
+              <td>
+                  <%= link_to "削除", guardian_destroy_user_url(guardian), method: :delete,
+                      data: { confirm: "削除してよろしいですか？" },
+                      class: "btn btn-danger" %>
               </td>
             </tr>
           <% end %>

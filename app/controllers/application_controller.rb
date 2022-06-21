@@ -83,18 +83,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  #担任かどうか判定します。
-  #def teacher_user
-    #unless current_user.teacher?
-      #flash[:danger] = "閲覧・編集権限がありません。"
-      #redirect_to(root_url)
-    #end
-  #end 
-  
-  #担任権限
+  #担任権限  
   def teacher_user
     @user = User.find(params[:user_id]) if @user.blank?
-    unless current_user?(@user) || current_user.teacher?
+    unless current_user?(@user) && current_user.teacher?
       flash[:danger] = "閲覧・編集権限がありません。"
       redirect_to(root_url)
     end

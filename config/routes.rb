@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     member do
       delete 'student_destroy'
       delete 'student_destroy2'
+
+      delete 'guardian_destroy'
       
       get 'edit_admin'
       patch 'update_admin'

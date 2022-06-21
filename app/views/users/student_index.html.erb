@@ -15,6 +15,7 @@
         <th>名前</th>
         <th>保護者</th>
         <th>連絡帳</th>
+        <th>生徒削除</th>
       </tr>
     </thead>
     <tbody>
@@ -30,7 +31,7 @@
               <td><%= guardian.name%></td>
               <td><%= link_to "連絡帳", schoolclasses_index_teacher_contact_user_path(student) %></td>
               <td>
-                <% if current_user.teacher? && !current_user?(student) %>
+                <% if current_user.teacher? && current_user?(@user) %>
                   <%= link_to "削除", student_destroy2_user_url(student), method: :delete,
                       data: { confirm: "削除してよろしいですか？" },
                       class: "btn btn-danger" %>
