@@ -27,7 +27,7 @@
           <% if schoolclass.class_name == teacher.class_number %>
             <tr>     
               <td><%= link_to "#{teacher.class_number}", student_index_2_user_path(teacher) %></td>
-              <td><%= link_to "#{teacher.name}", edit_teacher_user_path(teacher) %></td>
+              <td><%= teacher.name %></td>
               <td><%= link_to "担任への連絡", schoolclasses_teacher_contact_index_user_path(teacher) %></td>
             </tr>
           <% end %>

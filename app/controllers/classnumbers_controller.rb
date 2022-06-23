@@ -1,6 +1,6 @@
 class ClassnumbersController < ApplicationController
 
-  before_action :admin_user, only: %i(new create)
+  before_action :admin_user, only: %i(new create destroy)
   before_action :class_select, only: %i(new)   
   
   #クラス作成
@@ -17,6 +17,13 @@ class ClassnumbersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy 
+    @class = Classnumber.find(params[:id]) 
+    @class.destroy
+    flash[:success] = "#{@class.class_name}を削除しました。"
+    redirect_to schoolclasses_class_index_user_path(current_user)
   end
 
   private
