@@ -583,3 +583,27 @@ input[type="password"] {
     background: #FFFFCC;
   }
 }
+
+/* お知らせアコーディオン */
+
+.board-panel {
+  margin-left: 30px;
+  background: #FF97C2;
+}
+
+.panel-title {
+  font-size: 30px;
+  font-weight: bold;
+  a:hover{ color: #0004ff; background: #E0FFFF;}
+}
+
+.board {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  padding:5px 20;
+  border: medium solid #990000;
+  background: #FFFFCC;
+  margin-right: 414px;
+}

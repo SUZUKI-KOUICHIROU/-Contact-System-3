@@ -295,28 +295,34 @@
           <% end %>
         </table>
         
-        <table class="table table-bordered table-condensed table-hover" id="table-show-notification">
-          <thead>
-            <tr>  
-              <th class="guardian-1">学級お知らせ</th>
-              <th class="guardian-2">投稿日時</th>
-            </tr>
-          </thead>          
-          <% @boards.each do |board| %> 
-            <% @bord_student.each do |student| %>     
-              <% if student.class_belongs == board.board_class %>
-                <tr>
-                  <td>
-                    <a><%= link_to "#{board.board_class}学級だよりが投稿されました。", schoolclasses_show_board_user_path(student, date: board.contact_date) %></a>
-                  </td>
-                  <td>
-                    <%= l(board.board_update, format: :short) if board.board_update.present? %>
-                  </td>
-                </tr>
-              <% end %>
-            <% end %>
-          <% end %>
-        </table>
+        <thead>      
+          <tr>            
+            <div class="panel-group">
+              <div class="panel board-panel">  
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse1">学級だより投稿履歴</a>
+                  </h4>
+                </div>
+              </div>    
+              <div id="collapse1" class="panel-collapse collapse">
+                <div class="panel-body">                
+                  <% @boards.each do |board| %> 
+                    <% @bord_student.each do |student| %>     
+                      <% if student.class_belongs == board.board_class %>
+                        <div class="board">  
+                          <%= link_to "#{board.board_class}学級だよりが投稿されました。", schoolclasses_show_board_user_path(student, date: board.contact_date) %>
+                          <%= l(board.board_update, format: :short) if board.board_update.present? %>                                               
+                        </div>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>                                                                                         
+          </tr>
+        </thead>
       </div>
     <% end %> 
   <% end %>

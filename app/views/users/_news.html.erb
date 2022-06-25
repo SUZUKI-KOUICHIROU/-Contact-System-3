@@ -1,1 +1,16 @@
-テスト
+<div class="form-group">
+  <% @boards.each do |board| %> 
+    <% @bord_student.each do |student| %>     
+      <% if student.class_belongs == board.board_class %>
+        <td>
+          <a><%= link_to "#{board.board_class}学級だよりが投稿されました。", schoolclasses_show_board_user_path(student, date: board.contact_date) %></a>
+        </td>
+        <td>
+          <%= l(board.board_update, format: :short) if board.board_update.present? %>
+        </td>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+
