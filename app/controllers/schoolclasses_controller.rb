@@ -6,52 +6,79 @@ class SchoolclassesController < ApplicationController
                 edit_teacher_contact_3 update_teacher_contact_3 show_teacher_contact teacher_contact  index_guardian_contact edit_teacherform_contact 
                 update_teacherform_contact edit_teacherwhat_contact update_teacherwhat_contact index_teacher_contact edit_guardianwhat_contact update_guardianwhat_contact 
                 edit_class_board update_class_board board_index show_board edit_guardianform_contact update_guardianform_contact board_create_index guardian_board_index update_student destroy edit_1
-                guardian_board_index2 show_board2)
+                guardian_board_index2 show_board2 edit_teacher_line update_teacher_line)
   #before_action :logged_in_user, only: %i() 
   before_action :correct_guardian_user, only: %i(index_guardian_contact guardian_board_index show_board)
   before_action :correct_user, only: %i(show_teacher_contact board_create_index edit_class_board)
   before_action :admin_user, only: %i(class_index edit_1 edit_2 teacher_contact_index edit_teacher_contact edit_teacher_contact_2 class_index edit_1 edit_2 edit_3 edit_4 edit_5 edit_6 destroy)
   before_action :correct_teacher_user, only: %i(index_teacher_contact)
-  before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact index_teacher_contact index_guardian_contact board_create_index guardian_board_index) 
+  before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact index_teacher_contact index_guardian_contact board_create_index guardian_board_index edit_teacher_line) 
   
 
-require 'net/http'
-require 'uri'
+  require 'net/http'
+  require 'uri' 
+  
+  class LineNotify
+    
+    def self.user
+      user = User.where(teacher: true)
+    end
 
-class LineNotify
-  TOKEN = 'V5CqPzriQBTGgmVjgeQhUgLJlkxWSFjEnfjzGDXU7ZE'.freeze
-  URL = 'https://notify-api.line.me/api/notify'.freeze
+    TOKEN = "token".freeze
+    URL = 'https://notify-api.line.me/api/notify'.freeze
+    
+    attr_reader :message
 
-  attr_reader :message
-
-  def self.send(message)
-    new(message).send
-  end
-
-  def initialize(message)
-    @message = message
-  end
-
-  def send
-    Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |https|
-      https.request(request)
+    def self.class_board(message)
+      new(message).class_board
+    end
+  
+    def initialize(message)
+      @message = message
+    end
+  
+    def class_board
+      Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |https|
+        https.request(request)
+      end
+    end
+  
+    private
+  
+    def request
+      request = Net::HTTP::Post.new(uri)
+      request['Authorization'] = "Bearer #{TOKEN}"
+      request.set_form_data(message: message)
+      request
+    end
+  
+    def uri
+      URI.parse(URL)
     end
   end
 
-  private
+  def edit_teacher_line
+    @schoolclass = Schoolclass.find(params[:id])
+    @line_teacher = @user.schoolclasses.where(contact_date: @first_day)
+  end 
 
-  def request
-    request = Net::HTTP::Post.new(uri)
-    request['Authorization'] = "Bearer #{TOKEN}"
-    request.set_form_data(message: message)
-    request
-  end
-
-  def uri
-    URI.parse(URL)
-  end
-end
-
+  def update_teacher_line
+    line_params.each do |id,item|
+      line = Schoolclass.find(id)
+      if line.update(item.merge(line_class: @user.class_number))
+        flash[:success] = '登録しました。'
+      else
+        flash[:danger] = "失敗しました。" 
+      end
+      redirect_to user_url
+    end
+  end 
+  
+  #保護者LINE登録画面
+  def line_aarticipation
+    @student = Student.find(params[:id])
+    @guardian_line = Schoolclass.find_by(line_class: @student.class_belongs)
+  end 
   
   #学年選択
   def class_index 
@@ -328,7 +355,8 @@ end
       contact = Schoolclass.find(id)
       if contact.update(item.merge(board_class: @user.class_number, board_update: Time.current.change(sec: 0)))
         flash[:success] = '投稿しました。'
-        LineNotify.send('投稿通知テスト')
+        ruby line-send.rb
+        #LineNotify.class_board('学級だよりが投稿されました')
       else
         flash[:danger] = "失敗しました。" 
       end
@@ -401,5 +429,13 @@ end
     def class_board_params
       params.require(:user).permit(schoolclasses: [:board_title, :contact_board])[:schoolclasses]
     end
-  end
+
+    def line_params
+      params.require(:user).permit(schoolclasses: [:line_token, :teacher_line])[:schoolclasses]
+    end
+
+    def token_params
+      params.require(:schoolclass).permit(:line_token)
+    end
+end
 

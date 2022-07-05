@@ -1,0 +1,15 @@
+<div class="line-title"><h1>LINE招待作成</h1></div>
+
+<%= form_with(model: @user, url: schoolclasses_update_teacher_line_user_path, local: true, method: :patch) do |f| %>
+  <% @line_teacher.each do |a| %>
+    <%= f.fields_for "schoolclasses[]", a do |line| %>
+      <div class="line-create">
+        <%= line.label "トークン入力" %>
+        <a><%= line.text_area :line_token %></a>
+        <%= line.label "URL登録" %>
+        <a><%= line.text_area :teacher_line %></a>
+      </div>
+        <%= f.submit "登録", class: "board-btn btn-success btn-lg btn-login" %>     
+    <% end %>
+  <% end %>  
+<% end %>

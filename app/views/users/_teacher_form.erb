@@ -13,7 +13,7 @@
     <div class= "teacher-class">
       <%= f.select :class_number, @class_list.pluck(:class_name), { include_blank: "クラスを選択" }, { required: true } %>
     </div>
-  
+
     <%= f.label :password, class: "label-#{yield(:class_text)}" %>
     <%= f.password_field :password, required: true, class: "form-control" %>
 

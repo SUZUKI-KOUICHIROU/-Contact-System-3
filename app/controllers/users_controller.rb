@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   before_action :teacher_user, only: %i(student_index student_destroy2)
   before_action :class_choice, only: %i(new_teacher create_teacher edit_teacher new_student edit_student edit_student_2)
   before_action :set_one_month, only: %i(show)
-
+  
+  
   def index
     @users = User.paginate(page: params[:page])
   end

@@ -1,6 +1,6 @@
 <% provide(:title, @user.name) %>
 
-<body style="background-color: #BEFF15">
+<div class="bg_test">
   
   <% if logged_in? && current_user.admin? %>
     <div class="board-class"><h1>管理者メニュー</h1></div>
@@ -17,62 +17,73 @@
           </tr>
         </thead>
       </table>
-      <table class="table table-bordered table-condensed table-hover" id="table-show-notification">
-        <thead> 
-          <tr>
-            <th class="guardian-1">担任からの連絡・返信</th>
-            <th class="guardian-2">投稿日時</th>
-          </tr>
-        </thead>
-        <% @admin_contacts.each do |contact| %>
-          <% @teachers.each do |teacher| %>
-            <% if contact.user_id == teacher.id %>  
-              <tr>
-                <td>
-                  <% if contact.post_count2 == 1 && contact.title_2.present? %>
-                    <%= link_to "#{teacher.name}から新規連絡：#{contact.title_2}", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
-                  <% elsif contact.post_count2 > contact.before_post_count2 && contact.title_2.present? %>
-                    <%= link_to "#{teacher.name}から返信：#{contact.title_2}", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
-                  <% elsif contact.post_count2 == 1 && contact.title_2.blank? && contact.teacher_note_2.present? %>
-                    <%= link_to "#{teacher.name}から新規連絡：無題", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
-                  <% elsif contact.post_count2 > contact.before_post_count2 && contact.title_2.blank? && contact.teacher_note_2.present? %>
-                    <%= link_to "#{teacher.name}から返信：無題", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
+      <thead>      
+        <tr>            
+          <div class="panel-group">
+            <div class="panel board-panel">  
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" href="#collapse8">🔽 担任からの連絡・返信投稿通知</a>
+                </h4>
+              </div>
+            </div>    
+            <div id="collapse8" class="panel-collapse collapse">
+              <div class="panel-body">                
+                <% @admin_contacts.each do |contact| %>
+                  <% @teachers.each do |teacher| %>
+                    <% if contact.user_id == teacher.id %>  
+                      <div class="board-8">
+                        <% if contact.post_count2 == 1 && contact.title_2.present? %>
+                          <%= link_to "#{teacher.name}から新規連絡：#{contact.title_2}", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
+                        <% elsif contact.post_count2 > contact.before_post_count2 && contact.title_2.present? %>
+                          <%= link_to "#{teacher.name}から返信：#{contact.title_2}", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
+                        <% elsif contact.post_count2 == 1 && contact.title_2.blank? && contact.teacher_note_2.present? %>
+                          <%= link_to "#{teacher.name}から新規連絡：無題", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
+                        <% elsif contact.post_count2 > contact.before_post_count2 && contact.title_2.blank? && contact.teacher_note_2.present? %>
+                          <%= link_to "#{teacher.name}から返信：無題", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
+                        <% end %>
+                          <%= l(contact.contact_update3, format: :short) if contact.contact_update3.present? %>
+                      </div> 
+                    <% end %>
                   <% end %>
-                </td>
-                <td><%= l(contact.contact_update3, format: :short) if contact.contact_update3.present? %></td>
-              </tr>
-            <% end %>
-          <% end %>
-        <% end %>  
-      </table>
-      <table class="table table-bordered table-condensed table-hover" id="table-show-notification">
-        <thead> 
-          <tr>
-            <th class="guardian-1">担任への連絡（返信）</th>
-            <th class="guardian-2">投稿日時</th>
-          </tr>
-        </thead>
-        <% @admin_contacts2.each do |contact| %>
-          <% @teachers.each do |teacher| %>
-            <% if contact.user_id == teacher.id %>
-              <tr>
-                <td>
-                  <% if contact.contact_count1 > 0 && contact.title.present? %>  
-                    <%= link_to "#{teacher.name}から返信：#{contact.title}", schoolclasses_edit_teacher_contact_user_path(teacher, date: contact.contact_date)%>
-                  <% elsif contact.contact_count1 > 0 && contact.title.blank? && contact.teacher_note.present? %> 
-                    <%= link_to "#{teacher.name}から返信：無題", schoolclasses_edit_teacher_contact_user_path(teacher, date: contact.contact_date)%>
+                <% end %>             
+              </div>
+            </div>
+          </div>                                                                                         
+        </tr>
+      </thead>
+      <thead>      
+        <tr>            
+          <div class="panel-group">
+            <div class="panel board-panel">  
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" href="#collapse9">🔽 担任への連絡（返信）投稿通知</a>
+                </h4>
+              </div>
+            </div>    
+            <div id="collapse9" class="panel-collapse collapse">
+              <div class="panel-body">                
+                <% @admin_contacts2.each do |contact| %>
+                  <% @teachers.each do |teacher| %>
+                    <% if contact.user_id == teacher.id %>
+                      <div class="board-9">
+                        <% if contact.contact_count1 > 0 && contact.title.present? %>  
+                          <%= link_to "#{teacher.name}から返信：#{contact.title}", schoolclasses_edit_teacher_contact_user_path(teacher, date: contact.contact_date)%>
+                        <% elsif contact.contact_count1 > 0 && contact.title.blank? && contact.teacher_note.present? %> 
+                          <%= link_to "#{teacher.name}から返信：無題", schoolclasses_edit_teacher_contact_user_path(teacher, date: contact.contact_date)%>
+                        <% end %>
+                          <%= l(contact.contact_update2, format: :short) if contact.contact_update2.present? %>   
+                      </div> 
+                    <% end %>
                   <% end %>
-                </td>
-                <td>
-                  <%= l(contact.contact_update2, format: :short) if contact.contact_update2.present? %>
-                </td>
-              </tr>
-            <% end %>
-          <% end %>
-        <% end %>   
-      </table>
-    </div>
-  <% end %>   
+                <% end %>             
+              </div>
+            </div>
+          </div>                                                                                         
+        </tr>
+      </thead>
+  <% end %>        
           
   <% if logged_in? && current_user.teacher? %>
     <div class="board-class"><h1><%= "#{@user.class_number}：#{@user.name}" %></h1></div>
@@ -83,119 +94,146 @@
             <th><%= link_to "生徒一覧", student_index_user_path %></th>
             <th><%= link_to "学校との連絡", schoolclasses_show_teacher_contact_user_path(current_user, @user) %></th>
             <th><%= link_to "学級だより", schoolclasses_board_create_index_user_path(current_user) %></th>
+            <th><%= link_to "LINE登録", schoolclasses_edit_teacher_line_user_path(current_user) %>
+            <th><%= link_to "LINEトークン登録", '#' %></th>
             <th><%= link_to "担任情報編集", edit_teacher_user_path(current_user) %></th>
           </tr>
         </thead>  
       </table>
-      <table class="table table-bordered table-condensed table-hover" id="table-show-notification">
-        <thead> 
-          <tr>
-            <th class="guardian-1">保護者からの連絡・返信</th>
-            <th class="guardian-2">投稿日時</th>
-          </tr>
-        </thead>
-        <% @guardian_contacts.each do |contact| %>  
-          <% @students2.each do |student| %>
-            <% if contact.user_id == student.id %>  
-              <tr>
-                <td>
-                  <% if contact.guardian_post_count3 == 1 && contact.title_4.present? %>
-                    <%= link_to "#{student.student_name}から新規連絡：#{contact.title_4}", schoolclasses_edit_guardianform_contact_user_path(student, date: contact.contact_date) %>
-                  <% elsif contact.guardian_post_count3 > contact.before_guardian_postcount3 && contact.title_4.present? %>
-                    <%= link_to "#{student.student_name}から返信：#{contact.title_4}", schoolclasses_edit_guardianform_contact_user_path(student, date: contact.contact_date)%>
-                  <% elsif contact.guardian_post_count3 == 1 && contact.title_4.blank? && contact.guardian_note_3.present? %>
-                    <%= link_to "#{student.student_name}から新規連絡：無題", schoolclasses_edit_guardianform_contact_user_path(student, date: contact.contact_date) %>
-                  <% elsif contact.guardian_post_count3 > contact.before_guardian_postcount3 && contact.title_4.blank? && contact.guardian_note_3.present? %>
-                    <%= link_to "#{student.student_name}から返信：無題", schoolclasses_edit_guardianform_contact_user_path(student, date: contact.contact_date) %>
+      <thead>      
+        <tr>            
+          <div class="panel-group">
+            <div class="panel board-panel">  
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" href="#collapse4">🔽 保護者からの連絡・返信投稿通知</a>
+                </h4>
+              </div>
+            </div>    
+            <div id="collapse4" class="panel-collapse collapse">
+              <div class="panel-body">                
+                <% @guardian_contacts.each do |contact| %>  
+                  <% @students2.each do |student| %>
+                    <% if contact.user_id == student.id %> 
+                      <div class="board-4">
+                        <% if contact.guardian_post_count3 == 1 && contact.title_4.present? %>
+                          <%= link_to "#{student.student_name}から新規連絡：#{contact.title_4}", schoolclasses_edit_guardianform_contact_user_path(student, date: contact.contact_date) %>
+                        <% elsif contact.guardian_post_count3 > contact.before_guardian_postcount3 && contact.title_4.present? %>
+                          <%= link_to "#{student.student_name}から返信：#{contact.title_4}", schoolclasses_edit_guardianform_contact_user_path(student, date: contact.contact_date)%>
+                        <% elsif contact.guardian_post_count3 == 1 && contact.title_4.blank? && contact.guardian_note_3.present? %>
+                          <%= link_to "#{student.student_name}から新規連絡：無題", schoolclasses_edit_guardianform_contact_user_path(student, date: contact.contact_date) %>
+                        <% elsif contact.guardian_post_count3 > contact.before_guardian_postcount3 && contact.title_4.blank? && contact.guardian_note_3.present? %>
+                          <%= link_to "#{student.student_name}から返信：無題", schoolclasses_edit_guardianform_contact_user_path(student, date: contact.contact_date) %>
+                        <% end %>
+                          <%= l(contact.contact_update7, format: :short) if contact.contact_update7.present? %>
+                      </div> 
+                    <% end %>
                   <% end %>
-                </td>                
-                <td><%= l(contact.contact_update7, format: :short) if contact.contact_update7.present? %></td>
-              </tr>
-            <% end %>
-          <% end %>
-        <% end %>   
-      </table>
-      <table class="table table-bordered table-condensed table-hover" id="table-show-notification">
-        <thead>
-          <tr>  
-            <th class="guardian-1">保護者への連絡（返信）</th>
-            <th class="guardian-2">投稿日時</th>
-          </tr>
-        </thead>             
-        <% @contact_reply2.each do |contact| %>
-          <% @students2.each do |student| %>
-            <% if contact.user_id == student.id && @user.class_number == contact.contact_class2 %>
-              <tr>
-                <td> 
-                  <% if contact.guardian_post_count2 > 0 && contact.title_3.present? %>
-                    <%= link_to "#{student.student_name}から返信：#{contact.title_3}", schoolclasses_edit_teacherwhat_contact_user_path(student, date: contact.contact_date) %>
-                  <% elsif contact.guardian_post_count2 > 0 && contact.title_3.blank? && contact.guardian_note_1.present? %> 
-                    <%= link_to "#{student.student_name}から返信：無題", schoolclasses_edit_teacherwhat_contact_user_path(student, date: contact.contact_date) %>
-                  <% end %>                                     
-                </td>
-                <td><%= l(contact.contact_update6, format: :short) if contact.contact_update6.present? %></td>
-              </tr>
-            <% end %>                            
-          <% end %>
-        <% end %>
-      </table>
-      <table class="table table-bordered table-condensed table-hover" id="table-show-notification">
-        <thead> 
-          <tr>
-            <th class="guardian-1">学校からの連絡・返信</th>
-            <th class="guardian-2">投稿日時</th>
-          </tr>
-        </thead>
-        <% @school_contact.each do |contact| %>
-          <% @teachers.each do |teacher| %>
-            <% if contact.user_id == @user.id && contact.user_id == teacher.id %>  
-              <tr>
-                <td>
-                  <% if contact.post_count == 1 && contact.title.present? %>
-                    <%= link_to "新規連絡：#{contact.title}", schoolclasses_teacher_contact_user_path(teacher, date: contact.contact_date) %>
-                  <% elsif contact.post_count > contact.before_post_count && contact.title.present? %>
-                    <%= link_to "返信：#{contact.title}", schoolclasses_teacher_contact_user_path(teacher, date: contact.contact_date) %>
-                  <% elsif contact.post_count == 1 && contact.title.blank? && contact.teacher_note.present? %>
-                    <%= link_to "新規連絡：無題", schoolclasses_teacher_contact_user_path(teacher, date: contact.contact_date) %>
-                  <% elsif contact.post_count > contact.before_post_count && contact.title.blank? && contact.teacher_note.present? %>
-                    <%= link_to "返信：無題", schoolclasses_teacher_contact_user_path(teacher, date: contact.contact_date) %>
+                <% end %>             
+              </div>
+            </div>
+          </div>                                                                                         
+        </tr>
+      </thead>
+      <thead>      
+        <tr>            
+          <div class="panel-group">
+            <div class="panel board-panel">  
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" href="#collapse5">🔽 保護者への連絡（返信）投稿通知</a>
+                </h4>
+              </div>
+            </div>    
+            <div id="collapse5" class="panel-collapse collapse">
+              <div class="panel-body">
+                <% @contact_reply2.each do |contact| %>
+                  <% @students2.each do |student| %>
+                    <% if contact.user_id == student.id && @user.class_number == contact.contact_class2 %>                
+                      <div class="board-5">
+                        <% if contact.guardian_post_count2 > 0 && contact.title_3.present? %>
+                          <%= link_to "#{student.student_name}から返信：#{contact.title_3}", schoolclasses_edit_teacherwhat_contact_user_path(student, date: contact.contact_date) %>
+                        <% elsif contact.guardian_post_count2 > 0 && contact.title_3.blank? && contact.guardian_note_1.present? %> 
+                          <%= link_to "#{student.student_name}から返信：無題", schoolclasses_edit_teacherwhat_contact_user_path(student, date: contact.contact_date) %>
+                        <% end %>
+                          <%= l(contact.contact_update6, format: :short) if contact.contact_update6.present? %> 
+                      </div> 
+                    <% end %>
                   <% end %>
-                </td>
-                <td>
-                  <%= l(contact.contact_update, format: :short) if contact.contact_update.present? %>
-                </td>
-              </tr>
-            <% end %>
-          <% end %>
-        <% end %>  
-      </table>
-      <table class="table table-bordered table-condensed table-hover" id="table-show-notification">
-        <thead>
-          <tr>  
-            <th class="guardian-1">学校への連絡（返信）</th>
-            <th class="guardian-2">投稿日時</th>
-          </tr>
-        </thead>             
-        <% @school_reply2.each do |contact| %>
-          <% @teachers.each do |teacher| %>
-            <% if contact.user_id == @user.id && contact.user_id == teacher.id %>  
-              <tr>
-                <td> 
-                  <% if contact.post_count3 > 0 && contact.title_2.present? %>
-                    <%= link_to "返信：#{contact.title_2}", schoolclasses_edit_teacher_contact_3_user_path(teacher, date: contact.contact_date) %>
-                  <% elsif contact.post_count3 > 0 && contact.title_2.blank? && contact.teacher_note_2.present? %> 
-                    <%= link_to "返信：無題", schoolclasses_edit_teacher_contact_3_user_path(teacher, date: contact.contact_date) %>               
+                <% end %>             
+              </div>
+            </div>
+          </div>                                                                                         
+        </tr>
+      </thead>
+      <thead>      
+        <tr>            
+          <div class="panel-group">
+            <div class="panel board-panel">  
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" href="#collapse6">🔽 学校からの連絡・返信投稿通知</a>
+                </h4>
+              </div>
+            </div>    
+            <div id="collapse6" class="panel-collapse collapse">
+              <div class="panel-body">
+                <% @school_contact.each do |contact| %>
+                  <% @teachers.each do |teacher| %>
+                    <% if contact.user_id == @user.id && contact.user_id == teacher.id %> 
+                      <div class="board-6">
+                        <% if contact.post_count == 1 && contact.title.present? %>
+                          <%= link_to "新規連絡：#{contact.title}", schoolclasses_teacher_contact_user_path(teacher, date: contact.contact_date) %>
+                        <% elsif contact.post_count > contact.before_post_count && contact.title.present? %>
+                          <%= link_to "返信：#{contact.title}", schoolclasses_teacher_contact_user_path(teacher, date: contact.contact_date) %>
+                        <% elsif contact.post_count == 1 && contact.title.blank? && contact.teacher_note.present? %>
+                          <%= link_to "新規連絡：無題", schoolclasses_teacher_contact_user_path(teacher, date: contact.contact_date) %>
+                        <% elsif contact.post_count > contact.before_post_count && contact.title.blank? && contact.teacher_note.present? %>
+                          <%= link_to "返信：無題", schoolclasses_teacher_contact_user_path(teacher, date: contact.contact_date) %>
+                        <% end %>
+                          <%= l(contact.contact_update, format: :short) if contact.contact_update.present? %>
+                      </div> 
+                    <% end %>
                   <% end %>
-                </td>
-                <td><%= l(contact.contact_update4, format: :short) if contact.contact_update4.present? %></td>
-              </tr>
-            <% end %>                            
-          <% end %>
-        <% end %>
-      </table>
-    </div>
+                <% end %>             
+              </div>
+            </div>
+          </div>                                                                                         
+        </tr>
+      </thead>
+      <thead>      
+        <tr>            
+          <div class="panel-group">
+            <div class="panel board-panel">  
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" href="#collapse7">🔽 学校への連絡（返信）投稿通知</a>
+                </h4>
+              </div>
+            </div>    
+            <div id="collapse7" class="panel-collapse collapse">
+              <div class="panel-body">
+                <% @school_reply2.each do |contact| %>
+                  <% @teachers.each do |teacher| %>
+                    <% if contact.user_id == @user.id && contact.user_id == teacher.id %>
+                      <div class="board-7">
+                        <% if contact.post_count3 > 0 && contact.title_2.present? %>
+                          <%= link_to "返信：#{contact.title_2}", schoolclasses_edit_teacher_contact_3_user_path(teacher, date: contact.contact_date) %>
+                        <% elsif contact.post_count3 > 0 && contact.title_2.blank? && contact.teacher_note_2.present? %> 
+                          <%= link_to "返信：無題", schoolclasses_edit_teacher_contact_3_user_path(teacher, date: contact.contact_date) %>               
+                        <% end %>
+                          <%= l(contact.contact_update4, format: :short) if contact.contact_update4.present? %>
+                      </div> 
+                    <% end %>
+                  <% end %>
+                <% end %>             
+              </div>
+            </div>
+          </div>                                                                                         
+        </tr>
+      </thead>
   <% end %>
-    
+  
   <% if logged_in? %>
     <% unless current_user.admin? || current_user.teacher? %>     
       <div>
@@ -218,6 +256,7 @@
             <% if @students.present? %>  
             <tr>  
               <th>クラス</th>
+              <th>LINE</th>
               <th>生徒名</th>
               <th>連絡</th>
               <th>学級お知らせ</th>
@@ -227,6 +266,7 @@
             <% @students.each do |student| %>
               <tr>
                 <td><%= student.class_belongs %></td>
+                <td><%= link_to "登録", schoolclasses_line_aarticipation_user_path(student) %></td>
                 <td class="student-name1">
                   <a class="student-name3"><%= link_to student.student_name, students_student_detail_user_path(student) %></a>
                   <a><%= link_to "編集", students_edit_student_user_path(student), class: "btn btn--green btn--student" %></a>
@@ -236,81 +276,93 @@
               </tr>  
             <% end %>        
         </table>
-        
-        <table class="table table-bordered table-condensed table-hover" id="table-show-notification">
-          <thead>
-            <tr>  
-              <th class="guardian-1">担任からの連絡・返信</th>
-              <th class="guardian-2">投稿日時</th>
-            </tr>
-          </thead>             
-          <% @contacts.each do |contact| %>
-            <% @students.each do |student| %>
-              <% if contact.user_id == student.id %>
-                <tr>
-                  <td>
-                    <% if contact.guardian_post_count1 == 1 && contact.title_3.present? %>
-                      <%= link_to "新規投稿：#{contact.title_3}" ,schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
-                    <% elsif contact.guardian_post_count1 > contact.before_guardian_postcount1 && contact.title_3.present? %>
-                      <%= link_to "返信：#{contact.title_3}" ,schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
-                    <% elsif contact.guardian_post_count1 == 1 && contact.title_3.blank? && contact.guardian_note_1.present? %>
-                      <%= link_to "新規投稿：無題", schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
-                    <% elsif contact.guardian_post_count1 > contact.before_guardian_postcount1 && contact.title_3.blank? && contact.guardian_note_1.present? %>
-                      <%= link_to "返信：無題", schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
-                    <% end %>
-                  </td>
-                  <td><%= l(contact.contact_update5, format: :short) if contact.contact_update5.present? %></td>
-                </tr>
-              <% end %>
-            <% end %>
-          <% end %>
-        </table>
-      
-        <table class="table table-bordered table-condensed table-hover" id="table-show-notification">
-          <thead>
-            <tr>  
-              <th class="guardian-1">担任への連絡（返信）</th>
-              <th class="guardian-2">投稿日時</th>
-            </tr>
-          </thead>             
-          <% @contact_reply.each do |contact| %>
-            <% @students.each do |student| %>
-              <% @teachers.each do |teacher| %>  
-                <% if contact.user_id == student.id %>
-                  <% if teacher.class_number == student.class_belongs %>
-                    <tr>
-                      <td>
-                        <% if contact.guardian_post_count4 > 0 && contact.title_4.present? %>  
-                          <%= link_to "返信：#{contact.title_4}", schoolclasses_edit_guardianwhat_contact_user_path(student, date: contact.contact_date) %>
-                        <% elsif contact.guardian_post_count4 > 0 && contact.title_4.blank? && contact.guardian_note_3 %>
-                          <%= link_to "返信：無題", schoolclasses_edit_guardianwhat_contact_user_path(student, date: contact.contact_date) %>                                                 
-                        <% end %>                                                                                     
-                      </td>
-                      <td><%= l(contact.contact_update8, format: :short) if contact.contact_update8.present? %></td>
-                    </tr>
-                  <% end %>
-                <% end %>
-              <% end %>
-            <% end %>
-          <% end %>
-        </table>
-        
         <thead>      
           <tr>            
             <div class="panel-group">
               <div class="panel board-panel">  
                 <div class="panel-heading">
                   <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse1">学級だより投稿履歴</a>
+                    <a data-toggle="collapse" href="#collapse1">🔽 担任からの連絡・返信投稿通知</a>
                   </h4>
                 </div>
               </div>    
-              <div id="collapse1" class="panel-collapse collapse">
+            <div id="collapse1" class="panel-collapse collapse">
+              <div class="panel-body">                
+                <% @contacts.each do |contact| %>
+                  <% @students.each do |student| %>
+                    <% if contact.user_id == student.id %>
+                      <div class="board-1">
+                        <% if contact.guardian_post_count1 == 1 && contact.title_3.present? %>
+                          <%= link_to "新規投稿：#{contact.title_3}" ,schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
+                        <% elsif contact.guardian_post_count1 > contact.before_guardian_postcount1 && contact.title_3.present? %>
+                          <%= link_to "返信：#{contact.title_3}" ,schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
+                        <% elsif contact.guardian_post_count1 == 1 && contact.title_3.blank? && contact.guardian_note_1.present? %>
+                          <%= link_to "新規投稿：無題", schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
+                        <% elsif contact.guardian_post_count1 > contact.before_guardian_postcount1 && contact.title_3.blank? && contact.guardian_note_1.present? %>
+                          <%= link_to "返信：無題", schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
+                        <% end %>  
+                          <%= l(contact.contact_update5, format: :short) if contact.contact_update5.present? %>
+                      </div> 
+                      <% end %>
+                    <% end %>
+                  <% end %>             
+                </div>
+              </div>
+            </div>                                                                                         
+          </tr>
+        </thead>
+        <thead>      
+          <tr>            
+            <div class="panel-group">
+              <div class="panel board-panel">  
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse2">🔽 担任への連絡（返信）投稿通知</a>
+                  </h4>
+                </div>
+              </div>    
+              <div id="collapse2" class="panel-collapse collapse">
+                <div class="panel-body">                
+                  <% @contact_reply.each do |contact| %>
+                    <% @students.each do |student| %>
+                      <% @teachers.each do |teacher| %>  
+                        <% if contact.user_id == student.id %>
+                          <% if teacher.class_number == student.class_belongs %>
+                            <div class="board-2">  
+                              <% if contact.guardian_post_count4 > 0 && contact.title_4.present? %>  
+                                <%= link_to "返信：#{contact.title_4}", schoolclasses_edit_guardianwhat_contact_user_path(student, date: contact.contact_date) %>
+                              <% elsif contact.guardian_post_count4 > 0 && contact.title_4.blank? && contact.guardian_note_3 %>
+                                <%= link_to "返信：無題", schoolclasses_edit_guardianwhat_contact_user_path(student, date: contact.contact_date) %>                                                 
+                              <% end %>                                            
+                                <%= l(contact.contact_update8, format: :short) if contact.contact_update8.present? %>
+                            </div>
+                          <% end %>
+                        <% end %>  
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>                                                                                         
+          </tr>
+        </thead>
+        <thead>      
+          <tr>            
+            <div class="panel-group">
+              <div class="panel board-panel">  
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse3">🔽 学級だより投稿通知</a>
+                  </h4>
+                </div>
+              </div>    
+              <div id="collapse3" class="panel-collapse collapse">
                 <div class="panel-body">                
                   <% @boards.each do |board| %> 
                     <% @bord_student.each do |student| %>     
                       <% if student.class_belongs == board.board_class %>
-                        <div class="board">  
+                        <div class="board-3">  
                           <%= link_to "#{board.board_class}学級だよりが投稿されました。", schoolclasses_show_board_user_path(student, date: board.contact_date) %>
                           <%= l(board.board_update, format: :short) if board.board_update.present? %>                                               
                         </div>
@@ -326,4 +378,4 @@
       </div>
     <% end %> 
   <% end %>
-</body>
+</div>

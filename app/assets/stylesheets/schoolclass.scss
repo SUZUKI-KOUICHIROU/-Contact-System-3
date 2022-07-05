@@ -459,10 +459,10 @@ input[type="text"] {
     border: medium solid #FF9933;
     border-bottom-color: #FF9933;  
   }
-  .board-1 {
+  .board-index-1 {
     width: 30%;
   }
-  .board-2 {
+  .board-index-2 {
     width: 70%;
   }
 }
@@ -479,3 +479,43 @@ input[type="text"] {
 	height: 100px;
   background: #DDFFFF;
 }
+
+.line-title {
+  margin: auto;
+  margin-bottom: 15px;
+  font-family: ヒラギノ丸ゴ ProN;
+  font-size: 15px;
+  color: #111111;
+  border-style: outset;
+  border: 10px outset #0066FF;
+  border-width:10px;
+  width: 400px;
+	height: 100px;
+  background: #DDFFFF;
+}
+
+.line-create {
+  textarea {
+    font-size: 20px;
+    font-weight: bold;
+    width:1200px;
+    height:50px;
+    border: solid 3px #FF0461;/*線*/
+    border-radius: 10px;/*角の丸み*/
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.line-register {
+  font-size: 20px;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  color: #2c2c2f;
+  background: #CCFFCC;	
+  height: 50px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+

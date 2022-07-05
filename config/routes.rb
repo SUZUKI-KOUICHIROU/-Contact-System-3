@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get    '/login', to: 'sessions#new'
   post   '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  
+
   resources :users do
     member do
       delete 'student_destroy'
@@ -86,6 +86,10 @@ Rails.application.routes.draw do
 
       get 'show_student'
       get 'schoolclasses/show_board2'
+      
+      get 'schoolclasses/edit_teacher_line'
+      patch 'schoolclasses/update_teacher_line'
+      get 'schoolclasses/line_aarticipation'
     end
   end
   resources :schoolclasses do
@@ -94,8 +98,6 @@ Rails.application.routes.draw do
   end
   resources :classnumbers do
   end
-  resources :notifications, only: :index
-  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

@@ -15,11 +15,11 @@
             'text-danger'
             end %> 
         
-          <div class="board-1">
+          <div class="board-index-1">
             <th class="<%= css_class %>"><%= l(news.contact_date, format: :short) %>
               <%= "(""#{$days_of_the_week[news.contact_date.wday]})" %></th>
             </th>
-            <th class="board-2"><%= link_to "#{news.board_title}", schoolclasses_show_board2_user_path(@user, date: news.contact_date) %></th>
+            <th class="board-index-2"><%= link_to "#{news.board_title}", schoolclasses_show_board2_user_path(@user, date: news.contact_date) %></th>
         <tr> 
         <% end %> 
       <% end %>
