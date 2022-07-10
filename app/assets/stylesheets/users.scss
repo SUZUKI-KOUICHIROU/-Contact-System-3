@@ -704,20 +704,29 @@ input[type="password"] {
 .top-page {
   font-size: 20px;
   font-weight: bolder;
-  background: #EEFFFF;
   border-radius: 10px; 
   background-clip: border-box;
   width: 103%;
-  height: 18%;  
+  height: 18%;
 }
 
 .top-text {
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 60px;
 }
 
 .box-1 {
   line-height: 21px;
+}
+
+.top-test {
+  margin-left: 215px;
+  background: #EEFFFF;
+  width: 600px;
+  height: 350px;
+}
+
+.top-test2 {
+  margin-left: 23px;
 }
 
 

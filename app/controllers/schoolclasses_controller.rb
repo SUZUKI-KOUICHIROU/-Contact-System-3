@@ -14,49 +14,7 @@ class SchoolclassesController < ApplicationController
   before_action :correct_teacher_user, only: %i(index_teacher_contact)
   before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact index_teacher_contact index_guardian_contact board_create_index guardian_board_index edit_teacher_line) 
   
-
-  require 'net/http'
-  require 'uri' 
   
-  class LineNotify
-    
-    def self.user
-      user = User.where(teacher: true)
-    end
-
-    TOKEN = "token".freeze
-    URL = 'https://notify-api.line.me/api/notify'.freeze
-    
-    attr_reader :message
-
-    def self.class_board(message)
-      new(message).class_board
-    end
-  
-    def initialize(message)
-      @message = message
-    end
-  
-    def class_board
-      Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |https|
-        https.request(request)
-      end
-    end
-  
-    private
-  
-    def request
-      request = Net::HTTP::Post.new(uri)
-      request['Authorization'] = "Bearer #{TOKEN}"
-      request.set_form_data(message: message)
-      request
-    end
-  
-    def uri
-      URI.parse(URL)
-    end
-  end
-
   def edit_teacher_line
     @schoolclass = Schoolclass.find(params[:id])
     @line_teacher = @user.schoolclasses.where(contact_date: @first_day)

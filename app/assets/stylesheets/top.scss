@@ -1,5 +1,18 @@
 
 .bg_test {
   background-image: url(hischool-classroom-D60a7722.jpeg);  
-  height: 1500px;  
+  height: 1500px;
+  background-size: cover;  
+}
+
+.btn-image {
+  margin-top: 20px;
+  width: 220px;
+  height: 65px;
+  background-image: url(btn_login_base.png);
+  background-size: cover;
+}
+
+.btn-image:hover {
+  opacity: 0.6;
 }
