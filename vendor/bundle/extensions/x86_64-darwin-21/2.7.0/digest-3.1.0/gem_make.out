@@ -1,0 +1,18 @@
+current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/gems/digest-3.1.0/ext/digest/sha2
+/Users/suzukikouichirou/.rbenv/versions/2.7.5/bin/ruby -I /Users/suzukikouichirou/.rbenv/versions/2.7.5/lib/ruby/site_ruby/2.7.0 -r ./siteconf20220714-10224-fbutcb.rb extconf.rb
+checking for u_int8_t... yes
+checking for sys/cdefs.h... yes
+creating Makefile
+
+current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/gems/digest-3.1.0/ext/digest/sha2
+make DESTDIR\= clean
+
+current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/gems/digest-3.1.0/ext/digest/sha2
+make DESTDIR\=
+compiling sha2init.c
+compiling sha2.c
+linking shared-object digest/sha2.bundle
+
+current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/gems/digest-3.1.0/ext/digest/sha2
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 sha2.bundle ./.gem.20220714-10224-147ucmu/digest

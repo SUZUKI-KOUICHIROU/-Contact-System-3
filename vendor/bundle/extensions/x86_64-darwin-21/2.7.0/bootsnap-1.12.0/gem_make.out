@@ -1,0 +1,15 @@
+current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/gems/bootsnap-1.12.0/ext/bootsnap
+/Users/suzukikouichirou/.rbenv/versions/2.7.5/bin/ruby -I /Users/suzukikouichirou/.rbenv/versions/2.7.5/lib/ruby/site_ruby/2.7.0 -r ./siteconf20220714-10224-m8o5v.rb extconf.rb
+creating Makefile
+
+current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/gems/bootsnap-1.12.0/ext/bootsnap
+make DESTDIR\= clean
+
+current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/gems/bootsnap-1.12.0/ext/bootsnap
+make DESTDIR\=
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+
+current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/gems/bootsnap-1.12.0/ext/bootsnap
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20220714-10224-10rh85/bootsnap
