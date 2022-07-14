@@ -55,6 +55,3 @@ User.create!(name: "担任6",
   password: "password",
   password_confirmation: "password",
   teacher: true)
-  
-
-  
