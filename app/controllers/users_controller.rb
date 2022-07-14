@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: %i(edit update edit_teacher destroy show_teacher_contact student_detail student_index student_index_2 student_index_3
+  before_action :set_user, only: %i(show edit update edit_teacher destroy show_teacher_contact student_detail student_index student_index_2 student_index_3
                                     edit_student_1 update_student_1 new_student create_student edit_student update_student show_student edit_student_2 
                                     edit_admin update_admin edit_teacher update_teacher edit_guardian update_guardian guardian_detail guardian_destroy)
   before_action :logged_in_user, only: %i(show destroy teacher_destroy guardian_destroy)
@@ -18,7 +18,6 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = User.find_by(id: params[:id])
     @students = @user.students.where(params[:id]).order(:class_belongs)
     @guardian = @user.students.where(user_id: @user.id)
     
@@ -56,7 +55,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(guardian_params)
     if @user.save
-      log_in @user
+      #log_in @user
       flash[:success] = 'アカウント作成に成功しました。'
       redirect_to @user
     else
