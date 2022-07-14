@@ -57,6 +57,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = 'アカウント作成に成功しました。'
+      redirect_to current_user
     else
       flash[:danger] = '失敗しました。'
       render :new
