@@ -3,12 +3,12 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i(show edit update edit_teacher destroy show_teacher_contact student_detail student_index student_index_2 student_index_3
                                     edit_student_1 update_student_1 new_student create_student edit_student update_student show_student edit_student_2 
                                     edit_admin update_admin edit_teacher update_teacher edit_guardian update_guardian guardian_detail guardian_destroy)
-  before_action :logged_in_user, only: %i(show destroy teacher_destroy guardian_destroy)
-  before_action :correct_user, only: %i(guardian_detail edit_guardian)
-  before_action :admin_teacheredit_user, only: %i(edit_teacher)
-  before_action :admin_user, only: %i(teacher_index student_index_2 student_detail new_teacher teacher_contact_index edit_teacher_contact
+  #before_action :logged_in_user, only: %i(show destroy teacher_destroy guardian_destroy)
+  #before_action :correct_user, only: %i(guardian_detail edit_guardian)
+  #before_action :admin_teacheredit_user, only: %i(edit_teacher)
+  #before_action :admin_user, only: %i(teacher_index student_index_2 student_detail new_teacher teacher_contact_index edit_teacher_contact
                                       student_index_3 edit_admin student_destroy destroy guardian_destroy)
-  before_action :teacher_user, only: %i(student_index student_destroy2)
+  #before_action :teacher_user, only: %i(student_index student_destroy2)
   before_action :class_choice, only: %i(new_teacher create_teacher edit_teacher new_student edit_student edit_student_2)
   before_action :set_one_month, only: %i(show)
   
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(guardian_params)
     if @user.save
-      #log_in @user
+      log_in @user
       flash[:success] = 'アカウント作成に成功しました。'
       redirect_to @user
     else
