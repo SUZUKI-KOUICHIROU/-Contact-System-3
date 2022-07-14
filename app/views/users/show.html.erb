@@ -235,7 +235,7 @@
   <% end %>
   
   <% if logged_in? %>
-    <% unless current_user.admin? || current_user.teacher? %>     
+    <% unless current_user.admin? && current_user.teacher? %>     
       <div>
         <table class="table table-bordered table-condensed table-hover" id="table-show-guardian">
           <tr>
