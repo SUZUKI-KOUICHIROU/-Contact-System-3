@@ -240,7 +240,7 @@ DEPENDENCIES
   sqlite3 (~> 1.4)
   stimulus-rails
   turbo-rails
-  turbolinks (~> 5)
+  turbolinks
   tzinfo-data
   web-console
   will_paginate
