@@ -253,7 +253,7 @@
 
         <table class="table table-bordered table-condensed table-hover" id="table-show-student">
           <thead>   
-            <!--% if @students.present? %-->  
+            <% if @students.present? %>  
               <tr>  
                 <th>クラス</th>
                 <th>LINE</th>
@@ -261,7 +261,7 @@
                 <th>連絡</th>
                 <th>学級お知らせ</th>
               </tr>
-            <!--% end %-->
+            <% end %>
           </thead>
             <% @students.each do |student| %>
               <tr>
