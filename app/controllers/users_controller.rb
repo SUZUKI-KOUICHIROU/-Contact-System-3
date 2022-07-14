@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    @students = @user.students.where(user_id: @user.id).order(:class_belongs)
+    @students = @user.students.where(params[:id]).order(:class_belongs)
     @guardian = @user.students.where(user_id: @user.id)
     
     #管理者
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = 'アカウント作成に成功しました。'
-      redirect_to current_user
+      redirect_to @user
     else
       flash[:danger] = '失敗しました。'
       render :new
