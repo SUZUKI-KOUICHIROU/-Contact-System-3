@@ -48,11 +48,11 @@ class UsersController < ApplicationController
   end
   
   #保護者
-  def new
+  def new_guardian
     @user = User.new
   end
 
-  def create
+  def create_guardian
     @user = User.new(guardian_params)
     if @user.save
       log_in @user
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       flash[:danger] = '失敗しました。'
-      render :new
+      render :new_guardian
     end
   end
 
