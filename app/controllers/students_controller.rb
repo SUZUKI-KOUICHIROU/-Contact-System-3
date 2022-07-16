@@ -14,6 +14,7 @@ class StudentsController < ApplicationController
   def create
     #@student = current_user.students.build(student_params)
     @student = Student.new(student_params)
+    @student.user = current_user
     if @student.save
       flash[:success] = '生徒登録が完了しました。'
       redirect_to current_user
