@@ -12,7 +12,8 @@ class StudentsController < ApplicationController
   end
 
   def create
-    @student = current_user.students.build(student_params)
+    #@student = current_user.students.build(student_params)
+    @student = Student.new(student_params)
     if @student.save
       flash[:success] = '生徒登録が完了しました。'
       redirect_to current_user
@@ -47,8 +48,7 @@ class StudentsController < ApplicationController
   private
 
     def student_params
-      params.require(:student).permit(:student_name, :class_belongs, :student_number, :birthday, :classnumber_id)
-      #params.require(:student).permit(:student_name, :class_belongs, :student_number, :birthday, :classnumber_id).merge(guardian_name: current_user.name)
+      params.require(:student).permit(:student_name, :class_belongs, :student_number, :birthday, :classnumber_id).merge(guardian_name: current_user.name)
     end
 
     def student_update_params
