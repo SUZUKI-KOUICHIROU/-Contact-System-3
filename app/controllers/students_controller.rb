@@ -47,7 +47,8 @@ class StudentsController < ApplicationController
   private
 
     def student_params
-      params.require(:student).permit(:student_name, :class_belongs, :student_number, :birthday, :classnumber_id).merge(guardian_name: current_user.name)
+      params.require(:student).permit(:student_name, :class_belongs, :student_number, :birthday, :classnumber_id)
+      #params.require(:student).permit(:student_name, :class_belongs, :student_number, :birthday, :classnumber_id).merge(guardian_name: current_user.name)
     end
 
     def student_update_params
