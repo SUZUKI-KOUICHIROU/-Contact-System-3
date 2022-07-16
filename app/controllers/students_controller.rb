@@ -12,9 +12,7 @@ class StudentsController < ApplicationController
   end
 
   def create
-    #@student = current_user.students.create!(student_params)
-    @student = current_user.students.create!(student_params)
-    @student.user_id = current_user.id
+    @student = Student.new(student_params)
     if @student.save
       flash[:success] = '生徒登録が完了しました。'
       redirect_to current_user
