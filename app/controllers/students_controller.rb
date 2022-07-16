@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
 
-  before_action :set_user, only: %i(new create student_detail)
+  before_action :set_user, only: %i(new create student_detail edit_student update_student)
   before_action :set_student, only: %i(student_detail edit_student update_student destroy)
   before_action :class_choice, only: %i(new create edit_student)
   before_action :correct_user, only: %i(new)
@@ -47,7 +47,7 @@ class StudentsController < ApplicationController
   private
 
     def student_params
-      params.require(:student).permit(:student_name, :class_belongs, :student_number, :birthday, :classnumber_id).merge(guardian_name: current_user.name)
+      params.require(:student).permit(:student_name, :class_belongs, :student_number, :birthday, :classnumber_id).merge(user_id: @user.id, guardian_name: current_user.name)
     end
 
     def student_update_params
