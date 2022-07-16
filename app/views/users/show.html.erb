@@ -251,7 +251,8 @@
         </table>
         <table class="table table-bordered table-condensed table-hover" id="table-show-student">
           <thead>
-            <% unless @students.nil? %>    
+            <% @students.each do |student| %>
+            <% if student.present? %>    
               <tr>  
                 <th>クラス</th>
                 <th>LINE</th>
@@ -259,6 +260,7 @@
                 <th>連絡</th>
                 <th>学級お知らせ</th>
               </tr>
+            <% end %>
             <% end %>
           </thead>          
         </table>
