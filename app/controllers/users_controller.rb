@@ -18,8 +18,9 @@ class UsersController < ApplicationController
   end
   
   def show
+    @student = Student.find(params[:id])
     #@students = @user.students.where(params[:id]).order(:class_belongs)
-    @students = Student.where(params[:id]).order(:class_belongs)
+    @students = Student.where(params[:id])
     @guardian = @user.students.where(user_id: @user.id)
     
     #管理者
