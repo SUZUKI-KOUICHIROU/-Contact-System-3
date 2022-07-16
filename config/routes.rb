@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post   '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  get  'users#show'
+
   get 'new_guardian', to: 'users#new_guardian'
   post 'create_guardian', to: 'users#create_guardian'
   
