@@ -13,7 +13,7 @@ class StudentsController < ApplicationController
 
   def create
     #@student = current_user.students.create!(student_params)
-    @student = Student.new(student_params)
+    @student = current_user.students.create!(student_params)
     @student.user_id = current_user.id
     if @student.save
       flash[:success] = '生徒登録が完了しました。'
