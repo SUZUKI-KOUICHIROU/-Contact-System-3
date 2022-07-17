@@ -313,8 +313,6 @@ class SchoolclassesController < ApplicationController
       contact = Schoolclass.find(id)
       if contact.update(item.merge(board_class: @user.class_number, board_update: Time.current.change(sec: 0)))
         flash[:success] = '投稿しました。'
-        ruby line-send.rb
-        #LineNotify.class_board('学級だよりが投稿されました')
       else
         flash[:danger] = "失敗しました。" 
       end
