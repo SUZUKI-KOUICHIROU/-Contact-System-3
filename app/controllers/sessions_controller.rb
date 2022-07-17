@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     request.content_type = "application/x-www-form-urlencoded"
     request.set_form_data(
       "client_id" => "1657280915",
-      #"client_secret" => "xxx",
+      "client_secret" => "state",
       "code" => params[:code],
       "grant_type" => "authorization_code",
       "redirect_uri" => "https://arcane-peak-28945.herokuapp.com",
