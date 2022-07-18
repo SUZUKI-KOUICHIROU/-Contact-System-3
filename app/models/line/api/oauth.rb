@@ -6,7 +6,7 @@ request.set_form_data(
   "client_secret" => "state",
   "code" => params[:code],
   "grant_type" => "authorization_code",
-  "redirect_uri" => "http://localhost:8000/line_logins",
+  "redirect_uri" => "https://arcane-peak-28945.herokuapp.com",
 )
 
 req_options = {
