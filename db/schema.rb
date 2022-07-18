@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_16_121431) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_18_040143) do
+  create_table "admins", force: :cascade do |t|
+    t.integer "line_messaging_id", null: false
+    t.string "line_messaging_secret", null: false
+    t.string "line_messaging_token", null: false
+    t.integer "line_login_id", null: false
+    t.string "line_login_secret", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "classnumbers", force: :cascade do |t|
     t.string "class_name"
     t.datetime "created_at", null: false

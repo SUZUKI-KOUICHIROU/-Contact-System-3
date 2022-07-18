@@ -1,18 +1,16 @@
-uri = URI.parse("https://api.line.me/oauth2/v2.1/token")
-request = Net::HTTP::Post.new(uri)
-request.content_type = "application/x-www-form-urlencoded"
-request.set_form_data(
-  "client_id" => "1657280915",
-  "client_secret" => "state",
-  "code" => params[:code],
-  "grant_type" => "authorization_code",
-  "redirect_uri" => "https://arcane-peak-28945.herokuapp.com",
-)
+AUTH_URI = 'https://access.line.me/oauth2/v2.1/authorize'
 
-req_options = {
-  use_ssl: uri.scheme == "https",
-}
+def auth_uri(state)
+  params = {
+    response_type: 'code',
+    client_id: @admin.line_login_id,
+    redirect_uri: callback_uri,
+    state: state,
+    scope: 'openid',
+    prompt: 'consent', # 必ずLINE認証を許可するようにするオプション
+    bot_prompt: 'aggressive' # ログイン後に連携した公式アカウントと友だちになるか聞く画面を出してくれる
+  }
 
-response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-  http.request(request)
+  # NOTE: https://developers.line.biz/ja/docs/line-login/integrate-line-login/#making-an-authorization-request
+  "#{AUTH_URI}?#{params.to_query}"
 end
