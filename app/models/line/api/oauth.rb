@@ -5,9 +5,9 @@ class Line::Api::Oauth
   def auth_uri(state)
     params = {
       response_type: 'code',
-      client_id: @admin.line_login_id,
-      redirect_uri: callback_uri,
-      state: state,
+      client_id: '1657280915',
+      redirect_uri: 'https://arcane-peak-28945.herokuapp.com',
+      state: 'User.new_token',
       scope: 'openid%20email',
       prompt: 'consent', # 必ずLINE認証を許可するようにするオプション
       bot_prompt: 'aggressive' # ログイン後に連携した公式アカウントと友だちになるか聞く画面を出してくれる
