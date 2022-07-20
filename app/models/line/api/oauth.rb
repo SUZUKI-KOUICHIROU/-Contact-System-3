@@ -10,7 +10,7 @@ class Line::Api::Oauth
       state: 'User.new_token',
       scope: 'openid%20email',
       prompt: 'consent', # 必ずLINE認証を許可するようにするオプション
-      bot_prompt: 'aggressive' # ログイン後に連携した公式アカウントと友だちになるか聞く画面を出してくれる
+      #bot_prompt: 'aggressive' # ログイン後に連携した公式アカウントと友だちになるか聞く画面を出してくれる
     }
 
     # NOTE: https://developers.line.biz/ja/docs/line-login/integrate-line-login/#making-an-authorization-request
