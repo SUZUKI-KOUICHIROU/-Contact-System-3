@@ -12,6 +12,13 @@ class UsersController < ApplicationController
   before_action :class_choice, only: %i(new_teacher create_teacher edit_teacher new_student edit_student edit_student_2)
   before_action :set_one_month, only: %i(show)
   
+  def index
+    admin = Admin.find(params[:admin_id])
+
+    state = SecureRandom.hex(32)
+    session[:state] = state
+    redirect_to Line::Api::Oauth.new(admin).auth_uri(state)
+  end
   
   def index
     @users = User.paginate(page: params[:page])
