@@ -1,4 +1,4 @@
-module Line::Api::Oauth 
+class Line::Api::Oauth 
 
   AUTH_URI = 'https://access.line.me/oauth2/v2.1/authorize'
 
