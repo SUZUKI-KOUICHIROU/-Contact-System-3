@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def index
-    admin = Admin.find(params[:admin_id])
+    admin = User.find(params[:id])
 
     state = SecureRandom.hex(32)
     session[:state] = state
