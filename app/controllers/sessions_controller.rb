@@ -1,12 +1,4 @@
 class SessionsController < ApplicationController
-
-  def index
-    admin = User.find_by(admin: true)
-
-    state = SecureRandom.hex(32)
-    session[:state] = state
-    redirect_to Line::Api::Oauth.new(admin).auth_uri(state)
-  end
   
   def new
   end
