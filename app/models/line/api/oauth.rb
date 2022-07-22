@@ -1,4 +1,6 @@
-class Line::Api::Oauth 
+module Line
+  module Api  
+    class Oauth 
 
   AUTH_URI = 'https://access.line.me/oauth2/v2.1/authorize'
 
@@ -8,7 +10,7 @@ class Line::Api::Oauth
       client_id: @admin.line_login_id,
       redirect_uri: callback_uri,
       state: state,
-      scope: 'openid',
+      scope: 'openid%20email',
       prompt: 'consent', # 必ずLINE認証を許可するようにするオプション
       bot_prompt: 'aggressive' # ログイン後に連携した公式アカウントと友だちになるか聞く画面を出してくれる
     }
