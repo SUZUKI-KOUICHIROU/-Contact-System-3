@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_18_221147) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_24_040858) do
   create_table "admins", force: :cascade do |t|
     t.integer "line_messaging_id", null: false
     t.string "line_messaging_secret", null: false
@@ -123,6 +123,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_18_221147) do
     t.integer "age"
     t.string "address"
     t.string "telephone_number"
+    t.integer "line_login_id"
+    t.string "line_login_secret"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
