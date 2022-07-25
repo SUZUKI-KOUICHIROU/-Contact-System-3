@@ -1,5 +1,5 @@
 module Line::Api
-  class Oauth
+  class Oauth < Base
 
     AUTH_URI = 'https://access.line.me/oauth2/v2.1/authorize'
 

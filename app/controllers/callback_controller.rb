@@ -1,6 +1,6 @@
 class CallbackController < ApplicationController
   def index
-    admin = User.find(1)
+    admin = Admin.find(params[:admin_id])
 
     # stateが異なっていたら例外を出す
     raise Line::InvalidState unless params[:state] == session[:state]

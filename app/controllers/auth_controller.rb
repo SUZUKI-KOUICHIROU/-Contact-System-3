@@ -1,7 +1,7 @@
 class AuthController < ApplicationController
   
   def index
-    admin = User.find(1)
+    admin = Admin.find(params[:admin_id]) 
 
     state = User.new_token
     session[:state] = state
