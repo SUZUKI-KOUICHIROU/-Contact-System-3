@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   def guardian_detail
   end
   
-  #保護者
+  #保護者登録
   def new_guardian
     @user = User.new
   end
