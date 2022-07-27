@@ -51,5 +51,4 @@
         end
         JSON.parse(handle_error(res).body)
       end
-  end
-end
+  
