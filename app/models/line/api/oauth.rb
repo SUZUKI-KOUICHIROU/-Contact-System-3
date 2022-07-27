@@ -1,4 +1,4 @@
-
+module  Line::Api::Oauth
 
     AUTH_URI = 'https://access.line.me/oauth2/v2.1/authorize'
 
@@ -51,4 +51,4 @@
         end
         JSON.parse(handle_error(res).body)
       end
-  
+end  
