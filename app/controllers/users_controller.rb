@@ -12,6 +12,24 @@ class UsersController < ApplicationController
   before_action :class_choice, only: %i(new_teacher create_teacher edit_teacher new_student edit_student edit_student_2)
   before_action :set_one_month, only: %i(show)
 
+  uri = URI.parse("https://api.line.me/oauth2/v2.1/token")
+  request = Net::HTTP::Post.new(uri)
+  request.content_type = "application/x-www-form-urlencoded"
+  request.set_form_data(
+    "client_id" => "1657280915",
+    "client_secret" => "cc7c356442bf9f19ae7ba641e9d349b5",
+    "code" => params[:code],
+    "grant_type" => "authorization_code",
+    "redirect_uri" => "https://arcane-peak-28945.herokuapp.com",
+  )
+
+  req_options = {
+    use_ssl: uri.scheme == "https",
+  }
+
+  response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+    http.request(request)
+  end
   
   def index
     @users = User.paginate(page: params[:page])

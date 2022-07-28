@@ -10,27 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_25_042230) do
-  create_table "admins", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
-    t.integer "line_messaging_id", null: false
-    t.string "line_messaging_secret", null: false
-    t.string "line_messaging_token", null: false
-    t.integer "line_login_id", null: false
-    t.string "line_login_secret", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "classnumbers", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2022_07_28_033202) do
+  create_table "classnumbers", force: :cascade do |t|
     t.string "class_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "schoolclasses", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "schoolclasses", force: :cascade do |t|
     t.date "contact_date"
     t.string "note"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "school_year"
@@ -85,19 +75,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_25_042230) do
     t.index ["user_id"], name: "index_schoolclasses_on_user_id"
   end
 
-  create_table "students", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "students", force: :cascade do |t|
     t.string "student_name"
     t.date "birthday"
     t.string "class_belongs"
     t.integer "student_number"
     t.string "guardian_name"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_students_on_user_id"
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
