@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post   '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  get  '/login', to: 'users/id/callback'
+  get 'callback#index'
 
   get 'new_guardian', to: 'users#new_guardian'
   post 'create_guardian', to: 'users#create_guardian'

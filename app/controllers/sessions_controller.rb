@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def index
-    admin = User.find(params[:user_id])
+    admin = User.find(params[:id])
 
     state = User.new_token
     session[:state] = state
