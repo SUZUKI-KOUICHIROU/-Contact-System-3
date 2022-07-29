@@ -51,3 +51,5 @@ def verify_id_token(access_token_data)
   end
   JSON.parse(handle_error(res).body)
 end
+
+end
