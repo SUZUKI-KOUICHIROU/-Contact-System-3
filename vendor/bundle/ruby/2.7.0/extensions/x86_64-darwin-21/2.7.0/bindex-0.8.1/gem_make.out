@@ -1,5 +1,5 @@
 current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/ruby/2.7.0/gems/bindex-0.8.1/ext/skiptrace
-/Users/suzukikouichirou/.rbenv/versions/2.7.5/bin/ruby -I /Users/suzukikouichirou/.rbenv/versions/2.7.5/lib/ruby/site_ruby/2.7.0 -r ./siteconf20220308-32397-1i4nuud.rb extconf.rb
+/Users/suzukikouichirou/.rbenv/versions/2.7.5/bin/ruby -I /Users/suzukikouichirou/.rbenv/versions/2.7.5/lib/ruby/site_ruby/2.7.0 -r ./siteconf20220729-45168-1guy411.rb extconf.rb
 creating Makefile
 
 current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/ruby/2.7.0/gems/bindex-0.8.1/ext/skiptrace
@@ -12,4 +12,4 @@ linking shared-object skiptrace/internal/cruby.bundle
 
 current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/ruby/2.7.0/gems/bindex-0.8.1/ext/skiptrace
 make DESTDIR\= install
-/usr/bin/install -c -m 0755 cruby.bundle ./.gem.20220308-32397-1jjnfmm/skiptrace/internal
+/usr/bin/install -c -m 0755 cruby.bundle ./.gem.20220729-45168-jyol6z/skiptrace/internal

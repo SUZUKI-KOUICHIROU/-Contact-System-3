@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   
+  devise_for :admins, controllers: {
+    omniauth_callbacks: "omniauth_callbacks"
+  }
+
+  get 'homes/index'
+  
   get 'sessions/new'
   root 'static_pages#top'
   get '/signup', to: 'users#new'

@@ -389,7 +389,7 @@ checked program was:
 ld: warning: directory not found for option '-L/usr/local/opt/sqlite/lib'
 Undefined symbols for architecture x86_64:
   "_sqlite3_enable_load_extension", referenced from:
-      _t in conftest-5a1f82.o
+      _t in conftest-c304fa.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:
@@ -442,7 +442,7 @@ checked program was:
 ld: warning: directory not found for option '-L/usr/local/opt/sqlite/lib'
 Undefined symbols for architecture x86_64:
   "_sqlite3_load_extension", referenced from:
-      _t in conftest-e12620.o
+      _t in conftest-34c7ed.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:

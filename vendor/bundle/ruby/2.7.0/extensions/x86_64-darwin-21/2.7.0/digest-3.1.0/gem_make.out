@@ -1,5 +1,5 @@
 current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/ruby/2.7.0/gems/digest-3.1.0/ext/digest/sha2
-/Users/suzukikouichirou/.rbenv/versions/2.7.5/bin/ruby -I /Users/suzukikouichirou/.rbenv/versions/2.7.5/lib/ruby/site_ruby/2.7.0 -r ./siteconf20220308-32397-63tw40.rb extconf.rb
+/Users/suzukikouichirou/.rbenv/versions/2.7.5/bin/ruby -I /Users/suzukikouichirou/.rbenv/versions/2.7.5/lib/ruby/site_ruby/2.7.0 -r ./siteconf20220729-45168-c2rzry.rb extconf.rb
 checking for u_int8_t... yes
 checking for sys/cdefs.h... yes
 creating Makefile
@@ -15,4 +15,4 @@ linking shared-object digest/sha2.bundle
 
 current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/ruby/2.7.0/gems/digest-3.1.0/ext/digest/sha2
 make DESTDIR\= install
-/usr/bin/install -c -m 0755 sha2.bundle ./.gem.20220308-32397-gxw1el/digest
+/usr/bin/install -c -m 0755 sha2.bundle ./.gem.20220729-45168-y073jv/digest

@@ -68,7 +68,7 @@ checked program was:
 "clang -o conftest -I/Users/suzukikouichirou/.rbenv/versions/2.7.5/include/ruby-2.7.0/x86_64-darwin21 -I/Users/suzukikouichirou/.rbenv/versions/2.7.5/include/ruby-2.7.0/ruby/backward -I/Users/suzukikouichirou/.rbenv/versions/2.7.5/include/ruby-2.7.0 -I. -I/Users/suzukikouichirou/.rbenv/versions/2.7.5/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -g -O2 -fno-common -pipe conftest.c  -L. -L/Users/suzukikouichirou/.rbenv/versions/2.7.5/lib -L. -L/Users/suzukikouichirou/.rbenv/versions/2.7.5/lib  -fstack-protector-strong -L/usr/local/lib     -lruby.2.7   "
 Undefined symbols for architecture x86_64:
   "_rb_enc_interned_str", referenced from:
-      _t in conftest-3255d4.o
+      _t in conftest-77d602.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:
@@ -124,7 +124,7 @@ checked program was:
 "clang -o conftest -I/Users/suzukikouichirou/.rbenv/versions/2.7.5/include/ruby-2.7.0/x86_64-darwin21 -I/Users/suzukikouichirou/.rbenv/versions/2.7.5/include/ruby-2.7.0/ruby/backward -I/Users/suzukikouichirou/.rbenv/versions/2.7.5/include/ruby-2.7.0 -I. -I/Users/suzukikouichirou/.rbenv/versions/2.7.5/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -g -O2 -fno-common -pipe conftest.c  -L. -L/Users/suzukikouichirou/.rbenv/versions/2.7.5/lib -L. -L/Users/suzukikouichirou/.rbenv/versions/2.7.5/lib  -fstack-protector-strong -L/usr/local/lib     -lruby.2.7   "
 Undefined symbols for architecture x86_64:
   "_rb_hash_new_capa", referenced from:
-      _t in conftest-7c2eb8.o
+      _t in conftest-ab69d9.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:

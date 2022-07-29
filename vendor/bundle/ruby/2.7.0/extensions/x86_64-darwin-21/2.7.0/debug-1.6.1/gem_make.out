@@ -1,5 +1,5 @@
 current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/ruby/2.7.0/gems/debug-1.6.1/ext/debug
-/Users/suzukikouichirou/.rbenv/versions/2.7.5/bin/ruby -I /Users/suzukikouichirou/.rbenv/versions/2.7.5/lib/ruby/site_ruby/2.7.0 -r ./siteconf20220713-97026-13q2cwf.rb extconf.rb
+/Users/suzukikouichirou/.rbenv/versions/2.7.5/bin/ruby -I /Users/suzukikouichirou/.rbenv/versions/2.7.5/lib/ruby/site_ruby/2.7.0 -r ./siteconf20220729-45168-xb14el.rb extconf.rb
 creating Makefile
 
 current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/ruby/2.7.0/gems/debug-1.6.1/ext/debug
@@ -13,4 +13,4 @@ linking shared-object debug/debug.bundle
 
 current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/ruby/2.7.0/gems/debug-1.6.1/ext/debug
 make DESTDIR\= install
-/usr/bin/install -c -m 0755 debug.bundle ./.gem.20220713-97026-1gd60q7/debug
+/usr/bin/install -c -m 0755 debug.bundle ./.gem.20220729-45168-1x957hq/debug

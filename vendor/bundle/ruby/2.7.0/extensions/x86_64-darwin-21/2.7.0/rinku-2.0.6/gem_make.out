@@ -1,5 +1,5 @@
 current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/ruby/2.7.0/gems/rinku-2.0.6/ext/rinku
-/Users/suzukikouichirou/.rbenv/versions/2.7.5/bin/ruby -I /Users/suzukikouichirou/.rbenv/versions/2.7.5/lib/ruby/site_ruby/2.7.0 -r ./siteconf20220629-69572-1xj85nz.rb extconf.rb
+/Users/suzukikouichirou/.rbenv/versions/2.7.5/bin/ruby -I /Users/suzukikouichirou/.rbenv/versions/2.7.5/lib/ruby/site_ruby/2.7.0 -r ./siteconf20220729-45168-34wu55.rb extconf.rb
 creating Makefile
 
 current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/ruby/2.7.0/gems/rinku-2.0.6/ext/rinku
@@ -16,4 +16,4 @@ linking shared-object rinku.bundle
 
 current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/ruby/2.7.0/gems/rinku-2.0.6/ext/rinku
 make DESTDIR\= install
-/usr/bin/install -c -m 0755 rinku.bundle ./.gem.20220629-69572-t07bsk
+/usr/bin/install -c -m 0755 rinku.bundle ./.gem.20220729-45168-ulanc

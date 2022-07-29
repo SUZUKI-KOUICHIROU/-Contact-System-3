@@ -1,5 +1,5 @@
 current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/ruby/2.7.0/gems/sqlite3-1.4.4/ext/sqlite3
-/Users/suzukikouichirou/.rbenv/versions/2.7.5/bin/ruby -I /Users/suzukikouichirou/.rbenv/versions/2.7.5/lib/ruby/site_ruby/2.7.0 -r ./siteconf20220710-50121-z6gys3.rb extconf.rb
+/Users/suzukikouichirou/.rbenv/versions/2.7.5/bin/ruby -I /Users/suzukikouichirou/.rbenv/versions/2.7.5/lib/ruby/site_ruby/2.7.0 -r ./siteconf20220729-45168-oqmu6a.rb extconf.rb
 checking for sqlite3.h... yes
 checking for pthread_create() in -lpthread... yes
 checking for -ldl... yes
@@ -29,31 +29,31 @@ database.c:163:3: warning: 'sqlite3_trace' is deprecated: first deprecated in ma
   sqlite3_trace(ctx->db, NIL_P(block) ? NULL : tracefunc, (void *)self);
   ^~~~~~~~~~~~~
   sqlite3_trace_v2
-/Library/Developer/CommandLineTools/SDKs/MacOSX11.0.sdk/usr/include/sqlite3.h:3122:36: note: 'sqlite3_trace' has been explicitly marked deprecated here
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sqlite3.h:3222:36: note: 'sqlite3_trace' has been explicitly marked deprecated here
 SQLITE_API SQLITE_DEPRECATED void *sqlite3_trace(
                                    ^
-database.c:748:57: warning: incompatible pointer types passing 'int (VALUE, int, char **, char **)' (aka 'int (unsigned long, int, char **, char **)') to parameter of type 'int (*)(void *, int, char **, char **)' [-Wincompatible-pointer-types]
+database.c:748:57: warning: incompatible function pointer types passing 'int (VALUE, int, char **, char **)' (aka 'int (unsigned long, int, char **, char **)') to parameter of type 'int (*)(void *, int, char **, char **)' [-Wincompatible-function-pointer-types]
     status = sqlite3_exec(ctx->db, StringValuePtr(sql), hash_callback_function, callback_ary, &errMsg);
                                                         ^~~~~~~~~~~~~~~~~~~~~~
-/Library/Developer/CommandLineTools/SDKs/MacOSX11.0.sdk/usr/include/sqlite3.h:413:9: note: passing argument to parameter 'callback' here
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sqlite3.h:436:9: note: passing argument to parameter 'callback' here
   int (*callback)(void*,int,char**,char**),  /* Callback function */
         ^
 database.c:748:81: warning: incompatible integer to pointer conversion passing 'VALUE' (aka 'unsigned long') to parameter of type 'void *' [-Wint-conversion]
     status = sqlite3_exec(ctx->db, StringValuePtr(sql), hash_callback_function, callback_ary, &errMsg);
                                                                                 ^~~~~~~~~~~~
-/Library/Developer/CommandLineTools/SDKs/MacOSX11.0.sdk/usr/include/sqlite3.h:414:9: note: passing argument to parameter here
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sqlite3.h:437:9: note: passing argument to parameter here
   void *,                                    /* 1st argument to callback */
         ^
-database.c:750:57: warning: incompatible pointer types passing 'int (VALUE, int, char **, char **)' (aka 'int (unsigned long, int, char **, char **)') to parameter of type 'int (*)(void *, int, char **, char **)' [-Wincompatible-pointer-types]
+database.c:750:57: warning: incompatible function pointer types passing 'int (VALUE, int, char **, char **)' (aka 'int (unsigned long, int, char **, char **)') to parameter of type 'int (*)(void *, int, char **, char **)' [-Wincompatible-function-pointer-types]
     status = sqlite3_exec(ctx->db, StringValuePtr(sql), regular_callback_function, callback_ary, &errMsg);
                                                         ^~~~~~~~~~~~~~~~~~~~~~~~~
-/Library/Developer/CommandLineTools/SDKs/MacOSX11.0.sdk/usr/include/sqlite3.h:413:9: note: passing argument to parameter 'callback' here
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sqlite3.h:436:9: note: passing argument to parameter 'callback' here
   int (*callback)(void*,int,char**,char**),  /* Callback function */
         ^
 database.c:750:84: warning: incompatible integer to pointer conversion passing 'VALUE' (aka 'unsigned long') to parameter of type 'void *' [-Wint-conversion]
     status = sqlite3_exec(ctx->db, StringValuePtr(sql), regular_callback_function, callback_ary, &errMsg);
                                                                                    ^~~~~~~~~~~~
-/Library/Developer/CommandLineTools/SDKs/MacOSX11.0.sdk/usr/include/sqlite3.h:414:9: note: passing argument to parameter here
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sqlite3.h:437:9: note: passing argument to parameter here
   void *,                                    /* 1st argument to callback */
         ^
 5 warnings generated.
@@ -65,4 +65,4 @@ ld: warning: directory not found for option '-L/usr/local/opt/sqlite/lib'
 
 current directory: /Users/suzukikouichirou/workspace/contact_app/vendor/bundle/ruby/2.7.0/gems/sqlite3-1.4.4/ext/sqlite3
 make DESTDIR\= install
-/usr/bin/install -c -m 0755 sqlite3_native.bundle ./.gem.20220710-50121-8imxat/sqlite3
+/usr/bin/install -c -m 0755 sqlite3_native.bundle ./.gem.20220729-45168-1ok10pr/sqlite3
