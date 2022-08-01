@@ -65,7 +65,7 @@ module Net # :nodoc:
   class ProtoAuthError         < ProtocolError; end
   #class ProtoCommandError      < ProtocolError; end
   class ProtoRetriableError    < ProtocolError; end
-  #ProtocRetryError = ProtoRetriableError
+  ProtocRetryError = ProtoRetriableError
 
   ##
   # OpenTimeout, a subclass of Timeout::Error, is raised if a connection cannot
@@ -205,7 +205,7 @@ module Net # :nodoc:
 
     private
 
-    #BUFSIZE = 1024 * 16
+    BUFSIZE = 1024 * 16
 
     def rbuf_fill
       tmp = @rbuf.empty? ? @rbuf : nil
@@ -501,7 +501,7 @@ module Net # :nodoc:
 
 
   module NetPrivate   #:nodoc: obsolete
-    #Socket = ::Net::InternetMessageIO
+    Socket = ::Net::InternetMessageIO
   end
 
 end   # module Net
