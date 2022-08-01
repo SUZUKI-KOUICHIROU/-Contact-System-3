@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :schoolclasses, dependent: :destroy
   has_many :students, dependent: :destroy
 
-  before_save { self.email = email.downcase }
+  #before_save { self.email = email.downcase }
   validates :name,  presence: true, length: { maximum: 30 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 30 },
@@ -12,8 +12,8 @@ class User < ApplicationRecord
   
   validates :address, length: { maximum: 30 }
   validates :telephone_number, length: { maximum: 15 }
-  has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  #has_secure_password
+  #validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable
