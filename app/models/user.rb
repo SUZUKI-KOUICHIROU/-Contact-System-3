@@ -5,8 +5,8 @@ class User < ApplicationRecord
 
   validates :address, length: { maximum: 30 }
   validates :telephone_number, length: { maximum: 15 }
-  #has_secure_password
-  #validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  has_secure_password
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable

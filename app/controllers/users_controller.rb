@@ -69,7 +69,7 @@ class UsersController < ApplicationController
   def update_guardian
     if @user.update(guardian_params)
       flash[:success] = "保護者情報を更新しました。"
-      redirect_to current_user
+      redirect_to @user
     else
       render :edit_guardian     
     end  
