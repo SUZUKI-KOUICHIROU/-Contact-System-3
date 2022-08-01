@@ -63,9 +63,9 @@ module Net # :nodoc:
   class ProtoUnknownError      < ProtocolError; end
   class ProtoServerError       < ProtocolError; end
   class ProtoAuthError         < ProtocolError; end
-  #class ProtoCommandError      < ProtocolError; end
+  class ProtoCommandError      < ProtocolError; end
   class ProtoRetriableError    < ProtocolError; end
-  #ProtocRetryError = ProtoRetriableError
+  ProtocRetryError = ProtoRetriableError
 
   ##
   # OpenTimeout, a subclass of Timeout::Error, is raised if a connection cannot
@@ -501,7 +501,7 @@ module Net # :nodoc:
 
 
   module NetPrivate   :nodoc: obsolete
-    #Socket = ::Net::InternetMessageIO
+    Socket = ::Net::InternetMessageIO
   end
 
 end   # module Net
