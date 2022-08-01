@@ -12,9 +12,11 @@ Rails.application.routes.draw do
     post '/users/signin', to: 'devise/sessions#create'
     delete 'users/signout', to: 'devise/sessions#destroy'
     get '/users/signup', to: 'devise/registrations#new'
+    get 'users', to: 'devise/registrations#edit'
   end
-
+  
   get 'show', to: 'users#show'
+  
   #get 'sessions/new'
   #root 'static_pages#top'
   #get '/signup', to: 'users#new'
@@ -24,8 +26,8 @@ Rails.application.routes.draw do
   #post   '/login', to: 'sessions#create'
   #delete '/logout', to: 'sessions#destroy'
 
-  get 'new_guardian', to: 'users#new_guardian'
-  post 'create_guardian', to: 'users#create_guardian'
+  #get 'new_guardian', to: 'users#new_guardian'
+  #post 'create_guardian', to: 'users#create_guardian'
   
   resources :users do
     member do     

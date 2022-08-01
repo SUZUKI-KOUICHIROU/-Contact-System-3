@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   validates :address, length: { maximum: 30 }
   validates :telephone_number, length: { maximum: 15 }
-  has_secure_password
+  #has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
   # Include default devise modules. Others available are:
@@ -33,5 +33,18 @@ class User < ApplicationRecord
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
     self.save!
+  end
+
+  def update_without_current_password(params, *options)
+    params.delete(:current_password)
+
+    if params[:password].blank? && params[:password_confirmation].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
   end
 end
