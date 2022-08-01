@@ -1,0 +1,32 @@
+<% provide(:title, "Top") %>
+<div class="bg_test">
+  <h1 class="top-title">学校連絡帳</h1>
+  
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    
+    <div class="top-page">  
+        <div class="top-text">  
+          <div class="top-test">
+            <div class="top-test2">
+              <%= f.label :メールアドレス, class: "label-login" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+              
+              <%= f.label :パスワード, class: "label-login" %>
+              <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+              
+              <% if devise_mapping.rememberable? %>
+                <%= f.label :remember_me, class: "checkbox inline checkbox-login", for: "remember-me" do %>
+                <%= f.check_box :remember_me, id: "remember-me" %>
+                <span class="box-1">ログイン情報を記憶する</span>
+              <% end %>
+              
+              <%= f.submit "ログイン", class: "btn btn-success btn-login-home" %>   
+              <%= render "devise/shared/links" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -21,23 +21,18 @@ class ApplicationController < ActionController::Base
   end
   
   # ログイン済みのユーザーか確認します。
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = "ログインしてください。"
-      redirect_to login_url
-    end
-  end  
-    
+  #def logged_in_user
+    #unless logged_in?
+      #store_location
+      #flash[:danger] = "ログインしてください。"
+      #redirect_to login_url
+    #end
+  #end  
+  
   # アクセスしたユーザーが現在ログインしているユーザーか確認します。
-  #def correct_user
-    #@user = User.find(params[:id])
-    #redirect_to(root_url) unless current_user?(@user)
-  #end 
-
   def correct_user
     @user = User.find(params[:user_id]) if @user.blank?
-    unless current_user?(@user)
+    unless current_user
       flash[:danger] = "閲覧・編集権限がありません。"
       redirect_to(root_url)
     end
@@ -45,15 +40,15 @@ class ApplicationController < ActionController::Base
 
   def correct_guardian_user
     @student = Student.find(params[:id])
-    unless logged_in? && current_user.id == @student.user_id
+    unless user_signed_in? && current_user.id == @student.user_id
       flash[:danger] = "閲覧・編集権限がありません。"
       redirect_to(root_url)
     end
   end
-
+  
   def correct_administrator_user
     @student = Student.find(params[:id])
-    unless logged_in? && current_user.id == @student.user_id || current_user.admin? || current_user.teacher? && current_user.class_number == @student.class_belongs
+    unless user_signed_in? && current_user.id == @student.user_id || current_user.admin? || current_user.teacher? && current_user.class_number == @student.class_belongs
       flash[:danger] = "閲覧・編集権限がありません。"
       redirect_to(root_url)
     end
@@ -61,7 +56,7 @@ class ApplicationController < ActionController::Base
 
   def correct_teacherguardian_user
     @student = Student.find(params[:id])
-    unless logged_in? && current_user.id == @student.user_id || current_user.teacher? && current_user.class_number == @student.class_belongs
+    unless user_signed_in? && current_user.id == @student.user_id || current_user.teacher? && current_user.class_number == @student.class_belongs
       flash[:danger] = "閲覧・編集権限がありません。"
       redirect_to(root_url)
     end
@@ -69,7 +64,7 @@ class ApplicationController < ActionController::Base
 
   def correct_adminteacherguardian_user
     @user = User.find(params[:user_id]) if @user.blank?
-    unless logged_in? && current_user?(@user) || current_user.teacher? || current_user.admin?
+    unless user_signed_in? && current_user || current_user.teacher? || current_user.admin?
       flash[:danger] = "閲覧・編集権限がありません。"
       redirect_to(root_url)
     end 
@@ -86,7 +81,7 @@ class ApplicationController < ActionController::Base
   #担任権限  
   def teacher_user
     @user = User.find(params[:user_id]) if @user.blank?
-    unless current_user?(@user) && current_user.teacher?
+    unless current_user && current_user.teacher?
       flash[:danger] = "閲覧・編集権限がありません。"
       redirect_to(root_url)
     end
@@ -94,7 +89,7 @@ class ApplicationController < ActionController::Base
 
   def correct_teacher_user
     @student = Student.find(params[:id])
-    unless logged_in? && current_user.teacher? && current_user.class_number == @student.class_belongs
+    unless user_signed_in? && current_user.teacher? && current_user.class_number == @student.class_belongs
       flash[:danger] = "閲覧・編集権限がありません。"
       redirect_to(root_url)
     end
@@ -150,5 +145,16 @@ class ApplicationController < ActionController::Base
   rescue ActiveRecord::RecordInvalid # トランザクションによるエラーの分岐です。
     flash[:danger] = "ページ情報の取得に失敗しました、再アクセスしてください。"
     redirect_to root_url
+  end
+
+  private 
+  def after_sign_in_path_for(resource)
+    # ログイン後に遷移するpathを設定
+    current_user
+  end
+
+  def after_sign_out_path_for(resource)
+    # ログアウト後に遷移するpathを設定
+    root_url 
   end
 end

@@ -2,7 +2,7 @@
 
 <div class="bg_test">
   
-  <% if logged_in? && current_user.admin? %>
+  <% if user_signed_in? && current_user.admin? %>
     <div class="board-class"><h1>管理者メニュー</h1></div>
     <div> 
       <table class="table table-bordered table-condensed" id="teacher-show">
@@ -85,7 +85,7 @@
       </thead>
   <% end %>        
           
-  <% if logged_in? && current_user.teacher? %>
+  <% if user_signed_in? && current_user.teacher? %>
     <div class="board-class"><h1><%= "#{@user.class_number}：#{@user.name}" %></h1></div>
     <div> 
       <table class="table table-bordered table-condensed" id="teacher-show">
@@ -234,7 +234,7 @@
       </thead>
   <% end %>
   
-  <% if logged_in? %>
+  <% if user_signed_in? %>
     <% unless current_user.admin? || current_user.teacher? %>     
       <div>
         <table class="table table-bordered table-condensed table-hover" id="table-show-guardian">
@@ -255,7 +255,6 @@
             <% if @students.present? %>  
               <tr>  
                 <th>クラス</th>
-                <th>LINE</th>
                 <th>生徒名</th>
                 <th>連絡</th>
                 <th>学級お知らせ</th>
@@ -265,7 +264,6 @@
             <% @students.each do |student| %>
               <tr>
                 <td><%= student.class_belongs %></td>
-                <td><%= link_to "登録", schoolclasses_line_aarticipation_user_path(student) %></td>
                 <td class="student-name1">
                   <a class="student-name3"><%= link_to student.student_name, students_student_detail_user_path(student) %></a>
                   <a><%= link_to "編集", students_edit_student_user_path(student), class: "btn btn--green btn--student" %></a>
