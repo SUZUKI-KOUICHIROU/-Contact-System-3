@@ -3,13 +3,6 @@ class User < ApplicationRecord
   has_many :schoolclasses, dependent: :destroy
   has_many :students, dependent: :destroy
 
-  #before_save { self.email = email.downcase }
-  validates :name,  presence: true, length: { maximum: 30 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, length: { maximum: 30 },
-                    format: { with: VALID_EMAIL_REGEX },
-                    uniqueness: true
-  
   validates :address, length: { maximum: 30 }
   validates :telephone_number, length: { maximum: 15 }
   #has_secure_password
