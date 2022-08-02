@@ -2,7 +2,13 @@
 <% provide(:class_text, 'user--edit') %>
 <% provide(:button_text, '更新') %>
 
-<div class="student-title-2"><h1>保護者情報編集</h1></div>
+<% if current_user.admin? %>
+  <div class="student-title-2"><h1>管理者情報編集</h1></div>
+<% elsif current_user.teacher? %>  
+  <div class="student-title-2"><h1>担任情報編集</h1></div>
+<% else %>
+  <div class="student-title-2"><h1>保護者情報編集</h1></div>
+<% end %>
 
 <div class ="student-register">
   <div class="row">
@@ -19,12 +25,21 @@
           <%= f.label :email, class: "label-#{yield(:class_text)}" %>
           <%= f.email_field :email, class: "form-control" %>
   
+        <% if current_user.teacher? %>
+          <%= f.label :class_number, class: "label-#{yield(:class_text)}" %>
+        <div class= "teacher-class">
+          <%= f.select :class_number, @class_list.pluck(:class_name) %>
+        </div>
+        <% end %>
+          
+        <% unless current_user.admin? || current_user.teacher? %>
           <%= f.label :address, class: "label-#{yield(:class_text)}" %>
           <%= f.text_field :address, class: "form-control" %>
 
           <%= f.label :telephone_number, class: "label-#{yield(:class_text)}" %>
           <%= f.text_field :telephone_number, class: "form-control" %>
-      
+        <% end %>
+          
           <%= f.label :password, class: "label-#{yield(:class_text)}" %>
           <%= f.password_field :password, class: "form-control" %>
 

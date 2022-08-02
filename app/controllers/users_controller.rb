@@ -91,7 +91,7 @@ class UsersController < ApplicationController
   def update_admin
     if @user.update(admin_params)
       flash[:success] = "管理者情報を更新しました。"
-      redirect_to current_user
+      redirect_to @user
     else
       render :edit_admin      
     end

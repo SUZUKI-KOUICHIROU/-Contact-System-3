@@ -159,8 +159,9 @@ class ApplicationController < ActionController::Base
     # ログアウト後に遷移するpathを設定
     root_url 
   end
-
+  
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :address, :telephone_number])
+    # 保護者アカウント編集
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :address, :telephone_number, :class_number])
   end
 end

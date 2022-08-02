@@ -13,7 +13,7 @@
             <th><%= link_to "生徒一覧", student_index_3_user_path %></th>
             <th><%= link_to "担任登録", new_teacher_user_path(current_user) %></th>
             <th><%= link_to "クラス作成", new_classnumber_path(current_user) %></th>
-            <th><%= link_to "管理者情報編集", edit_admin_user_path(@user) %></th>
+            <th><%= link_to "管理者情報編集",edit_user_registration_path(@user) %></th>
           </tr>
         </thead>
       </table>
@@ -94,9 +94,7 @@
             <th><%= link_to "生徒一覧", student_index_user_path %></th>
             <th><%= link_to "学校との連絡", schoolclasses_show_teacher_contact_user_path(current_user, @user) %></th>
             <th><%= link_to "学級だより", schoolclasses_board_create_index_user_path(current_user) %></th>
-            <th><%= link_to "LINE登録", schoolclasses_edit_teacher_line_user_path(current_user) %>
-            <th><%= link_to "LINEトークン登録", '#' %></th>
-            <th><%= link_to "担任情報編集", edit_teacher_user_path(current_user) %></th>
+            <th><%= link_to "担任情報編集", edit_user_registration_path(@user) %></th>
           </tr>
         </thead>  
       </table>

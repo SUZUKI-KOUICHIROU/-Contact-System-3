@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     delete 'users/signout', to: 'devise/sessions#destroy'
     get '/users/signup', to: 'devise/registrations#new'
     get 'users', to: 'devise/registrations#edit'
-    get 'users', to: 'devise/registrations#update'
+    patch 'users', to: 'devise/registrations#update'
   end
   
   get 'show', to: 'users#show'
@@ -32,13 +32,13 @@ Rails.application.routes.draw do
   
   resources :users do
     member do     
+      get 'edit_admin'
+      patch 'update_admin'
+  
       delete 'student_destroy'
       delete 'student_destroy2'
 
       delete 'guardian_destroy'
-      
-      get 'edit_admin'
-      patch 'update_admin'
       
       get 'new_teacher'
       post 'create_teacher'

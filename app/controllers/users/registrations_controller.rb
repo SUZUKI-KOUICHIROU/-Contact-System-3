@@ -25,14 +25,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    super
+    @class_list = Classnumber.all.order(:class_name)
   end
 
   # PUT /resource
   def update
     super
   end
-
+  
   # DELETE /resource
   # def destroy
   #   super
@@ -76,4 +76,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+    def guardian_params
+      params.require(:user).permit(:name, :email, :address, :telephone_number, :password, :password_confirmation)
+    end
 end
