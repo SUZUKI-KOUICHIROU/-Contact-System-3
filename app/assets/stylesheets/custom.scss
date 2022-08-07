@@ -126,6 +126,23 @@ li {
   }
 }
 
+.notifications {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  
+  .notice {
+    background-color: #78FF94;
+  }
+
+  .alert {
+    background-color: #FF5192;
+  }
+}
+
 /* クラス作成*/
 
 .class-title {

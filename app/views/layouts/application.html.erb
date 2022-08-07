@@ -9,7 +9,14 @@
     <!-- HTML shimがこの1行で収まる -->
     <%= render 'layouts/shim' %>
   </head>
-  <body>
+  <body> 
+
+  <div class="notifications"> 
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: key) %>   
+    <% end %>
+  </div>
+  
     <!-- headerの内容がこの1行で収まる -->
     <%= render 'layouts/header' %>
     <div class="container">

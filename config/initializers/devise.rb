@@ -309,4 +309,16 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
   config.omniauth :line, ENV['LINE_KEY'], ENV['LINE_SECRET']
+
+  # メールを送信するアドレス
+  config.mailer_sender = ENV["GOOGLE_MAIL_ADDRESS"]
+  
+  # パスワード再設定するためのキーカラム。
+  config.reset_password_keys = [:email]
+
+  # リセットパスワードキーを使ってパスワードをリセットできる時間間隔。
+  config.reset_password_within = 6.hours
+
+  #既定値はtrueで, リセットされた後に自動的にサインインする。
+  config.sign_in_after_reset_password = true
 end
