@@ -14,10 +14,10 @@ Rails.application.routes.draw do
     get '/users/signup', to: 'devise/registrations#new'
     get 'users', to: 'devise/registrations#edit'
     patch 'users', to: 'devise/registrations#update'
-    get 'users/password', to: 'devise/passwords#new'
-    post 'users/password', to: 'devise/passwords#create'
-    get 'users/password', to: 'devise/passwords#edit'
-    put 'users/password', to: 'devise/passwords#update'
+    get 'users', to: 'devise/passwords#new'
+    post 'users', to: 'devise/passwords#create'
+    get 'users', to: 'devise/passwords#edit'
+    put 'users', to: 'devise/passwords#update'
   end
   
   get 'show', to: 'users#show'
