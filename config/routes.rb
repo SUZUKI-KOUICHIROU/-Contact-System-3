@@ -14,9 +14,6 @@ Rails.application.routes.draw do
     get '/users/signup', to: 'devise/registrations#new'
     get 'users', to: 'devise/registrations#edit'
     patch 'users', to: 'devise/registrations#update'
-    get 'users', to: 'devise/passwords#edit'
-    patch 'users', to: 'devise/passwords#update'
-
   end
   
   get 'show', to: 'users#show'
