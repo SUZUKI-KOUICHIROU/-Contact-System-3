@@ -59,24 +59,21 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  config.action_mailer.perform_caching = false
-  #config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_caching = true
+  config.action_mailer.raise_delivery_errors = true
   
   #config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.default_url_options = { host: "arcane-peak-28945.herokuapp.com" }
-
-  config.action_mailer.perform_deliveries = true
-
+  
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:"smtp.gmail.com",
-    domain: 'gmail.com',
-    port:587,
-    user_name: ENV['GOOGLE_MAIL_ADDRESS'],
-    password: ENV['GOOGLE_MAILER_PASSWORD'],
-    authentication: :login,
-    openssl_verify_mode: 'none',
-    enable_starttls_auto: true
+    :enable_starttls_auto => true,
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :domain => 'arcane-peak-28945.herokuapp.com',
+    :user_name => ENV["GOOGLE_MAIL_ADDRESS"],
+    :password => ENV["GOOGLE_MAILER_PASSWORD"],
+    :authentication => 'login'
   }
 
   # Raises error for missing translations.
