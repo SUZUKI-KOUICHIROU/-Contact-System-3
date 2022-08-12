@@ -13,13 +13,12 @@ Rails.application.routes.draw do
     delete 'users/signout', to: 'devise/sessions#destroy'
     get '/users/signup', to: 'devise/registrations#new'
     get 'users', to: 'devise/registrations#edit'
-  end
-
     patch 'users', to: 'devise/registrations#update'
     get 'users', to: 'devise/passwords#new'
     post 'users', to: 'devise/passwords#create'
     get 'users', to: 'devise/passwords#edit'
     put 'users', to: 'devise/passwords#update'
+  end
   
   get 'show', to: 'users#show'
   
