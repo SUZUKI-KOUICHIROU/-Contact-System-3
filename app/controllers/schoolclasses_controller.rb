@@ -14,30 +14,6 @@ class SchoolclassesController < ApplicationController
   before_action :correct_teacher_user, only: %i(index_teacher_contact)
   before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact index_teacher_contact index_guardian_contact board_create_index guardian_board_index edit_teacher_line) 
   
-  
-  def edit_teacher_line
-    @schoolclass = Schoolclass.find(params[:id])
-    @line_teacher = @user.schoolclasses.where(contact_date: @first_day)
-  end 
-
-  def update_teacher_line
-    line_params.each do |id,item|
-      line = Schoolclass.find(id)
-      if line.update(item.merge(line_class: @user.class_number))
-        flash[:success] = '登録しました。'
-      else
-        flash[:danger] = "失敗しました。" 
-      end
-      redirect_to user_url
-    end
-  end 
-  
-  #保護者LINE登録画面
-  def line_aarticipation
-    @student = Student.find(params[:id])
-    @guardian_line = Schoolclass.find_by(line_class: @student.class_belongs)
-  end 
-  
   #学年選択
   def class_index 
   end 
@@ -90,13 +66,13 @@ class SchoolclassesController < ApplicationController
       if contact.post_count == 0
         contact.update(item.merge(contact_update: Time.current.change(sec: 0)))
         contact.increment!(:post_count, 1)
-        flash[:success] = '投稿しました。'
+        flash[:notice] = '投稿しました。'
       elsif contact.post_count > 0
         contact.update(item.merge(before_post_count: contact.post_count, contact_update: Time.current.change(sec: 0)))
         contact.increment!(:post_count, 1)
-        flash[:success] = '投稿しました。'
+        flash[:notice] = '投稿しました。'
       else    
-        flash[:danger] = "失敗しました。" 
+        flash[:alert] = "失敗しました。" 
       end
       redirect_to schoolclasses_teacher_contact_index_user_url
     end
@@ -115,13 +91,13 @@ class SchoolclassesController < ApplicationController
       if contact.post_count3 == 0
         contact.update(item.merge(contact_update4: Time.current.change(sec: 0)))
         contact.increment!(:post_count3, 1)
-        flash[:success] = '投稿しました。'
+        flash[:notice] = '投稿しました。'
       elsif contact.post_count3 > 0
         contact.update(item.merge(before_post_contact3: contact.post_count3, contact_update4: Time.current.change(sec: 0)))
         contact.increment!(:post_count3, 1)  
-        flash[:success] = '投稿しました。'
+        flash[:notice] = '投稿しました。'
       else
-        flash[:danger] = "失敗しました。" 
+        flash[:alert] = "失敗しました。" 
       end
       redirect_to schoolclasses_teacher_contact_index_user_url(@user)
     end
@@ -145,14 +121,14 @@ class SchoolclassesController < ApplicationController
       if contact.contact_count1 == 0
         contact.update(item.merge(contact_update2: Time.current.change(sec: 0)))
         contact.increment!(:contact_count1, 1)
-        flash[:success] = '投稿しました。'
+        flash[:notice] = '投稿しました。'
       elsif contact.contact_count1 > 0
         contact.update(item.merge(before_contact1: contact.contact_count1, contact_update2: Time.current.change(sec: 0)))
         contact.increment!(:contact_count1, 1)
-        flash[:success] = '投稿しました。'
+        flash[:notice] = '投稿しました。'
       else
         render :show_teacher_contact
-        flash[:danger] = "失敗しました。" 
+        flash[:alert] = "失敗しました。" 
       end
       redirect_to schoolclasses_show_teacher_contact_user_url(current_user)
     end
@@ -171,13 +147,13 @@ class SchoolclassesController < ApplicationController
       if contact.post_count2 == 0
         contact.update(item.merge(contact_update3: Time.current.change(sec: 0)))
         contact.increment!(:post_count2, 1)
-        flash[:success] = '投稿しました。'
+        flash[:notice] = '投稿しました。'
       elsif contact.post_count2 > 0
         contact.update(item.merge(before_post_count2: contact.post_count2, contact_update3: Time.current.change(sec: 0)))
         contact.increment!(:post_count2, 1)
-        flash[:success] = '投稿しました。'
+        flash[:notice] = '投稿しました。'
       else  
-        flash[:danger] = "失敗しました。" 
+        flash[:alert] = "失敗しました。" 
       end
       redirect_to schoolclasses_show_teacher_contact_user_path(current_user) 
     end
@@ -202,13 +178,13 @@ class SchoolclassesController < ApplicationController
       if contact.guardian_post_count1 == 0
         contact.update(item.merge(contact_update5: Time.current.change(sec: 0)))
         contact.increment!(:guardian_post_count1, 1)
-        flash[:success] = '投稿しました。'
+        flash[:notice] = '投稿しました。'
       elsif contact.guardian_post_count1 > 0
         contact.update(item.merge(before_guardian_postcount1: contact.guardian_post_count1, contact_update5: Time.current.change(sec: 0)))
         contact.increment!(:guardian_post_count1, 1)
-        flash[:success] = '投稿しました。'
+        flash[:notice] = '投稿しました。'
       else
-        flash[:danger] = "失敗しました。" 
+        flash[:alert] = "失敗しました。" 
       end
       redirect_to schoolclasses_index_teacher_contact_user_url(@user) 
     end
@@ -240,9 +216,9 @@ class SchoolclassesController < ApplicationController
         contact.update(item.merge(before_guardian_postcount2: contact.guardian_post_count2, contact_update6: Time.current.change(sec: 0),
                           contact_class2: @student.class_belongs))
         contact.increment!(:guardian_post_count2, 1) 
-        flash[:success] = '投稿しました。'
+        flash[:notice] = '投稿しました。'
       else
-        flash[:danger] = "失敗しました。" 
+        flash[:alert] = "失敗しました。" 
       end
       redirect_to schoolclasses_index_guardian_contact_user_url(@user)
     end
@@ -261,14 +237,14 @@ class SchoolclassesController < ApplicationController
       if contact.guardian_post_count3 == 0
         contact.update(item.merge(contact_class: @student.class_belongs, contact_update7: Time.current.change(sec: 0)))
         contact.increment!(:guardian_post_count3, 1)
-        flash[:success] = '投稿しました。'
+        flash[:notice] = '投稿しました。'
       elsif contact.guardian_post_count3 > 0
         contact.update(item.merge(before_guardian_postcount3: contact.guardian_post_count3, contact_update7: Time.current.change(sec: 0),
                       contact_class: @student.class_belongs))
         contact.increment!(:guardian_post_count3, 1) 
-        flash[:success] = '投稿しました。'  
+        flash[:notice] = '投稿しました。'  
       else
-        flash[:danger] = "失敗しました。" 
+        flash[:alert] = "失敗しました。" 
       end
       redirect_to schoolclasses_index_guardian_contact_user_url(@user)
     end
@@ -287,13 +263,13 @@ class SchoolclassesController < ApplicationController
       if contact.guardian_post_count4 == 0
         contact.update(item.merge(contact_update8: Time.current.change(sec: 0)))
         contact.increment!(:guardian_post_count4, 1)
-        flash[:success] = '投稿しました。'
+        flash[:notice] = '投稿しました。'
       elsif contact.guardian_post_count4 > 0
         contact.update(item.merge(contact_update8: Time.current.change(sec: 0)))
         contact.increment!(:guardian_post_count4, 1)
-        flash[:success] = '投稿しました。'
+        flash[:notice] = '投稿しました。'
       else
-        flash[:danger] = "失敗しました。" 
+        flash[:alert] = "失敗しました。" 
       end
       redirect_to schoolclasses_index_teacher_contact_user_url(@user) 
     end
@@ -312,9 +288,9 @@ class SchoolclassesController < ApplicationController
     class_board_params.each do |id,item|
       contact = Schoolclass.find(id)
       if contact.update(item.merge(board_class: @user.class_number, board_update: Time.current.change(sec: 0)))
-        flash[:success] = '投稿しました。'
+        flash[:notice] = '投稿しました。'
       else
-        flash[:danger] = "失敗しました。" 
+        flash[:alert] = "失敗しました。" 
       end
       redirect_to user_url
     end
@@ -344,7 +320,7 @@ class SchoolclassesController < ApplicationController
   def destroy
     @contact = @user.Schoolclass.find(params[:id]) 
     @contact.destroy
-    flash[:success] = "#{@user.name}のデータを削除しました。"
+    flash[:notice] = "#{@user.name}のデータを削除しました。"
     redirect_to schoolclasses_teacher_contact_index_user_url
   end
 
@@ -384,14 +360,6 @@ class SchoolclassesController < ApplicationController
 
     def class_board_params
       params.require(:user).permit(schoolclasses: [:board_title, :contact_board])[:schoolclasses]
-    end
-
-    def line_params
-      params.require(:user).permit(schoolclasses: [:line_token, :teacher_line])[:schoolclasses]
-    end
-
-    def token_params
-      params.require(:schoolclass).permit(:line_token)
     end
 end
 

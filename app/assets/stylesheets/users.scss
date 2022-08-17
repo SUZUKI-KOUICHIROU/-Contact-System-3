@@ -260,7 +260,8 @@ a.btn--green.btn--border-groove {
 /* 生徒登録 */
 
 .student-title-2 { 
-  margin-left: 390px;
+  margin-left: auto;
+  margin-right: auto;
   font-family: ヒラギノ丸ゴ ProN;
   font-size: 15px;
   color: #111111;
@@ -275,6 +276,7 @@ a.btn--green.btn--border-groove {
 .student-register  {
   font-size: 20px;
   margin: 20px;
+  width: 83%;
 }
 
 input[type="text"] {
@@ -354,7 +356,8 @@ input[type="password"] {
 /* 担任登録 */
 
 .teacher-register {
-  margin-left: 385px;
+  margin-right: auto;
+  margin-left: auto;
   font-family: ヒラギノ丸ゴ ProN;
   font-size: 15px;
   color: #111111;
@@ -369,7 +372,8 @@ input[type="password"] {
 /* 担任一覧 */
 
 .teacher-title { 
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   font-family: ヒラギノ丸ゴ ProN;
   font-size: 15px;
   color: #111111;
@@ -384,7 +388,8 @@ input[type="password"] {
 /* 担任情報編集 */
 
 .teacher-edit-1 {
-  margin-left: 380px;
+  margin-left: auto;
+  margin-right: auto;
   font-family: ヒラギノ丸ゴ ProN;
   font-size: 15px;
   color: #111111;
@@ -711,7 +716,9 @@ input[type="password"] {
 }
 
 .top-text {
-  margin-left: 60px;
+  /*margin-left: 60px;*/
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .box-1 {
@@ -719,10 +726,12 @@ input[type="password"] {
 }
 
 .top-test {
-  margin-left: 215px;
+  /*margin-left: 215px;*/
   background: #EEFFFF;
   width: 600px;
   height: 350px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .top-test2 {

@@ -1,6 +1,6 @@
 <% provide(:title, 'new-class') %>
 <% provide(:class_text, 'signup') %>
-<% provide(:button_text, '新規作成') %>
+<% provide(:button_text, '新規登録') %>
 <h1>クラス登録</h1>
 
 <div class="row">
@@ -9,9 +9,11 @@
       <%= render 'shared/error_messages', object: @classnumber %>  
 
       <div class="class-create"><%= f.label :class_name, class: "label-#{yield(:class_text)}" %></div>
+
       <div class="class-create-form">
-        <%= f.text_field :class_name, required: true, class: "form-control" %>
-      </div>
+        <!--%= f.text_field :class_name, required: true, class: "form-control" %-->
+        <%= f.select :class_name, @class_list, { include_blank: "クラスを選択" }, { required: true } %>  
+      </div>    
         <%= f.submit yield(:button_text), class: "btn btn-success btn-block btn-#{yield(:class_text)}" %>
     <% end %>
   </div>

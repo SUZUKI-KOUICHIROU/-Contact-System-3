@@ -125,7 +125,9 @@ class ApplicationController < ActionController::Base
 
   # クラス作成
   def class_select
-    @class_list = ["1", "2", "3", "4", "5", "6"]
+    @class_list = ["1-1", "1-2", "1-3", "1-4", "1-5", "2-1", "2-2", "2-3", "2-4", "2-5", "3-1", "3-2", "3-3", "3-4", "3-5",
+                    "4-1", "4-2", "4-3", "4-4", "4-5", "5-1", "5-2", "5-3", "5-4", "5-5", "6-1", "6-2", "6-3", "6-4", "6-5",
+                    "1-A", "1-B", "1-C", "1-D", "1-E", "2-A", "2-B", "2-C", "2-D", "2-E", "3-A", "3-B", "3-C", "3-D", "3-E"]
   end
 
   # ページ出力前に1ヶ月分のデータの存在を確認・セットします。
@@ -149,19 +151,20 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
 
-  private 
-  def after_sign_in_path_for(resource)
-    # ログイン後に遷移するpathを設定
-    current_user
-  end
 
-  def after_sign_out_path_for(resource)
-    # ログアウト後に遷移するpathを設定
-    root_url 
-  end
+  private 
+    def after_sign_in_path_for(resource)
+      # ログイン後に遷移するpathを設定
+      current_user
+    end
+
+    def after_sign_out_path_for(resource)
+      # ログアウト後に遷移するpathを設定
+      root_url 
+    end
   
-  def configure_permitted_parameters
-    # 保護者アカウント編集
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :address, :telephone_number, :class_number])
-  end
+    def configure_permitted_parameters
+      # 保護者アカウント編集
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :address, :telephone_number, :class_number])
+    end
 end

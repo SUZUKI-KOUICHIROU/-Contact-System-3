@@ -1,16 +1,17 @@
 <% provide(:title, 'guardian-contact') %>
 
 <div class="contact-index">
-  <% @teachers.each do |teacher| %>
-    <% if teacher.class_number == @student.class_belongs %> 
-      <h1><%= "【担任：#{teacher.name}】【#{@student.student_name}】連絡帳" %></h1>
-    <% end %>
-  <% end %>
+  <h1><%= "【#{@student.student_name}】連絡帳" %></h1>
 </div>
 
 <div class="btn-month"><%= link_to "前月", schoolclasses_index_guardian_contact_user_path(date: @first_day.prev_month), class: "btn btn--orange btn--border-solid" %>
   <%= l(@first_day, format: :middle) %>
   <%= link_to "次月", schoolclasses_index_guardian_contact_user_path(date: @first_day.next_month), class: "btn btn--orange btn--border-solid" %>
+  <% @teachers.each do |teacher| %>
+    <% if teacher.class_number == @student.class_belongs %> 
+      <%= "【担任：#{teacher.name}】"%>
+    <% end %>
+  <% end %>
 </div>
 
 <div>

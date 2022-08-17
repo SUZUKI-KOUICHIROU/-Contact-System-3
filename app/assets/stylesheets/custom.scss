@@ -126,20 +126,32 @@ li {
   }
 }
 
-.notifications {
-  font-size: 20px;
-  font-weight: bold;
-  width: 800px;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+  .notifications {
+    color: #111111;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   
   .notice {
     background-color: #78FF94;
+    width: 800px;
+    background-repeat: no-repeat;
+    background-position: 50% 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
   }
 
   .alert {
     background-color: #FF5192;
+    width: 800px;
+    background-repeat: no-repeat;
+    background-position: 50% 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
   }
 }
 
@@ -159,10 +171,35 @@ li {
 }
 
 .class-create {
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .class-create-form {
   font-size: 30px; 
 }
+
+.for-example {
+  color: red;
+  font-size: 25px;
+}
+
+.mail-title {
+  font-family: ヒラギノ丸ゴ ProN;
+  font-size: 50px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.mail-title2 {
+  margin: 30px;
+  font-size: 20px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+
+
+
+
 

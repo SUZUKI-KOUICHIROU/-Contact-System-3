@@ -14,10 +14,9 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
     if @student.save
-      flash[:success] = '生徒登録が完了しました。'
-      redirect_to current_user
+      redirect_to current_user, notice: "生徒登録が完了しました。"
     else
-      flash[:danger] = '失敗しました。'
+      flash[:alert] = '失敗しました。'
       render :new
     end
   end
@@ -27,8 +26,7 @@ class StudentsController < ApplicationController
 
   def update_student
     if @student.update(student_update_params)
-      flash[:success] = "生徒情報を更新しました。"
-      redirect_to current_user
+      redirect_to current_user, notice: "生徒情報を更新しました。"
     else
       render :edit_student     
     end
@@ -40,8 +38,7 @@ class StudentsController < ApplicationController
 
   def destroy
     @student.destroy
-    flash[:success] = "#{@student.student_name}のデータを削除しました。"
-    redirect_to student_index_3_user_url(current_user)
+    redirect_to student_index_3_user_url(current_user), notice: "#{@student.student_name}のデータを削除しました。"
   end
 
   private

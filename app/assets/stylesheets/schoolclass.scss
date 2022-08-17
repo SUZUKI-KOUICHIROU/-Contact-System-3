@@ -147,7 +147,8 @@
 /* 連絡帳（学校側） */
 
 .admin-contact { 
-  margin: auto;
+  margin-right: auto;
+  margin-left: auto;
   font-family: ヒラギノ丸ゴ ProN;
   font-size: 15px;
   color: #111111;
@@ -193,7 +194,7 @@
   textarea {
     font-size: 20px;
     font-weight: bold;
-    width:1104px;
+    width:1100px;
     height:150px;
     border: solid 3px #FF0461;/*線*/
     border-radius: 10px;/*角の丸み*/

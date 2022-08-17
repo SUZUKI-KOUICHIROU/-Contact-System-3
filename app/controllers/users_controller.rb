@@ -55,10 +55,9 @@ class UsersController < ApplicationController
     @user = User.new(guardian_params)
     if @user.save
       log_in @user
-      flash[:success] = 'アカウント作成に成功しました。'
-      redirect_to @user
+      redirect_to @user, notice: "アカウント作成に成功しました。"
     else
-      flash[:danger] = '失敗しました。'
+      flash[:alert] = '失敗しました。'
       render :new_guardian
     end
   end
@@ -68,8 +67,7 @@ class UsersController < ApplicationController
 
   def update_guardian
     if @user.update(guardian_params)
-      flash[:success] = "保護者情報を更新しました。"
-      redirect_to current_user
+      redirect_to current_user, notice: "保護者情報を更新しました。"
     else
       render :edit_guardian     
     end  
@@ -80,8 +78,7 @@ class UsersController < ApplicationController
 
   def guardian_destroy
     @user.destroy
-    flash[:success] = "#{@user.name}のデータを削除しました。"
-    redirect_to student_index_3_user_url(current_user)
+    redirect_to student_index_3_user_url(current_user), notice: "#{@user.name}のデータを削除しました。"
   end
 
   #管理者情報編集
@@ -90,8 +87,7 @@ class UsersController < ApplicationController
   
   def update_admin
     if @user.update(admin_params)
-      flash[:success] = "管理者情報を更新しました。"
-      redirect_to @user
+      redirect_to @user, notice: "管理者情報を更新しました。"
     else
       render :edit_admin      
     end
@@ -106,10 +102,9 @@ class UsersController < ApplicationController
   def create_teacher
     @user = User.new(teacher_params)
     if @user.save
-      flash[:success] = '担任を登録しました。'
-      redirect_to @user
+      redirect_to @user, notice: "担任を登録しました。"
     else
-      flash[:danger] = "失敗しました。" 
+      flash[:alert] = "失敗しました。" 
       render :new_teacher
     end
   end
@@ -121,8 +116,7 @@ class UsersController < ApplicationController
 
   def update_teacher
     if @user.update(teacher_params)
-      flash[:success] = "担任情報を更新しました。"
-      redirect_to current_user
+      redirect_to current_user, notice: "担任情報を更新しました。"
     else
       render :edit_teacher      
     end
@@ -136,8 +130,7 @@ class UsersController < ApplicationController
   
   def destroy
     @user.destroy
-    flash[:success] = "#{@user.name}のデータを削除しました。"
-    redirect_to teacher_index_user_path(current_user)
+    redirect_to teacher_index_user_path(current_user), notice: "#{@user.name}のデータを削除しました。"
   end
   
   # 生徒一覧（担任）
@@ -151,8 +144,7 @@ class UsersController < ApplicationController
   def student_destroy2
     @student = Student.find(params[:id])
     @student.destroy
-    flash[:success] = "#{@student.student_name}のデータを削除しました。"
-    redirect_to student_index_user_url(current_user)
+    redirect_to student_index_user_url(current_user), notice: "#{@student.student_name}のデータを削除しました。"
   end
 
   # 生徒情報編集（担任）
@@ -178,8 +170,7 @@ class UsersController < ApplicationController
   def student_destroy
     @student = Student.find(params[:id])
     @student.destroy
-    flash[:success] = "#{@student.student_name}のデータを削除しました。"
-    redirect_to student_index_3_user_url(current_user)
+    redirect_to student_index_3_user_url(current_user), notice: "#{@student.student_name}のデータを削除しました。"
   end
 
   private

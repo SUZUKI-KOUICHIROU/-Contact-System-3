@@ -8,7 +8,11 @@
     <th class="class-a">作成クラス</th>
     
       <% @schoolclassese_3.zip(@teachers) do |schoolclass, teacher| %>  
-        <th class="class-b"><%= schoolclass.class_name %></th>
+        <th class="class-b"><%= schoolclass.class_name %>
+          <%= link_to "削除", classnumber_path(schoolclass), method: :delete,
+            data: { confirm: "削除してよろしいですか？" },
+            class: "btn btn-danger" %>
+        </th>
       <% end %>
   </table>
 </div>
