@@ -68,7 +68,7 @@ Rails.application.configure do
     :enable_starttls_auto => true,
     :address => "smtp.gmail.com",
     :port => 587,
-    :domain => 'https://arcane-peak-28945.herokuapp.com',
+    :domain => 'smtp.gmail.com',
     :user_name => ENV["GOOGLE_MAIL_ADDRESS"],
     :password => ENV["GOOGLE_MAILER_PASSWORD"],
     :authentication => 'login'
