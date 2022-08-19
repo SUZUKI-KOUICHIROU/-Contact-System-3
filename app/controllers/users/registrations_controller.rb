@@ -30,7 +30,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    super 
+    if @user.update(guardian_params)
+      redirect_to current_user, notice: "保護者情報を更新しました。"
+    else
+      render :edit_guardian     
+    end  
   end
   
   # DELETE /resource
