@@ -165,6 +165,6 @@ class ApplicationController < ActionController::Base
   
     def configure_permitted_parameters
       # 保護者アカウント編集
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :address, :telephone_number, :class_number])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :address, :telephone_number, :class_number, :password, :password_confirmation])
     end
 end
