@@ -30,11 +30,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    if @user.update(guardian_params)
-      redirect_to current_user, notice: "保護者情報を更新しました。"
-    else
-      render :edit_guardian     
-    end  
+    super 
   end
   
   # DELETE /resource
@@ -54,7 +50,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # protected
   
   def update_resource(resource, params)
-    resource.update_without_password(params)
+    #resource.update_without_password(params)
+    resource.update_without_current_password(params)
   end
 
   def after_update_path_for(_resource)
