@@ -63,17 +63,16 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   
   #config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  config.action_mailer.default_url_options = { host: 'https://arcane-peak-28945.herokuapp.com/' }
+  config.action_mailer.default_url_options = { host: 'https://arcane-peak-28945.herokuapp.com' }
   
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :enable_starttls_auto => true,
-    :address => "smtp.gmail.com",
-    :port => 587,
-    :domain => 'smtp.gmail.com',
-    :user_name => ENV["GOOGLE_MAIL_ADDRESS"],
-    :password => ENV["GOOGLE_MAILER_PASSWORD"],
-    :authentication => 'login'
+    :port           => ENV['MAILGUN_SMTP_PORT'],
+    :address        => ENV['MAILGUN_SMTP_SERVER'],
+    :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+    :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+    :domain         => 'heroku.com',
+    :authentication => :plain,
   }
 
   # Raises error for missing translations.
