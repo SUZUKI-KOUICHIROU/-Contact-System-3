@@ -15,10 +15,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.new(guardian_params)
     if @user.save
       sign_in @user
-      flash[:success] = 'アカウント作成に成功しました。'
+      flash[:notice] = 'アカウント作成に成功しました。'
       redirect_to @user
     else
-      flash[:danger] = '失敗しました。'
+      flash[:alert] = '失敗しました。'
       render :new
     end
   end
@@ -30,7 +30,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    super
+    super 
   end
   
   # DELETE /resource
