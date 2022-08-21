@@ -1,7 +1,7 @@
     <%= form_with(model: @student, url: students_create_user_path, local: true, method: :post) do |f| %>
     <%= render 'shared/error_messages', object: @student %>  
 
-    <div class ="student-register">
+    <div class ="student-register2">
       <%= f.label "生徒名", class: "label-#{yield(:class_text)}" %>
       <%= f.text_field :student_name, required: true, class: "form-control" %>
   

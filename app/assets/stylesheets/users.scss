@@ -273,31 +273,40 @@ a.btn--green.btn--border-groove {
   background: #DDFFFF;
 }
 
-.student-register  {
+.student-register {
   font-size: 20px;
   margin: 20px;
   width: 83%;
+  margin-left: 58px;
+}
+
+.student-register2 {
+  font-size: 20px;
+  margin: 20px;
+  width: 83%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 input[type="text"] {
   border-width:3px;
-  font-size: 25px;
-  width: 555px;
-  height: 45px;
+  font-size: 35px;
+  width: 550px;
+  height: 60px;
 }
 
 input[type="email"] {
   border-width:3px;
-  font-size: 25px;
-  width: 555px;
-  height: 45px;
+  font-size: 35px;
+  width: 550px;
+  height: 60px;
 }
 
 input[type="password"] {
   border-width:3px;
-  font-size: 25px;
-  width: 555px;
-  height: 45px;
+  font-size: 35px;
+  width: 550px;
+  height: 60px;
 }
 
 .class-select {
@@ -411,7 +420,7 @@ input[type="password"] {
 }
 
 .teacher-btn {
-  width: 560px;
+  width: 555px;
 }
 
 #table-show-student {
@@ -729,7 +738,7 @@ input[type="password"] {
   /*margin-left: 215px;*/
   background: #EEFFFF;
   width: 600px;
-  height: 350px;
+  height: 390px;
   margin-right: auto;
   margin-left: auto;
 }
