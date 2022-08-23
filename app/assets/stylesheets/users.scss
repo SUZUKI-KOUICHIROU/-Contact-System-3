@@ -580,6 +580,24 @@ input[type="password"] {
   padding-bottom: 0.08em;
 }
 
+.row_table,
+.row_table tbody {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row_table th {
+  text-align: center;
+    padding:15px 20;
+    font-size: 35px;
+    color: #8B0000;
+    border:groove 6px #00FFFF;
+    background: #FFFFCC;
+    width: 450px;
+}
+
 #teacher-show {
   margin: 20px;
   width: 500px;
