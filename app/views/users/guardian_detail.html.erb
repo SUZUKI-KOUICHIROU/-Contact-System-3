@@ -2,22 +2,17 @@
 
 <div class="student-title"><h1>保護者詳細</h1></div>
 
-<div>
-  <table class="table table-bordered table-condensed" id="student-detail">   
-    <thead> 
-      <tr>  
-        <th>保護者名</th>
-        <th>住所</th>
-        <th>電話番号</th>
+  <table class="tb01">
+    <tr>
+      <th>保護者名</th>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <th>住所</th>
+      <td><%= @user.address %></td>
+    </tr>
+    <tr>
+      <th>電話番号</th>
+      <td><%= @user.telephone_number %></td>
       </tr>
-    </thead>
-  
-    <tbody>
-      <tr>
-        <td><%= @user.name %></td>
-        <td><%= @user.address %></td>
-        <td><%= @user.telephone_number %></td>
-      </tr>
-    </tbody>
   </table>
-</div>

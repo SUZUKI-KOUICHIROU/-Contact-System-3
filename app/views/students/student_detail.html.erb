@@ -2,33 +2,35 @@
 
 <div class="student-title"><h1>生徒詳細</h1></div>
 
-<div>
-  <table class="table table-bordered table-condensed" id="student-detail">   
-    <thead> 
-      <tr>  
-        <th>クラス</th>
-        <th>生徒名</th>
-        <th>生年月日</th>
-        <th>年齢</th>
-        <th>保護者名</th>
-        <th>住所</th>
-        <th>電話番号</th>
-      </tr>
-    </thead>
-  
-    <tbody>
-      <tr>
-        <td><%= @student.class_belongs%></td>
-        <td><%= @student.student_name %></td>
-        <td><%= @student.birthday.strftime("%Y年%m月%d日") if @student.birthday.present? %></td>
-        <td><%= "#{student_birthday(Date.today, @student.birthday)}歳" %></td>             
-        
-        <% @guardians.each do |guardian| %>
-          <td><%= guardian.name %></td>
-          <td><%= guardian.address %></td>
-          <td><%= guardian.telephone_number %></td>
-        <% end %>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <table class="tb01">
+    <tr>
+      <th>クラス</th>
+      <td><%= @student.class_belongs%></td>
+    </tr>
+    <tr>
+      <th>生徒名</th>
+      <td><%= @student.student_name %></td> 
+    </tr>
+    <tr>
+      <th>生年月日</th>
+      <td><%= @student.birthday.strftime("%Y年%m月%d日") if @student.birthday.present? %></td> 
+    </tr>
+    <tr>
+      <th>年齢</th>
+      <td><%= "#{student_birthday(Date.today, @student.birthday)}歳" %></td>  
+    </tr>
+    <% @guardians.each do |guardian| %>
+    <tr>
+      <th>保護者名</th>
+      <td><%= guardian.name %></td>
+    </tr>
+    <tr>
+      <th>住所</th>
+      <td><%= guardian.address %></td>
+    </tr>
+    <tr>
+      <th>電話番号</th>
+      <td><%= guardian.telephone_number %></td>
+    </tr>
+    <% end %>
+</table>

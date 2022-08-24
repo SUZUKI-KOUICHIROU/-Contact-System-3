@@ -766,5 +766,37 @@ input[type="password"] {
   margin-left: 23px;
 }
 
+table{
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 50px;
+}
+.tb01 th,
+.tb01 td{
+  font-size: 30px;
+  padding: 10px;
+  border: solid 1px #ccc;
+  text-align:center;
+  box-sizing:border-box;
+}
+.tb01 th {
+  color: black;
+  background: #FFCCFF; 
+}
+@media screen and (max-width: 640px) {
+  .tb01 {
+    width: 100%;
+  }
+  table.tb01 th,
+  table.tb01 td {
+    display: block;
+    width: 100%;
+    border-bottom:none;
+  }
+  .tb01 tr:last-child{
+    border-bottom: solid 1px #ccc;
+  }
+}
+
 
 
