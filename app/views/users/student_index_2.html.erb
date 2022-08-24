@@ -1,10 +1,10 @@
 <% provide(:title, 'Student-Index-2') %>
 
-<div class="student-title"><h1><%= "#{@user.class_number}生徒一覧" %></h1></div>
+<!--div class="student-title"><h1><%= "#{@user.class_number}生徒一覧" %></h1></div-->
 
 <table class="table table-bordered table-condensed" id="table-index-teacher"> 
-  <th><%= "担任：#{@user.name}" %></th>
-  <th><%= "生徒数：#{@student_count}名" %></th>
+  <!--th><%= "担任：#{@user.name}" %></th-->
+  <!--th><%= "生徒数：#{@student_count}名" %></th-->
 </table>
 
 <div>
@@ -19,13 +19,13 @@
     <tbody>
       <% @students.each do |student| %>
         <% @guardians.each do |guardian| %> 
-          <!--% if student.user_id == guardian.id %-->  
+          <% if student.user_id == guardian.id %>  
             <tr>
               <td><%= student.student_number %></td>
               <td><%= link_to "#{student.student_name}", students_student_detail_user_path(student) %></td>
               <td><%= guardian.name %></td>
             </tr> 
-          <!--% end %-->
+          <% end %>
         <% end %>
       <% end %>
     </tbody>

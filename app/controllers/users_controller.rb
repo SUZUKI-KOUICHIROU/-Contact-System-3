@@ -154,9 +154,10 @@ class UsersController < ApplicationController
   # 生徒一覧（管理者）
   
   def student_index_2
-    @students = Student.where(class_belongs: @user.class_number).order(:class_number) 
+    @students = Student.all
+    #@students = Student.where(class_belongs: @user.class_number).order(:class_number) 
     @guardians = User.where(admin: false, teacher: false)
-    @student_count = Student.where(class_belongs: @user.class_number).count 
+    #@student_count = Student.where(class_belongs: @user.class_number).count 
   end
   
   #生徒一覧（一括表示）
