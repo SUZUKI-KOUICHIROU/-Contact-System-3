@@ -19,13 +19,13 @@
     <tbody>
       <% @students.each do |student| %>
         <% @guardians.each do |guardian| %> 
-          <% if student.user_id == guardian.id %>  
+          <!--% if student.user_id == guardian.id %-->  
             <tr>
               <td><%= student.student_number %></td>
               <td><%= link_to "#{student.student_name}", students_student_detail_user_path(student) %></td>
               <td><%= guardian.name %></td>
             </tr> 
-          <% end %>
+          <!--% end %-->
         <% end %>
       <% end %>
     </tbody>
