@@ -166,7 +166,7 @@ class UsersController < ApplicationController
   #生徒一覧（一括表示）
   
   def student_index_3
-    @students = Student.all.order(:class_belongs)
+    @students = Student.all.order(:class_belongs).order(:class_belongs).order(:student_number)
     @guardians = User.where(admin: false, teacher: false) 
     #@students = User.paginate(page: params[:page]) 
   end
