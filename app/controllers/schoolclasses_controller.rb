@@ -21,7 +21,10 @@ class SchoolclassesController < ApplicationController
   #クラス一覧
   def edit_1
     @schoolclassese_1 = Classnumber.where('class_name like ?','1-%').order(:class_name) 
-    @teachers = User.where(teacher: true).where('class_number like ?','1-%')  
+    #@teachers = User.where(teacher: true).where('class_number like ?','1-%')  
+  
+    @class = Classnumber.where('class_name like ?','1-%').order(:class_name)
+    @teachers = User.where(teacher: true)
   end
     
   def edit_2

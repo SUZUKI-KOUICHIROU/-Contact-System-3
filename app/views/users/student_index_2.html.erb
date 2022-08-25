@@ -1,21 +1,25 @@
 <% provide(:title, 'Student-Index-2') %>
 
-<!--div class="student-title"><h1><%= "#{@user.class_number}生徒一覧" %></h1></div-->
+  <div class="student-title"><h1><%= "#{@classnumber.class_name}生徒一覧" %></h1></div>
 
-<table class="table table-bordered table-condensed" id="table-index-teacher"> 
-  <!--th><%= "担任：#{@user.name}" %></th-->
-  <!--th><%= "生徒数：#{@student_count}名" %></th-->
-</table>
+  <table class="table table-bordered table-condensed" id="table-index-teacher"> 
+    <% @teachers.each do |teacher| %>
+      <% if @classnumber.class_name == teacher.class_number %>  
+        <th><%= "担任：#{teacher.name}" %></th>
+      <% end %>
+    <% end %>
+    <th><%= "生徒数：#{@student_count}名" %></th>
+  </table>
 
-<div>
-  <table class="table table-bordered table-condensed table-hover" id="table-class-index">    
-    <thead> 
-      <tr>  
-        <th>出席番号</th>
-        <th>名前</th>
-        <th>保護者</th>
-      </tr>
-    </thead>
+  <div>
+    <table class="table table-bordered table-condensed table-hover" id="table-class-index">    
+      <thead> 
+        <tr>  
+          <th>出席番号</th>
+          <th>名前</th>
+          <th>保護者</th>
+        </tr>
+      </thead>
     <tbody>
       <% @students.each do |student| %>
         <% @guardians.each do |guardian| %> 
@@ -28,6 +32,12 @@
           <% end %>
         <% end %>
       <% end %>
+      
+    
+    
+    
+    
+    
     </tbody>
   </table>
 </div>
