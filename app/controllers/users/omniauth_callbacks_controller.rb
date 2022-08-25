@@ -1,0 +1,26 @@
+
+class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+
+  def line; basic_action end
+
+  private
+  def basic_action
+    @omniauth = request.env["omniauth.auth"]
+    if @omniauth.present?
+      @profile = User.find_or_initialize_by(provider: @omniauth["provider"], uid: @omniauth["uid"])
+      if @profile.email.blank?
+        email = @omniauth["info"]["email"] ? @omniauth["info"]["email"] : "#{@omniauth["uid"]}-#{@omniauth["provider"]}@example.com"
+        @profile = current_user || User.create!(provider: @omniauth["provider"], uid: @omniauth["uid"], email: email, name: @omniauth["info"]["name"], password: "password")
+      end
+      @profile.set_values(@omniauth)
+      sign_in(:user, @profile)
+    end
+    flash[:notice] = "ログインしました"
+    redirect_to root_path
+  end
+
+  def fake_email(uid, provider)
+    "メールアドレスを設定してください"
+    #"#{auth.uid}-#{auth.provider}@example.com"
+  end
+end
