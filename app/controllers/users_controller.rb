@@ -126,6 +126,7 @@ class UsersController < ApplicationController
   
   def teacher_index
     @teachers = User.where(teacher: true)
+    @classnumber = Classnumber.all
   end
   
   def destroy

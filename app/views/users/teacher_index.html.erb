@@ -15,21 +15,23 @@
     </thead>  
 
     <% @teachers.each do |teacher| %>
-      <tr>
-        <td><%= link_to "#{teacher.class_number}", student_index_2_user_path(teacher) %></td> 
-        <td class="student-name">
-          <%= teacher.name %>
-          <%= link_to "編集", edit_teacher_user_path(teacher), class: "btn btn--green btn--student" %>
-        </td>
-        <td><%= link_to "連絡帳", schoolclasses_teacher_contact_index_user_path(teacher) %></td>
-        <td>
-          <!--% if current_user.admin? && !current_user?(teacher) %-->
-            <%= link_to "削除", teacher, method: :delete,
-              data: { confirm: "削除してよろしいですか？" },
-              class: "btn btn-danger" %>
-          <!--% end %-->       
-        </td>
-      </tr>
+      <% @classnumber.each do |number| %>
+        <% if number.class_name == teacher.class_number %>
+          <tr>
+            <td><%= link_to "#{teacher.class_number}", student_index_2_user_path(number) %></td> 
+            <td class="student-name">
+              <%= teacher.name %>
+              <%= link_to "編集", edit_teacher_user_path(teacher), class: "btn btn--green btn--student" %>
+            </td>
+            <td><%= link_to "連絡帳", schoolclasses_teacher_contact_index_user_path(teacher) %></td>
+            <td>
+              <%= link_to "削除", teacher, method: :delete,
+                data: { confirm: "削除してよろしいですか？" },
+                class: "btn btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
     <% end %>
   </table>
 </div>
