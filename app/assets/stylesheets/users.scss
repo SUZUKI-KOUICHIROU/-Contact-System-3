@@ -584,6 +584,7 @@ input[type="password"] {
 .row_table tbody {
   margin-top: 20px;
   margin-bottom: 20px;
+  width: 550px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -794,6 +795,37 @@ table{
     border-bottom:none;
   }
   .tb01 tr:last-child{
+    border-bottom: solid 1px #ccc;
+  }
+}
+
+table{
+  border-collapse: collapse;
+  margin-top: 50px;
+}
+.tb02 th,
+.tb02 td{
+  font-size: 30px;
+  padding: 10px;
+  border: solid 1px #ccc;
+  text-align:center;
+  box-sizing:border-box;
+}
+.tb02 th {
+  color: black;
+  background: #FFCCFF;
+}
+@media screen and (max-width: 640px) {
+  .tb02 {
+    width: 100%;
+  }
+  table.tb02 th,
+  table.tb02 td {
+    display: block;
+    width: 100%;
+    border-bottom:none;
+  }
+  .tb02 tr:last-child{
     border-bottom: solid 1px #ccc;
   }
 }
