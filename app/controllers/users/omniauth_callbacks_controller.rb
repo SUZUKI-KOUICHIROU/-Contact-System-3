@@ -20,7 +20,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def fake_email(uid, provider)
-    "メールアドレスを設定してください"
-    #"#{auth.uid}-#{auth.provider}@example.com"
+    "#{auth.uid}-#{auth.provider}@example.com"
   end
 end
