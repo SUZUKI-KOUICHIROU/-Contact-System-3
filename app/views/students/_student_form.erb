@@ -1,4 +1,5 @@
     <%= form_with(model: @student, url: students_create_user_path, local: true, method: :post) do |f| %>
+    
     <%= render 'shared/error_messages', object: @student %>  
 
     <div class ="student-register2">
@@ -20,7 +21,7 @@
             </div>
         <%= f.label "クラス", class: "label-#{yield(:class_text)}" %>
       <div class= "teacher-class">
-        <%= f.select :class_belongs, @class_list.pluck(:class_name), { include_blank: "クラスを選択" }, { required: true } %>
+        <%= f.select :class_belongs, @class_list.pluck(:class_name), { include_blank: "クラスを選択", selected: "クラスを選択" }, :required => true %>
       </div> 
     
       <div class="student-number">  

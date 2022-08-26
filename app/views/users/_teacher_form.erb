@@ -11,7 +11,7 @@
 
     <%= f.label :class_number, class: "label-#{yield(:class_text)}" %>
     <div class= "teacher-class">
-      <%= f.select :class_number, @class_list.pluck(:class_name), { include_blank: "クラスを選択" }, { required: true } %>
+      <%= f.select :class_number, @class_list.pluck(:class_name), { include_blank: "クラスを選択", selected: "クラスを選択" }, :required => true %>
     </div>
 
     <%= f.label :password, class: "label-#{yield(:class_text)}" %>

@@ -16,7 +16,7 @@ class StudentsController < ApplicationController
     if @student.save
       redirect_to current_user, notice: "生徒登録が完了しました。"
     else
-      flash[:alert] = '失敗しました。'
+      #flash[:alert] = '失敗しました。'
       render :new
     end
   end

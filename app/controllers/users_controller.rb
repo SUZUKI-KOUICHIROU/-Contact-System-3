@@ -104,7 +104,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to @user, notice: "担任を登録しました。"
     else
-      flash[:alert] = "失敗しました。" 
+      #flash[:alert] = "失敗しました。" 
       render :new_teacher
     end
   end
@@ -125,7 +125,7 @@ class UsersController < ApplicationController
   #担任一覧
   
   def teacher_index
-    @teachers = User.where(teacher: true)
+    @teachers = User.where(teacher: true).order(:class_number)
     @classnumber = Classnumber.all
   end
   
