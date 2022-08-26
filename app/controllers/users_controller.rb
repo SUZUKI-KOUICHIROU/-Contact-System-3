@@ -166,10 +166,10 @@ class UsersController < ApplicationController
   #生徒一覧（一括表示）
   
   def student_index_3
-    @students = Student.all.order(:class_belongs).order(:class_belongs).order(:student_number)
+    #@students = Student.all.order(:class_belongs).order(:student_number)
     @guardians = User.where(admin: false, teacher: false) 
     @class = Classnumber.all
-    @students = User.paginate(page: params[:page]) 
+    @students = Student.paginate(page: params[:page], per_page: 10).order(:class_belongs).order(:student_number) 
   end
   
   def student_destroy

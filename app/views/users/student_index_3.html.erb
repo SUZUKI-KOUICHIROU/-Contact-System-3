@@ -3,7 +3,7 @@
 <div class="student-title"><h1><%= "#{@user.class_number}生徒一覧" %></h1></div>
 
 <div>
-  <%= will_paginate %>
+  <%= will_paginate(@students, renderer: WillPaginate::ActionView::BootstrapLinkRenderer) %>
   <table class="table table-bordered table-condensed table-hover" id="table-class-index">      
     <thead> 
       <tr>
@@ -42,5 +42,4 @@
       <% end %>
     </tbody>
   </table>
-  <%= will_paginate %>
 </div>
