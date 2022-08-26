@@ -24,16 +24,16 @@
         <th>担任への連絡</th>
       </tr>
     </thead>
-  
     <tbody>
-      <% @schoolclassese_6.each do |schoolclass| %>  
-        <% @teachers.each do |teacher| %> 
-          <% if schoolclass.class_name == teacher.class_number %>
+      <% @class.each do |number| %>
+        <% @teachers.each do |teacher| %>   
+          <% if number.class_name == teacher.class_number %>
             <tr>     
-              <td><%= link_to "#{teacher.class_number}", student_index_2_user_path(teacher) %></td>
+              <td><%= link_to "#{number.class_name}", student_index_2_user_path(number) %></td>
               <td><%= teacher.name %></td>
               <td><%= link_to "担任への連絡", schoolclasses_teacher_contact_index_user_path(teacher) %></td>
-            </tr>
+              <td><%= link_to "学級だより", schoolclasses_guardian_board_index2_user_path(teacher) %></td>
+            </tr>       
           <% end %>
         <% end %>
       <% end %>

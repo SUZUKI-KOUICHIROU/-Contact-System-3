@@ -21,35 +21,38 @@ class SchoolclassesController < ApplicationController
   #クラス一覧
   def edit_1
     @schoolclassese_1 = Classnumber.where('class_name like ?','1-%').order(:class_name) 
-    #@teachers = User.where(teacher: true).where('class_number like ?','1-%')  
-  
     @class = Classnumber.where('class_name like ?','1-%').order(:class_name)
     @teachers = User.where(teacher: true)
   end
     
   def edit_2
     @schoolclassese_2 = Classnumber.where('class_name like ?','2-%').order(:class_name)
-    @teachers = User.where(teacher: true).where('class_number like ?','2-%')
+    @class = Classnumber.where('class_name like ?','2-%').order(:class_name)
+    @teachers = User.where(teacher: true)
   end
 
   def edit_3 
     @schoolclassese_3 = Classnumber.where('class_name like ?','3-%').order(:class_name)
-    @teachers = User.where(teacher: true).where('class_number like ?','3-%')
+    @class = Classnumber.where('class_name like ?','3-%').order(:class_name)
+    @teachers = User.where(teacher: true)
   end
 
   def edit_4
     @schoolclassese_4 = Classnumber.where('class_name like ?','4-%').order(:class_name)
-    @teachers = User.where(teacher: true).where('class_number like ?','4-%')
+    @class = Classnumber.where('class_name like ?','4-%').order(:class_name)
+    @teachers = User.where(teacher: true)
   end
 
   def edit_5
     @schoolclassese_5 = Classnumber.where('class_name like ?','5-%').order(:class_name)
-    @teachers = User.where(teacher: true).where('class_number like ?','5-%')
+    @class = Classnumber.where('class_name like ?','5-%').order(:class_name)
+    @teachers = User.where(teacher: true)
   end
 
   def edit_6
     @schoolclassese_6 = Classnumber.where('class_name like ?','6-%').order(:class_name)
-    @teachers = User.where(teacher: true).where('class_number like ?','6-%')
+    @class = Classnumber.where('class_name like ?','6-%').order(:class_name)
+    @teachers = User.where(teacher: true)
   end
   
   #担任への連絡選択

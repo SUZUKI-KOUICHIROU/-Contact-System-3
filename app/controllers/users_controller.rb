@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   
   def show
     #@students = @user.students.where(params[:id]).order(:class_belongs)
-    @students = Student.where(user_id: @user.id)
+    @students = Student.where(user_id: @user.id).order(:class_belongs).order(:student_number)
     @guardian = @user.students.where(user_id: @user.id)
     
     #管理者
@@ -168,7 +168,8 @@ class UsersController < ApplicationController
   def student_index_3
     @students = Student.all.order(:class_belongs).order(:class_belongs).order(:student_number)
     @guardians = User.where(admin: false, teacher: false) 
-    #@students = User.paginate(page: params[:page]) 
+    @class = Classnumber.all
+    @students = User.paginate(page: params[:page]) 
   end
   
   def student_destroy

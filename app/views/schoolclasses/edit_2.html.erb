@@ -6,7 +6,8 @@
   <table class="table table-bordered table-condensed" id="table-class-set">
     <th class="class-a">作成クラス</th>
       <% @schoolclassese_2.zip(@teachers) do |schoolclass, teacher| %>  
-        <th class="class-b"><%= schoolclass.class_name %>
+        <th class="class-b">
+          <%= schoolclass.class_name %>
           <%= link_to "削除", classnumber_path(schoolclass), method: :delete,
               data: { confirm: "削除してよろしいですか？" },
               class: "btn btn-danger" %>
@@ -24,15 +25,15 @@
         <th>担任への連絡</th>
       </tr>
     </thead>
-  
-    <tbody>
-      <% @schoolclassese_2.each do |schoolclass| %>  
-        <% @teachers.each do |teacher| %> 
-          <% if schoolclass.class_name == teacher.class_number %>
+    <tbody>      
+      <% @class.each do |number| %>
+        <% @teachers.each do |teacher| %>   
+          <% if number.class_name == teacher.class_number %>     
             <tr>     
-              <td><%= link_to "#{teacher.class_number}", student_index_2_user_path(teacher) %></td>
+              <td><%= link_to "#{number.class_name}", student_index_2_user_path(number) %></td>
               <td><%= teacher.name %></td>
               <td><%= link_to "担任への連絡", schoolclasses_teacher_contact_index_user_path(teacher) %></td>
+              <td><%= link_to "学級だより", schoolclasses_guardian_board_index2_user_path(teacher) %></td>
             </tr>
           <% end %>
         <% end %>

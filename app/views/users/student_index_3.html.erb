@@ -3,7 +3,7 @@
 <div class="student-title"><h1><%= "#{@user.class_number}生徒一覧" %></h1></div>
 
 <div>
-  <!--%= will_paginate %-->
+  <%= will_paginate %>
   <table class="table table-bordered table-condensed table-hover" id="table-class-index">      
     <thead> 
       <tr>
@@ -19,7 +19,11 @@
         <% @guardians.each do |guardian| %>  
           <% if student.user_id == guardian.id %>
             <tr>
-              <td><%= student.class_belongs %></td>
+              <% @class.each do |number| %>
+                <% if number.class_name == student.class_belongs %>
+                  <td><%= link_to "#{student.class_belongs}", student_index_2_user_path(number) %></td>
+                <% end %>
+              <% end %>
               <td><%= link_to "#{student.student_name}", students_student_detail_user_path(student) %></td>
               <td><%= guardian.name %>
               <td>
@@ -38,4 +42,5 @@
       <% end %>
     </tbody>
   </table>
+  <%= will_paginate %>
 </div>
