@@ -274,7 +274,7 @@
             <% end %>
           </thead>
             <% @students.each do |student| %>
-              <tr>
+            <tr>
                 <td><%= student.class_belongs %></td>
                 <td class="student-name1">
                   <a class="student-name3"><%= link_to student.student_name, students_student_detail_user_path(student) %></a>

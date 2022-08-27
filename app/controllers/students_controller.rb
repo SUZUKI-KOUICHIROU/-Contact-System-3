@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
 
-  before_action :set_user, only: %i(new create student_detail edit_student update_student)
+  before_action :set_user, only: %i(new create update_student)
   before_action :set_student, only: %i(student_detail edit_student update_student destroy)
   before_action :class_choice, only: %i(new create edit_student)
   before_action :correct_user, only: %i(new)
