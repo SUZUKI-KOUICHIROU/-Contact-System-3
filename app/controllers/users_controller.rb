@@ -67,7 +67,8 @@ class UsersController < ApplicationController
 
   def update_guardian
     if @user.update(guardian_params)
-      redirect_to current_user, notice: "保護者情報を更新しました。"
+      flash[:notice] = "保護者情報を更新しました。"
+      redirect_to current_user
     else
       render :edit_guardian     
     end  
