@@ -4,7 +4,7 @@ class UsersController < ApplicationController
                                     edit_student_1 update_student_1 new_student create_student edit_student update_student show_student edit_student_2 
                                     edit_admin update_admin edit_teacher update_teacher edit_guardian update_guardian guardian_detail guardian_destroy)
   #before_action :user_signed_in?, only: %i(destroy teacher_destroy guardian_destroy)
-  before_action :authenticate_user!, 
+  before_action :authenticate_user!
   before_action :ensure_correct_user, only: %i(show guardian_detail edit_guardian)
   
   before_action :admin_teacheredit_user, only: %i(edit_teacher)
