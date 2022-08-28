@@ -254,7 +254,7 @@
             <td class="guardian-3">保護者</td>
             <td class="student-name1">
               <a class="student-name3"><%= link_to "#{@user.name}", guardian_detail_user_path %></a>
-              <a><%= link_to "編集", edit_user_registration_path, class: "btn btn--green btn--student" %></a>
+              <a><%= link_to "編集", edit_user_registration_path(@user), class: "btn btn--green btn--student" %></a>
             </td>
             <td class="student-name1">
               <a><%= link_to "生徒登録", students_new_user_path, class: "btn btn--green btn--student" %></a>
