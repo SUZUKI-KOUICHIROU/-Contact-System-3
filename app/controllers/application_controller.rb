@@ -31,22 +31,22 @@ class ApplicationController < ActionController::Base
   def correct_guardian_user
     @student = Student.find(params[:id])
     unless user_signed_in? && current_user.id == @student.user_id
-      flash[:danger] = "閲覧・編集権限がありません。"
+      flash[:alert] = "閲覧・編集権限がありません。"
       redirect_to(root_url)
     end
   end
   
   def correct_administrator_user
     @student = Student.find(params[:id])
-    unless user_signed_in? && current_user.id == @student.user_id || current_user.admin? || current_user.teacher? && current_user.class_number == @student.class_belongs
-      flash[:alert] = "閲覧・編集権限がありません。"
-      redirect_to(root_url)
-    end
+      unless user_signed_in? && current_user.id == @student.user_id || user_signed_in? && current_user.admin? || user_signed_in? && current_user.teacher? && current_user.class_number == @student.class_belongs
+        flash[:alert] = "閲覧・編集権限がありません。"
+        redirect_to(root_url)
+      end
   end
 
   def correct_teacherguardian_user
     @student = Student.find(params[:id])
-    unless user_signed_in? && current_user.id == @student.user_id || current_user.teacher? && current_user.class_number == @student.class_belongs
+    unless user_signed_in? == @student.user_id || current_user.teacher? && current_user.class_number == @student.class_belongs
       flash[:danger] = "閲覧・編集権限がありません。"
       redirect_to(root_url)
     end
