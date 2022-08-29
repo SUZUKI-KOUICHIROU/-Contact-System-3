@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
   
   # 管理者かどうか判定します。
   def admin_user
-    unless current_user.admin?
+    unless user_signed_in? && current_user.admin?
       flash[:alert] = "管理者以外は閲覧・編集権限がありません。" 
     redirect_to root_url
     end
