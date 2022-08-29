@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
 
   def correct_teacherguardian_user
     @student = Student.find(params[:id])
-    unless user_signed_in? == @student.user_id || current_user.teacher? && current_user.class_number == @student.class_belongs
+    unless user_signed_in? && @student.user_id || user_signed_in? && current_user.teacher? && current_user.class_number == @student.class_belongs
       flash[:danger] = "閲覧・編集権限がありません。"
       redirect_to(root_url)
     end
