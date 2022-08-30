@@ -6,10 +6,10 @@ class UsersController < ApplicationController
   #before_action :user_signed_in?, only: %i(destroy teacher_destroy guardian_destroy)
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: %i(show guardian_detail edit_guardian)
-  before_action :admin_teacheredit_user, only: %i(edit_teacher)
+  before_action :admin_teacheredit_user, only: %i(edit_teacher student_destroy)
   before_action :admin_user, only: %i(teacher_index student_index_2 student_detail new_teacher teacher_contact_index edit_teacher_contact
-                                      student_index_3 edit_admin student_destroy destroy guardian_destroy)
-  before_action :teacher_user, only: %i(student_index student_destroy2)
+                                      student_index_3 edit_admin destroy guardian_destroy)
+  before_action :teacher_user, only: %i(student_index)
   before_action :class_choice, only: %i(new_teacher create_teacher edit_teacher new_student edit_student edit_student_2)
   before_action :set_one_month, only: %i(show)
 
