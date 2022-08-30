@@ -7,11 +7,12 @@ class SchoolclassesController < ApplicationController
                 update_teacherform_contact edit_teacherwhat_contact update_teacherwhat_contact index_teacher_contact edit_guardianwhat_contact update_guardianwhat_contact 
                 edit_class_board update_class_board board_index show_board edit_guardianform_contact update_guardianform_contact board_create_index guardian_board_index update_student destroy edit_1
                 guardian_board_index2 show_board2 edit_teacher_line update_teacher_line)
-  #before_action :authenticate_user!, only: %i()
+  before_action :authenticate_user!, only: %i()
+  before_action :teacher_user, only: %i(show_teacher_contact)
   before_action :correct_guardian_user, only: %i(index_guardian_contact guardian_board_index show_board)
-  before_action :ensure_correct_user, only: %i(show_teacher_contact board_create_index edit_class_board)
+  before_action :ensure_crrect_user, only: %i(board_create_index edit_class_board)
   before_action :admin_user, only: %i(class_index teacher_contact_index edit_teacher_contact edit_teacher_contact_2 class_index edit_1 edit_2 edit_3 edit_4 edit_5 edit_6  guardian_board_index2 destroy)
-  before_action :correct_teacher_user, only: %i(index_teacher_contact)
+  before_action :correct_teacher_user, only: %i(index_teacher_contact edit_teacherwhat_contact)
   before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact index_teacher_contact index_guardian_contact board_create_index guardian_board_index edit_teacher_line) 
   
   #学年選択

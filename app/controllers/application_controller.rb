@@ -70,8 +70,8 @@ class ApplicationController < ActionController::Base
 
   #担任権限  
   def teacher_user
-    @user = User.find(params[:user_id]) if @user.blank?
-    unless current_user && current_user.teacher?
+    @user = User.find(params[:id]) if @user.blank?
+    unless current_user && current_user.teacher? && current_user.id == @user.id
       flash[:alert] = "閲覧・編集権限がありません。"
       redirect_to(root_url)
     end
