@@ -104,7 +104,7 @@ class UsersController < ApplicationController
   def create_teacher
     @user = User.new(teacher_params)
     if @user.save
-      redirect_to @user, notice: "担任を登録しました。"
+      redirect_to current_user, notice: "担任を登録しました。"
     else
       #flash[:alert] = "失敗しました。" 
       render :new_teacher
