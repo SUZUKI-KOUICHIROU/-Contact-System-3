@@ -299,7 +299,7 @@ class SchoolclassesController < ApplicationController
       else
         flash[:alert] = "失敗しました。" 
       end
-      redirect_to user_url
+      redirect_to schoolclasses_board_create_index_user_url(current_user)
     end
   end
   
