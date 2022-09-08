@@ -11,7 +11,6 @@
   <table class="table table-bordered table-condensed table-hover" id="table-contact-index">
     <tbody>
       <% @schoolclasses.each do |day| %>
-  
         <% css_class = case $days_of_the_week[day.contact_date.wday]
             when '土'
             'text-primary'
@@ -28,8 +27,9 @@
             <% if day.board_title.present? && day.contact_board.present? %>
               <%= link_to day.board_title, schoolclasses_edit_class_board_user_path(@user, date: day.contact_date) %> 
             <% else %>  
-              <%= link_to "学級だより作成", schoolclasses_edit_class_board_user_path(@user, date: day.contact_date) %></td>
+              <%= link_to "学級だより作成", schoolclasses_edit_class_board_user_path(@user, date: day.contact_date) %>
             <% end %>
+          </td>
         </tr>
       <% end %>  
     </tbody>

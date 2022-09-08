@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :schoolclasses, dependent: :destroy
   has_many :students, dependent: :destroy
 
+  validates :name, length: { maximum: 10 }
   validates :address, length: { maximum: 30 }
   validates :telephone_number, length: { maximum: 15 }
   #has_secure_password

@@ -127,7 +127,8 @@ class UsersController < ApplicationController
   #担任一覧
   
   def teacher_index
-    @teachers = User.where(teacher: true).order(:class_number)
+    @teachers = User.where(teacher: true)
+    #@teachers = User.where(teacher: true).order(:class_number)
     @classnumber = Classnumber.all
   end
   

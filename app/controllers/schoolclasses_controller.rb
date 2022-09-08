@@ -6,14 +6,14 @@ class SchoolclassesController < ApplicationController
                 edit_teacher_contact_3 update_teacher_contact_3 show_teacher_contact teacher_contact  index_guardian_contact edit_teacherform_contact 
                 update_teacherform_contact edit_teacherwhat_contact update_teacherwhat_contact index_teacher_contact edit_guardianwhat_contact update_guardianwhat_contact 
                 edit_class_board update_class_board board_index show_board edit_guardianform_contact update_guardianform_contact board_create_index guardian_board_index update_student destroy edit_1
-                guardian_board_index2 show_board2 edit_teacher_line update_teacher_line)
+                guardian_board_index2 show_board2)
   #before_action :authenticate_user!, only: %i()
   before_action :teacher_user, only: %i(show_teacher_contact board_create_index edit_class_board)
   before_action :correct_guardian_user, only: %i(index_guardian_contact guardian_board_index show_board)
   #before_action :ensure_crrect_user, only: %i()
   before_action :admin_user, only: %i(class_index teacher_contact_index edit_teacher_contact edit_teacher_contact_2 class_index edit_1 edit_2 edit_3 edit_4 edit_5 edit_6  guardian_board_index2 destroy)
   before_action :correct_teacher_user, only: %i(index_teacher_contact edit_teacherwhat_contact)
-  before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact index_teacher_contact index_guardian_contact board_create_index guardian_board_index edit_teacher_line) 
+  before_action :set_one_month, only: %i(teacher_contact_index edit_teacher_contact show_teacher_contact teacher_contact index_teacher_contact index_guardian_contact board_create_index guardian_board_index) 
   
   #学年選択
   def class_index 
@@ -294,8 +294,12 @@ class SchoolclassesController < ApplicationController
   def update_class_board
     class_board_params.each do |id,item|
       contact = Schoolclass.find(id)
-      if contact.update(item.merge(board_class: @user.class_number, board_update: Time.current.change(sec: 0)))
+      if params[:user][:schoolclasses][id][:board_select] == "0"  
+        contact.update(item.merge(board_class: @user.class_number, board_update: Time.current.change(sec: 0)))
         flash[:notice] = '投稿しました。'
+      elsif params[:user][:schoolclasses][id][:board_select] == "1" 
+        contact.update(item.merge(board_title: nil, contact_board: nil))
+        flash[:notice] = "削除しました。"
       else
         flash[:alert] = "失敗しました。" 
       end
@@ -305,7 +309,7 @@ class SchoolclassesController < ApplicationController
   
   #学級だより一覧（保護者）
   def guardian_board_index
-    @student = Student.find(params[:id])
+    @student = Student.find(params[:user_id])
     @guardian_board = Schoolclass.where(board_class: @student.class_belongs).sort.reverse! 
   end
 

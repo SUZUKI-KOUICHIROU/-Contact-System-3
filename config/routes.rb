@@ -112,10 +112,6 @@ Rails.application.routes.draw do
 
       get 'show_student'
       get 'schoolclasses/show_board2'
-      
-      get 'schoolclasses/edit_teacher_line'
-      patch 'schoolclasses/update_teacher_line'
-      get 'schoolclasses/line_aarticipation'
     end
   end
   resources :schoolclasses do
