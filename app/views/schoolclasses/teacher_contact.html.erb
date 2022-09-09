@@ -25,8 +25,11 @@
     <%= form_with(model: @user, url: schoolclasses_update_school_contact_user_path, local: true, method: :patch) do |f| %>  
       <% @contacts.each do |day| %>
         <%= f.fields_for "schoolclasses[]", day do |contact| %>
-          <td><%= contact.text_area :school_contact, placeholder: "コメントを入力してください", class: "container" %></td>    
-          <td class="contact-btn"><%= f.submit "投稿", class: "contact-btn btn-success btn-lg btn-login" %></td>
+          <td><%= contact.text_area :school_contact, placeholder: "コメントを入力してください", class: "container" %></td>             
+        <div class="contact-select"> 
+          <%= contact.select :contact_select2, Schoolclass.contact_select2s, {prompt: true}, { class: "form-control-lg", required: true } %>
+          <td><%= f.submit "更新", class: "board-btn btn-success btn-lg" %></td>
+        </div>
         <% end %>
       <% end %>
     <% end %>

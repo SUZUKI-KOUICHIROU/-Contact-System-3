@@ -70,14 +70,17 @@ class SchoolclassesController < ApplicationController
   def update_teacher_contact
     teacher_contact_params.each do |id,item|  
       contact = Schoolclass.find(id)
-      if contact.post_count == 0
+      if params[:user][:schoolclasses][id][:contact_select] == "0" && contact.post_count == 0 
         contact.update(item.merge(contact_update: Time.current.change(sec: 0)))
         contact.increment!(:post_count, 1)
         flash[:notice] = '投稿しました。'
-      elsif contact.post_count > 0
+      elsif params[:user][:schoolclasses][id][:contact_select] == "0" && contact.post_count > 0 
         contact.update(item.merge(before_post_count: contact.post_count, contact_update: Time.current.change(sec: 0)))
         contact.increment!(:post_count, 1)
         flash[:notice] = '投稿しました。'
+      elsif params[:user][:schoolclasses][id][:contact_select] == "1" && contact.post_count > 0
+        contact.update(item.merge(title: nil, teacher_note: nil, post_count: 0))
+        flash[:notice] = "削除しました。"
       else    
         flash[:alert] = "失敗しました。" 
       end
@@ -125,17 +128,20 @@ class SchoolclassesController < ApplicationController
   def update_school_contact
     school_contact_params.each do |id,item|  
       contact = Schoolclass.find(id)
-      if contact.contact_count1 == 0
+      if params[:user][:schoolclasses][id][:contact_select2] == "0" && contact.contact_count1 == 0
         contact.update(item.merge(contact_update2: Time.current.change(sec: 0)))
         contact.increment!(:contact_count1, 1)
         flash[:notice] = '投稿しました。'
-      elsif contact.contact_count1 > 0
+      elsif params[:user][:schoolclasses][id][:contact_select2] == "0" && contact.contact_count1 > 0
         contact.update(item.merge(before_contact1: contact.contact_count1, contact_update2: Time.current.change(sec: 0)))
         contact.increment!(:contact_count1, 1)
         flash[:notice] = '投稿しました。'
+      elsif params[:user][:schoolclasses][id][:contact_select2] == "1" && contact.contact_count1 > 0
+        contact.update(item.merge(school_contact: nil, contact_count1: 0)) 
+        flash[:notice] = "削除しました。"
       else
-        render :show_teacher_contact
-        flash[:alert] = "失敗しました。" 
+        flash[:alert] = "失敗しました。"
+        render :show_teacher_contact 
       end
       redirect_to schoolclasses_show_teacher_contact_user_url(current_user)
     end

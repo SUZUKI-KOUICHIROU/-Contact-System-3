@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_07_224108) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_08_224028) do
   create_table "classnumbers", force: :cascade do |t|
     t.string "class_name"
     t.datetime "created_at", null: false
@@ -74,7 +74,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_224108) do
     t.string "teacher_line"
     t.string "line_class"
     t.string "line_token"
-    t.integer "board_edit", default: 0
     t.index ["user_id"], name: "index_schoolclasses_on_user_id"
   end
 

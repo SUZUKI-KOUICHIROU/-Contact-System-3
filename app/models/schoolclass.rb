@@ -2,6 +2,9 @@ class Schoolclass < ApplicationRecord
   belongs_to :user
 
   enum board_select: { 投稿: 0, 削除: 1 }, _prefix: true
+  enum contact_select: { 投稿: 0, 削除: 1 }, _prefix: true
+  enum contact_select2: { 投稿: 0, 削除: 1 }, _prefix: true
+
   
   validates :title, length: { maximum: 30 }
   validates :teacher_note, length: { maximum: 1000 }

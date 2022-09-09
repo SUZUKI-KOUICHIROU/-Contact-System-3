@@ -25,8 +25,13 @@
       <td>
         <%= contact.text_area :teacher_note, placeholder: "コメントを入力してください", required: true, class: "container" %>
       </td> 
-      <td class="contact-btn"><%= f.submit "投稿", class: "contact-btn btn-success btn-lg btn-login" %></td>
-    </div>  
+    </div>
+    <div class="contact-select">
+      <td>
+        <%= contact.select :contact_select, Schoolclass.contact_selects, {prompt: true}, { class: "form-control-lg", required: true } %>
+      </td>
+      <td><%= f.submit "更新", class: "board-btn btn-success btn-lg" %></td>
+    </div> 
     <% end %>
   <% end %>
 <% end %>
