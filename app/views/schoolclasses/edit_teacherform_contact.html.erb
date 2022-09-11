@@ -28,7 +28,10 @@
       <% @contacts.each do |day| %>
         <%= f.fields_for "schoolclasses[]", day do |contact| %>
           <td><%= contact.text_area :guardian_note_2, placeholder: "コメントを入力してください", class: "container" %></td>    
-          <td class="contact-btn"><%= f.submit "投稿", class: "contact-btn btn-success btn-lg btn-login" %></td>
+        <div class="contact-select"> 
+          <%= contact.select :contact_select5, Schoolclass.contact_select5s, {prompt: true}, { class: "form-control-lg", required: true } %>
+          <td><%= f.submit "更新", class: "board-btn btn-success btn-lg" %></td>
+        </div>
         <% end %>
       <% end %>
     <% end %>  
