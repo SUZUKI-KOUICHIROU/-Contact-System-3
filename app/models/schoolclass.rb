@@ -9,6 +9,7 @@ class Schoolclass < ApplicationRecord
   enum contact_select5: { 投稿: 0, 削除: 1 }, _prefix: true
   enum contact_select6: { 投稿: 0, 削除: 1 }, _prefix: true
   enum contact_select7: { 投稿: 0, 削除: 1 }, _prefix: true
+  enum contact_select8: { 投稿: 0, 削除: 1 }, _prefix: true
 
   
   validates :title, length: { maximum: 30 }

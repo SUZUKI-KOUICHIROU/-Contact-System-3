@@ -77,10 +77,8 @@
                   <% @teachers.each do |teacher| %>
                     <% if contact.user_id == teacher.id %>
                       <div class="board-9">
-                        <% if contact.contact_count1 > 0 && contact.title.present? %>  
-                          <%= link_to "#{teacher.name}から返信：#{contact.title}", schoolclasses_edit_teacher_contact_user_path(teacher, date: contact.contact_date)%>
-                        <% elsif contact.contact_count1 > 0 && contact.title.blank? && contact.teacher_note.present? %> 
-                          <%= link_to "#{teacher.name}から返信：無題", schoolclasses_edit_teacher_contact_user_path(teacher, date: contact.contact_date)%>
+                        <% if contact.contact_count1 > 0 && contact.school_contact.present? %>  
+                          <%= link_to "#{teacher.name}から返信あり：#{contact.title}", schoolclasses_edit_teacher_contact_user_path(teacher, date: contact.contact_date)%>
                         <% end %>
                           <%= l(contact.contact_update2, format: :short) if contact.contact_update2.present? %>   
                       </div> 
@@ -163,10 +161,8 @@
                   <% @students2.each do |student| %>
                     <% if contact.user_id == student.id && @user.class_number == contact.contact_class2 %>                
                       <div class="board-5">
-                        <% if contact.guardian_post_count2 > 0 && contact.title_3.present? %>
-                          <%= link_to "#{student.student_name}から返信：#{contact.title_3}", schoolclasses_edit_teacherwhat_contact_user_path(student, date: contact.contact_date) %>
-                        <% elsif contact.guardian_post_count2 > 0 && contact.title_3.blank? && contact.guardian_note_1.present? %> 
-                          <%= link_to "#{student.student_name}から返信：無題", schoolclasses_edit_teacherwhat_contact_user_path(student, date: contact.contact_date) %>
+                        <% if contact.guardian_post_count2 > 0 && contact.guardian_note_2.present? %>
+                          <%= link_to "#{student.student_name}から返信あり：#{contact.title_3}", schoolclasses_edit_teacherwhat_contact_user_path(student, date: contact.contact_date) %>
                         <% end %>
                           <%= l(contact.contact_update6, format: :short) if contact.contact_update6.present? %> 
                       </div> 
@@ -229,10 +225,8 @@
                   <% @teachers.each do |teacher| %>
                     <% if contact.user_id == @user.id && contact.user_id == teacher.id %>
                       <div class="board-7">
-                        <% if contact.post_count3 > 0 && contact.title_2.present? %>
-                          <%= link_to "返信：#{contact.title_2}", schoolclasses_edit_teacher_contact_3_user_path(teacher, date: contact.contact_date) %>
-                        <% elsif contact.post_count3 > 0 && contact.title_2.blank? && contact.teacher_note_2.present? %> 
-                          <%= link_to "返信：無題", schoolclasses_edit_teacher_contact_3_user_path(teacher, date: contact.contact_date) %>               
+                        <% if contact.post_count3 > 0 && contact.school_contact_2.present? %>
+                          <%= link_to "返信あり", schoolclasses_edit_teacher_contact_3_user_path(teacher, date: contact.contact_date) %>
                         <% end %>
                           <%= l(contact.contact_update4, format: :short) if contact.contact_update4.present? %>
                       </div> 
@@ -338,12 +332,10 @@
                         <% if contact.user_id == student.id %>
                           <% if teacher.class_number == student.class_belongs %>
                             <div class="board-2">  
-                              <% if contact.guardian_post_count4 > 0 && contact.title_4.present? %>  
-                                <%= link_to "返信：#{contact.title_4}", schoolclasses_edit_guardianwhat_contact_user_path(student, date: contact.contact_date) %>
-                              <% elsif contact.guardian_post_count4 > 0 && contact.title_4.blank? && contact.guardian_note_3 %>
-                                <%= link_to "返信：無題", schoolclasses_edit_guardianwhat_contact_user_path(student, date: contact.contact_date) %>                                                 
-                              <% end %>                                            
+                              <% if contact.guardian_post_count4 > 0 && contact.guardian_note_4.present? %>  
+                                <%= link_to "返信あり", schoolclasses_edit_guardianwhat_contact_user_path(student, date: contact.contact_date) %>                                                                                            
                                 <%= l(contact.contact_update8, format: :short) if contact.contact_update8.present? %>
+                              <% end %>
                             </div>
                           <% end %>
                         <% end %>  

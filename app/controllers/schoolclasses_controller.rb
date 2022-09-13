@@ -101,18 +101,23 @@ class SchoolclassesController < ApplicationController
   def update_teacher_contact_2
     teacher_contact_3_params.each do |id,item|
       contact = Schoolclass.find(id)
-      if contact.post_count3 == 0
+      if params[:user][:schoolclasses][id][:contact_select8] == "0" && contact.post_count3 == 0
         contact.update(item.merge(contact_update4: Time.current.change(sec: 0)))
         contact.increment!(:post_count3, 1)
         flash[:notice] = '投稿しました。'
-      elsif contact.post_count3 > 0
+        redirect_to schoolclasses_teacher_contact_index_user_url(@user)
+      elsif params[:user][:schoolclasses][id][:contact_select8] == "0" && contact.post_count3 > 0
         contact.update(item.merge(before_post_contact3: contact.post_count3, contact_update4: Time.current.change(sec: 0)))
         contact.increment!(:post_count3, 1)  
         flash[:notice] = '投稿しました。'
+        redirect_to schoolclasses_teacher_contact_index_user_url(@user)
+      elsif params[:user][:schoolclasses][id][:contact_select8] == "1" && contact.post_count3 > 0
+        contact.update(item.merge(school_contact_2: nil, post_count3: 0))
+        flash[:notice] = "削除しました。"
+        redirect_to schoolclasses_edit_teacher_contact_2_user_path(@user, date: contact.contact_date)
       else
         flash[:alert] = "失敗しました。" 
       end
-      redirect_to schoolclasses_teacher_contact_index_user_url(@user)
     end
   end
 
