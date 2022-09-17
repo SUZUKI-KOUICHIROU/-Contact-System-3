@@ -43,11 +43,11 @@
                     <% if contact.user_id == teacher.id %>  
                       <div class="board-8">
                         <% if contact.post_count2 == 1 && contact.title_2.present? %>
-                          <%= link_to "#{teacher.name}から新規連絡：#{contact.title_2}", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
+                          <%= link_to "#{teacher.name}から連絡：#{contact.title_2}", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
                         <% elsif contact.post_count2 > contact.before_post_count2 && contact.title_2.present? %>
                           <%= link_to "#{teacher.name}から返信：#{contact.title_2}", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
                         <% elsif contact.post_count2 == 1 && contact.title_2.blank? && contact.teacher_note_2.present? %>
-                          <%= link_to "#{teacher.name}から新規連絡：無題", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
+                          <%= link_to "#{teacher.name}から連絡：無題", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
                         <% elsif contact.post_count2 > contact.before_post_count2 && contact.title_2.blank? && contact.teacher_note_2.present? %>
                           <%= link_to "#{teacher.name}から返信：無題", schoolclasses_edit_teacher_contact_2_user_path(teacher, date: contact.contact_date) %>
                         <% end %>
@@ -127,11 +127,11 @@
                     <% if contact.user_id == student.id %> 
                       <div class="board-4">
                         <% if contact.guardian_post_count3 == 1 && contact.title_4.present? %>
-                          <%= link_to "#{student.student_name}から新規連絡：#{contact.title_4}", schoolclasses_edit_guardianform_contact_user_path(student, date: contact.contact_date) %>
+                          <%= link_to "#{student.student_name}から連絡：#{contact.title_4}", schoolclasses_edit_guardianform_contact_user_path(student, date: contact.contact_date) %>
                         <% elsif contact.guardian_post_count3 > contact.before_guardian_postcount3 && contact.title_4.present? %>
                           <%= link_to "#{student.student_name}から返信：#{contact.title_4}", schoolclasses_edit_guardianform_contact_user_path(student, date: contact.contact_date)%>
                         <% elsif contact.guardian_post_count3 == 1 && contact.title_4.blank? && contact.guardian_note_3.present? %>
-                          <%= link_to "#{student.student_name}から新規連絡：無題", schoolclasses_edit_guardianform_contact_user_path(student, date: contact.contact_date) %>
+                          <%= link_to "#{student.student_name}から連絡：無題", schoolclasses_edit_guardianform_contact_user_path(student, date: contact.contact_date) %>
                         <% elsif contact.guardian_post_count3 > contact.before_guardian_postcount3 && contact.title_4.blank? && contact.guardian_note_3.present? %>
                           <%= link_to "#{student.student_name}から返信：無題", schoolclasses_edit_guardianform_contact_user_path(student, date: contact.contact_date) %>
                         <% end %>
@@ -162,7 +162,7 @@
                     <% if contact.user_id == student.id && @user.class_number == contact.contact_class2 %>                
                       <div class="board-5">
                         <% if contact.guardian_post_count2 > 0 && contact.guardian_note_2.present? %>
-                          <%= link_to "#{student.student_name}から返信あり：#{contact.title_3}", schoolclasses_edit_teacherwhat_contact_user_path(student, date: contact.contact_date) %>
+                          <%= link_to "#{student.student_name}から返信：#{contact.title_3}", schoolclasses_edit_teacherwhat_contact_user_path(student, date: contact.contact_date) %>
                         <% end %>
                           <%= l(contact.contact_update6, format: :short) if contact.contact_update6.present? %> 
                       </div> 
@@ -191,11 +191,11 @@
                     <% if contact.user_id == @user.id && contact.user_id == teacher.id %> 
                       <div class="board-6">
                         <% if contact.post_count == 1 && contact.title.present? %>
-                          <%= link_to "新規連絡：#{contact.title}", schoolclasses_teacher_contact_user_path(teacher, date: contact.contact_date) %>
+                          <%= link_to "連絡：#{contact.title}", schoolclasses_teacher_contact_user_path(teacher, date: contact.contact_date) %>
                         <% elsif contact.post_count > contact.before_post_count && contact.title.present? %>
                           <%= link_to "返信：#{contact.title}", schoolclasses_teacher_contact_user_path(teacher, date: contact.contact_date) %>
                         <% elsif contact.post_count == 1 && contact.title.blank? && contact.teacher_note.present? %>
-                          <%= link_to "新規連絡：無題", schoolclasses_teacher_contact_user_path(teacher, date: contact.contact_date) %>
+                          <%= link_to "連絡：無題", schoolclasses_teacher_contact_user_path(teacher, date: contact.contact_date) %>
                         <% elsif contact.post_count > contact.before_post_count && contact.title.blank? && contact.teacher_note.present? %>
                           <%= link_to "返信：無題", schoolclasses_teacher_contact_user_path(teacher, date: contact.contact_date) %>
                         <% end %>
@@ -226,7 +226,7 @@
                     <% if contact.user_id == @user.id && contact.user_id == teacher.id %>
                       <div class="board-7">
                         <% if contact.post_count3 > 0 && contact.school_contact_2.present? %>
-                          <%= link_to "返信あり", schoolclasses_edit_teacher_contact_3_user_path(teacher, date: contact.contact_date) %>
+                          <%= link_to "返信", schoolclasses_edit_teacher_contact_3_user_path(teacher, date: contact.contact_date) %>
                         <% end %>
                           <%= l(contact.contact_update4, format: :short) if contact.contact_update4.present? %>
                       </div> 
@@ -293,21 +293,23 @@
               <div class="panel-body">                
                 <% @contacts.each do |contact| %>
                   <% @students.each do |student| %>
-                    <% if contact.user_id == student.id %>
+                  <% @teachers.each do |teacher| %> 
+                    <% if contact.user_id == student.id && student.class_belongs == teacher.class_number %>  
                       <div class="board-1">
                         <% if contact.guardian_post_count1 == 1 && contact.title_3.present? %>
-                          <%= link_to "新規投稿：#{contact.title_3}" ,schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
+                          <%= link_to "#{teacher.name}から連絡：#{contact.title_3}" ,schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
                         <% elsif contact.guardian_post_count1 > contact.before_guardian_postcount1 && contact.title_3.present? %>
-                          <%= link_to "返信：#{contact.title_3}" ,schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
+                          <%= link_to "#{teacher.name}から返信：#{contact.title_3}" ,schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
                         <% elsif contact.guardian_post_count1 == 1 && contact.title_3.blank? && contact.guardian_note_1.present? %>
-                          <%= link_to "新規投稿：無題", schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
+                          <%= link_to "#{teacher.name}から投稿：無題", schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
                         <% elsif contact.guardian_post_count1 > contact.before_guardian_postcount1 && contact.title_3.blank? && contact.guardian_note_1.present? %>
-                          <%= link_to "返信：無題", schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
+                          <%= link_to "#{teacher.name}から返信：無題", schoolclasses_edit_teacherform_contact_user_path(student, date: contact.contact_date) %>
                         <% end %>  
                           <%= l(contact.contact_update5, format: :short) if contact.contact_update5.present? %>
                       </div> 
                       <% end %>
                     <% end %>
+                  <% end %>
                   <% end %>             
                 </div>
               </div>
@@ -333,7 +335,7 @@
                           <% if teacher.class_number == student.class_belongs %>
                             <div class="board-2">  
                               <% if contact.guardian_post_count4 > 0 && contact.guardian_note_4.present? %>  
-                                <%= link_to "返信あり", schoolclasses_edit_guardianwhat_contact_user_path(student, date: contact.contact_date) %>                                                                                            
+                                <%= link_to "#{teacher.name}から返信", schoolclasses_edit_guardianwhat_contact_user_path(student, date: contact.contact_date) %>                                                                                            
                                 <%= l(contact.contact_update8, format: :short) if contact.contact_update8.present? %>
                               <% end %>
                             </div>

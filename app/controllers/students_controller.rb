@@ -25,10 +25,13 @@ class StudentsController < ApplicationController
   end
 
   def update_student
-    if @student.update(student_update_params)
-      flash[:notice] =  "生徒情報を更新しました。"
-      redirect_to student_index_user_url(current_user)
-    else
+    if current_user.teacher?
+      @student.update(student_update_params)
+      redirect_to student_index_user_url(current_user), notice: "生徒情報を更新しました。"
+    elsif current_user
+      @student.update(student_update_params)
+      redirect_to current_user, notice: "生徒情報を更新しました。"
+    else  
       render :edit_student     
     end
   end
