@@ -10,9 +10,11 @@
   height: 65px;
   background-image: url(btn_login_base.png);
   background-size: cover;
+  border-radius: 10px 10px 10px 10px / 10px 10px 10px 10px;
 }
 
 .btn-image:hover {
   opacity: 0.6;
 }
+
 
