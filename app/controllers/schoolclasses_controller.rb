@@ -351,8 +351,8 @@ class SchoolclassesController < ApplicationController
   
   #学級だより一覧（保護者）
   def guardian_board_index
-    @student = Student.find(params[:user_id])
-    @guardian_board = Schoolclass.where(board_class: @student.class_belongs).sort.reverse! 
+    @student = Student.find(params[:id])
+    @guardian_board = Schoolclass.where(board_class: @student.class_belongs).where.not(contact_board: nil).sort.reverse! 
   end
 
   #学級だより閲覧（保護者）
