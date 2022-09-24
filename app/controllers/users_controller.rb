@@ -184,10 +184,6 @@ class UsersController < ApplicationController
     def guardian_params
       params.require(:user).permit(:name, :email, :address, :telephone_number, :password, :password_confirmation)
     end
-
-    def guardian_params
-      params.require(:user).permit(:name, :email, :address, :telephone_number, :password, :password_confirmation)
-    end
   
     def teacher_params
       params.require(:user).permit(:name, :email, :class_number, :password, :password_confirmation).merge(teacher: "true")
