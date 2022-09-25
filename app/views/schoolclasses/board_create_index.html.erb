@@ -26,7 +26,7 @@
           <td>
             <% if day.board_title.present? && day.contact_board.present? %>
               <%= link_to day.board_title, schoolclasses_edit_class_board_user_path(@user, date: day.contact_date) %> 
-            <% else %>  
+            <% elsif Date.current > day.contact_date || Date.current == day.contact_date %>  
               <%= link_to "学級だより作成", schoolclasses_edit_class_board_user_path(@user, date: day.contact_date) %>
             <% end %>
           </td>

@@ -49,7 +49,7 @@
               <%= link_to day.title_2, schoolclasses_edit_teacher_contact_3_user_path(@user, date: day.contact_date) %>
             <% elsif day.title_2.blank? && day.teacher_note_2.present? %>
               <%= link_to "無題", schoolclasses_edit_teacher_contact_3_user_path(@user, date: day.contact_date) %>
-            <% else %>
+            <% elsif Date.current > day.contact_date || Date.current == day.contact_date %>
               <%= link_to "連絡", schoolclasses_edit_teacher_contact_3_user_path(@user, date: day.contact_date), class: "btn btn--green btn--border-groove" %>
             <% end %>
             <br>
