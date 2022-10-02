@@ -16,8 +16,11 @@
   </div>
   <div class="contact-title-2"><td><%= news.board_title %></td></div>
   <div class="posts-show">
-    <td><%= news.contact_board %>
+    <td><%= news.contact_board %></td>
   </div> 
+  <div class="posts-image"> 
+    <%= image_tag news.image.url %>
+  </div>
   <% end %>
 
 

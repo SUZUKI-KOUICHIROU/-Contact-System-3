@@ -11,13 +11,16 @@
           'text-danger'
           end %>  
 
-  <div class="contact-date">
-    <div class="<%= css_class %>"><%= news.contact_date.strftime("%Y年%m月%d日") %><%= "(""#{$days_of_the_week[news.contact_date.wday]})" %></div>
-  </div>
-  <div class="contact-title-2"><td><%= news.board_title %></td></div>
-  <div class="posts-show">
-    <td><%= news.contact_board %>
-  </div> 
+    <div class="contact-date">
+      <div class="<%= css_class %>"><%= news.contact_date.strftime("%Y年%m月%d日") %><%= "(""#{$days_of_the_week[news.contact_date.wday]})" %></div>
+    </div>
+    <div class="contact-title-2"><td><%= news.board_title %></td></div>
+    <div class="posts-show">
+      <td><%= news.contact_board %></td>
+    </div> 
+    <div class="posts-image">
+      <td><%= image_tag news.image.url %></td>
+    </div>
   <% end %>
 
 

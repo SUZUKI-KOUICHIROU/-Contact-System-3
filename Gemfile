@@ -17,6 +17,9 @@ gem 'bootstrap-sass'
 gem 'will_paginate' 
 gem 'bootstrap-will_paginate'
 
+gem 'carrierwave'
+gem 'mini_magick'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
