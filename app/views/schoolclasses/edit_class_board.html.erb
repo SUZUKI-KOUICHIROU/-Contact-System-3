@@ -23,33 +23,6 @@
       <%= board.text_area :contact_board, required: true, placeholder: "お知らせを入力してください", class: "container" %>
     </td>
   </div>
-  <div>
-    <%= board.file_field :image, id: :board_board_image %>
-  <br>
-  <div class="form-group">
-    <%= image_tag 'board_image', size: '300x200',id: 'preview_img' %>
-  </div>
-
-<script type="text/javascript">  
-  document.addEventListener('DOMContentLoaded', () => {
-  const file_button = document.querySelector('#board_board_image');
-  const preview_img = document.querySelector('#preview_img');
-
-  file_button.addEventListener('change', (e) => {
-    let file = e.target.files;
-    let reader = new FileReader() ;
-    reader.readAsDataURL(file[0])
-    reader.onload = function() {
-      preview_img.src = reader.result;
-    }
-    },false);
-  });
-</script>
-
-  <div>
-    <%= image_tag day.image.url if day.image? %>
-  </div>
-  <br>
   <div class="board-select">
     <td>
       <%= board.select :board_select, Schoolclass.board_selects, {prompt: true}, { class: "form-control-lg", required: true } %>
