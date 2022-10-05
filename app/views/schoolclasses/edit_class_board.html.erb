@@ -23,6 +23,7 @@
       <%= board.text_area :contact_board, required: true, placeholder: "お知らせを入力してください", class: "container" %>
     </td>
   </div>
+
   <div class="board-select">
     <td>
       <%= board.select :board_select, Schoolclass.board_selects, {prompt: true}, { class: "form-control-lg", required: true } %>

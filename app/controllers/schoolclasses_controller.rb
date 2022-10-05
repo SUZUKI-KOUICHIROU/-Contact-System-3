@@ -342,12 +342,12 @@ class SchoolclassesController < ApplicationController
       elsif params[:user][:schoolclasses][id][:board_select] == "1" 
         contact.update(item.merge(board_title: nil, contact_board: nil))
         flash[:notice] = "削除しました。"
-        redirect_to schoolclasses_edit_class_board_user_path(@user, date: contact.contact_date)
+        redirect_to schoolclasses_edit_class_board_user_path(@user, date: contact.contact_date) 
       else
         flash[:alert] = "失敗しました。" 
       end
     end
-  end
+  end 
   
   #学級だより一覧（保護者）
   def guardian_board_index
@@ -376,6 +376,7 @@ class SchoolclassesController < ApplicationController
     flash[:notice] = "#{@user.name}のデータを削除しました。"
     redirect_to schoolclasses_teacher_contact_index_user_url
   end
+
 
   private
     
@@ -412,7 +413,7 @@ class SchoolclassesController < ApplicationController
     end
 
     def class_board_params
-      params.require(:user).permit(schoolclasses: [:board_title, :contact_board, :image])[:schoolclasses]
+      params.require(:user).permit(schoolclasses: [:board_title, :contact_board, :image, :remove_image])[:schoolclasses]
     end
 end
 
