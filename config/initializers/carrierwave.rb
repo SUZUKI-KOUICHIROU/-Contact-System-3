@@ -1,13 +1,10 @@
 CarrierWave.configure do |config|
   config.fog_provider = 'fog/aws'
   config.fog_credentials = {
-    provider:              'AWS',
-    # アクセスキー
-    aws_access_key_id:     'AKIA5WWIIWIPD3OKG4MU',
-    # シークレットキー
-    aws_secret_access_key: 'tjiXUVN2KunSrXhiSE52zGMbJq3qXLuaaKdWOviB',
-    # Tokyo
-    region:                'ap-northeast-1',
+    :provider              => 'AWS',
+    :region                => ENV['S3_REGION'],  
+    :aws_access_key_id     => ENV['S3_ACCESS_KEY'],
+    :aws_secret_access_key => ENV['S3_SECRET_KEY']
   }
 
   # 公開・非公開の切り替え

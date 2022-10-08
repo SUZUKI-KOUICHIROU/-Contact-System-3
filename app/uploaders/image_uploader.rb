@@ -13,16 +13,16 @@ class ImageUploader < CarrierWave::Uploader::Base
     #storage :file
   #end
 
-  # S3のディレクトリ名
-  def store_dir
-    "sample-image/#{model.id}"
-  end
-
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   #def store_dir
     #"uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   #end
+
+  # S3のディレクトリ名
+  def store_dir
+    "sample-image/#{model.id}"
+  end
 
   process resize_to_limit: [1000, 4800]
 
