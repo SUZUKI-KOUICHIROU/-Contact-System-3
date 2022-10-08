@@ -67,10 +67,6 @@ gem 'omniauth-line'
 gem 'omniauth-rails_csrf_protection'
 gem 'dotenv-rails'
 
-gem 'carrierwave'
-gem 'fog-aws'
-gem 'mini_magick'
-
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "sqlite3", "~> 1.4"
@@ -88,9 +84,22 @@ group :development do
   # gem "spring"
 end
 
+#gem 'carrierwave'
+#gem 'fog-aws'
+#gem 'mini_magick'
+
+#group :production do
+  #gem 'pg', '1.1'
+#end
+
 group :production do
-  gem 'pg', '1.1'
+  gem 'pg',             '0.18.0'
+  gem 'rails_12factor', '0.0.2'
+  gem 'fog-aws'
 end
+
+gem 'carrierwave'
+gem 'mini_magick'
 
 
 
