@@ -92,6 +92,8 @@ group :production do
   gem 'pg', '1.1'
 end
 
+gem "aws-sdk-s3", require: false
+
 
 
 
