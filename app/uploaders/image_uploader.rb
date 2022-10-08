@@ -25,21 +25,10 @@ class ImageUploader < CarrierWave::Uploader::Base
       config.fog_directory     =  ENV['S3_BUCKET']
     end
 
-  #if Rails.env.production?
-    #storage :fog
-  #else
-    #storage :file
-  #end
-
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
-  #def store_dir
-    #"uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  #end
-
-  # S3のディレクトリ名
   def store_dir
-    "sample-image/#{model.id}"
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   process resize_to_limit: [1000, 4800]
