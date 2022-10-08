@@ -28,7 +28,7 @@
     <%= board.file_field :image, id: :board_image, class: 'form-control board_board_image' %>
   </div>
   <br>
-  <div>
+  <div class="posts-image">
     <% if day.image.present? %>
       <%= image_tag day.image.url, id: :preview_img %>
     <% else %>
