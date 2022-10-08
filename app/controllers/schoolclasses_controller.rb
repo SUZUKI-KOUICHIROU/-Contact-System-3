@@ -413,7 +413,7 @@ class SchoolclassesController < ApplicationController
     end
 
     def class_board_params
-      params.require(:user).permit(schoolclasses: [:board_title, :contact_board, :image, :remove_image])[:schoolclasses]
+      params.require(:user).permit(schoolclasses: [:board_title, :contact_board, :image])[:schoolclasses]
     end
 end
 

@@ -24,6 +24,36 @@
     </td>
   </div>
 
+  <div>
+    <%= board.file_field :image, id: :board_image, class: 'form-control board_board_image' %>
+  </div>
+  <br>
+  <div>
+    <% if day.image.present? %>
+      <%= image_tag day.image.url, id: :preview_img %>
+    <% else %>
+      <%= image_tag "board_image.png", id: :preview_img, size: '300x200' %>
+    <% end %>
+  </div>
+
+<script type="text/javascript">
+  $(function() {
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+    $('#preview_img').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#board_image").change(function(){
+        readURL(this);
+    });
+  });
+</script>
+
+  <br>
   <div class="board-select">
     <td>
       <%= board.select :board_select, Schoolclass.board_selects, {prompt: true}, { class: "form-control-lg", required: true } %>
@@ -33,4 +63,3 @@
   <% end %>
   <% end %>
 <% end %>
- 

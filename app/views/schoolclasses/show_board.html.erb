@@ -1,7 +1,7 @@
 <% provide(:title, 'Show-Board') %>
 
   <div class="admin-contact"><h1><%= "#{@student.class_belongs}学級だより" %></h1></div>
- 
+
   <% @news_board.each do |news| %>
 
     <% css_class = case $days_of_the_week[news.contact_date.wday]
@@ -17,8 +17,10 @@
   <div class="contact-title-2"><td><%= news.board_title %></td></div>
   <div class="posts-show">
     <td><%= news.contact_board %></td>
-  </div> 
-  
+  </div>
+  <div>
+    <%= news.image.url %> 
+  </div>
   <% end %>
 
 
