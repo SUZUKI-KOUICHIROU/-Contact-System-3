@@ -33,7 +33,7 @@
     <% if day.image.present? %>
       <%= image_tag day.image.url, id: :preview_img %>
     <div class="image-remove">
-      <a><label style="transform:scale(2.5);"><%= board.check_box :remove_image %> 画像を削除</label></a>
+      <a><label style="transform:scale(2.5);"><%= board.check_box :remove_image, class: "image-box" %> 画像を削除</label></a>
     </div>
     <% else %>
       <%= image_tag "board_image.png", id: :preview_img, size: '300x200' %>

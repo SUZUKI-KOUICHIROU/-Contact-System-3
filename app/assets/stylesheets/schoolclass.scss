@@ -262,11 +262,16 @@
 .image-remove {
   a {
     color: black;
-    margin-left: 70px;
+    margin-left: 65px;
   }
 
   margin-top: 20px;
   margin-bottom: 25px;
+}
+
+.image-box {
+  position: relative;
+  top: 1px;
 }
 
 /* クラス一覧 */
