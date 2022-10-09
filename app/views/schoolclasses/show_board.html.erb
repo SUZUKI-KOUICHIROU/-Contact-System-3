@@ -19,7 +19,7 @@
     <td><%= news.contact_board %></td>
   </div>
   <div class="posts-image">
-    <%= image_tag news.image.url %> 
+    <%= image_tag news.image.url if news.image.present? %> 
   </div>
   <% end %>
 

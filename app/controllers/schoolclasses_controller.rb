@@ -340,7 +340,7 @@ class SchoolclassesController < ApplicationController
         flash[:notice] = '投稿しました。'
         redirect_to schoolclasses_board_create_index_user_url(current_user)
       elsif params[:user][:schoolclasses][id][:board_select] == "1" 
-        contact.update(item.merge(board_title: nil, contact_board: nil))
+        contact.update(item.merge(board_title: nil, contact_board: nil, image: :remove_image))
         flash[:notice] = "削除しました。"
         redirect_to schoolclasses_edit_class_board_user_path(@user, date: contact.contact_date) 
       else
@@ -413,7 +413,7 @@ class SchoolclassesController < ApplicationController
     end
 
     def class_board_params
-      params.require(:user).permit(schoolclasses: [:board_title, :contact_board, :image])[:schoolclasses]
+      params.require(:user).permit(schoolclasses: [:board_title, :contact_board, :image, :remove_image])[:schoolclasses]
     end
 end
 

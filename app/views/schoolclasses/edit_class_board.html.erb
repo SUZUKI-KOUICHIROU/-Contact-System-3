@@ -28,9 +28,13 @@
     <%= board.file_field :image, id: :board_image, class: 'form-control board_board_image' %>
   </div>
   <br>
-  <div class="posts-image">
+  
+  <div class="posts-image2">
     <% if day.image.present? %>
       <%= image_tag day.image.url, id: :preview_img %>
+    <div class="image-remove">
+      <a><label style="transform:scale(2.5);"><%= board.check_box :remove_image %> 画像を削除</label></a>
+    </div>
     <% else %>
       <%= image_tag "board_image.png", id: :preview_img, size: '300x200' %>
     <% end %>
