@@ -1,31 +1,19 @@
 <% provide(:title, @user.name) %>
 
-<div class="bg_test">
+<!--div class="bg_test"-->
   
   <% if user_signed_in? && current_user.admin? %>
     <div class="board-class"><h1>管理者メニュー</h1></div>
-      <table class="row_table">
-        <tbody>
-          <tr>
-            <th><%= link_to "担任一覧",  teacher_index_user_path(current_user) %></th>
-          </tr>
-          <tr>
-            <th><%= link_to "クラス一覧", schoolclasses_class_index_user_path(current_user, @schoolclass) %></th>
-          </tr>
-          <tr>
-            <th><%= link_to "生徒一覧", student_index_3_user_path %></th>
-          </tr>
-          <tr>
-            <th><%= link_to "担任登録", new_teacher_user_path(current_user) %></th>
-          </tr>
-          <tr>
-            <th><%= link_to "クラス作成", new_classnumber_path(current_user) %></th>
-          </tr>
-          <tr>
-            <th><%= link_to "管理者情報編集",edit_user_registration_path(@user) %></th>
-          </tr>
-        </tbody>
-      </table>
+      
+      <div class="menu-box">
+        <div class="box1"><p class="li-small product-list-item"><%= link_to "担任一覧", teacher_index_user_path(current_user) %></p></div>
+        <div class="box2"><p class="li-small product-list-item"><%= link_to "クラス一覧", schoolclasses_class_index_user_path(current_user, @schoolclass) %></p></div>
+        <div class="box3"><p class="li-small product-list-item"><%= link_to "担任登録", new_teacher_user_path(current_user) %></p></div>
+        <div class="box4"><p class="li-small product-list-item"><%= link_to "生徒一覧", student_index_3_user_path %></p></div>
+        <div class="box5"><p class="li-small product-list-item"><%= link_to "クラス作成", new_classnumber_path(current_user) %></p></div>
+        <div class="box6"><p class="li-small product-list-item"><%= link_to "管理者情報編集",edit_user_registration_path(@user) %></p></div>
+      </div>
+    
       <thead>      
         <tr>            
           <div class="panel-group">
@@ -94,22 +82,14 @@
           
   <% if user_signed_in? && current_user.teacher? %>
     <div class="board-class"><h1><%= "#{@user.class_number}：#{@user.name}" %></h1></div>
-      <table class="row_table">
-        <tbody>
-          <tr>  
-            <th><%= link_to "生徒一覧", student_index_user_path %></th>
-          </tr>
-          <tr>
-            <th><%= link_to "学校との連絡", schoolclasses_show_teacher_contact_user_path(@user) %></th>
-          </tr> 
-          <tr>
-            <th><%= link_to "学級だより", schoolclasses_board_create_index_user_path(current_user) %></th>
-          </tr>
-          <tr>  
-            <th><%= link_to "担任情報編集", edit_user_registration_path(@user) %></th>
-          </tr>
-        </tbody>  
-      </table>
+      
+      <div class="menu-box">
+        <div class="box1"><p class="li-small product-list-item"><%= link_to "生徒一覧", student_index_user_path %></p></div>
+        <div class="box2"><p class="li-small product-list-item"><%= link_to "学校との連絡", schoolclasses_show_teacher_contact_user_path(@user) %></p></div>
+        <div class="box3"><p class="li-small product-list-item"><%= link_to "学級だより", schoolclasses_board_create_index_user_path(current_user) %></p></div>
+        <div class="box4"><p class="li-small product-list-item"><%= link_to "担任情報編集", edit_user_registration_path(@user) %></p></div>
+      </div>
+  
       <thead>      
         <tr>            
           <div class="panel-group">
@@ -381,4 +361,4 @@
       </div>
     <% end %> 
   <% end %>
-</div>
+<!--/div-->
