@@ -14,8 +14,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @profile.set_values(@omniauth)
       sign_in(:user, @profile)
     end
+    if current_user.password == "password"
     flash[:notice] = "ログインしました"
-    redirect_to root_path
+    flash[:alert] = "パスワードを変更してください"
+    redirect_to root_path  
+    else
+      flash[:notice] = "ログインしました"
+      redirect_to root_path  
+    end
   end
 
   def fake_email(uid, provider)
