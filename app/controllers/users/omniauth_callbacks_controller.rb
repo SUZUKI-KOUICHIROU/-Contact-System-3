@@ -13,6 +13,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
       @profile.set_values(@omniauth)
       sign_in(:user, @profile)
+      end
       if current_user.password == "password"
         flash[:notice] = "ログインしました"
         flash[:alert] = "パスワードが初期設定のままです、パスワードを変更してください。"
