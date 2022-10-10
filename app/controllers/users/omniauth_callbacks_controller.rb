@@ -15,6 +15,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in(:user, @profile)
     end
     flash[:notice] = "ログインしました"
+    if password == "password"
+      flash[:alert] = "パスワードを変更してください"
+    end
     redirect_to root_path
   end
 
