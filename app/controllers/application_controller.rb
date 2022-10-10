@@ -100,6 +100,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def pass_chainged!
+    if current_user.password == "password"
+      flash[:alert] = 'パスワードが初期設定のままです、パスワードを変更してください。'
+    end
+  end
+
   # クラスリスト
   def class_choice
     @class_list = Classnumber.all.order(:class_name)

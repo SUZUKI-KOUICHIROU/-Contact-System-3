@@ -1,5 +1,8 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
+  before_action :pass_chainged!, only: %i(basic_action)
+  
+  
   def line; basic_action end
 
   private
@@ -13,24 +16,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
       @profile.set_values(@omniauth)
       sign_in(:user, @profile)
-      end
-      if current_user.password == "password"
-        flash[:notice] = "ログインしました"
-        flash[:alert] = "パスワードが初期設定のままです、パスワードを変更してください。"
-        redirect_to root_path  
-      else
-        flash[:notice] = "ログインしました"
-        redirect_to root_path  
-      end
     end
-    if current_user.password == "password"
-      flash[:notice] = "ログインしました"
-      flash[:alert] = "パスワードが初期設定のままです、パスワードを変更してください。"
-      redirect_to root_path  
-    else
-      flash[:notice] = "ログインしました"
-      redirect_to root_path  
-    end
+    flash[:notice] = "ログインしました"
+    redirect_to root_path  
   end
 
   def fake_email(uid, provider)
