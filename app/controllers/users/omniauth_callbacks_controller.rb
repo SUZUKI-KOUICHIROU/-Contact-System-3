@@ -18,7 +18,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash[:notice] = "ログインしました"
       flash[:alert] = '保護者情報・パスワード（6文字）を設定してください。'
       redirect_to edit_user_registration_path(current_user)
-    elsif @profile.password != "password"
+    elsif @user.password != "password"
       flash[:notice] = "ログインしました"
       redirect_to root_path  
     end
