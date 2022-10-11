@@ -1,7 +1,4 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-
-  before_action :pass_chainged!, only: %i(basic_action)
-  
   
   def line; basic_action end
 
@@ -17,7 +14,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @profile.set_values(@omniauth)
       sign_in(:user, @profile)
     end
-    flash[:notice] = "ログインしました"
+    if current_user.password == "password"
+      flash[:notice] = "ログインしました"
+      flash[:alert] = 'パスワードが初期設定のままです、パスワードを変更してください。'
+    else
+      flash[:notice] = "ログインしました"
+    end
     redirect_to root_path  
   end
 
