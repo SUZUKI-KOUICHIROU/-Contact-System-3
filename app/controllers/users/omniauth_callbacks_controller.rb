@@ -16,11 +16,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
     if current_user.password == "password"
       flash[:notice] = "ログインしました"
-      flash[:alert] = 'パスワードが初期設定のままです、パスワードを変更してください。'
+      flash[:alert] = '保護者情報、パスワードを設定してください。'
     else
       flash[:notice] = "ログインしました"
     end
-    redirect_to root_path  
+    redirect_to edit_user_registration_path(current_user)
+    #redirect_to root_path  
   end
 
   def fake_email(uid, provider)
