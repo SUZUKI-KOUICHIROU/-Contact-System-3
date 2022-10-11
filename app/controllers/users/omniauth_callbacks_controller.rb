@@ -16,7 +16,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
     if current_user.password == "password"
       flash[:notice] = "ログインしました"
-      flash[:alert] = '保護者情報・パスワード（6文字）を設定してください。'
+      flash[:alert] = '保護者情報・パスワード（6文字以上）を設定してください。'
       redirect_to edit_user_registration_path(current_user)
     else
       flash[:notice] = "ログインしました"
