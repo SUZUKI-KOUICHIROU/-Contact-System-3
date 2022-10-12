@@ -514,8 +514,9 @@ input[type="text"] {
   }
 }
 
-.board-class { 
-  margin: auto;
+.board-class {
+  margin-left: auto;
+  margin-right: auto;
   font-family: ヒラギノ丸ゴ ProN;
   font-size: 15px;
   color: #111111;
