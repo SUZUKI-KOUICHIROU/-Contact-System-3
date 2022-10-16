@@ -3,8 +3,7 @@
 <!--div class="bg_test"-->
   
   <% if user_signed_in? && current_user.admin? %>
-    <div class="board-class"><h1>管理者メニュー</h1></div>
-      
+    <div class="board-class"><h1>管理者メニュー</h1></div> 
       <div class="menu-box">
         <div class="box1"><p class="li-small product-list-item"><%= link_to "担任一覧", teacher_index_user_path(current_user) %></p></div>
         <div class="box2"><p class="li-small product-list-item"><%= link_to "クラス一覧", schoolclasses_class_index_user_path(current_user, @schoolclass) %></p></div>

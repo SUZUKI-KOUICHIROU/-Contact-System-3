@@ -2,7 +2,7 @@
 
 <div class="bg_test">
 
-  <h1 class="top-title">学校連絡帳</h1>
+  <div class="top-title"><h1>学校連絡帳</h1></div>
   
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
@@ -15,30 +15,36 @@
               
               <%= f.label :パスワード, class: "label-login" %>
               <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
-              
+            </div>  
+            
+            <div class= "login-remember">
               <% if devise_mapping.rememberable? %>
                 <%= f.label :remember_me, class: "checkbox inline checkbox-login", for: "remember-me" do %>
-                <%= f.check_box :remember_me, id: "remember-me" %>
-                <span class="box-1">ログイン情報を記憶</span>
+                <a><label style="transform:scale(1.7);"><%= f.check_box :remember_me, id: "remember-me" %>ログイン情報を記憶</label></a>
               <% end %>
-              
+            </div>  
+            
+            <div class="top-login">
               <%= f.submit "ログイン", class: "btn btn-success btn-login-home" %>   
-              
+            </div>  
+            <div class="line-botn">
               <!--%= render "devise/shared/links" %-->
               <%- if devise_mapping.omniauthable? %>
                 <%- resource_class.omniauth_providers.each do |provider| %>
-              
-
               <%= link_to "", omniauth_authorize_path(resource_name, provider), method: :post, class: 'btn btn-image' %>
                 <% end %>
               <% end %>
+            </div>  
+            
+              <div class="passwod_set">
+                <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>             
+                  <%= link_to "パスワード再設定", new_user_password_path(resource_name) %>
+                <% end %>
+              </div>
               
-              <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-                　<%= link_to "パスワード再設定", new_user_password_path(resource_name) %>
-              <% end %>
               
               <% end %>
-            </div>
+            
           </div>
         </div>
       </div>

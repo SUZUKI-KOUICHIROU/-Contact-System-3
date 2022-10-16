@@ -180,6 +180,9 @@ a.btn--green.btn--border-groove {
 }
 
 /* 生徒一覧 */
+.user_search {
+  font-size: 30px; 
+}
 
 .student-title { 
   margin: auto;
@@ -777,6 +780,31 @@ input[type="password"] {
 
 .top-test2 {
   margin-left: 23px;
+}
+
+.login-remember {
+  a {
+    color: black;
+    margin-left: 47px;
+    font-size: 15px;
+  }
+  margin-top: 15px;
+  margin-left: 6px;
+}
+
+.top-login {
+  margin-left: 18px; 
+}
+
+.line-botn {
+  margin-top: -7px;
+  margin-left: 20px;
+}
+
+.passwod_set {
+  font-size: 30px; 
+  margin-left: 280px; 
+  margin-top: -55px;
 }
 
 table{

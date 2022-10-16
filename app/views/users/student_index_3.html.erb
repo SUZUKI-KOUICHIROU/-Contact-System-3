@@ -4,6 +4,9 @@
 
 <div>
   <%= will_paginate(@students, renderer: WillPaginate::ActionView::BootstrapLinkRenderer) %>
+  
+  <div class="user_search"><%= link_to "検索", user_search_path(current_user) %></div> 
+  
   <table class="table table-bordered table-condensed table-hover" id="table-class-index">      
     <thead> 
       <tr>
@@ -44,4 +47,5 @@
       <% end %>
     </tbody>
   </table>
+  </div>
 </div>

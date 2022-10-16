@@ -3,4 +3,8 @@ class Student < ApplicationRecord
   
   validates :birthday, presence: true
   validates :student_number, length: { maximum: 2 }
+
+  def self.search(keyword)
+    where(["student_name like?", "%#{keyword}%"])
+  end
 end

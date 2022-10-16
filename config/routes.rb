@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
   
   get 'show', to: 'users#show'
-  
+
   #get 'sessions/new'
   #root 'static_pages#top'
   #get '/signup', to: 'users#new'
@@ -35,7 +35,9 @@ Rails.application.routes.draw do
   #post 'create_guardian', to: 'users#create_guardian'
   
   resources :users do
-    member do     
+    get :search, on: :collection
+    get 'search'
+    member do    
       get 'edit_admin'
       patch 'update_admin'
   

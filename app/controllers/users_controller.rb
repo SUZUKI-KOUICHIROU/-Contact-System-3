@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   before_action :teacher_user, only: %i(student_index)
   before_action :class_choice, only: %i(new_teacher create_teacher edit_teacher new_student edit_student edit_student_2)
   before_action :set_one_month, only: %i(show)
-
   
   def index
     @users = User.paginate(page: params[:page])
@@ -171,7 +170,21 @@ class UsersController < ApplicationController
     #@students = Student.all.order(:class_belongs).order(:student_number)
     @guardians = User.where(admin: false, teacher: false) 
     @class = Classnumber.all
-    @students = Student.paginate(page: params[:page], per_page: 10).order(:class_belongs).order(:student_number) 
+    @students = Student.paginate(page: params[:page], per_page: 10).order(:class_belongs).order(:student_number)  
+  
+    if params[:name].present?
+      @student_search = Student.where('student_name LIKE ?', "%#{params[:name]}%")
+    else
+      @student_search = Student.none
+    end
+  end
+
+  def search
+    if params[:name].present?
+      @student_search = Student.where('student_name LIKE ?', "%#{params[:name]}%")
+    else
+      @student_search = Student.none
+    end
   end
   
   def student_destroy
