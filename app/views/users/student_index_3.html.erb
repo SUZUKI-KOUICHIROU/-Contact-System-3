@@ -5,7 +5,7 @@
 <div>
   <%= will_paginate(@students, renderer: WillPaginate::ActionView::BootstrapLinkRenderer) %>
   
-  <div class="user_search"><%= link_to "検索", user_search_path(current_user) %></div> 
+  <div class="user_search"><%= link_to "検索", user_search_path(current_user), class: "btn btn--green btn--border-groove" %></div> 
   
   <table class="table table-bordered table-condensed table-hover" id="table-class-index">      
     <thead> 

@@ -180,6 +180,8 @@ class UsersController < ApplicationController
   end
 
   def search
+    @guardians = User.where(admin: false, teacher: false) 
+    @class = Classnumber.all
     if params[:name].present?
       @student_search = Student.where('student_name LIKE ?', "%#{params[:name]}%")
     else

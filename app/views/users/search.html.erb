@@ -1,5 +1,55 @@
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= render 'serach' %>
-  </div>
+<% provide(:title, 'student-serach') %>
+
+<div class="search-title"><h1>生徒検索</h1></div>
+
+<div class="search-form">
+  <%= form_with url: search_users_path, method: :get, local: true do |f| %>
+    <%= f.text_field :name %>
+    <div class="search-btn"><%= f.submit :search, class: "search-btn btn-lg btn-primary" %></div>
+  <% end %>
 </div>
+
+<% @student_search.each do |student| %>
+  <% if student.student_name.present? %>
+    <table class="table table-bordered table-condensed table-hover" id="table-class-index">      
+      <thead> 
+        <tr>
+          <th>クラス</th>
+          <th>名前</th>
+          <th>保護者</th>
+          <th>生徒削除</th>
+          <th>保護者削除</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @student_search.each do |student| %>
+          <% @guardians.each do |guardian| %>  
+            <% if student.user_id == guardian.id %>
+              <tr>
+                <td>
+                <% @class.each do |number| %>
+                  <% if number.class_name == student.class_belongs %>
+                    <%= link_to "#{student.class_belongs}", student_index_2_user_path(number) %>
+                  <% end %>
+                <% end %>
+                </td>
+                <td><%= link_to "#{student.student_name}", students_student_detail_user_path(student) %></td>
+                <td><%= guardian.name %>
+                <td>
+                    <%= link_to "削除", student_destroy_user_url(student), method: :delete,
+                        data: { confirm: "削除してよろしいですか？" },
+                        class: "btn btn-danger" %>
+                </td>  
+                <td>
+                    <%= link_to "削除", guardian_destroy_user_url(guardian), method: :delete,
+                        data: { confirm: "削除してよろしいですか？" },
+                        class: "btn btn-danger" %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>

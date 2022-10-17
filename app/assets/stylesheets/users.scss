@@ -870,5 +870,29 @@ table{
   }
 }
 
+/* 検索 */
+
+.search-title { 
+  margin: auto;
+  font-family: ヒラギノ丸ゴ ProN;
+  font-size: 15px;
+  color: #111111;
+  border-style: outset;
+  border: 10px outset #00F9A9;
+  border-width:10px;
+  width: 400px;
+	height: 100px;
+  background: #DDFFFF;
+}
+
+.search-form {
+  margin-top: 40px;
+  margin-left: 30px;
+}
+
+.search-btn {
+  margin-top: 10px;
+}
+
 
 
