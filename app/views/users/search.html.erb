@@ -9,9 +9,9 @@
   <% end %>
 </div>
 
-<% @student_search.each do |student| %>
-  <% if student.student_name.present? %>
     <table class="table table-bordered table-condensed table-hover" id="table-class-index">      
+    <% @student_search.each do |student| %>
+    <% if student.student_name.present? %>  
       <thead> 
         <tr>
           <th>クラス</th>
@@ -50,6 +50,7 @@
           <% end %>
         <% end %>
       </tbody>
+    <% end %>
+    <% end %>
     </table>
-  <% end %>
-<% end %>
+  
