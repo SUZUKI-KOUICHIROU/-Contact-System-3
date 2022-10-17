@@ -10,11 +10,7 @@
 </div>
 
     <table class="table table-bordered table-condensed table-hover" id="table-class-index">      
-      <% @student_search.each do |student| %>
-          <% @guardians.each do |guardian| %>  
-            <% if student.user_id == guardian.id %>
-
-
+      <% if params[:name].present? %>  
           <thead> 
             <tr>
               <th>クラス</th>
@@ -24,9 +20,11 @@
               <th>保護者削除</th>
             </tr>
           </thead>
-        
+      <% end %> 
       <tbody>
-        
+        <% @student_search.each do |student| %>
+          <% @guardians.each do |guardian| %>  
+            <% if student.user_id == guardian.id %>
               <tr>
                 <td>
                 <% @class.each do |number| %>
@@ -48,12 +46,9 @@
                         class: "btn btn-danger" %>
                 </td>
               </tr>
-            
-      </tbody>
-    <% end %>
+            <% end %>
           <% end %>
         <% end %>
-    
-    
+      </tbody>
     </table>
   
