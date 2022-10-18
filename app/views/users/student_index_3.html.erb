@@ -1,14 +1,19 @@
-<% provide(:title, 'all-students') %>
+<% provide(:title, 'student-serach') %>
 
-<div class="student-title"><h1><%= "#{@user.class_number}生徒一覧" %></h1></div>
+<div class="search-title"><h1>生徒一覧</h1></div>
 
 <div class="student-paginate">
   <%= will_paginate(@students, renderer: WillPaginate::ActionView::BootstrapLinkRenderer) %>
-</div>  
-<div class="user_search">
-  <%= link_to "検索", user_search_path(current_user), class: "btn btn--green btn--border-groove" %>
-</div> 
-  
+</div>
+
+<div class="search-form">
+  <div class="student-search">生徒検索</div>
+  <%= form_with url: search_users_path, method: :get, local: true do |f| %>
+    <%= f.text_field :name %>
+    <div class="search-btn"><%= f.submit :search, class: "search-btn btn-lg btn-primary" %></div>
+  <% end %>
+</div>
+
   <table class="table table-bordered table-condensed table-hover" id="table-class-index">      
     <thead> 
       <tr>
@@ -49,5 +54,6 @@
       <% end %>
     </tbody>
   </table>
-  
 
+  
+  

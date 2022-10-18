@@ -891,12 +891,22 @@ table{
 }
 
 .search-form {
+  input[type="text"] {
+    width: 300px;
+    height: 48px;
+    font-size: 25px;
+  }
   margin-top: 40px;
   margin-left: 30px;
 }
 
+.student-search {
+  font-size: 25px;
+  font-weight: bold;
+}
+
 .search-btn {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 
