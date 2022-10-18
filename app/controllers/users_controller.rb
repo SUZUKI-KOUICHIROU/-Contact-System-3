@@ -176,7 +176,8 @@ class UsersController < ApplicationController
   def search
     @guardians = User.where(admin: false, teacher: false) 
     @class = Classnumber.all
-    
+    @students = Student.paginate(page: params[:page], per_page: 10).order(:class_belongs).order(:student_number)  
+
     if params[:name].present?
       @student_search = Student.where('student_name LIKE ?', "%#{params[:name]}%")
     else
