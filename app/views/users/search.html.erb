@@ -9,8 +9,8 @@
 <div class="search-form">
   <div class="student-search">生徒検索</div>
   <%= form_with url: search_users_path, method: :get, local: true do |f| %>
-    <%= f.text_field :name, :size=>"50" %>
-    <div class="search-btn"><%= f.submit :search, class: "search-btn btn-lg btn-primary" %></div>
+    <%= f.text_field :name %>
+    <div class="search-btn"><%= f.submit "検索", class: "search-btn btn-lg btn-success" %></div>
   <% end %>
 </div>
 
