@@ -181,6 +181,7 @@ a.btn--green.btn--border-groove {
 
 /* 生徒一覧 */
 .student-paginate {
+  margin-bottom: 10px;
   margin-left: 30px;
 }
 
@@ -218,6 +219,42 @@ a.btn--green.btn--border-groove {
     text-align: center;
     border: medium solid #FF9933;
   }
+}
+
+/* 検索 */
+
+.search-title { 
+  margin: auto;
+  font-family: ヒラギノ丸ゴ ProN;
+  font-size: 15px;
+  color: #111111;
+  border-style: outset;
+  border: 10px outset #00F9A9;
+  border-width:10px;
+  width: 400px;
+	height: 100px;
+  background: #DDFFFF;
+}
+
+.search-form {
+  input[type="text"] {
+    width: 300px;
+    height: 48px;
+    font-size: 25px;
+  }
+  margin-top: 5px;
+  margin-left: 30px;
+}
+
+.student-search {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.search-btn {
+  margin-top: 5px;
+  font-size: 18px;
+  color: black;
 }
 
 /* 生徒一覧2*/
@@ -873,42 +910,6 @@ table{
   .tb02 tr:last-child{
     border-bottom: solid 1px #ccc;
   }
-}
-
-/* 検索 */
-
-.search-title { 
-  margin: auto;
-  font-family: ヒラギノ丸ゴ ProN;
-  font-size: 15px;
-  color: #111111;
-  border-style: outset;
-  border: 10px outset #00F9A9;
-  border-width:10px;
-  width: 400px;
-	height: 100px;
-  background: #DDFFFF;
-}
-
-.search-form {
-  input[type="text"] {
-    width: 300px;
-    height: 48px;
-    font-size: 25px;
-  }
-  margin-top: 5px;
-  margin-left: 30px;
-}
-
-.student-search {
-  font-size: 25px;
-  font-weight: bold;
-}
-
-.search-btn {
-  margin-top: 5px;
-  font-size: 18px;
-  color: black;
 }
 
 
