@@ -2,10 +2,6 @@
 
 <div class="search-title"><h1>生徒検索</h1></div>
 
-<div class="student-paginate">
-  <%= will_paginate(@students, renderer: WillPaginate::ActionView::BootstrapLinkRenderer) %>
-</div>
-
 <div class="search-form">
   <div class="student-search">生徒検索</div>
   <%= form_with url: search_users_path, method: :get, local: true do |f| %>
