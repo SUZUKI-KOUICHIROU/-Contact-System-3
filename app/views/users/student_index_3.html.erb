@@ -2,6 +2,7 @@
 
 <div class="search-title"><h1>生徒一覧</h1></div>
 
+<div class="boxContainer">
 <div class="student-paginate">
   <%= will_paginate(@students, renderer: WillPaginate::ActionView::BootstrapLinkRenderer) %>
 </div>
@@ -12,6 +13,7 @@
     <%= f.text_field :name %>
     <div class="search-btn"><%= f.submit "検索", class: "search-btn btn-lg btn-success" %></div>
   <% end %>
+</div>
 </div>
 
   <table class="table table-bordered table-condensed table-hover" id="table-class-index">      
