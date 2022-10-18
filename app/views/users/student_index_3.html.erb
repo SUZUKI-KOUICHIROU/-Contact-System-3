@@ -2,18 +2,18 @@
 
 <div class="search-title"><h1>生徒一覧</h1></div>
 
-<div class="boxContainer">
-<div class="student-paginate">
-  <%= will_paginate(@students, renderer: WillPaginate::ActionView::BootstrapLinkRenderer) %>
-</div>
+<div class="search-container">
+  <div class="student-paginate">
+    <%= will_paginate(@students, renderer: WillPaginate::ActionView::BootstrapLinkRenderer) %>
+  </div>
 
-<div class="search-form">
-  <div class="student-search">生徒検索</div>
-  <%= form_with url: search_users_path, method: :get, local: true do |f| %>
-    <%= f.text_field :name %>
+  <div class="search-form">
+    <div class="student-search">生徒検索</div>
+      <%= form_with url: search_users_path, method: :get, local: true do |f| %>
+      <%= f.text_field :name %>
     <div class="search-btn"><%= f.submit "検索", class: "search-btn btn-lg btn-success" %></div>
-  <% end %>
-</div>
+      <% end %>
+  </div>
 </div>
 
   <table class="table table-bordered table-condensed table-hover" id="table-class-index">      

@@ -2,11 +2,11 @@
 
 <div class="search-title"><h1>生徒検索</h1></div>
 
-<div class="search-form">
-  <div class="student-search">生徒検索</div>
+<div class="search-form2">
+  <div class="student-search2">生徒検索</div>
   <%= form_with url: search_users_path, method: :get, local: true do |f| %>
     <%= f.text_field :name %>
-    <div class="search-btn"><%= f.submit "検索", class: "search-btn btn-lg btn-success" %></div>
+    <div class="search-btn2"><%= f.submit "検索", class: "search-btn btn-lg btn-success" %></div>
   <% end %>
 </div>
 

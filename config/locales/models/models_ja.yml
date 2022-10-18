@@ -9,7 +9,7 @@ ja:
           birthday: 生年月日
           age: 年齢
           address: 住所
-          telephone_number: 電話番号
+          telephone_number: 電話番号（ハイフン不要です）
           guardian_name: 保護者
           email: メールアドレス
           class_number: クラス

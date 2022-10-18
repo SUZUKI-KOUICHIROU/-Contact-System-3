@@ -180,12 +180,12 @@ a.btn--green.btn--border-groove {
 }
 
 /* 生徒一覧 */
-.boxContainer{
-  overflow: hidden;
+.search-container{
+  display: flex;
 }
 
 .student-paginate {
-  margin-bottom: 10px;
+  margin-top: 30px;
   margin-left: 30px;
 }
 
@@ -237,11 +237,13 @@ a.btn--green.btn--border-groove {
 
 .search-form {
   input[type="text"] {
+    float: left;
+    margin-top: -6px;
     width: 300px;
     height: 48px;
     font-size: 25px;
   }
-  margin-top: 5px;
+  margin-top: 30px;
   margin-left: 30px;
 }
 
@@ -251,8 +253,31 @@ a.btn--green.btn--border-groove {
 }
 
 .search-btn {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+}
+
+.search-form2 {
+  input[type="text"] {
+    width: 300px;
+    height: 48px;
+    font-size: 25px;
+  }
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+.student-search2 {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.search-btn2 {
   margin-top: 5px;
   font-size: 18px;
+  font-weight: bold;
   color: black;
 }
 
