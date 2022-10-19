@@ -8,8 +8,9 @@ ja:
           name: 名前
           birthday: 生年月日
           age: 年齢
+          post_code: 郵便番号（ハイフン不要）
           address: 住所
-          telephone_number: 電話番号（ハイフン不要です）
+          telephone_number: 電話番号（ハイフン不要）
           guardian_name: 保護者
           email: メールアドレス
           class_number: クラス

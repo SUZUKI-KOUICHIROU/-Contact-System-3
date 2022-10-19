@@ -26,7 +26,7 @@
     
       <div class="student-number">  
         <%= f.label "出席番号", class: "label-#{yield(:class_text)}" %>
-        <%= f.text_field :student_number, required: true, class: "form-control" %>
+        <%= f.text_field :student_number, class: "form-control" %>
       </div>
         <%= f.submit yield(:button_text), class: "btn btn-success btn-student" %>
       <% end %>

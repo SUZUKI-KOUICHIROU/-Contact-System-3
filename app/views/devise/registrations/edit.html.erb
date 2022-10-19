@@ -33,6 +33,9 @@
         <% end %>
           
         <% unless current_user.admin? || current_user.teacher? %>
+          <%= f.label :post_code, class: "label-#{yield(:class_text)}" %>
+          <%= f.text_field :post_code, required: true, class: "form-control" %>
+                
           <%= f.label :address, class: "label-#{yield(:class_text)}" %>
           <%= f.text_field :address, class: "form-control" %>
 

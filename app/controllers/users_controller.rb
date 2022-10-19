@@ -193,7 +193,7 @@ class UsersController < ApplicationController
   
   private
     def guardian_params
-      params.require(:user).permit(:name, :email, :address, :telephone_number, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :post_code, :address, :telephone_number, :password, :password_confirmation)
     end
   
     def teacher_params

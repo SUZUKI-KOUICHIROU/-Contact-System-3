@@ -18,7 +18,10 @@
           
           <%= f.label :email, class: "label-#{yield(:class_text)}" %>
           <%= f.email_field :email, required: true, autofocus: true, autocomplete: "email", class: "form-control" %>
-  
+          
+          <%= f.label :post_code, class: "label-#{yield(:class_text)}" %>
+          <%= f.text_field :post_code, required: true, class: "form-control" %>
+          
           <%= f.label :address, class: "label-#{yield(:class_text)}" %>
           <%= f.text_field :address, required: true, autofocus: true, autocomplete: "address", class: "form-control" %>
           
