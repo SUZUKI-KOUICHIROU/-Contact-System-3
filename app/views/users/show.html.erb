@@ -65,7 +65,7 @@
                     <% if contact.user_id == teacher.id %>
                       <div class="board-9">
                         <% if contact.contact_count1 > 0 && contact.school_contact.present? %>  
-                          <%= link_to "#{teacher.name}から返信あり：#{contact.title}", schoolclasses_edit_teacher_contact_user_path(teacher, date: contact.contact_date)%>
+                          <%= link_to "#{teacher.name}から返信：#{contact.title}", schoolclasses_edit_teacher_contact_user_path(teacher, date: contact.contact_date)%>
                         <% end %>
                           <%= l(contact.contact_update2, format: :short) if contact.contact_update2.present? %>   
                       </div> 
